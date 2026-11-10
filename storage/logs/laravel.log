@@ -1,0 +1,806 @@
+[2026-11-10 05:03:51] local.ERROR: Unable to locate file in Vite manifest: resources/js/app.js. {"view":{"view":"C:\\laragon\\www\\rung-react\\resources\\views\\layouts\\partials\\head.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-2113868 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#674</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-2113868\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","exception":"<pre class=sf-dump id=sf-dump-381382082 data-indent-pad=\"  \"><span class=sf-dump-note>Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException</span> {<a class=sf-dump-ref>#509</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">message</span>: \"<span class=sf-dump-str title=\"43 characters\">The route khong-ton-tai could not be found.</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">code</span>: <span class=sf-dump-num>0</span>
+  #<span class=sf-dump-protected title=\"Protected property\">file</span>: \"<span class=\"sf-dump-str sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\AbstractRouteCollection.php
+101 characters\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Routing\\AbstractRouteCollection.php</span></span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">line</span>: <span class=sf-dump-num>44</span>
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Symfony\\Component\\HttpKernel\\Exception\\HttpException`\">statusCode</span>: <span class=sf-dump-num>404</span>
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Symfony\\Component\\HttpKernel\\Exception\\HttpException`\">headers</span>: []
+  <span class=sf-dump-meta>trace</span>: {<samp data-depth=2 class=sf-dump-compact>
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\AbstractRouteCollection.php:44
+Stack level 28.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Routing\\AbstractRouteCollection.php:44</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Routing\\AbstractRouteCollection-&gt;handleMatchedRoute(Request $request, $route)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">AbstractRouteCollection-&gt;handleMatchedRoute(Request $request, $route)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\AbstractRouteCollection-&gt;handleMatchedRoute(Request $request, $route)\">throw new NotFoundHttpException(sprintf(</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>    &#039;The route %s could not be found.&#039;,</span></code>
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteCollection.php:162
+Stack level 27.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Routing\\RouteCollection.php:162</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Routing\\RouteCollection-&gt;match(Request $request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">RouteCollection-&gt;match(Request $request)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\RouteCollection-&gt;match(Request $request)\">    return $this-&gt;handleMatchedRoute($request, $route);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php:761
+Stack level 26.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Routing\\Router.php:761</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Routing\\Router-&gt;findRoute($request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">Router-&gt;findRoute($request)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\Router-&gt;findRoute($request)\">$this-&gt;current = $route = $this-&gt;routes-&gt;match($request);</span></code>
+      &#8250; 
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php:748
+Stack level 25.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Routing\\Router.php:748</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Routing\\Router-&gt;dispatchToRoute(Request $request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">Router-&gt;dispatchToRoute(Request $request)</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>{</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\Router-&gt;dispatchToRoute(Request $request)\">    return $this-&gt;runRoute($request, $this-&gt;findRoute($request));</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php:737
+Stack level 24.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Routing\\Router.php:737</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Routing\\Router-&gt;dispatch(Request $request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">Router-&gt;dispatch(Request $request)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\Router-&gt;dispatch(Request $request)\">    return $this-&gt;dispatchToRoute($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:200
+Stack level 23.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\Http\\Kernel.php:200</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Foundation\\Http\\Kernel-&gt;Illuminate\\Foundation\\Http\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Kernel-&gt;Illuminate\\Foundation\\Http</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">{closure}</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Kernel-&gt;Illuminate\\Foundation\\Http\\{closure}\">    return $this-&gt;router-&gt;dispatch($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>};</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:144
+Stack level 22.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Pipeline\\Pipeline.php:144</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">{closure}</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>try {</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">    return $destination($passable);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>} catch (Throwable $e) {</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\barryvdh\\laravel-debugbar\\src\\Middleware\\InjectDebugbar.php:66
+Stack level 21.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\barryvdh\\laravel-debugbar\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Middleware\\InjectDebugbar.php:66</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Barryvdh\\Debugbar\\Middleware\\InjectDebugbar-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Barryvdh\\Debugbar\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">InjectDebugbar-&gt;handle($request, Closure $next)</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>    /** @var \\Illuminate\\Http\\Response $response */</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Barryvdh\\Debugbar\\Middleware\\InjectDebugbar-&gt;handle($request, Closure $next)\">    $response = $next($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>} catch (Throwable $e) {</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:183
+Stack level 20.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Pipeline\\Pipeline.php:183</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">{closure}</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21
+Stack level 19.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">TransformsRequest-&gt;handle($request, Closure $next)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php:31
+Stack level 18.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php:31</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">ConvertEmptyStringsToNull-&gt;handle($request, Closure $next)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull-&gt;handle($request, Closure $next)\">    return parent::handle($request, $next);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:183
+Stack level 17.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Pipeline\\Pipeline.php:183</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">{closure}</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21
+Stack level 16.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">TransformsRequest-&gt;handle($request, Closure $next)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php:40
+Stack level 15.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php:40</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Foundation\\Http\\Middleware\\TrimStrings-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">TrimStrings-&gt;handle($request, Closure $next)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\TrimStrings-&gt;handle($request, Closure $next)\">    return parent::handle($request, $next);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:183
+Stack level 14.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Pipeline\\Pipeline.php:183</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">{closure}</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php:27
+Stack level 13.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php:27</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">ValidatePostSize-&gt;handle($request, Closure $next)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:183
+Stack level 12.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Pipeline\\Pipeline.php:183</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">{closure}</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php:99
+Stack level 11.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php:99</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">PreventRequestsDuringMaintenance-&gt;handle($request, Closure $next)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:183
+Stack level 10.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Pipeline\\Pipeline.php:183</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">{closure}</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php:49
+Stack level 9.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Http\\Middleware\\HandleCors.php:49</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Http\\Middleware\\HandleCors-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">HandleCors-&gt;handle($request, Closure $next)</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>if (! $this-&gt;hasMatchingPath($request)) {</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Http\\Middleware\\HandleCors-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:183
+Stack level 8.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Pipeline\\Pipeline.php:183</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">{closure}</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php:39
+Stack level 7.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Http\\Middleware\\TrustProxies.php:39</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Http\\Middleware\\TrustProxies-&gt;handle(Request $request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">TrustProxies-&gt;handle(Request $request, Closure $next)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Http\\Middleware\\TrustProxies-&gt;handle(Request $request, Closure $next)\">    return $next($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:183
+Stack level 6.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Pipeline\\Pipeline.php:183</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">{closure}</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:119
+Stack level 5.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Pipeline\\Pipeline.php:119</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Pipeline\\Pipeline-&gt;then(Closure $destination)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">Pipeline-&gt;then(Closure $destination)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;then(Closure $destination)\">    return $pipeline($this-&gt;passable);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:175
+Stack level 4.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\Http\\Kernel.php:175</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Foundation\\Http\\Kernel-&gt;sendRequestThroughRouter($request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">Kernel-&gt;sendRequestThroughRouter($request)</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>                -&gt;through($this-&gt;app-&gt;shouldSkipMiddleware() ? [] : $this-&gt;middleware)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Kernel-&gt;sendRequestThroughRouter($request)\">                -&gt;then($this-&gt;dispatchToRouter());</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:144
+Stack level 3.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\Http\\Kernel.php:144</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Foundation\\Http\\Kernel-&gt;handle($request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">Kernel-&gt;handle($request)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Kernel-&gt;handle($request)\">    $response = $this-&gt;sendRequestThroughRouter($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>} catch (Throwable $e) {</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\public\\index.php:52
+Stack level 2.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\</span><span class=\"sf-dump-ellipsis-tail\">public\\index.php:52</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note>require_once</span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>$response = $kernel-&gt;handle(</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in require_once\">    $request = Request::capture()</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>)-&gt;send();</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php:16
+Stack level 1.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\resources\\server.php:16</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const>require_once $publicPath.&#039;/index.php&#039;;</span></code>
+      &#8250; 
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+  </samp>}
+</samp>}
+</pre><script>Sfdump(\"sf-dump-381382082\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","component":"<pre class=sf-dump id=sf-dump-1336404954 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\View\\AnonymousComponent</span> {<a class=sf-dump-ref>#682</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">except</span>: []
+  +<span class=sf-dump-public title=\"Public property\">componentName</span>: \"<span class=sf-dump-str title=\"6 characters\">button</span>\"
+  +<span class=sf-dump-public title=\"Public property\">attributes</span>: <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\View\\ComponentAttributeBag
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\View</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">ComponentAttributeBag</span></span> {<a class=sf-dump-ref>#686</a><samp data-depth=2 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: <span class=sf-dump-note>array:3</span> [<samp data-depth=3 class=sf-dump-compact>
+      \"<span class=sf-dump-key>href</span>\" => \"<span class=sf-dump-str title=\"21 characters\">http://127.0.0.1:8123</span>\"
+      \"<span class=sf-dump-key>variant</span>\" => \"<span class=sf-dump-str title=\"7 characters\">primary</span>\"
+      \"<span class=sf-dump-key>size</span>\" => \"<span class=sf-dump-str title=\"2 characters\">lg</span>\"
+    </samp>]
+  </samp>}
+  #<span class=sf-dump-protected title=\"Protected property\">view</span>: \"<span class=sf-dump-str title=\"17 characters\">components.button</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">data</span>: <span class=sf-dump-note>array:3</span> [<samp data-depth=2 class=sf-dump-compact>
+    \"<span class=sf-dump-key>href</span>\" => \"<span class=sf-dump-str title=\"21 characters\">http://127.0.0.1:8123</span>\"
+    \"<span class=sf-dump-key>variant</span>\" => \"<span class=sf-dump-str title=\"7 characters\">primary</span>\"
+    \"<span class=sf-dump-key>size</span>\" => \"<span class=sf-dump-str title=\"2 characters\">lg</span>\"
+  </samp>]
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1336404954\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"exception":"[object] (Spatie\\LaravelIgnition\\Exceptions\\ViewException(code: 0): Unable to locate file in Vite manifest: resources/js/app.js. at C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php:781)
+[stacktrace]
+#0 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php(299): Illuminate/Foundation/Vite->chunk(Array, 'resources/js/ap...')
+#1 C:/laragon/www/rung-react/resources/views/layouts/partials/head.blade.php(116): Illuminate/Foundation/Vite->__invoke(Object(Illuminate/Support/Collection))
+#2 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('C://laragon//www//...')
+#3 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate/Filesystem/Filesystem::Illuminate/Filesystem/{closure}()
+#4 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate/Filesystem/Filesystem->getRequire('C://laragon//www//...', Array)
+#5 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Illuminate/View/Engines/PhpEngine->evaluatePath('C://laragon//www//...', Array)
+#6 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(207): Illuminate/View/Engines/CompilerEngine->get('C://laragon//www//...', Array)
+#7 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate/View/View->getContents()
+#8 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate/View/View->renderContents()
+#9 C:/laragon/www/rung-react/resources/views/layouts/app.blade.php(4): Illuminate/View/View->render()
+#10 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('C://laragon//www//...')
+#11 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate/Filesystem/Filesystem::Illuminate/Filesystem/{closure}()
+#12 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate/Filesystem/Filesystem->getRequire('C://laragon//www//...', Array)
+#13 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Illuminate/View/Engines/PhpEngine->evaluatePath('C://laragon//www//...', Array)
+#14 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(207): Illuminate/View/Engines/CompilerEngine->get('C://laragon//www//...', Array)
+#15 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate/View/View->getContents()
+#16 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate/View/View->renderContents()
+#17 C:/laragon/www/rung-react/resources/views/errors/404.blade.php(89): Illuminate/View/View->render()
+#18 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('C://laragon//www//...')
+#19 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate/Filesystem/Filesystem::Illuminate/Filesystem/{closure}()
+#20 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate/Filesystem/Filesystem->getRequire('C://laragon//www//...', Array)
+#21 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Illuminate/View/Engines/PhpEngine->evaluatePath('C://laragon//www//...', Array)
+#22 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(207): Illuminate/View/Engines/CompilerEngine->get('C://laragon//www//...', Array)
+#23 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate/View/View->getContents()
+#24 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate/View/View->renderContents()
+#25 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate/View/View->render()
+#26 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate/Http/Response->setContent(Object(Illuminate/View/View))
+#27 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(58): Illuminate/Http/Response->__construct(Object(Illuminate/View/View), 404, Array)
+#28 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(88): Illuminate/Routing/ResponseFactory->make(Object(Illuminate/View/View), 404, Array)
+#29 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(737): Illuminate/Routing/ResponseFactory->view('errors::404', Array, 404, Array)
+#30 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(661): Illuminate/Foundation/Exceptions/Handler->renderHttpException(Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#31 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(567): Illuminate/Foundation/Exceptions/Handler->prepareResponse(Object(Illuminate/Http/Request), Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#32 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(484): Illuminate/Foundation/Exceptions/Handler->renderExceptionResponse(Object(Illuminate/Http/Request), Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#33 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(51): Illuminate/Foundation/Exceptions/Handler->render(Object(Illuminate/Http/Request), Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#34 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(146): Illuminate/Routing/Pipeline->handleException(Object(Illuminate/Http/Request), Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#35 C:/laragon/www/rung-react/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php(66): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#36 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Barryvdh/Debugbar/Middleware/InjectDebugbar->handle(Object(Illuminate/Http/Request), Object(Closure))
+#37 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#38 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate/Foundation/Http/Middleware/TransformsRequest->handle(Object(Illuminate/Http/Request), Object(Closure))
+#39 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull->handle(Object(Illuminate/Http/Request), Object(Closure))
+#40 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#41 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate/Foundation/Http/Middleware/TransformsRequest->handle(Object(Illuminate/Http/Request), Object(Closure))
+#42 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Foundation/Http/Middleware/TrimStrings->handle(Object(Illuminate/Http/Request), Object(Closure))
+#43 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#44 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Foundation/Http/Middleware/ValidatePostSize->handle(Object(Illuminate/Http/Request), Object(Closure))
+#45 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(99): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#46 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance->handle(Object(Illuminate/Http/Request), Object(Closure))
+#47 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#48 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Http/Middleware/HandleCors->handle(Object(Illuminate/Http/Request), Object(Closure))
+#49 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#50 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Http/Middleware/TrustProxies->handle(Object(Illuminate/Http/Request), Object(Closure))
+#51 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#52 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate/Pipeline/Pipeline->then(Object(Closure))
+#53 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate/Foundation/Http/Kernel->sendRequestThroughRouter(Object(Illuminate/Http/Request))
+#54 C:/laragon/www/rung-react/public/index.php(52): Illuminate/Foundation/Http/Kernel->handle(Object(Illuminate/Http/Request))
+#55 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(16): require_once('C://laragon//www//...')
+#56 {main}
+
+[previous exception] [object] (Exception(code: 0): Unable to locate file in Vite manifest: resources/js/app.js. at C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php:781)
+[stacktrace]
+#0 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php(299): Illuminate/Foundation/Vite->chunk(Array, 'resources/js/ap...')
+#1 C:/laragon/www/rung-react/storage/framework/views/8d18806d4301796513e459adbdcccaa1.php(116): Illuminate/Foundation/Vite->__invoke(Object(Illuminate/Support/Collection))
+#2 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('C://laragon//www//...')
+#3 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate/Filesystem/Filesystem::Illuminate/Filesystem/{closure}()
+#4 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate/Filesystem/Filesystem->getRequire('C://laragon//www//...', Array)
+#5 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Illuminate/View/Engines/PhpEngine->evaluatePath('C://laragon//www//...', Array)
+#6 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(207): Illuminate/View/Engines/CompilerEngine->get('C://laragon//www//...', Array)
+#7 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate/View/View->getContents()
+#8 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate/View/View->renderContents()
+#9 C:/laragon/www/rung-react/storage/framework/views/4d5ac8be4d951582e7cec70a512bc9e8.php(4): Illuminate/View/View->render()
+#10 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('C://laragon//www//...')
+#11 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate/Filesystem/Filesystem::Illuminate/Filesystem/{closure}()
+#12 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate/Filesystem/Filesystem->getRequire('C://laragon//www//...', Array)
+#13 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Illuminate/View/Engines/PhpEngine->evaluatePath('C://laragon//www//...', Array)
+#14 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(207): Illuminate/View/Engines/CompilerEngine->get('C://laragon//www//...', Array)
+#15 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate/View/View->getContents()
+#16 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate/View/View->renderContents()
+#17 C:/laragon/www/rung-react/storage/framework/views/36a4420f1c4bc7417c421b18c23a19b6.php(126): Illuminate/View/View->render()
+#18 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('C://laragon//www//...')
+#19 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate/Filesystem/Filesystem::Illuminate/Filesystem/{closure}()
+#20 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate/Filesystem/Filesystem->getRequire('C://laragon//www//...', Array)
+#21 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Illuminate/View/Engines/PhpEngine->evaluatePath('C://laragon//www//...', Array)
+#22 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(207): Illuminate/View/Engines/CompilerEngine->get('C://laragon//www//...', Array)
+#23 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate/View/View->getContents()
+#24 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate/View/View->renderContents()
+#25 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate/View/View->render()
+#26 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate/Http/Response->setContent(Object(Illuminate/View/View))
+#27 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(58): Illuminate/Http/Response->__construct(Object(Illuminate/View/View), 404, Array)
+#28 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(88): Illuminate/Routing/ResponseFactory->make(Object(Illuminate/View/View), 404, Array)
+#29 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(737): Illuminate/Routing/ResponseFactory->view('errors::404', Array, 404, Array)
+#30 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(661): Illuminate/Foundation/Exceptions/Handler->renderHttpException(Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#31 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(567): Illuminate/Foundation/Exceptions/Handler->prepareResponse(Object(Illuminate/Http/Request), Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#32 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(484): Illuminate/Foundation/Exceptions/Handler->renderExceptionResponse(Object(Illuminate/Http/Request), Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#33 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(51): Illuminate/Foundation/Exceptions/Handler->render(Object(Illuminate/Http/Request), Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#34 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(146): Illuminate/Routing/Pipeline->handleException(Object(Illuminate/Http/Request), Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#35 C:/laragon/www/rung-react/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php(66): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#36 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Barryvdh/Debugbar/Middleware/InjectDebugbar->handle(Object(Illuminate/Http/Request), Object(Closure))
+#37 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#38 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate/Foundation/Http/Middleware/TransformsRequest->handle(Object(Illuminate/Http/Request), Object(Closure))
+#39 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull->handle(Object(Illuminate/Http/Request), Object(Closure))
+#40 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#41 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate/Foundation/Http/Middleware/TransformsRequest->handle(Object(Illuminate/Http/Request), Object(Closure))
+#42 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Foundation/Http/Middleware/TrimStrings->handle(Object(Illuminate/Http/Request), Object(Closure))
+#43 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#44 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Foundation/Http/Middleware/ValidatePostSize->handle(Object(Illuminate/Http/Request), Object(Closure))
+#45 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(99): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#46 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance->handle(Object(Illuminate/Http/Request), Object(Closure))
+#47 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#48 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Http/Middleware/HandleCors->handle(Object(Illuminate/Http/Request), Object(Closure))
+#49 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#50 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Http/Middleware/TrustProxies->handle(Object(Illuminate/Http/Request), Object(Closure))
+#51 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#52 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate/Pipeline/Pipeline->then(Object(Closure))
+#53 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate/Foundation/Http/Kernel->sendRequestThroughRouter(Object(Illuminate/Http/Request))
+#54 C:/laragon/www/rung-react/public/index.php(52): Illuminate/Foundation/Http/Kernel->handle(Object(Illuminate/Http/Request))
+#55 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(16): require_once('C://laragon//www//...')
+#56 {main}
+"} 
+[2026-11-10 05:04:05] local.ERROR: Unable to locate file in Vite manifest: resources/js/app.js. {"view":{"view":"C:\\laragon\\www\\rung-react\\resources\\views\\layouts\\partials\\head.blade.php","data":{"errors":"<pre class=sf-dump id=sf-dump-454515592 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\Support\\ViewErrorBag</span> {<a class=sf-dump-ref>#674</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">bags</span>: []
+</samp>}
+</pre><script>Sfdump(\"sf-dump-454515592\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","exception":"<pre class=sf-dump id=sf-dump-180608130 data-indent-pad=\"  \"><span class=sf-dump-note>Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException</span> {<a class=sf-dump-ref>#509</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">message</span>: \"<span class=sf-dump-str title=\"43 characters\">The route khong-ton-tai could not be found.</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">code</span>: <span class=sf-dump-num>0</span>
+  #<span class=sf-dump-protected title=\"Protected property\">file</span>: \"<span class=\"sf-dump-str sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\AbstractRouteCollection.php
+101 characters\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Routing\\AbstractRouteCollection.php</span></span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">line</span>: <span class=sf-dump-num>44</span>
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Symfony\\Component\\HttpKernel\\Exception\\HttpException`\">statusCode</span>: <span class=sf-dump-num>404</span>
+  -<span class=sf-dump-private title=\"Private property defined in class:&#10;`Symfony\\Component\\HttpKernel\\Exception\\HttpException`\">headers</span>: []
+  <span class=sf-dump-meta>trace</span>: {<samp data-depth=2 class=sf-dump-compact>
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\AbstractRouteCollection.php:44
+Stack level 28.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Routing\\AbstractRouteCollection.php:44</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Routing\\AbstractRouteCollection-&gt;handleMatchedRoute(Request $request, $route)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">AbstractRouteCollection-&gt;handleMatchedRoute(Request $request, $route)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\AbstractRouteCollection-&gt;handleMatchedRoute(Request $request, $route)\">throw new NotFoundHttpException(sprintf(</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>    &#039;The route %s could not be found.&#039;,</span></code>
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\RouteCollection.php:162
+Stack level 27.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Routing\\RouteCollection.php:162</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Routing\\RouteCollection-&gt;match(Request $request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">RouteCollection-&gt;match(Request $request)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\RouteCollection-&gt;match(Request $request)\">    return $this-&gt;handleMatchedRoute($request, $route);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php:761
+Stack level 26.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Routing\\Router.php:761</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Routing\\Router-&gt;findRoute($request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">Router-&gt;findRoute($request)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\Router-&gt;findRoute($request)\">$this-&gt;current = $route = $this-&gt;routes-&gt;match($request);</span></code>
+      &#8250; 
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php:748
+Stack level 25.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Routing\\Router.php:748</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Routing\\Router-&gt;dispatchToRoute(Request $request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">Router-&gt;dispatchToRoute(Request $request)</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>{</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\Router-&gt;dispatchToRoute(Request $request)\">    return $this-&gt;runRoute($request, $this-&gt;findRoute($request));</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php:737
+Stack level 24.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Routing\\Router.php:737</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Routing\\Router-&gt;dispatch(Request $request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Routing</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">Router-&gt;dispatch(Request $request)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Routing\\Router-&gt;dispatch(Request $request)\">    return $this-&gt;dispatchToRoute($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:200
+Stack level 23.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\Http\\Kernel.php:200</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Foundation\\Http\\Kernel-&gt;Illuminate\\Foundation\\Http\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Kernel-&gt;Illuminate\\Foundation\\Http</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">{closure}</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Kernel-&gt;Illuminate\\Foundation\\Http\\{closure}\">    return $this-&gt;router-&gt;dispatch($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>};</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:144
+Stack level 22.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Pipeline\\Pipeline.php:144</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">{closure}</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>try {</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">    return $destination($passable);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>} catch (Throwable $e) {</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\barryvdh\\laravel-debugbar\\src\\Middleware\\InjectDebugbar.php:66
+Stack level 21.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\barryvdh\\laravel-debugbar\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Middleware\\InjectDebugbar.php:66</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Barryvdh\\Debugbar\\Middleware\\InjectDebugbar-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Barryvdh\\Debugbar\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">InjectDebugbar-&gt;handle($request, Closure $next)</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>    /** @var \\Illuminate\\Http\\Response $response */</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Barryvdh\\Debugbar\\Middleware\\InjectDebugbar-&gt;handle($request, Closure $next)\">    $response = $next($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>} catch (Throwable $e) {</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:183
+Stack level 20.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Pipeline\\Pipeline.php:183</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">{closure}</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21
+Stack level 19.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">TransformsRequest-&gt;handle($request, Closure $next)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php:31
+Stack level 18.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull.php:31</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">ConvertEmptyStringsToNull-&gt;handle($request, Closure $next)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull-&gt;handle($request, Closure $next)\">    return parent::handle($request, $next);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:183
+Stack level 17.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Pipeline\\Pipeline.php:183</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">{closure}</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21
+Stack level 16.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php:21</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">TransformsRequest-&gt;handle($request, Closure $next)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php:40
+Stack level 15.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\Http\\Middleware\\TrimStrings.php:40</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Foundation\\Http\\Middleware\\TrimStrings-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">TrimStrings-&gt;handle($request, Closure $next)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\TrimStrings-&gt;handle($request, Closure $next)\">    return parent::handle($request, $next);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:183
+Stack level 14.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Pipeline\\Pipeline.php:183</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">{closure}</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php:27
+Stack level 13.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php:27</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">ValidatePostSize-&gt;handle($request, Closure $next)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:183
+Stack level 12.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Pipeline\\Pipeline.php:183</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">{closure}</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php:99
+Stack level 11.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php:99</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">PreventRequestsDuringMaintenance-&gt;handle($request, Closure $next)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:183
+Stack level 10.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Pipeline\\Pipeline.php:183</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">{closure}</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\HandleCors.php:49
+Stack level 9.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Http\\Middleware\\HandleCors.php:49</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Http\\Middleware\\HandleCors-&gt;handle($request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">HandleCors-&gt;handle($request, Closure $next)</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>if (! $this-&gt;hasMatchingPath($request)) {</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Http\\Middleware\\HandleCors-&gt;handle($request, Closure $next)\">    return $next($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:183
+Stack level 8.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Pipeline\\Pipeline.php:183</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">{closure}</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Http\\Middleware\\TrustProxies.php:39
+Stack level 7.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Http\\Middleware\\TrustProxies.php:39</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Http\\Middleware\\TrustProxies-&gt;handle(Request $request, Closure $next)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Http\\Middleware</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">TrustProxies-&gt;handle(Request $request, Closure $next)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Http\\Middleware\\TrustProxies-&gt;handle(Request $request, Closure $next)\">    return $next($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:183
+Stack level 6.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Pipeline\\Pipeline.php:183</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">{closure}</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>$carry = method_exists($pipe, $this-&gt;method)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;Illuminate\\Pipeline\\{closure}\">                ? $pipe-&gt;{$this-&gt;method}(...$parameters)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>                : $pipe(...$parameters);</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;2}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php:119
+Stack level 5.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Pipeline\\Pipeline.php:119</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Pipeline\\Pipeline-&gt;then(Closure $destination)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Pipeline</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">Pipeline-&gt;then(Closure $destination)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Pipeline\\Pipeline-&gt;then(Closure $destination)\">    return $pipeline($this-&gt;passable);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:175
+Stack level 4.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\Http\\Kernel.php:175</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Foundation\\Http\\Kernel-&gt;sendRequestThroughRouter($request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">Kernel-&gt;sendRequestThroughRouter($request)</span></span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>                -&gt;through($this-&gt;app-&gt;shouldSkipMiddleware() ? [] : $this-&gt;middleware)</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Kernel-&gt;sendRequestThroughRouter($request)\">                -&gt;then($this-&gt;dispatchToRouter());</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>}</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php:144
+Stack level 3.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\Http\\Kernel.php:144</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\Foundation\\Http\\Kernel-&gt;handle($request)
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\Foundation\\Http</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">Kernel-&gt;handle($request)</span></span> &#8230;
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in Illuminate\\Foundation\\Http\\Kernel-&gt;handle($request)\">    $response = $this-&gt;sendRequestThroughRouter($request);</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>} catch (Throwable $e) {</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\public\\index.php:52
+Stack level 2.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\</span><span class=\"sf-dump-ellipsis-tail\">public\\index.php:52</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      <span class=sf-dump-note>require_once</span> &#8230;
+      &#8250; <code class=\"php\"><span class=sf-dump-default>$response = $kernel-&gt;handle(</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-const title=\"in require_once\">    $request = Request::capture()</span></code>
+      &#8250; <code class=\"php\"><span class=sf-dump-default>)-&gt;send();</span></code>
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+    <span class=\"sf-dump-meta sf-dump-ellipsization\" title=\"C:\\laragon\\www\\rung-react\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php:16
+Stack level 1.\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">C:\\laragon\\www\\rung-react\\vendor</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-path\">\\laravel\\framework\\</span><span class=\"sf-dump-ellipsis-tail\">src\\Illuminate\\Foundation\\resources\\server.php:16</span></span> {<samp data-depth=3 class=sf-dump-compact>
+      &#8250; 
+      &#8250; <code class=\"php\"><span class=sf-dump-const>require_once $publicPath.&#039;/index.php&#039;;</span></code>
+      &#8250; 
+      <span class=sf-dump-meta>arguments</span>: { &#8230;1}
+    </samp>}
+  </samp>}
+</samp>}
+</pre><script>Sfdump(\"sf-dump-180608130\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+","component":"<pre class=sf-dump id=sf-dump-1237769579 data-indent-pad=\"  \"><span class=sf-dump-note>Illuminate\\View\\AnonymousComponent</span> {<a class=sf-dump-ref>#684</a><samp data-depth=1 class=sf-dump-expanded>
+  #<span class=sf-dump-protected title=\"Protected property\">except</span>: []
+  +<span class=sf-dump-public title=\"Public property\">componentName</span>: \"<span class=sf-dump-str title=\"6 characters\">button</span>\"
+  +<span class=sf-dump-public title=\"Public property\">attributes</span>: <span class=\"sf-dump-note sf-dump-ellipsization\" title=\"Illuminate\\View\\ComponentAttributeBag
+\"><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">Illuminate\\View</span><span class=\"sf-dump-ellipsis sf-dump-ellipsis-note\">\\</span><span class=\"sf-dump-ellipsis-tail\">ComponentAttributeBag</span></span> {<a class=sf-dump-ref>#683</a><samp data-depth=2 class=sf-dump-compact>
+    #<span class=sf-dump-protected title=\"Protected property\">attributes</span>: <span class=sf-dump-note>array:3</span> [<samp data-depth=3 class=sf-dump-compact>
+      \"<span class=sf-dump-key>href</span>\" => \"<span class=sf-dump-str title=\"21 characters\">http://127.0.0.1:8123</span>\"
+      \"<span class=sf-dump-key>variant</span>\" => \"<span class=sf-dump-str title=\"7 characters\">primary</span>\"
+      \"<span class=sf-dump-key>size</span>\" => \"<span class=sf-dump-str title=\"2 characters\">lg</span>\"
+    </samp>]
+  </samp>}
+  #<span class=sf-dump-protected title=\"Protected property\">view</span>: \"<span class=sf-dump-str title=\"17 characters\">components.button</span>\"
+  #<span class=sf-dump-protected title=\"Protected property\">data</span>: <span class=sf-dump-note>array:3</span> [<samp data-depth=2 class=sf-dump-compact>
+    \"<span class=sf-dump-key>href</span>\" => \"<span class=sf-dump-str title=\"21 characters\">http://127.0.0.1:8123</span>\"
+    \"<span class=sf-dump-key>variant</span>\" => \"<span class=sf-dump-str title=\"7 characters\">primary</span>\"
+    \"<span class=sf-dump-key>size</span>\" => \"<span class=sf-dump-str title=\"2 characters\">lg</span>\"
+  </samp>]
+</samp>}
+</pre><script>Sfdump(\"sf-dump-1237769579\", {\"maxDepth\":3,\"maxStringLength\":160})</script>
+"}},"exception":"[object] (Spatie\\LaravelIgnition\\Exceptions\\ViewException(code: 0): Unable to locate file in Vite manifest: resources/js/app.js. at C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php:781)
+[stacktrace]
+#0 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php(299): Illuminate/Foundation/Vite->chunk(Array, 'resources/js/ap...')
+#1 C:/laragon/www/rung-react/resources/views/layouts/partials/head.blade.php(116): Illuminate/Foundation/Vite->__invoke(Object(Illuminate/Support/Collection))
+#2 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('C://laragon//www//...')
+#3 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate/Filesystem/Filesystem::Illuminate/Filesystem/{closure}()
+#4 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate/Filesystem/Filesystem->getRequire('C://laragon//www//...', Array)
+#5 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Illuminate/View/Engines/PhpEngine->evaluatePath('C://laragon//www//...', Array)
+#6 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(207): Illuminate/View/Engines/CompilerEngine->get('C://laragon//www//...', Array)
+#7 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate/View/View->getContents()
+#8 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate/View/View->renderContents()
+#9 C:/laragon/www/rung-react/resources/views/layouts/app.blade.php(4): Illuminate/View/View->render()
+#10 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('C://laragon//www//...')
+#11 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate/Filesystem/Filesystem::Illuminate/Filesystem/{closure}()
+#12 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate/Filesystem/Filesystem->getRequire('C://laragon//www//...', Array)
+#13 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Illuminate/View/Engines/PhpEngine->evaluatePath('C://laragon//www//...', Array)
+#14 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(207): Illuminate/View/Engines/CompilerEngine->get('C://laragon//www//...', Array)
+#15 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate/View/View->getContents()
+#16 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate/View/View->renderContents()
+#17 C:/laragon/www/rung-react/resources/views/errors/404.blade.php(89): Illuminate/View/View->render()
+#18 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('C://laragon//www//...')
+#19 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate/Filesystem/Filesystem::Illuminate/Filesystem/{closure}()
+#20 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate/Filesystem/Filesystem->getRequire('C://laragon//www//...', Array)
+#21 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Illuminate/View/Engines/PhpEngine->evaluatePath('C://laragon//www//...', Array)
+#22 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(207): Illuminate/View/Engines/CompilerEngine->get('C://laragon//www//...', Array)
+#23 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate/View/View->getContents()
+#24 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate/View/View->renderContents()
+#25 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate/View/View->render()
+#26 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate/Http/Response->setContent(Object(Illuminate/View/View))
+#27 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(58): Illuminate/Http/Response->__construct(Object(Illuminate/View/View), 404, Array)
+#28 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(88): Illuminate/Routing/ResponseFactory->make(Object(Illuminate/View/View), 404, Array)
+#29 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(737): Illuminate/Routing/ResponseFactory->view('errors::404', Array, 404, Array)
+#30 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(661): Illuminate/Foundation/Exceptions/Handler->renderHttpException(Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#31 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(567): Illuminate/Foundation/Exceptions/Handler->prepareResponse(Object(Illuminate/Http/Request), Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#32 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(484): Illuminate/Foundation/Exceptions/Handler->renderExceptionResponse(Object(Illuminate/Http/Request), Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#33 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(51): Illuminate/Foundation/Exceptions/Handler->render(Object(Illuminate/Http/Request), Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#34 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(146): Illuminate/Routing/Pipeline->handleException(Object(Illuminate/Http/Request), Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#35 C:/laragon/www/rung-react/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php(66): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#36 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Barryvdh/Debugbar/Middleware/InjectDebugbar->handle(Object(Illuminate/Http/Request), Object(Closure))
+#37 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#38 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate/Foundation/Http/Middleware/TransformsRequest->handle(Object(Illuminate/Http/Request), Object(Closure))
+#39 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull->handle(Object(Illuminate/Http/Request), Object(Closure))
+#40 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#41 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate/Foundation/Http/Middleware/TransformsRequest->handle(Object(Illuminate/Http/Request), Object(Closure))
+#42 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Foundation/Http/Middleware/TrimStrings->handle(Object(Illuminate/Http/Request), Object(Closure))
+#43 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#44 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Foundation/Http/Middleware/ValidatePostSize->handle(Object(Illuminate/Http/Request), Object(Closure))
+#45 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(99): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#46 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance->handle(Object(Illuminate/Http/Request), Object(Closure))
+#47 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#48 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Http/Middleware/HandleCors->handle(Object(Illuminate/Http/Request), Object(Closure))
+#49 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#50 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Http/Middleware/TrustProxies->handle(Object(Illuminate/Http/Request), Object(Closure))
+#51 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#52 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate/Pipeline/Pipeline->then(Object(Closure))
+#53 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate/Foundation/Http/Kernel->sendRequestThroughRouter(Object(Illuminate/Http/Request))
+#54 C:/laragon/www/rung-react/public/index.php(52): Illuminate/Foundation/Http/Kernel->handle(Object(Illuminate/Http/Request))
+#55 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(16): require_once('C://laragon//www//...')
+#56 {main}
+
+[previous exception] [object] (Exception(code: 0): Unable to locate file in Vite manifest: resources/js/app.js. at C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php:781)
+[stacktrace]
+#0 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Vite.php(299): Illuminate/Foundation/Vite->chunk(Array, 'resources/js/ap...')
+#1 C:/laragon/www/rung-react/storage/framework/views/8d18806d4301796513e459adbdcccaa1.php(116): Illuminate/Foundation/Vite->__invoke(Object(Illuminate/Support/Collection))
+#2 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('C://laragon//www//...')
+#3 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate/Filesystem/Filesystem::Illuminate/Filesystem/{closure}()
+#4 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate/Filesystem/Filesystem->getRequire('C://laragon//www//...', Array)
+#5 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Illuminate/View/Engines/PhpEngine->evaluatePath('C://laragon//www//...', Array)
+#6 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(207): Illuminate/View/Engines/CompilerEngine->get('C://laragon//www//...', Array)
+#7 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate/View/View->getContents()
+#8 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate/View/View->renderContents()
+#9 C:/laragon/www/rung-react/storage/framework/views/4d5ac8be4d951582e7cec70a512bc9e8.php(4): Illuminate/View/View->render()
+#10 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('C://laragon//www//...')
+#11 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate/Filesystem/Filesystem::Illuminate/Filesystem/{closure}()
+#12 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate/Filesystem/Filesystem->getRequire('C://laragon//www//...', Array)
+#13 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Illuminate/View/Engines/PhpEngine->evaluatePath('C://laragon//www//...', Array)
+#14 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(207): Illuminate/View/Engines/CompilerEngine->get('C://laragon//www//...', Array)
+#15 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate/View/View->getContents()
+#16 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate/View/View->renderContents()
+#17 C:/laragon/www/rung-react/storage/framework/views/36a4420f1c4bc7417c421b18c23a19b6.php(126): Illuminate/View/View->render()
+#18 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(123): require('C://laragon//www//...')
+#19 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php(124): Illuminate/Filesystem/Filesystem::Illuminate/Filesystem/{closure}()
+#20 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/PhpEngine.php(58): Illuminate/Filesystem/Filesystem->getRequire('C://laragon//www//...', Array)
+#21 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/Engines/CompilerEngine.php(72): Illuminate/View/Engines/PhpEngine->evaluatePath('C://laragon//www//...', Array)
+#22 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(207): Illuminate/View/Engines/CompilerEngine->get('C://laragon//www//...', Array)
+#23 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(190): Illuminate/View/View->getContents()
+#24 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/View/View.php(159): Illuminate/View/View->renderContents()
+#25 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Http/Response.php(69): Illuminate/View/View->render()
+#26 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Http/Response.php(35): Illuminate/Http/Response->setContent(Object(Illuminate/View/View))
+#27 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(58): Illuminate/Http/Response->__construct(Object(Illuminate/View/View), 404, Array)
+#28 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Routing/ResponseFactory.php(88): Illuminate/Routing/ResponseFactory->make(Object(Illuminate/View/View), 404, Array)
+#29 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(737): Illuminate/Routing/ResponseFactory->view('errors::404', Array, 404, Array)
+#30 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(661): Illuminate/Foundation/Exceptions/Handler->renderHttpException(Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#31 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(567): Illuminate/Foundation/Exceptions/Handler->prepareResponse(Object(Illuminate/Http/Request), Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#32 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php(484): Illuminate/Foundation/Exceptions/Handler->renderExceptionResponse(Object(Illuminate/Http/Request), Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#33 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(51): Illuminate/Foundation/Exceptions/Handler->render(Object(Illuminate/Http/Request), Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#34 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(146): Illuminate/Routing/Pipeline->handleException(Object(Illuminate/Http/Request), Object(Symfony/Component/HttpKernel/Exception/NotFoundHttpException))
+#35 C:/laragon/www/rung-react/vendor/barryvdh/laravel-debugbar/src/Middleware/InjectDebugbar.php(66): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#36 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Barryvdh/Debugbar/Middleware/InjectDebugbar->handle(Object(Illuminate/Http/Request), Object(Closure))
+#37 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#38 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate/Foundation/Http/Middleware/TransformsRequest->handle(Object(Illuminate/Http/Request), Object(Closure))
+#39 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull->handle(Object(Illuminate/Http/Request), Object(Closure))
+#40 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#41 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(40): Illuminate/Foundation/Http/Middleware/TransformsRequest->handle(Object(Illuminate/Http/Request), Object(Closure))
+#42 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Foundation/Http/Middleware/TrimStrings->handle(Object(Illuminate/Http/Request), Object(Closure))
+#43 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#44 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Foundation/Http/Middleware/ValidatePostSize->handle(Object(Illuminate/Http/Request), Object(Closure))
+#45 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(99): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#46 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance->handle(Object(Illuminate/Http/Request), Object(Closure))
+#47 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#48 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Http/Middleware/HandleCors->handle(Object(Illuminate/Http/Request), Object(Closure))
+#49 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(39): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#50 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate/Http/Middleware/TrustProxies->handle(Object(Illuminate/Http/Request), Object(Closure))
+#51 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate/Pipeline/Pipeline->Illuminate/Pipeline/{closure}(Object(Illuminate/Http/Request))
+#52 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate/Pipeline/Pipeline->then(Object(Closure))
+#53 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate/Foundation/Http/Kernel->sendRequestThroughRouter(Object(Illuminate/Http/Request))
+#54 C:/laragon/www/rung-react/public/index.php(52): Illuminate/Foundation/Http/Kernel->handle(Object(Illuminate/Http/Request))
+#55 C:/laragon/www/rung-react/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(16): require_once('C://laragon//www//...')
+#56 {main}
+"} 

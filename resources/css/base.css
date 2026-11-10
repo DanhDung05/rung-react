@@ -1,0 +1,139 @@
+/* =========================================================
+   BASE
+   ========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================
+   HEADINGS — Mỗi thẻ có màu + font riêng
+   ============================================================ */
+
+h1 {
+  font-family: var(--font-h1);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-h1);
+  font-size: var(--text-4xl);
+}
+
+h2 {
+  font-family: var(--font-h2);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-h2);
+  font-size: var(--text-3xl);
+}
+
+h3 {
+  font-family: var(--font-h3);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-h3);
+  font-size: var(--text-2xl);
+}
+
+h4 {
+  font-family: var(--font-h4);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-h4);
+  font-size: var(--text-xl);
+}
+
+h5 {
+  font-family: var(--font-h5);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-h5);
+  font-size: var(--text-lg);
+}
+
+h6 {
+  font-family: var(--font-h6);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  color: var(--color-h6);
+  font-size: var(--text-base);
+}
+
+/* ============================================================
+   LINKS
+   ============================================================ */
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+/* ============================================================
+   MEDIA
+   ============================================================ */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+
+.container-base {
+  max-width: var(--container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}

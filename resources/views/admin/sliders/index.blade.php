@@ -1,0 +1,138 @@
+@extends('layouts.admin')
+
+@section('content')
+
+<div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+    <div>
+        <h2 class="font-heading text-2xl font-bold text-text">Slider</h2>
+        <p class="text-sm text-text-muted mt-1">Quản lý slider/banner</p>
+    </div>
+
+    <div class="flex items-center gap-2">
+        <x-button href="{{ route('admin.sliders.trash') }}" variant="outline">Thùng rác</x-button>
+        <x-button href="{{ route('admin.sliders.create') }}" variant="primary">+ Thêm slider</x-button>
+    </div>
+</div>
+
+@if (session('success'))
+    <x-alert type="success" class="mb-4">{{ session('success') }}</x-alert>
+@endif
+
+@if (session('error'))
+    <x-alert type="error" class="mb-4">{{ session('error') }}</x-alert>
+@endif
+
+{{-- Filter --}}
+<div class="bg-bg rounded-lg shadow-sm border border-border p-4 mb-6">
+    <form method="GET" action="{{ route('admin.sliders.index') }}" class="grid grid-cols-1 md:grid-cols-4 gap-3">
+        <div>
+            <x-select name="position"
+                      :options="$positions->mapWithKeys(fn($p) => [$p => $p])->prepend('-- Vị trí --', '')"
+                      :selected="request('position')" />
+        </div>
+        <div class="md:col-span-2">
+            <x-input name="keyword" placeholder="Tìm theo tiêu đề..." :value="request('keyword')" />
+        </div>
+        <div class="flex gap-2">
+            <x-button type="submit" variant="primary" block>Tìm</x-button>
+            @if (request()->hasAny(['position', 'keyword']))
+                <x-button href="{{ route('admin.sliders.index') }}" variant="outline">Xóa</x-button>
+            @endif
+        </div>
+    </form>
+</div>
+
+{{-- Bảng --}}
+<div class="bg-bg rounded-lg shadow-sm border border-border overflow-hidden">
+    @if ($sliders->count() > 0)
+        <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+                <thead class="bg-bg-subtle border-b border-border">
+                    <tr>
+                        <th class="text-left px-4 py-3 font-semibold text-text w-16">ID</th>
+                        <th class="text-left px-4 py-3 font-semibold text-text w-32">Ảnh</th>
+                        <th class="text-left px-4 py-3 font-semibold text-text">Tiêu đề</th>
+                        <th class="text-left px-4 py-3 font-semibold text-text w-32">Vị trí</th>
+                        <th class="text-center px-4 py-3 font-semibold text-text w-24">Thứ tự</th>
+                        <th class="text-center px-4 py-3 font-semibold text-text w-24">Trạng thái</th>
+                        <th class="text-right px-4 py-3 font-semibold text-text w-40">Hành động</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($sliders as $slider)
+                        <tr class="border-b border-border hover:bg-bg-subtle/50">
+                            <td class="px-4 py-3 text-text-muted">#{{ $slider->id }}</td>
+                            <td class="px-4 py-3">
+                                <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($slider->image) }}"
+                                     alt="{{ $slider->title }}"
+                                     class="w-24 h-14 object-cover rounded">
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="font-medium text-text">{{ $slider->title ?? '—' }}</div>
+                                @if ($slider->subtitle)
+                                    <div class="text-xs text-text-muted">{{ $slider->subtitle }}</div>
+                                @endif
+                            </td>
+                            <td class="px-4 py-3">
+                                <x-badge variant="default">{{ $slider->position }}</x-badge>
+                            </td>
+                            <td class="px-4 py-3 text-center text-text-muted">{{ $slider->sort_order }}</td>
+                            <td class="px-4 py-3 text-center">
+                                @if ($slider->is_active)
+                                    <x-badge variant="success">Hiện</x-badge>
+                                @else
+                                    <x-badge variant="default">Ẩn</x-badge>
+                                @endif
+                            </td>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center justify-end gap-1">
+                                    <a href="{{ route('admin.sliders.show', $slider) }}"
+                                       class="p-1.5 rounded text-text-muted hover:text-primary hover:bg-primary-light transition-base"
+                                       title="Xem">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                        </svg>
+                                    </a>
+                                    <a href="{{ route('admin.sliders.edit', $slider) }}"
+                                       class="p-1.5 rounded text-text-muted hover:text-primary hover:bg-primary-light transition-base"
+                                       title="Sửa">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                        </svg>
+                                    </a>
+
+                                    <form action="{{ route('admin.sliders.destroy', $slider) }}"
+                                          method="POST"
+                                          class="inline"
+                                          onsubmit="return confirm('Chuyển slider vào thùng rác?')">
+                                        @csrf @method('DELETE')
+                                        <button type="submit"
+                                                class="p-1.5 rounded text-text-muted hover:text-danger hover:bg-danger/10 transition-base"
+                                                title="Chuyển vào thùng rác">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <div class="px-4 py-3 border-t border-border">
+            <x-pagination :paginator="$sliders" />
+        </div>
+    @else
+        <div class="p-12 text-center">
+            <h3 class="font-heading text-lg font-semibold mb-2">Chưa có slider nào</h3>
+            <p class="text-text-muted text-sm mb-6">Bắt đầu bằng cách thêm slider đầu tiên.</p>
+            <x-button href="{{ route('admin.sliders.create') }}" variant="primary">+ Thêm slider đầu tiên</x-button>
+        </div>
+    @endif
+</div>
+
+@endsection

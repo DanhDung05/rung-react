@@ -1,0 +1,1 @@
+(type app\Http\Controllers\Admin\TourController.php & echo. & echo ==== StoreTourRequest ==== & type app\Http\Requts\Admin\StoreTourRequest.php & echo. & echo ==== UpdateTourRequest ==== & type app\Http\Requests\Admin\UpdateTourRequest.php) > upload-logic.txt

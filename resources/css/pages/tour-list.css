@@ -1,0 +1,47 @@
+/* =========================================================
+   TOUR LIST — Trang danh sách tour
+   ========================================================= */
+
+.page-tour-list {
+    /* Override tokens nếu cần */
+}
+
+/* Filter sidebar sticky */
+.page-tour-list aside > div {
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+
+/* Custom scrollbar cho filter */
+.page-tour-list aside > div::-webkit-scrollbar {
+    width: 4px;
+}
+
+.page-tour-list aside > div::-webkit-scrollbar-thumb {
+    background: var(--color-border-strong);
+    border-radius: 9999px;
+}
+
+/* Tour card trong danh sách */
+.page-tour-list .tour-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-tour-list .tour-card > a {
+    flex-shrink: 0;
+}
+
+.page-tour-list .tour-card > div {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Responsive grid */
+@media (min-width: 1280px) {
+    .page-tour-list .grid.xl\:grid-cols-3 {
+        gap: 1.5rem;
+    }
+}

@@ -1,0 +1,57 @@
+/* =========================================================
+   HOME PAGE OVERRIDE
+   ========================================================= */
+
+/* Hero section */
+.hero-section .swiper-button-prev,
+.hero-section .swiper-button-next {
+    width: 44px;
+    height: 44px;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    transition: background 200ms ease;
+}
+
+.hero-section .swiper-button-prev:hover,
+.hero-section .swiper-button-next:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.hero-section .swiper-button-prev::after,
+.hero-section .swiper-button-next::after {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.hero-section .swiper-pagination-bullet {
+    background: rgba(255, 255, 255, 0.6);
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+}
+
+.hero-section .swiper-pagination-bullet-active {
+    background: var(--color-primary);
+    width: 24px;
+    border-radius: 9999px;
+}
+
+/* Tour card hover effect */
+.tour-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Destination card */
+.destination-card {
+    transition: transform 200ms ease;
+}
+
+.destination-card:hover {
+    transform: translateY(-4px);
+}
+
+/* Post card */
+.post-card:hover {
+    transform: translateY(-4px);
+}

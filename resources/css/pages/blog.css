@@ -1,0 +1,251 @@
+/* =========================================================
+   BLOG — Magazine style
+   ========================================================= */
+
+.page-blog-list,
+.page-blog-detail {
+    /* Override nếu cần */
+}
+
+/* ============================================================
+   POST CONTENT — Magazine typography
+   ============================================================ */
+
+.prose-magazine {
+    font-size: 1.125rem;
+    line-height: 1.85;
+    color: var(--color-text);
+}
+
+/* Dropcap cho đoạn đầu tiên */
+.prose-magazine > p:first-of-type::first-letter {
+    font-family: var(--font-heading);
+    font-size: 4.5rem;
+    font-weight: 700;
+    line-height: 0.9;
+    float: left;
+    margin: 0.15rem 0.75rem 0 0;
+    color: var(--color-primary);
+}
+
+.prose-magazine h2 {
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1.25rem;
+    line-height: 1.2;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.prose-magazine h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 4rem;
+    height: 3px;
+    background: var(--color-primary);
+    border-radius: 9999px;
+}
+
+.prose-magazine h3 {
+    font-family: var(--font-heading);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.prose-magazine h4 {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    font-weight: 600;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+}
+
+.prose-magazine p {
+    margin-bottom: 1.5rem;
+}
+
+.prose-magazine ul,
+.prose-magazine ol {
+    margin-bottom: 1.5rem;
+    padding-left: 1.75rem;
+}
+
+.prose-magazine li {
+    margin-bottom: 0.65rem;
+    line-height: 1.75;
+}
+
+.prose-magazine ul li {
+    list-style-type: disc;
+}
+
+.prose-magazine ol li {
+    list-style-type: decimal;
+}
+
+.prose-magazine ul li::marker,
+.prose-magazine ol li::marker {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.prose-magazine img {
+    border-radius: var(--radius-xl);
+    margin: 2rem 0;
+    width: 100%;
+    height: auto;
+    box-shadow: var(--shadow-lg);
+}
+
+.prose-magazine a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1.5px;
+    font-weight: 500;
+    transition: all 150ms ease;
+}
+
+.prose-magazine a:hover {
+    color: var(--color-primary-hover);
+    text-decoration-thickness: 2px;
+}
+
+.prose-magazine blockquote {
+    border: none;
+    position: relative;
+    padding: 1.5rem 2rem 1.5rem 4rem;
+    margin: 2.5rem 0;
+    background: var(--color-bg-subtle);
+    border-radius: var(--radius-lg);
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+}
+
+.prose-magazine blockquote::before {
+    content: '"';
+    position: absolute;
+    top: -0.5rem;
+    left: 1rem;
+    font-family: Georgia, serif;
+    font-size: 6rem;
+    line-height: 1;
+    color: var(--color-primary);
+    opacity: 0.3;
+}
+
+.prose-magazine blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+.prose-magazine code {
+    background: var(--color-bg-muted);
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    color: var(--color-primary);
+    font-weight: 500;
+}
+
+.prose-magazine pre {
+    background: var(--color-text);
+    color: var(--color-text-inverse);
+    padding: 1.5rem;
+    border-radius: var(--radius-lg);
+    overflow-x: auto;
+    margin: 2rem 0;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    line-height: 1.7;
+}
+
+.prose-magazine pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+}
+
+.prose-magazine hr {
+    border: none;
+    margin: 3rem auto;
+    width: 6rem;
+    height: 3px;
+    background: var(--color-border);
+    border-radius: 9999px;
+}
+
+.prose-magazine table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+}
+
+.prose-magazine th,
+.prose-magazine td {
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--color-border);
+    text-align: left;
+}
+
+.prose-magazine th {
+    background: var(--color-bg-subtle);
+    font-weight: 600;
+    font-family: var(--font-heading);
+}
+
+/* ============================================================
+   STICKY SIDEBAR
+   ============================================================ */
+
+@media (min-width: 1024px) {
+    .page-blog-detail aside > div {
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+    }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .prose-magazine {
+        font-size: 1rem;
+        line-height: 1.75;
+    }
+
+    .prose-magazine > p:first-of-type::first-letter {
+        font-size: 3.5rem;
+        margin: 0.1rem 0.5rem 0 0;
+    }
+
+    .prose-magazine h2 {
+        font-size: var(--text-2xl);
+        margin-top: 2rem;
+    }
+
+    .prose-magazine h3 {
+        font-size: var(--text-xl);
+    }
+
+    .prose-magazine blockquote {
+        padding: 1.25rem 1.5rem 1.25rem 3rem;
+        font-size: 1.1rem;
+    }
+    .post-content img {
+    max-width: 100%;
+    height: auto;
+    }
+}

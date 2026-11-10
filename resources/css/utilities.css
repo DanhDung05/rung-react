@@ -1,0 +1,7 @@
+/* =========================================================
+   UTILITIES — Utility class bổ sung ngoài Tailwind
+   ========================================================= */
+
+.text-balance {
+  text-wrap: balance;
+}

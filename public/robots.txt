@@ -1,0 +1,16 @@
+# Robots.txt for Rung Adventure
+
+User-agent: *
+Allow: /
+
+# Disallow admin area
+Disallow: /admin/
+
+# Disallow search results
+Disallow: /tim-kiem
+
+# Disallow auth routes
+Disallow: /dang-nhap
+
+# Sitemap
+Sitemap: https://rungadventure.com/sitemap.xml
