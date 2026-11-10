@@ -14,7 +14,7 @@ export default function AppLayout({ children, className = '', overlayHeader = tr
 
     return (
         <div className={`rp-app ui-app ${className}`.trim()}>
-            <ThemeStyles theme={theme} />
+            <ThemeStyles theme={theme} bgPrimary={settings?.bg_primary} bgAlternate={settings?.bg_alternate} />
 
             <a href="#main-content" className="rp-skip">
                 Bỏ qua điều hướng

@@ -128,6 +128,29 @@ return [
         ],
 
         // ============================================================
+        // APPEARANCE (màu nền public)
+        // ============================================================
+        'appearance' => [
+            'label'       => 'Màu nền',
+            'description' => 'Hai màu nền xen kẽ cho các section trang chủ',
+            'icon'        => 'palette',
+            'fields'      => [
+                'bg_primary' => [
+                    'label'   => 'Màu nền chính',
+                    'type'    => 'color',
+                    'default' => '#F7F5EF',
+                    'hint'    => 'Màu nền kem chủ đạo (mặc định #F7F5EF)',
+                ],
+                'bg_alternate' => [
+                    'label'   => 'Màu nền xen kẽ',
+                    'type'    => 'color',
+                    'default' => '#FFFFFF',
+                    'hint'    => 'Màu nền trắng xen kẽ (mặc định #FFFFFF)',
+                ],
+            ],
+        ],
+
+        // ============================================================
         // THEME
         // ============================================================
         'theme' => [

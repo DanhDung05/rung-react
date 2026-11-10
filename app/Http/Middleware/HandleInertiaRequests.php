@@ -130,6 +130,8 @@ class HandleInertiaRequests extends Middleware
                 'seo_title'        => Setting::get('seo_default_title', $defaults['site_name']),
                 'seo_description'  => Setting::get('seo_default_description', ''),
                 'seo_keywords'     => Setting::get('seo_keywords'),
+                'bg_primary'       => Setting::get('bg_primary', '#F7F5EF'),
+                'bg_alternate'     => Setting::get('bg_alternate', '#FFFFFF'),
                 'hero_images'      => [
                     'blog'        => $this->publicUrl(Setting::get('hero_image_blog')),
                     'tour'        => $this->publicUrl(Setting::get('hero_image_tour')),

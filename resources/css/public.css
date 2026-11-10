@@ -3794,6 +3794,50 @@
     }
 }
 
+/* P1.6 — hai màu nền xen kẽ: cream & white */
+.rp-section--cream .h-dest__list,
+.rp-section--cream .h-dest__row {
+    border-color: rgba(16, 44, 36, 0.16);
+}
+
+.rp-section--cream .h-dest__row {
+    color: var(--rp-forest);
+}
+
+.rp-section--cream .h-dest__row:hover {
+    background: #fff;
+}
+
+.rp-section--cream .h-dest__name {
+    color: var(--rp-forest);
+}
+
+.rp-section--cream .h-dest__region,
+.rp-section--cream .h-dest__count {
+    color: #6b7a70;
+}
+
+.rp-section--cream .h-dest__num,
+.rp-section--cream .h-dest__arrow {
+    color: var(--rp-earth);
+}
+
+.h-value {
+    border-color: var(--rp-line);
+}
+
+.h-value h3 {
+    color: var(--rp-forest);
+}
+
+.h-value p {
+    color: #52625a;
+}
+
+.h-value__num {
+    color: var(--rp-earth);
+}
+
 /* P1.4a — grouped tour grid */
 .h-tours-head {
     display: flex;

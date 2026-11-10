@@ -69,6 +69,21 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
 
     const fields = groupConfig.fields || {};
 
+    const resetDefaults = () => {
+        const payload = {};
+
+        Object.entries(fields).forEach(([key, field]) => {
+            if (field.type === 'image') return;
+            payload[key] = field.type === 'boolean' ? (field.default ? 1 : null) : field.default ?? null;
+        });
+
+        setProcessing(true);
+        router.put(routes.admin.settings.update(group), payload, {
+            preserveScroll: true,
+            onFinish: () => setProcessing(false),
+        });
+    };
+
     const submit = (event) => {
         event.preventDefault();
 
@@ -120,6 +135,9 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
 
                     <div className="ui-form-actions">
                         <Button href={routes.admin.settings.index} variant="outline">Hủy</Button>
+                        <Button type="button" variant="outline" onClick={resetDefaults}>
+                            Khôi phục mặc định
+                        </Button>
                         <Button type="submit" loading={processing}>Lưu cấu hình</Button>
                     </div>
                 </Card>

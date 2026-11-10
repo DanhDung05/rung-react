@@ -54,7 +54,7 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
     const about = settings?.about || {};
 
     const heroFallback = mediaUrl(tours.find((item) => item.featured_image)?.featured_image) || mediaUrl(sliders[0]?.image) || null;
-    const ctaImage = settings?.hero_images?.contact || null;
+    const ctaImage = settings?.hero_images?.contact || mediaUrl(sliders[0]?.image) || null;
 
     // Chỉ dùng ảnh thật: slider + ảnh hero từ settings + tour có ảnh; loại trùng.
     const galleryImages = [
@@ -238,7 +238,44 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
                     </div>
                 </section>
             )}
-{/* 4. Full-width quote band */}
+            {/* 4. Điểm đến */}
+            {destinations.length > 0 && (
+                <section className="rp-section rp-section--cream">
+                    <div className="rp-container">
+                        <div className="h-dest__head">
+                            <div>
+                                <div className="rp-eyebrow">Điểm đến</div>
+                                <h2 className="rp-h2">
+                                    Nơi rừng gọi <em>tên bạn</em>
+                                </h2>
+                            </div>
+                            <Link href={routes.destinations.index} className="rp-link-arrow">
+                                Khám phá điểm đến <ArrowRight size={15} />
+                            </Link>
+                        </div>
+
+                        <Reveal>
+                            <div className="h-dest__list">
+                                {destinations.slice(0, 6).map((destination, index) => (
+                                    <Link key={destination.id} href={routes.destinations.show(destination.slug)} className="h-dest__row">
+                                        <span className="h-dest__num">{String(index + 1).padStart(2, '0')}</span>
+                                        <h3 className="h-dest__name">{destination.name}</h3>
+                                        <span className="h-dest__region">
+                                            {[destination.province, destination.region].filter(Boolean).join(' · ')}
+                                        </span>
+                                        <span className="h-dest__count">
+                                            {destination.tours_count !== undefined ? `${destination.tours_count} tour` : ''}
+                                        </span>
+                                        <ArrowUpRight size={18} className="h-dest__arrow" />
+                                    </Link>
+                                ))}
+                            </div>
+                        </Reveal>
+                    </div>
+                </section>
+            )}
+
+            {/* 5. Full-width quote band */}
             <section className="h-band">
                 {bandImage && <img className="h-band__image" src={bandImage} alt="" decoding="async" />}
 
@@ -254,17 +291,17 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
             </section>
 
             {/* 5. Giá trị */}
-            <section className="rp-section rp-section--forest" style={{ paddingTop: 0 }}>
+            <section className="rp-section" style={{ paddingTop: 0 }}>
                 <div className="rp-container">
                     <Reveal>
                         <div className="h-values">
                             <div>
                                 <div className="rp-eyebrow">Vì sao chọn chúng tôi</div>
-                                <h2 className="h-about__title" style={{ color: '#fff', fontSize: 'clamp(2rem, 3.4vw, 2.8rem)' }}>
+                                <h2 className="h-about__title" style={{ fontSize: 'clamp(2rem, 3.4vw, 2.8rem)' }}>
                                     {about.values_title || 'Giá trị chúng tôi'}
-                                    <em style={{ color: '#e8c48d' }}> theo đuổi</em>
+                                    <em> theo đuổi</em>
                                 </h2>
-                                <p style={{ fontSize: '0.98rem', lineHeight: 1.8, color: 'rgba(242,239,230,.68)', maxWidth: '40ch', margin: 0 }}>
+                                <p style={{ fontSize: '0.98rem', lineHeight: 1.8, maxWidth: '40ch', margin: 0, color: '#52625a' }}>
                                     {about.values_content ||
                                         'Bốn nguyên tắc định hình mọi hành trình: bản địa, an toàn, bền vững và kết nối.'}
                                 </p>
