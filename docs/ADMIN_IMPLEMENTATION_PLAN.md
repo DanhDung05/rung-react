@@ -77,14 +77,14 @@ Tổng: **120 route** (16 module). Trong đó **59 trang có `Inertia::render()`
 | Nhóm | Nội dung | Trang | Trạng thái |
 |---|---|---:|---|
 | **A** | Dashboard | 1 | ✅ Hoàn thành |
-| **B1** | Tour | 5 | ⏳ |
-| **B2** | Bài viết + Tag | 10 | ⏳ |
-| **B3** | Điểm đến + Danh mục | 10 | ⏳ |
-| **B4** | Trang tĩnh + FAQ + Slider | 15 | ⏳ |
-| **C** | Liên hệ + Đánh giá | 4 | ⏳ |
-| **D** | Media + Menu | 8 | ⏳ |
-| **E** | Người dùng + Cài đặt | 6 | ⏳ |
-| **F** | Rà soát, responsive, đồng bộ | — | ⏳ |
+| **B1** | Tour | 5 | ✅ Hoàn thành |
+| **B2** | Bài viết + Tag | 10 | ✅ Hoàn thành |
+| **B3** | Điểm đến + Danh mục | 10 | ✅ Hoàn thành |
+| **B4** | Trang tĩnh + FAQ + Slider | 15 | ✅ Hoàn thành |
+| **C** | Liên hệ + Đánh giá | 4 | ✅ Hoàn thành |
+| **D** | Media + Menu | 8 | ✅ Hoàn thành |
+| **E** | Người dùng + Cài đặt | 6 | ✅ Hoàn thành |
+| **F** | Rà soát, responsive, đồng bộ | — | ✅ Hoàn thành |
 
 ---
 
@@ -132,14 +132,41 @@ Bổ sung trong đợt này (khi cần, dùng ≥ 2 module):
 
 | Chỉ số | Giá trị |
 |---|---|
-| Trang Admin cần hoàn thiện | 58 (+1 Dashboard nâng cấp) |
-| Đã hoàn thiện | 1 / 59 (Dashboard) |
-| Còn lại | 58 |
-| Test Admin | 3 |
-| Build | ✅ |
+| Trang Admin cần hoàn thiện | 59 |
+| Đã hoàn thiện | **59 / 59 (100%)** |
+| Còn rơi về `GenericPage` | **0** |
+| Test Admin | 50 |
+| Tổng test toàn dự án | 89 (534 assertion) |
+| Build | ✅ exit 0 |
 
 ### Nhật ký nhóm
 
 | Nhóm | Commit | Test | Build | Ghi chú |
 |---|---|---|---|---|
-| A | *(sẽ ghi)* | — | — | Dashboard dùng đủ 11 prop |
+| A | `96c5770` | 6 | ✅ | Dashboard dùng đủ 11 prop |
+| B1 | `f93e921` | 8 | ✅ | Tour + toolkit + TinyMCE self-host |
+| B2 | `2711f3f` | 8 | ✅ | Bài viết + Tag |
+| B3 | `9b622f2` | 8 | ✅ | Điểm đến + Danh mục |
+| B4 | `24eb048` | 9 | ✅ | Trang tĩnh + FAQ + Slider |
+| C | `16daff6` | 9 | ✅ | Liên hệ + Đánh giá |
+| D | `51cddcf` | 6 | ✅ | Media + Menu (Items editor) |
+| E | `827e65d` | 5 | ✅ | Người dùng + Cài đặt |
+| F | *(commit này)* | 2 | ✅ | Test bảo đảm 59/59 component tồn tại |
+
+### 6.1. Kết quả cuối
+
+- **59/59 trang Admin** có React component, không trang nào dùng `GenericPage`.
+- Test `AdminPagesExistTest` quét controller và chặn hồi quy: nếu thêm `Inertia::render('Admin/...')` mà quên tạo file, test fail ngay.
+- Tất cả module dùng chung `AdminLayout`, `DataTable`, `FilterBar`, `Pagination`, `EmptyState`, `ConfirmDialog`, `useConfirm`.
+- CRUD đầy đủ: tạo/sửa/xem/xóa mềm/khôi phục/xóa vĩnh viễn (theo đúng backend từng module).
+- Phân quyền kiểm tra ở backend: editor bị 403 với Users và Settings.
+
+### 6.2. Khoảng trống đã phát hiện (cần quyết định, KHÔNG tự mở rộng)
+
+| # | Vấn đề | Ảnh hưởng | Đề xuất |
+|---|---|---|---|
+| 1 | **Không có module "Đơn đặt tour"** — không bảng, model, controller, route | Không thể làm UI | Cần migration + model + controller + route (ngoài phạm vi "giữ nguyên DB"). Chờ phê duyệt |
+| 2 | **Media Library không có endpoint upload** | Chỉ xem/xóa/khôi phục được; ảnh mới phải upload qua form nội dung | Thêm `MediaController@store` + route `POST admin/media` (thay đổi nhỏ ở backend) — chờ phê duyệt |
+| 3 | `Post` chặn xóa cứng khi còn tag | Người dùng phải gỡ tag trước | Giữ nguyên hành vi backend; đã ghi chú trong UI Trash |
+| 4 | Menu Items cấp 3 có thể sai parent (lỗi backend `saveItems`) | Hiếm gặp | Sửa `MenuController@saveItems` ở đợt sau |
+| 5 | Không có upload ảnh trong trình soạn thảo khi TinyMCE lỗi tải | Fallback về textarea | Đã có cảnh báo; asset self-host nên bình thường vẫn chạy |

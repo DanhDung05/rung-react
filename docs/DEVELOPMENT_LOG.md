@@ -5,6 +5,80 @@
 
 ---
 
+## [2026-11-10] TOÀN BỘ ADMIN SANG REACT (HOÀN THÀNH)
+
+### Mục tiêu
+
+Chuyển **toàn bộ 59 trang quản trị** sang React + Inertia, dùng backend Laravel hiện có; không trang nào còn rơi về `GenericPage`.
+
+### Kết quả
+
+| Chỉ số | Trước | Sau |
+|---|---:|---:|
+| Trang Admin có React component | 1 | **59** |
+| Trang Admin dùng `GenericPage` | 58 | **0** |
+| Test Admin | 0 | **50** |
+| Tổng test toàn dự án | 28 | **89** (534 assertion) |
+| Build | ✅ | ✅ exit 0 (112 entry manifest) |
+
+### Triển khai theo nhóm
+
+| Nhóm | Nội dung | Trang | Commit |
+|---|---|---:|---|
+| A | Dashboard đủ 11 prop (biểu đồ 7 ngày, thùng rác, feed, phân bố độ khó) | 1 | `96c5770` |
+| B1 | Tour + toolkit (DataTable, FilterBar, ImageField, RichTextEditor, useConfirm) | 5 | `f93e921` |
+| B2 | Bài viết + Tag | 10 | `2711f3f` |
+| B3 | Điểm đến + Danh mục | 10 | `9b622f2` |
+| B4 | Trang tĩnh + FAQ + Slider | 15 | `24eb048` |
+| C | Liên hệ + Đánh giá | 4 | `16daff6` |
+| D | Media + Menu (kèm Items editor) | 8 | `51cddcf` |
+| E | Người dùng + Cài đặt (render động 45 field) | 6 | `827e65d` |
+| F | Rà soát + test chống hồi quy | — | *(commit này)* |
+
+### File đã tạo (chính)
+
+- **Toolkit (8)**: `Components/Data/{DataTable,FilterBar}.jsx`, `Components/Form/{ImageField,SeoFields,StatusField,SlugField,RichTextEditor}.jsx`, `hooks/useConfirm.jsx`.
+- **Trang Admin (59 component)** trong `resources/js/Pages/Admin/<Module>/`.
+- **Test (9 file)**: `Admin/DashboardTest`, `TourManagementTest`, `ContentManagementTest`, `TaxonomyManagementTest`, `MiscContentTest`, `EngagementManagementTest`, `MediaMenuManagementTest`, `UserPagesTest`, `AdminPagesExistTest`.
+- `scripts/copy-tinymce.mjs` — self-host TinyMCE.
+
+### File đã sửa
+
+- `package.json` — thêm `vendor:tinymce`, gắn vào `dev`/`build`.
+- `.gitignore` — bỏ qua `public/vendor`.
+- `resources/css/react-ui.css` — bổ sung CSS cho bảng, form, chi tiết, media grid, menu tree, settings, dashboard.
+- `resources/js/Pages/Admin/Dashboard.jsx` — viết lại.
+- `docs/*`, `CHANGELOG.md`.
+
+### Quyết định kỹ thuật
+
+1. **TinyMCE self-host** trong `public/vendor/tinymce`: bundle TinyMCE qua Vite tạo file >1MB khiến esbuild lỗi `Access is denied` trên Windows. Copy asset + load bằng script tag ổn định hơn, không phình JS bundle.
+2. **Không tạo module giả**: "Đơn đặt tour" không có backend → không triển khai.
+3. **Media chưa có upload**: hiển thị notice, không tạo nút giả.
+4. **Phân quyền ở backend**: editor bị 403 với Users/Settings; UI chỉ ẩn menu.
+5. **Không xóa Blade**, không sửa Public UI, không đổi dependency.
+
+### Khoảng trống cần phê duyệt (chưa tự mở rộng)
+
+| # | Vấn đề | Đề xuất |
+|---|---|---|
+| 1 | Không có module **Đơn đặt tour** | Cần migration + model + controller + route mới |
+| 2 | Media Library **thiếu endpoint upload** | Thêm `MediaController@store` + 1 route (thay đổi nhỏ) |
+| 3 | Menu Items cấp 3 có thể sai parent | Sửa `MenuController@saveItems` |
+| 4 | Post chặn xóa cứng khi còn tag | Giữ nguyên, đã ghi chú trong UI |
+
+### Kết quả kiểm thử
+
+| Bài kiểm tra | Kết quả |
+|---|---|
+| `php artisan test` (toàn bộ) | **89 passed / 534 assertions** |
+| `AdminPagesExistTest` | 59/59 component tồn tại, 0 dùng GenericPage |
+| `npm run build` | exit 0, 112 entry |
+| HTTP smoke test | `/` 200 · `/dang-nhap` 200 · `/tour` 200 · `/sitemap.xml` 200 · 404 đúng · `/admin/dashboard` → redirect login |
+| DB thật | Không thay đổi (chỉ đọc/ghi qua test DB riêng) |
+
+---
+
 ## [2026-11-10] ĐỢT BỔ SUNG — PHÂN QUYỀN SETTINGS (HOÀN THÀNH)
 
 ### Vấn đề

@@ -37,6 +37,45 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [0.3.0] — 2026-11-10
+
+**Toàn bộ giao diện quản trị chuyển sang React + Inertia.**
+
+### Added
+
+- **59 trang Admin React** — không còn trang nào dùng `GenericPage`:
+  - Dashboard (đủ 11 prop: thống kê, biểu đồ 7 ngày, thùng rác, top nội dung, feed, phân bố độ khó, menu).
+  - Tour (5), Bài viết (5), Tag (5), Điểm đến (5), Danh mục (5), Trang tĩnh (5), FAQ (5), Slider (5).
+  - Liên hệ (2), Đánh giá (2), Media (2), Menu (6, gồm trình sửa cấu trúc), Người dùng (4), Cài đặt (2).
+- **Toolkit Admin**: `DataTable`, `FilterBar`, `ImageField`, `SeoFields`, `StatusField`, `SlugField`, `RichTextEditor` (TinyMCE self-host), `useConfirm`.
+- **Cài đặt render động** theo `config/settings.php`: string/text/boolean/number/color/select/image/json.
+- **Menu Items editor**: thêm/xóa/sắp xếp/phân cấp, lưu qua `PUT admin/menu/{id}/items`.
+- **Test Admin**: 9 file, 50 test — bao gồm test chống hồi quy `AdminPagesExistTest` (quét controller, đảm bảo 59/59 component tồn tại và không dùng GenericPage).
+- `scripts/copy-tinymce.mjs` — tự copy TinyMCE vào `public/vendor` trước khi dev/build.
+
+### Changed
+
+- `package.json`: `dev`/`build` chạy copy TinyMCE trước.
+- `Admin/Dashboard.jsx` viết lại dùng toàn bộ dữ liệu backend.
+- `resources/css/react-ui.css` mở rộng cho toàn bộ Admin.
+
+### Fixed
+
+- TinyMCE bundle gây lỗi esbuild `Access is denied` trên Windows → chuyển sang self-host.
+- Đường dẫn import sai ở trang Settings (phát hiện qua build, đã sửa trước khi bàn giao).
+
+### Security
+
+- Editor bị **403** khi truy cập Người dùng và Cài đặt (kiểm tra ở policy + controller, không chỉ ẩn menu).
+
+### Notes
+
+- **Không** xóa 132 file Blade, không sửa giao diện Public, không đổi dependency, không đổi database.
+- **Chưa triển khai**: module "Đơn đặt tour" (không có backend) và upload trong Media Library (thiếu endpoint) — đã báo cáo, chờ phê duyệt.
+- Tổng test toàn dự án: **89 passed / 534 assertions**. Build exit 0.
+
+---
+
 ## [0.2.1] — 2026-11-10
 
 **Bản vá phân quyền module Cài đặt (Settings).**
