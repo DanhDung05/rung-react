@@ -5,6 +5,68 @@
 
 ---
 
+## [2026-11-10] ĐỢT BỔ SUNG — PHÂN QUYỀN SETTINGS (HOÀN THÀNH)
+
+### Vấn đề
+
+Sau GĐ2.0, menu Settings đã ẩn với editor nhưng **chỉ ở giao diện**. Editor vẫn truy cập trực tiếp `/admin/cau-hinh` và `/admin/cau-hinh/{group}` để xem/sửa cấu hình website, vì:
+- Middleware `admin` cho cả `admin` + `editor`.
+- `SettingController` không kiểm tra quyền.
+- `UpdateSettingRequest::authorize()` trả `true`.
+
+### Rà soát
+
+| Hạng mục | Kết quả |
+|---|---|
+| Route Settings | 3 route: `admin.settings.index` (GET), `admin.settings.edit` (GET), `admin.settings.update` (PUT) |
+| Controller | `Admin\SettingController` — index/edit/update; **không có** action nào khác |
+| Nơi khác ghi settings | Chỉ `SettingController@update` (grep `Setting::set|updateOrCreate|create` toàn `app/`) |
+| FormRequest | `UpdateSettingRequest` |
+| Tổng route toàn hệ thống | 152 (không đổi) |
+
+### Cách vá
+
+1. **`app/Policies/SettingPolicy.php`** (mới): `viewAny`, `view`, `update` → chỉ `isAdmin()`.
+2. **`SettingController`**: gọi `$this->authorize(...)` ở cả 3 action, đặt **trước** mọi xử lý khác để không lộ thông tin nhóm cấu hình có tồn tại hay không.
+3. **`UpdateSettingRequest::authorize()`**: `return (bool) $this->user()?->isAdmin();`
+
+### Quyền sau khi vá
+
+| Hành động | admin | editor | khách |
+|---|:---:|:---:|:---:|
+| Xem `/admin/cau-hinh` | ✅ 200 | ❌ 403 | redirect login |
+| Xem `/admin/cau-hinh/{group}` | ✅ 200 | ❌ 403 | redirect login |
+| Cập nhật `PUT /admin/cau-hinh/{group}` | ✅ 302 | ❌ 403 | redirect login |
+| Nhóm không tồn tại | 404 | 403 (không lộ) | redirect login |
+| Thấy menu "Cài đặt" | ✅ | ❌ (ẩn từ GĐ2.0) | — |
+
+### File đã tạo
+
+- `app/Policies/SettingPolicy.php`
+- `tests/Feature/Security/SettingManagementTest.php`
+
+### File đã sửa
+
+- `app/Http/Controllers/Admin/SettingController.php` (thêm 3 `authorize`)
+- `app/Http/Requests/Admin/UpdateSettingRequest.php` (`authorize` = admin)
+
+### Kết quả kiểm thử
+
+| Test | Kết quả |
+|---|---|
+| `SettingManagementTest` | **9 passed / 44 assertions** |
+| Toàn bộ suite | **28 passed / 140 assertions** |
+| `npm run build` | **exit 0**, 7.58s |
+| Route Settings | 3 route, không đổi |
+| DB thật | `site_name = "Rừng Adventure"`, `contact_phone`, `theme_primary_color = #a80554` — **không đổi** |
+
+### Ghi chú
+
+- Không sửa route, không đổi URL, không ảnh hưởng menu/theme/shared props (InertiaFoundationTest vẫn PASS).
+- Backup `_backups-rung-react\20261110-115656` **không bị chạm**.
+
+---
+
 ## [2026-11-10] GIAI ĐOẠN 2.0 — TẦNG NỀN REACT (HOÀN THÀNH)
 
 ### Bối cảnh

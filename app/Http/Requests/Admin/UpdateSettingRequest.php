@@ -9,7 +9,8 @@ class UpdateSettingRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return true;
+        // Chỉ admin được thay đổi cấu hình hệ thống.
+        return (bool) $this->user()?->isAdmin();
     }
 
     public function rules(): array

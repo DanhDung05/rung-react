@@ -564,6 +564,7 @@ Select-String -Path app\Http\Controllers\*\*.php -Pattern "Inertia::render\('([^
 | R5 | Nguy cơ phân mảnh do không có layout | ✅ Đã xử lý | 3 layout + 14 UI component dùng chung |
 | — | `admin.css` rỗng gây warning | ✅ Đã xử lý | Thay bằng `react-ui.css` |
 | — | Fallback `GenericPage` im lặng | ✅ Cải thiện | Cảnh báo `console.warn` ở dev |
+| — | Editor vẫn truy cập được Settings | ✅ Đã vá (đợt bổ sung) | `SettingPolicy` + `authorize()` ở 3 action + 9 test; editor nhận 403 |
 
 ### 18.2. Vấn đề còn tồn tại
 
@@ -571,7 +572,6 @@ Select-String -Path app\Http\Controllers\*\*.php -Pattern "Inertia::render\('([^
 |---|---|---|---|
 | R3 | 71 page component còn thiếu | **Cao** | 2A/2B/2C/2D |
 | — | 132 file Blade vẫn là dead code | Thấp | Giữ đến hết GĐ2 (đối chiếu), xóa ở GĐ6 |
-| — | Editor vẫn truy cập được Settings | **Trung bình** | GĐ3 — `SettingPolicy` |
 | B8 | Post không xóa cứng được khi còn tag | Thấp | GĐ2B (cân nhắc detach) |
 | B9 | Tour forceDestroy báo sai tên (dùng ID) | Thấp | GĐ2B |
 | B10 | Menu items cấp 3 có thể sai parent | Thấp | GĐ2B (sửa `saveItems`) |

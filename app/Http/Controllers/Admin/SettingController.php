@@ -17,6 +17,9 @@ class SettingController extends Controller
      */
     public function index()
     {
+        // Chỉ admin được xem cấu hình hệ thống.
+        $this->authorize('viewAny', Setting::class);
+
         $groups = config('settings.groups', []);
 
         return Inertia::render('Admin/Settings/Index', compact('groups'));
@@ -27,6 +30,8 @@ class SettingController extends Controller
      */
     public function edit(string $group)
     {
+        $this->authorize('view', Setting::class);
+
         $groups = config('settings.groups', []);
 
         if (!isset($groups[$group])) {
@@ -54,6 +59,8 @@ class SettingController extends Controller
      */
     public function update(UpdateSettingRequest $request, string $group)
     {
+        $this->authorize('update', Setting::class);
+
         $groups = config('settings.groups', []);
 
         if (!isset($groups[$group])) {

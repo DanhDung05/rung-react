@@ -714,6 +714,7 @@ Trước khi bắt đầu Giai đoạn 2, cần chủ dự án xác nhận:
 3. **Hoãn `validation.js`, `useConfirm`, `useQuery`, `useDebounce`** — chưa có nơi dùng; làm cùng 2B để tránh code chết.
 4. **Không xóa 132 file Blade** — đúng cam kết, giữ đến hết GĐ2.
 5. **Không đổi dependency nào** — `package.json` giữ nguyên; chỉ thêm `package-lock.json` (trước đó chưa có).
+6. **Khoá Settings sớm ở đợt bổ sung** — theo yêu cầu chủ dự án, `SettingPolicy` đã làm trước GĐ3 (thay vì để GĐ3). GĐ3 chỉ còn Policy cho các module nội dung và các quyền chi tiết.
 
 ### 14.4. Ước lượng còn lại
 

@@ -37,6 +37,35 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [0.2.1] — 2026-11-10
+
+**Bản vá phân quyền module Cài đặt (Settings).**
+
+### Security
+
+- **Chặn editor truy cập Settings**: thêm `App\Policies\SettingPolicy`.
+  - `viewAny`/`view`/`update` chỉ dành cho `admin`.
+  - `SettingController` gọi `authorize()` ở **cả 3 action** (index, edit, update) — không chỉ ẩn menu.
+  - `UpdateSettingRequest::authorize()` chỉ cho admin.
+  - Editor truy cập trực tiếp URL nhận **HTTP 403**; nhóm không tồn tại cũng trả 403 (không lộ thông tin).
+
+### Added
+
+- `tests/Feature/Security/SettingManagementTest.php` — 9 test, 44 assertion.
+
+### Changed
+
+- Không đổi route, URL, controller logic nghiệp vụ hay giao diện.
+- Không đổi dependency, không đổi database.
+
+### Verified
+
+- Toàn bộ suite: **28 passed / 140 assertions**.
+- `npm run build`: exit 0.
+- Settings thật trong DB không đổi.
+
+---
+
 ## [0.2.0] — 2026-11-10
 
 **Giai đoạn 0 + vá bảo mật + Giai đoạn 2.0 (tầng nền React).**
