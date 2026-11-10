@@ -3736,6 +3736,64 @@
     }
 }
 
+/* P1.3 — welcome block (Oxalis-inspired) */
+.h-welcome {
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.h-welcome .rp-eyebrow {
+    justify-content: center;
+    display: inline-flex;
+}
+
+.h-welcome__title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: clamp(2rem, 3.8vw, 3rem);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+    color: var(--rp-forest);
+    margin: 10px 0 18px;
+}
+
+.h-welcome__title em {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--rp-earth);
+}
+
+.h-welcome__lead {
+    font-size: 1.02rem;
+    line-height: 1.85;
+    color: #4a5a51;
+    margin: 0 auto 28px;
+    max-width: 62ch;
+}
+
+.h-welcome__chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+@media (max-width: 680px) {
+    .h-welcome__title {
+        font-size: 1.85rem;
+    }
+
+    .h-welcome__lead {
+        font-size: 0.95rem;
+    }
+
+    .h-welcome__chips {
+        justify-content: flex-start;
+    }
+}
+
 /* P1.3 — values as full-width chapters */
 .h-values {
     display: block;

@@ -86,6 +86,31 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
                 fallbackLead={about.hero_subtitle || settings?.site_description}
             />
 
+            {/* 0. Welcome — giới thiệu thương hiệu trung tâm + lối tắt chính sách */}
+            <section className="rp-section rp-section--cream">
+                <div className="rp-container">
+                    <Reveal>
+                        <div className="h-welcome">
+                            <div className="rp-eyebrow">Rừng Adventure · Việt Nam</div>
+                            <h2 className="h-welcome__title">
+                                Chào mừng đến <em>Rừng Adventure</em>
+                            </h2>
+                            <p className="h-welcome__lead">
+                                {settings?.site_description ||
+                                    'Những hành trình trekking và khám phá thiên nhiên Việt Nam dành cho người muốn đi chậm, hiểu sâu và tôn trọng vùng đất mình đi qua.'}
+                            </p>
+
+                            <div className="h-welcome__chips">
+                                <Link href={routes.about} className="rp-chip">Về chúng tôi</Link>
+                                <Link href={routes.tours.index} className="rp-chip">Các hành trình</Link>
+                                <Link href={routes.faq} className="rp-chip">An toàn &amp; FAQ</Link>
+                                <Link href={routes.contact} className="rp-chip">Liên hệ</Link>
+                            </div>
+                        </div>
+                    </Reveal>
+                </div>
+            </section>
+
             {/* 1. Giới thiệu */}
             <section className="rp-section">
                 <div className="rp-container">
