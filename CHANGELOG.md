@@ -54,6 +54,23 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 - **CTA**: band full-bleed nền ảnh + overlay tối, tiêu đề serif, khối liên hệ bên phải.
 - `public.css` +857 dòng; giữ nguyên HeroSlider và Header.
 
+### Changed — Frontend P1.2: visual refinement trang chủ
+
+- **Giới thiệu**: bố cục 2 cột media + editorial; tiêu đề lớn hơn, trích dẫn serif, chữ ký; ảnh chỉ render khi tải được.
+- **Tour**: khối boxed split; cover có pattern khi thiếu ảnh, thêm mô tả + CTA; cột danh sách chia đều chiều cao, thumbnail chỉ hiện với ảnh thật.
+- **Điểm đến**: chuyển sang **danh mục typographic** (số thứ tự, tên lớn, vùng, số tour) — loại bỏ hoàn toàn khối tối trống do thiếu ảnh.
+- **Giá trị**: manifesto 2 cột, chữ tăng cỡ và tương phản.
+- **Gallery**: preload và loại ảnh lỗi/MIME sai; layout duo/solo; không còn khung trống.
+- **Bài viết**: journal 1 bài lớn + 2 dòng tiêu đề, không phụ thuộc ảnh.
+- **CTA**: band full-bleed nền rừng, khối liên hệ bên phải.
+- Thêm guard `overflow-x`, `min-width:0`, tăng cỡ chữ các nhãn nhỏ.
+
+### Fixed — Frontend P1.2
+
+- Hero title bị màu xanh đậm (kế thừa `h1` base) → trắng, có text-shadow.
+- Chữ `em` trên nền rừng thiếu tương phản → vàng sáng `#e8c48d`.
+- Ảnh lỗi để lại caption/khung trống → ẩn toàn bộ figure hoặc loại khỏi gallery.
+
 ### Planned — Giai đoạn 2 (React hoàn thiện)
 
 - Tầng nền React: `AppLayout`, `AdminLayout`, `AuthLayout`, design system, shared props (settings/menu/theme).

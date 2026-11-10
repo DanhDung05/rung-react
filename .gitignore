@@ -25,3 +25,4 @@ Ignore compiled Laravel Blade views
 
 # TinyMCE self-hosted (copy từ node_modules khi build)
 /public/vendor
+/storage/logs/*.log

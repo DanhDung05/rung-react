@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from '@inertiajs/react';
 import { ArrowRight, ArrowUpRight, Phone, Mail } from 'lucide-react';
 import AppLayout from '../Layouts/AppLayout';
@@ -17,6 +17,27 @@ const VALUES = [
     ['04', 'Kết nối cộng đồng', 'Mỗi chuyến đi là cơ hội gắn kết người đi và người ở lại.'],
 ];
 
+function SafeImage({ src, alt = '', className = '' }) {
+    const [failed, setFailed] = useState(false);
+
+    if (!src || failed) return null;
+
+    return <img src={src} alt={alt} className={className} decoding="async" onError={() => setFailed(true)} />;
+}
+
+function AboutMedia({ src, alt, caption }) {
+    const [failed, setFailed] = useState(false);
+
+    if (!src || failed) return null;
+
+    return (
+        <figure className="h-about__media">
+            <img src={src} alt={alt} decoding="async" onError={() => setFailed(true)} />
+            {caption && <figcaption>{caption}</figcaption>}
+        </figure>
+    );
+}
+
 const durationText = (tour) => {
     const parts = [];
     if (tour.duration_days) parts.push(`${tour.duration_days} ngày`);
@@ -30,22 +51,25 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
     const posts = Array.isArray(latestPosts) ? latestPosts : latestPosts?.data || [];
     const about = settings?.about || {};
 
-    const heroFallback =
-        settings?.hero_images?.tour || mediaUrl(tours[0]?.featured_image) || mediaUrl(destinations[0]?.image) || null;
+    const heroFallback = mediaUrl(tours.find((item) => item.featured_image)?.featured_image) || mediaUrl(sliders[0]?.image) || null;
+    const aboutImage = settings?.hero_images?.about || null;
+    const ctaImage = settings?.hero_images?.contact || null;
 
-    const aboutImage =
-        settings?.hero_images?.about || mediaUrl(destinations[0]?.image) || mediaUrl(tours[0]?.featured_image) || null;
-
-    const ctaImage = settings?.hero_images?.contact || aboutImage;
-
+    // Chỉ dùng ảnh thật: slider + ảnh hero từ settings + tour có ảnh; loại trùng.
     const galleryImages = [
         ...sliders.map((item) => ({ id: `s-${item.id}`, url: mediaUrl(item.image), alt: item.title || '' })),
-        ...tours.map((item) => ({ id: `t-${item.id}`, url: mediaUrl(item.featured_image), alt: item.name })),
-        ...destinations.map((item) => ({ id: `d-${item.id}`, url: mediaUrl(item.image), alt: item.name })),
-        ...posts.map((item) => ({ id: `p-${item.id}`, url: mediaUrl(item.featured_image), alt: item.title })),
+        ...Object.entries(settings?.hero_images || {}).map(([key, url]) => ({
+            id: `h-${key}`,
+            url,
+            alt: settings?.site_name || 'Rừng Adventure',
+        })),
+        ...tours.filter((item) => item.featured_image).map((item) => ({ id: `t-${item.id}`, url: mediaUrl(item.featured_image), alt: item.name })),
     ]
         .filter((item) => item.url)
-        .slice(0, 7);
+        .filter((item, index, list) => list.findIndex((candidate) => candidate.url === item.url) === index);
+
+    const feature = tours[0] || null;
+    const tourRows = tours.slice(1, 5);
 
     return (
         <AppLayout>
@@ -58,48 +82,50 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
                 fallbackLead={about.hero_subtitle || settings?.site_description}
             />
 
-            {/* 1. Giới thiệu thương hiệu — media + editorial copy */}
+            {/* 1. Giới thiệu */}
             <section className="rp-section">
                 <div className="rp-container">
                     <Reveal>
-                        <div className="rp-about__grid">
-                            {aboutImage && (
-                                <figure className="rp-about__media">
-                                    <img src={aboutImage} alt={settings?.site_name || 'Rừng Adventure'} loading="lazy" decoding="async" />
-                                    <figcaption className="rp-about__caption">
-                                        {about.story_title || 'Những cung đường nhỏ, những ký ức dài.'}
-                                    </figcaption>
-                                </figure>
-                            )}
-
-                            <div className="rp-about__body" style={aboutImage ? undefined : { gridColumn: '1 / -1' }}>
+                        <div className="h-about">
+                            <div>
                                 <div className="rp-eyebrow">Về Rừng Adventure</div>
-
-                                <h2 className="rp-about__title">
+                                <h2 className="h-about__title">
                                     {about.story_title || 'Không chỉ là chuyến đi.'}
                                     <em>Là một cách sống.</em>
                                 </h2>
-
-                                <p>
-                                    {about.mission_content ||
-                                        settings?.site_description ||
-                                        'Chúng tôi tổ chức những hành trình trekking và khám phá thiên nhiên Việt Nam theo cách bền vững nhất.'}
+                                <p style={{ fontSize: '1.02rem', lineHeight: 1.85, color: '#45544c', margin: 0 }}>
+                                    {settings?.site_description ||
+                                        'Những hành trình trekking và khám phá thiên nhiên Việt Nam, được thiết kế cho người muốn đi chậm và hiểu sâu.'}
                                 </p>
 
-                                {about.vision_content && <p>{about.vision_content}</p>}
-
-                                <blockquote className="rp-about__quote">
+                                <blockquote className="h-about__quote" style={{ marginTop: 30 }}>
                                     “Đi để trở về biết ơn — với núi rừng, với con người và với chính mình.”
                                 </blockquote>
 
-                                <div className="rp-about__sign">
+                                <div className="rp-about__sign" style={{ marginBottom: 24 }}>
                                     <span>Nhóm Rừng Adventure</span>
                                 </div>
 
-                                <div style={{ marginTop: 26 }}>
-                                    <Link href={routes.about} className="rp-link-arrow">
-                                        Đọc câu chuyện đầy đủ <ArrowRight size={15} />
-                                    </Link>
+                                <Link href={routes.about} className="rp-link-arrow">
+                                    Đọc câu chuyện đầy đủ <ArrowRight size={15} />
+                                </Link>
+                            </div>
+
+                            <div>
+                                {aboutImage && (
+                                    <AboutMedia
+                                        src={aboutImage}
+                                        alt={settings?.site_name || 'Rừng Adventure'}
+                                        caption={about.story_title || 'Rừng Adventure'}
+                                    />
+                                )}
+
+                                <div className="h-about__text" style={{ marginTop: aboutImage ? 28 : 0 }}>
+                                    <p>
+                                        {about.mission_content ||
+                                            'Chúng tôi tin rằng một chuyến đi tốt không nằm ở số điểm đến, mà ở chiều sâu của trải nghiệm: buổi sáng trong bản làng, bữa cơm cùng người địa phương, và những cung đường không có trên bản đồ.'}
+                                    </p>
+                                    {about.vision_content && <p>{about.vision_content}</p>}
                                 </div>
                             </div>
                         </div>
@@ -107,8 +133,8 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
                 </div>
             </section>
 
-            {/* 2. Tour nổi bật — feature lớn + danh sách editorial */}
-            {tours.length > 0 && (
+            {/* 2. Tour nổi bật */}
+            {feature && (
                 <section className="rp-section rp-section--cream">
                     <div className="rp-container">
                         <div className="rp-spread" style={{ marginBottom: 36 }}>
@@ -124,50 +150,51 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
                         </div>
 
                         <Reveal>
-                            <div className="rp-tour-editorial">
-                                <Link href={routes.tours.show(tours[0].slug)} className="rp-tour-feature">
-                                    {mediaUrl(tours[0].featured_image) && (
-                                        <img src={mediaUrl(tours[0].featured_image)} alt={tours[0].name} loading="lazy" decoding="async" />
-                                    )}
+                            <div className={`h-tours ${tourRows.length === 0 ? 'h-tours--solo' : ''}`}>
+                                <Link href={routes.tours.show(feature.slug)} className="h-tour-hero">
+                                    <SafeImage src={mediaUrl(feature.featured_image)} alt={feature.name} />
 
-                                    <div className="rp-tour-feature__body">
-                                        <span className="rp-tour-feature__tag">
-                                            {tours[0].category?.name || (tours[0].difficulty ? DIFFICULTY[tours[0].difficulty] : 'Tour nổi bật')}
+                                    <div className="h-tour-hero__body">
+                                        <span className="h-tour-hero__cat">
+                                            {feature.category?.name || 'Hành trình nổi bật'}
                                         </span>
-                                        <h3 className="rp-tour-feature__title">{tours[0].name}</h3>
-                                        {tours[0].excerpt && <p className="rp-tour-feature__desc">{tours[0].excerpt}</p>}
 
-                                        <div className="rp-tour-feature__foot">
-                                            <span>
-                                                {[durationText(tours[0]), tours[0].difficulty ? DIFFICULTY[tours[0].difficulty] : null]
-                                                    .filter(Boolean)
-                                                    .join(' · ')}
-                                            </span>
-                                            <span className="rp-tour-feature__price">{money(tours[0].price_reference)}</span>
+                                        <h3 className="h-tour-hero__title">{feature.name}</h3>
+
+                                        {feature.excerpt && <p className="h-tour-hero__desc">{feature.excerpt}</p>}
+
+                                        <div className="h-tour-hero__meta">
+                                            {durationText(feature) && <span>{durationText(feature)}</span>}
+                                            {feature.difficulty && <span>{DIFFICULTY[feature.difficulty]}</span>}
+                                            {feature.start_point && <span>{feature.start_point}</span>}
+                                            <span className="h-tour-hero__price">{money(feature.price_reference)}</span>
                                         </div>
+
+                                        <span className="h-tour-hero__cta">
+                                            Xem chi tiết hành trình <ArrowRight size={14} />
+                                        </span>
                                     </div>
                                 </Link>
 
-                                {tours.length > 1 && (
-                                    <div className="rp-tour-list">
-                                        {tours.slice(1, 5).map((tour, index) => (
-                                            <Link key={tour.id} href={routes.tours.show(tour.slug)} className="rp-tour-row">
-                                                <span className="rp-tour-row__index">{String(index + 2).padStart(2, '0')}</span>
+                                {tourRows.length > 0 && (
+                                    <div className="h-tour-index">
+                                        {tourRows.map((tour, index) => (
+                                            <Link key={tour.id} href={routes.tours.show(tour.slug)} className="h-tour-row">
+                                                <span className="h-tour-row__num">{String(index + 2).padStart(2, '0')}</span>
 
-                                                {mediaUrl(tour.featured_image) ? (
-                                                    <img className="rp-tour-row__thumb" src={mediaUrl(tour.featured_image)} alt="" loading="lazy" />
-                                                ) : (
-                                                    <span className="rp-tour-row__thumb" />
-                                                )}
-
-                                                <div>
-                                                    <span className="rp-tour-row__title">{tour.name}</span>
-                                                    <span className="rp-tour-row__meta">
-                                                        {[durationText(tour), tour.category?.name].filter(Boolean).join(' · ')}
-                                                    </span>
+                                                <div className="h-tour-row__main">
+                                                    <SafeImage src={mediaUrl(tour.featured_image)} alt="" className="h-tour-row__thumb" />
+                                                    <div>
+                                                        <span className="h-tour-row__title">{tour.name}</span>
+                                                        <span className="h-tour-row__meta">
+                                                            {[durationText(tour), tour.difficulty ? DIFFICULTY[tour.difficulty] : null]
+                                                                .filter(Boolean)
+                                                                .join(' · ')}
+                                                        </span>
+                                                    </div>
                                                 </div>
 
-                                                <span className="rp-tour-row__price">{money(tour.price_reference)}</span>
+                                                <span className="h-tour-row__price">{money(tour.price_reference)}</span>
                                             </Link>
                                         ))}
                                     </div>
@@ -178,11 +205,11 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
                 </section>
             )}
 
-            {/* 3. Điểm đến — mosaic bất đối xứng */}
+            {/* 3. Điểm đến — danh mục typographic */}
             {destinations.length > 0 && (
                 <section className="rp-section rp-section--forest">
                     <div className="rp-container">
-                        <div className="rp-spread" style={{ marginBottom: 36 }}>
+                        <div className="h-dest__head">
                             <div>
                                 <div className="rp-eyebrow">Điểm đến</div>
                                 <h2 className="rp-h2">
@@ -195,65 +222,47 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
                         </div>
 
                         <Reveal>
-                            <div className="rp-dest-editorial">
-                                <Link href={routes.destinations.show(destinations[0].slug)} className="rp-dest-main">
-                                    {mediaUrl(destinations[0].image) && (
-                                        <img src={mediaUrl(destinations[0].image)} alt={destinations[0].name} loading="lazy" decoding="async" />
-                                    )}
-                                    <div className="rp-dest-main__body">
-                                        {destinations[0].region && <span className="rp-dest-main__region">{destinations[0].region}</span>}
-                                        <h3 className="rp-dest-main__title">{destinations[0].name}</h3>
-                                        <div className="rp-dest-main__meta">
-                                            {destinations[0].province && <span>{destinations[0].province}</span>}
-                                            {destinations[0].tours_count !== undefined && <span>{destinations[0].tours_count} tour</span>}
-                                        </div>
-                                    </div>
-                                </Link>
-
-                                {destinations.length > 1 && (
-                                    <div className="rp-dest-side">
-                                        {destinations.slice(1, 3).map((destination) => (
-                                            <Link key={destination.id} href={routes.destinations.show(destination.slug)} className="rp-dest-card">
-                                                {mediaUrl(destination.image) && (
-                                                    <img src={mediaUrl(destination.image)} alt={destination.name} loading="lazy" decoding="async" />
-                                                )}
-                                                <div className="rp-dest-card__body">
-                                                    <h3>{destination.name}</h3>
-                                                    <span>
-                                                        {[destination.province, destination.region].filter(Boolean).join(' · ')}
-                                                    </span>
-                                                </div>
-                                            </Link>
-                                        ))}
-                                    </div>
-                                )}
+                            <div className="h-dest__list">
+                                {destinations.slice(0, 6).map((destination, index) => (
+                                    <Link key={destination.id} href={routes.destinations.show(destination.slug)} className="h-dest__row">
+                                        <span className="h-dest__num">{String(index + 1).padStart(2, '0')}</span>
+                                        <h3 className="h-dest__name">{destination.name}</h3>
+                                        <span className="h-dest__region">
+                                            {[destination.province, destination.region].filter(Boolean).join(' · ')}
+                                        </span>
+                                        <span className="h-dest__count">
+                                            {destination.tours_count !== undefined ? `${destination.tours_count} tour` : ''}
+                                        </span>
+                                        <ArrowUpRight size={18} className="h-dest__arrow" />
+                                    </Link>
+                                ))}
                             </div>
                         </Reveal>
                     </div>
                 </section>
             )}
 
-            {/* 4. Giá trị thương hiệu — manifesto */}
+            {/* 4. Giá trị */}
             <section className="rp-section rp-section--forest" style={{ paddingTop: 0 }}>
                 <div className="rp-container">
                     <Reveal>
-                        <div className="rp-manifesto">
+                        <div className="h-values">
                             <div>
                                 <div className="rp-eyebrow">Vì sao chọn chúng tôi</div>
-                                <h2 className="rp-manifesto__title">
+                                <h2 className="h-about__title" style={{ color: '#fff', fontSize: 'clamp(2rem, 3.4vw, 2.8rem)' }}>
                                     {about.values_title || 'Giá trị chúng tôi'}
-                                    <em> theo đuổi</em>
+                                    <em style={{ color: '#e8c48d' }}> theo đuổi</em>
                                 </h2>
-                                <p className="rp-manifesto__lead">
+                                <p style={{ fontSize: '0.98rem', lineHeight: 1.8, color: 'rgba(242,239,230,.68)', maxWidth: '40ch', margin: 0 }}>
                                     {about.values_content ||
                                         'Bốn nguyên tắc định hình mọi hành trình: bản địa, an toàn, bền vững và kết nối.'}
                                 </p>
                             </div>
 
-                            <div className="rp-values-row">
+                            <div className="h-values__list">
                                 {VALUES.map(([num, title, desc]) => (
-                                    <div className="rp-value-col" key={num}>
-                                        <span className="rp-value-col__num">{num}</span>
+                                    <div className="h-value" key={num}>
+                                        <span className="h-value__num">{num}</span>
                                         <h3>{title}</h3>
                                         <p>{desc}</p>
                                     </div>
@@ -264,30 +273,34 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
                 </div>
             </section>
 
-            {/* 5. Thư viện ảnh — collage */}
-            {galleryImages.length > 0 && (
-                <section className="rp-section">
-                    <div className="rp-container">
-                        <div className="rp-spread" style={{ marginBottom: 34 }}>
-                            <div>
-                                <div className="rp-eyebrow">Thư viện</div>
-                                <h2 className="rp-h2">
-                                    Những khoảnh khắc <em>đường rừng</em>
-                                </h2>
-                            </div>
-                            <Link href={routes.posts.index} className="rp-link-arrow">
-                                Đọc cẩm nang <ArrowRight size={15} />
-                            </Link>
+            {/* 5. Thư viện */}
+            <section className="rp-section">
+                <div className="rp-container">
+                    <div className="rp-spread" style={{ marginBottom: 34 }}>
+                        <div>
+                            <div className="rp-eyebrow">Thư viện</div>
+                            <h2 className="rp-h2">
+                                Những khoảnh khắc <em>đường rừng</em>
+                            </h2>
                         </div>
-
-                        <Reveal>
-                            <Gallery images={galleryImages} layout="collage" />
-                        </Reveal>
+                        <Link href={routes.posts.index} className="rp-link-arrow">
+                            Đọc cẩm nang <ArrowRight size={15} />
+                        </Link>
                     </div>
-                </section>
-            )}
 
-            {/* 6. Bài viết mới — journal */}
+                    {galleryImages.length > 0 ? (
+                        <Reveal>
+                            <Gallery images={galleryImages.slice(0, 2)} layout="duo" />
+                        </Reveal>
+                    ) : (
+                        <div className="h-gallery__empty">
+                            Hình ảnh hành trình sẽ được cập nhật khi đội ngũ hoàn tất chuyến đi tiếp theo.
+                        </div>
+                    )}
+                </div>
+            </section>
+
+            {/* 6. Bài viết */}
             {posts.length > 0 && (
                 <section className="rp-section rp-section--cream">
                     <div className="rp-container">
@@ -304,15 +317,9 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
                         </div>
 
                         <Reveal>
-                            <div className="rp-journal">
-                                <Link href={routes.posts.show(posts[0].slug)} className="rp-journal__feature">
-                                    {mediaUrl(posts[0].featured_image) && (
-                                        <div className="rp-journal__media">
-                                            <img src={mediaUrl(posts[0].featured_image)} alt={posts[0].title} loading="lazy" decoding="async" />
-                                        </div>
-                                    )}
-
-                                    <div className="rp-journal__meta">
+                            <div className="h-journal">
+                                <Link href={routes.posts.show(posts[0].slug)} className="h-journal__feature">
+                                    <div className="h-journal__meta">
                                         {posts[0].category?.name && <span>{posts[0].category.name}</span>}
                                         {posts[0].published_at && <span>{date(posts[0].published_at)}</span>}
                                     </div>
@@ -326,9 +333,9 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
                                 </Link>
 
                                 {posts.length > 1 && (
-                                    <div className="rp-journal__list">
+                                    <div className="h-journal__list">
                                         {posts.slice(1, 3).map((post) => (
-                                            <Link key={post.id} href={routes.posts.show(post.slug)} className="rp-journal__item">
+                                            <Link key={post.id} href={routes.posts.show(post.slug)} className="h-journal__item">
                                                 <div>
                                                     <small>
                                                         {[post.category?.name, post.published_at ? date(post.published_at) : null]
@@ -336,9 +343,8 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
                                                             .join(' · ')}
                                                     </small>
                                                     <h4>{post.title}</h4>
-                                                    {post.excerpt && <span>{post.excerpt}</span>}
                                                 </div>
-                                                <ArrowUpRight size={17} className="rp-journal__arrow" />
+                                                <ArrowUpRight size={17} className="h-journal__arrow" />
                                             </Link>
                                         ))}
                                     </div>
@@ -349,37 +355,37 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
                 </section>
             )}
 
-            {/* 7. CTA — full bleed */}
-            <section className="rp-cta-band">
-                {ctaImage && <img className="rp-cta-band__image" src={ctaImage} alt="" loading="lazy" decoding="async" />}
+            {/* 7. CTA */}
+            <section className="h-cta">
+                {ctaImage && <SafeImage src={ctaImage} alt="" className="h-cta__image" />}
 
                 <div className="rp-container">
                     <Reveal>
-                        <div className="rp-cta-band__inner">
+                        <div className="h-cta__inner">
                             <div>
                                 <div className="rp-eyebrow">Bắt đầu từ đây</div>
-                                <h2 className="rp-cta-band__title">
+                                <h2 className="h-cta__title">
                                     Sẵn sàng cho
                                     <br />
                                     <em>hành trình tiếp theo?</em>
                                 </h2>
-                                <p className="rp-cta-band__lead">
+                                <p className="h-cta__lead">
                                     Cho chúng tôi biết bạn muốn đi đâu, bao lâu và cùng ai — đội ngũ Rừng Adventure sẽ thiết kế
                                     lịch trình phù hợp với bạn.
                                 </p>
                             </div>
 
-                            <div className="rp-cta-band__side">
-                                <div className="rp-cta-band__contact">
+                            <div className="h-cta__side">
+                                <div className="h-cta__contact">
                                     {settings?.contact_phone && (
                                         <a href={`tel:${settings.contact_phone}`}>
-                                            <Phone size={14} style={{ verticalAlign: '-2px', marginRight: 6 }} />
+                                            <Phone size={15} style={{ verticalAlign: '-2px', marginRight: 7 }} />
                                             {settings.contact_phone}
                                         </a>
                                     )}
                                     {settings?.contact_email && (
                                         <a href={`mailto:${settings.contact_email}`}>
-                                            <Mail size={14} style={{ verticalAlign: '-2px', marginRight: 6 }} />
+                                            <Mail size={15} style={{ verticalAlign: '-2px', marginRight: 7 }} />
                                             {settings.contact_email}
                                         </a>
                                     )}

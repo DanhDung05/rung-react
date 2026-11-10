@@ -5,6 +5,43 @@
 
 ---
 
+## [2026-11-10] FRONTEND P1.2 — VISUAL REFINEMENT (HOÀN THÀNH)
+
+### Đã làm
+
+- Redesign 7 section (About, Tour, Destination, Values, Gallery, Journal, CTA) + tinh chỉnh typography/spacing.
+- Destination chuyển từ mosaic ảnh sang **danh mục typographic** vì 12/13 điểm đến không có ảnh.
+- Gallery preload, loại ảnh lỗi; About ẩn toàn bộ figure khi ảnh lỗi.
+- Cover tour có pattern + mô tả + CTA khi thiếu ảnh.
+- Fix hero title màu xanh đậm, `em` thiếu tương phản trên nền rừng.
+
+### Phát hiện dữ liệu ảnh (không sửa DB)
+
+| Nguồn | Có ảnh | Ghi chú |
+|---|---:|---|
+| 13 điểm đến | 0 | 1 path trỏ file không tồn tại |
+| 9 tour | 2 | 1 file `.webp` thực chất là JPEG → server gửi MIME `image/webp`, Chrome không decode |
+| 9 bài viết | 0 | |
+| slider | 1 | hợp lệ |
+| `hero_image_about` | 1 | hợp lệ |
+
+### Kiểm thử
+
+| Mục | Kết quả |
+|---|---|
+| `npm run build` | exit 0 |
+| Toàn bộ suite | 93 passed / 582 assertions |
+| Screenshot 1440 | đã chụp và đối chiếu |
+| Screenshot 390 | Chrome headless ép chiều rộng tối thiểu ~500px nên ảnh 390 bị cắt — cần kiểm tra trên thiết bị thật |
+| Backend/Admin | không sửa |
+
+### Ghi chú
+
+- Chưa chuyển P2.
+- Đề xuất: chuẩn hoá lại file ảnh (đúng định dạng/MIME) và upload ảnh cho tour/điểm đến/bài viết.
+
+---
+
 ## [2026-11-10] FRONTEND P1.1 — REDESIGN SECTION TRANG CHỦ (HOÀN THÀNH)
 
 ### Đã làm
