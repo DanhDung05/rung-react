@@ -19,6 +19,21 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ## [Unreleased]
 
+### Added — Frontend P0: nền tảng giao diện public
+
+- `resources/css/public.css` (~970 dòng): design system public, namespace `rp-*` — hero, section, card, filter, gallery, accordion, prose, CTA, reveal animation, responsive 1024/768/560.
+- 9 component nền: `PageHero`, `SectionHeading`, `Breadcrumb`, `Prose`, `RatingStars`, `Gallery` (lightbox không phụ thuộc thư viện), `Accordion`, `Reveal`, `ErrorPage`.
+- `hooks/useReveal.js` (IntersectionObserver, tôn trọng `prefers-reduced-motion`).
+- `lib/schema.js`: JSON-LD cho Breadcrumb, TouristTrip, Article, FAQPage, TouristDestination.
+- 4 trang lỗi Inertia: `Errors/NotFound`, `Forbidden`, `ServerError`, `Expired`.
+- `AppLayout`: skip-link + wrapper `.rp-app`; bỏ `public/hot` cũ (Vite đã dừng).
+
+### Added — Backend props (được duyệt)
+
+- `TourController@show` eager-load `reviews` (đã duyệt) kèm `user`.
+- Shared props `settings.hero_images` (6 ảnh) và `settings.about` (9 khoá).
+- `Handler::render` trả trang lỗi Inertia cho public (404/403/419/500 khi tắt debug); giữ nguyên Admin/API.
+
 ### Planned — Giai đoạn 2 (React hoàn thiện)
 
 - Tầng nền React: `AppLayout`, `AdminLayout`, `AuthLayout`, design system, shared props (settings/menu/theme).

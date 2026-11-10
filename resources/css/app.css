@@ -12,6 +12,7 @@
 @import './pages/tour-detail.css';
 @import './pages/blog.css';
 @import './react-ui.css';
+@import './public.css';
 
 /* @tailwind PHẢI ở cuối, sau tất cả @import */
 @tailwind base;

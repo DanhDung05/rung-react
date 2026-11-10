@@ -13,12 +13,19 @@ export default function AppLayout({ children, className = '' }) {
     const { settings, navigation, theme } = usePage().props;
 
     return (
-        <div className={`ui-app ${className}`.trim()}>
+        <div className={`rp-app ui-app ${className}`.trim()}>
             <ThemeStyles theme={theme} />
+
+            <a href="#main-content" className="rp-skip">
+                Bỏ qua điều hướng
+            </a>
+
             <Header settings={settings} navigation={navigation} />
-            <main id="main-content" className="ui-app__main">
+
+            <main id="main-content" className="rp-app__main">
                 {children}
             </main>
+
             <Footer settings={settings} navigation={navigation} />
             <FlashMessage />
         </div>

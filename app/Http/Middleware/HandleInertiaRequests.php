@@ -91,6 +91,25 @@ class HandleInertiaRequests extends Middleware
             'seo_title'        => config('app.name', 'Rung Adventure'),
             'seo_description'  => '',
             'seo_keywords'     => null,
+            'hero_images'      => [
+                'blog'        => null,
+                'tour'        => null,
+                'destination' => null,
+                'about'       => null,
+                'contact'     => null,
+                'faq'         => null,
+            ],
+            'about'            => [
+                'hero_title'       => 'Về Rừng Adventure',
+                'hero_subtitle'    => 'Hành trình khám phá thiên nhiên Việt Nam',
+                'story_title'      => 'Câu chuyện của chúng tôi',
+                'mission_title'    => 'Sứ mệnh',
+                'mission_content'  => '',
+                'vision_title'     => 'Tầm nhìn',
+                'vision_content'   => '',
+                'values_title'     => 'Giá trị cốt lõi',
+                'values_content'   => '',
+            ],
         ];
 
         try {
@@ -111,6 +130,25 @@ class HandleInertiaRequests extends Middleware
                 'seo_title'        => Setting::get('seo_default_title', $defaults['site_name']),
                 'seo_description'  => Setting::get('seo_default_description', ''),
                 'seo_keywords'     => Setting::get('seo_keywords'),
+                'hero_images'      => [
+                    'blog'        => $this->publicUrl(Setting::get('hero_image_blog')),
+                    'tour'        => $this->publicUrl(Setting::get('hero_image_tour')),
+                    'destination' => $this->publicUrl(Setting::get('hero_image_destination')),
+                    'about'       => $this->publicUrl(Setting::get('hero_image_about')),
+                    'contact'     => $this->publicUrl(Setting::get('hero_image_contact')),
+                    'faq'         => $this->publicUrl(Setting::get('hero_image_faq')),
+                ],
+                'about'            => [
+                    'hero_title'      => Setting::get('about_hero_title', $defaults['about']['hero_title']),
+                    'hero_subtitle'   => Setting::get('about_hero_subtitle', $defaults['about']['hero_subtitle']),
+                    'story_title'     => Setting::get('about_story_title', $defaults['about']['story_title']),
+                    'mission_title'   => Setting::get('about_mission_title', $defaults['about']['mission_title']),
+                    'mission_content' => Setting::get('about_mission_content', ''),
+                    'vision_title'    => Setting::get('about_vision_title', $defaults['about']['vision_title']),
+                    'vision_content'  => Setting::get('about_vision_content', ''),
+                    'values_title'    => Setting::get('about_values_title', $defaults['about']['values_title']),
+                    'values_content'  => Setting::get('about_values_content', ''),
+                ],
             ];
         } catch (\Throwable $e) {
             report($e);

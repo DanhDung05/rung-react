@@ -5,6 +5,59 @@
 
 ---
 
+## [2026-11-10] FRONTEND P0 — NỀN TẢNG GIAO DIỆN PUBLIC (HOÀN THÀNH)
+
+### Bối cảnh
+
+Bắt đầu triển khai kế hoạch redesign frontend (P0–P6). P0 chỉ làm nền tảng: design system, component dùng chung, trang lỗi và 3 bổ sung dữ liệu backend đã được duyệt. **Chưa dựng trang nội dung nào** (thuộc P1–P5).
+
+### Đã hoàn thành trước khi gián đoạn quota
+
+- `resources/css/public.css` — design system public hoàn chỉnh (970 dòng).
+- `TourController@show` — eager-load `reviews` + `user`.
+- `HandleInertiaRequests` — thêm `settings.hero_images` và `settings.about`.
+- Xóa `public/hot` (Vite đã dừng, xác nhận trước khi xóa).
+
+### Tiếp tục hoàn thành sau gián đoạn
+
+- 9 component nền trong `Components/Public/`.
+- `hooks/useReveal.js`, `lib/schema.js`.
+- 4 trang lỗi `Pages/Errors/*`.
+- `Handler::render` — trang lỗi Inertia cho public, không đổi Admin/API.
+- `AppLayout` — skip-link + `.rp-app`; `app.css` import `public.css`.
+- Test `PublicFoundationTest` (4 test).
+
+### File đã sửa
+
+| File | Thay đổi |
+|---|---|
+| `app/Exceptions/Handler.php` | +57 dòng render lỗi Inertia cho public |
+| `app/Http/Controllers/Frontend/TourController.php` | +4 dòng eager-load reviews |
+| `app/Http/Middleware/HandleInertiaRequests.php` | +38 dòng hero_images/about |
+| `resources/css/app.css` | +1 dòng import public.css |
+| `resources/js/Layouts/AppLayout.jsx` | skip-link + wrapper |
+
+### File đã tạo
+
+`resources/css/public.css`; `Components/Public/{PageHero,SectionHeading,Breadcrumb,Prose,RatingStars,Gallery,Accordion,Reveal,ErrorPage}.jsx`; `Pages/Errors/{NotFound,Forbidden,ServerError,Expired}.jsx`; `hooks/useReveal.js`; `lib/schema.js`; `tests/Feature/Frontend/PublicFoundationTest.php`.
+
+### Kiểm thử
+
+| Bài kiểm tra | Kết quả |
+|---|---|
+| `npm run build` | **exit 0** (14.62s) |
+| `PublicFoundationTest` | 4 passed / 48 assertions |
+| Toàn bộ suite | **93 passed / 582 assertions** |
+| HTTP smoke | `/` 200 · `/tour` 200 · 404 đúng + component `Errors/NotFound` · không còn asset `:5173` |
+| Admin | Không file Admin nào bị sửa; test Admin vẫn pass |
+
+### Lỗi còn tồn tại
+
+- MySQL cục bộ tự dừng sau thời gian dài (đã khởi động lại) — vấn đề môi trường, không phải code.
+- 404/403 giờ render bằng Inertia; nếu Inertia lỗi trong lúc render, Handler fallback về response gốc.
+
+---
+
 ## [2026-11-10] HOTFIX — DASHBOARD TRẮNG (HOÀN THÀNH)
 
 ### Triệu chứng

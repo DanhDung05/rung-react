@@ -113,6 +113,10 @@ class TourController extends Controller
             ->with([
                 'category',
                 'destinations',
+                'reviews' => function ($q) {
+                    // Chỉ đánh giá đã duyệt (quan hệ reviews() đã lọc status=approved).
+                    $q->with('user');
+                },
                 'itineraries' => function ($q) {
                     $q->orderBy('day_number');
                 },
