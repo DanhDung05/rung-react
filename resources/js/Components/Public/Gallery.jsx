@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from 'react';
  * Thư viện ảnh có lightbox (không cần thư viện ngoài).
  * images: [{ id, url, alt }]
  */
-export default function Gallery({ images = [], columns = 3 }) {
+export default function Gallery({ images = [], columns = 3, layout = 'grid' }) {
     const [index, setIndex] = useState(null);
     const isOpen = index !== null;
 
@@ -33,11 +33,22 @@ export default function Gallery({ images = [], columns = 3 }) {
 
     if (images.length === 0) return null;
 
+    const strip = layout === 'strip';
+
     return (
         <>
-            <div className="rp-gallery" style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}>
+            <div
+                className={strip ? 'rp-gallery-strip' : 'rp-gallery'}
+                style={strip ? undefined : { gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
+            >
                 {images.map((image, i) => (
-                    <button key={image.id ?? i} type="button" className="rp-gallery__item" onClick={() => setIndex(i)} aria-label={`Xem ảnh ${i + 1}`}>
+                    <button
+                        key={image.id ?? i}
+                        type="button"
+                        className={`rp-gallery__item ${strip ? (i % 6 === 0 ? 'is-wide' : i % 6 === 3 ? 'is-tall' : '') : ''}`.trim()}
+                        onClick={() => setIndex(i)}
+                        aria-label={`Xem ảnh ${i + 1}`}
+                    >
                         <img src={image.url} alt={image.alt || ''} loading="lazy" decoding="async" />
                     </button>
                 ))}

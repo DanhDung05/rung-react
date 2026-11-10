@@ -34,6 +34,15 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 - Shared props `settings.hero_images` (6 ảnh) và `settings.about` (9 khoá).
 - `Handler::render` trả trang lỗi Inertia cho public (404/403/419/500 khi tắt debug); giữ nguyên Admin/API.
 
+### Added — Frontend P1: redesign Home / Header / Footer
+
+- `Header`: trong suốt trên hero, chuyển nền cream khi cuộn, dropdown 2 cấp, drawer mobile toàn màn hình, nút tìm kiếm.
+- `Footer`: 4 cột (thương hiệu + social, khám phá, liên hệ, CTA), bottom bar.
+- `Home` thiết kế editorial: hero slider (autoplay, dots, arrows, reduced-motion), intro bất đối xứng, tour nổi bật (1 lớn + 4 nhỏ), điểm đến band nền rừng, 4 giá trị dạng số, gallery lightbox, 3 bài viết, CTA rộng.
+- Component mới: `HeroSlider`, `TourCard`, `DestinationCard`, `PostCard`.
+- `public.css` +927 dòng: header/footer/slider/editorial/responsive.
+- Dùng dữ liệu thật: `sliders`, `featuredTours`, `featuredDestinations`, `latestPosts`, `settings.hero_images`, `settings.about`.
+
 ### Planned — Giai đoạn 2 (React hoàn thiện)
 
 - Tầng nền React: `AppLayout`, `AdminLayout`, `AuthLayout`, design system, shared props (settings/menu/theme).

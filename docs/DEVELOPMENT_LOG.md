@@ -5,6 +5,34 @@
 
 ---
 
+## [2026-11-10] FRONTEND P1 — REDESIGN HOME / HEADER / FOOTER (HOÀN THÀNH)
+
+### Đã làm
+
+- `Header`: fixed, trong suốt trên hero → nền cream khi cuộn; dropdown; drawer mobile; nút tìm kiếm.
+- `Footer`: 4 cột + social + contact + CTA, bottom bar.
+- `Home`: hero slider thật (`sliders`), intro editorial dùng `settings.about`, tour nổi bật (1 lớn + 4 nhỏ), điểm đến nền rừng, 4 giá trị, gallery lightbox (ảnh thật từ tour/điểm đến/bài viết/slider), 3 bài viết, CTA.
+- Component mới: `HeroSlider`, `TourCard`, `DestinationCard`, `PostCard`.
+- `public.css` +927 dòng; `Gallery` hỗ trợ layout strip; `AppLayout` prop `overlayHeader`; `GenericPage`/`ErrorPage` dùng header nền sáng.
+
+### Kiểm thử
+
+| Bài kiểm tra | Kết quả |
+|---|---|
+| `npm run build` | exit 0 (Home chunk 15,1 KB) |
+| Toàn bộ suite | 93 passed / 582 assertions |
+| HTTP `/` | 200, đúng component `Home`, có sliders/featuredTours/latestPosts/settings.about |
+| HTTP 404 | 404 + `Errors/NotFound` |
+| Asset | `/build/assets/`, không còn `:5173` |
+| Backend/Admin | Không file nào bị sửa |
+
+### Ghi chú
+
+- `public/hot` xuất hiện lại (Vite không chạy) — đã xóa lần 2 trước khi commit.
+- Chưa chuyển P2.
+
+---
+
 ## [2026-11-10] FRONTEND P0 — NỀN TẢNG GIAO DIỆN PUBLIC (HOÀN THÀNH)
 
 ### Bối cảnh

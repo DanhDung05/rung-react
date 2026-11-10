@@ -118,7 +118,7 @@ export default function GenericPage() {
     }
 
     return (
-        <AppLayout>
+        <AppLayout overlayHeader={false}>
             <Seo title={title} />
             <section className="page-hero">
                 <div className="container">

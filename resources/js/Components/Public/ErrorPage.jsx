@@ -10,7 +10,7 @@ import { routes } from '../../lib/routes';
  */
 export default function ErrorPage({ code = '404', title = 'Không tìm thấy trang', message = '', image = null }) {
     return (
-        <AppLayout>
+        <AppLayout overlayHeader={false}>
             <Seo title={`${code} — ${title}`} noindex />
 
             <section className="rp-section rp-section--cream" style={{ minHeight: '58vh', display: 'flex', alignItems: 'center' }}>

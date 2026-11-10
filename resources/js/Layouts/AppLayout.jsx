@@ -9,7 +9,7 @@ import ThemeStyles from '../Components/ThemeStyles';
  * Layout công khai: header + nội dung + footer + flash.
  * Mọi trang frontend phải dùng layout này (không tự dựng header/footer).
  */
-export default function AppLayout({ children, className = '' }) {
+export default function AppLayout({ children, className = '', overlayHeader = true }) {
     const { settings, navigation, theme } = usePage().props;
 
     return (
@@ -20,7 +20,7 @@ export default function AppLayout({ children, className = '' }) {
                 Bỏ qua điều hướng
             </a>
 
-            <Header settings={settings} navigation={navigation} />
+            <Header settings={settings} navigation={navigation} overlay={overlayHeader} />
 
             <main id="main-content" className="rp-app__main">
                 {children}
