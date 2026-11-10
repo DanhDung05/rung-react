@@ -71,6 +71,15 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 - Chữ `em` trên nền rừng thiếu tương phản → vàng sáng `#e8c48d`.
 - Ảnh lỗi để lại caption/khung trống → ẩn toàn bộ figure hoặc loại khỏi gallery.
 
+### Changed — Frontend P1.3: cấu trúc tổng thể trang chủ
+
+- Thêm **Lựa chọn hành trình**: các nhóm tour thật (từ quan hệ category của featuredTours) dạng danh mục typographic.
+- Thêm **band toàn chiều rộng** với ảnh slider + trích dẫn triết lý hành trình.
+- **Giá trị** chuyển thành các chương full-width (số thứ tự, tiêu đề, mô tả 2 cột) thay lưới 2×2.
+- **Giới thiệu** chuyển hẳn sang text 2 cột (theo yêu cầu), bỏ khung ảnh — không còn khoảng trống.
+- **Thư viện** chỉ dùng ảnh thật tải được (slider + hero settings), tự chuyển solo/duo.
+- Nhịp section xen kẽ: trắng → kem → trắng → xanh rừng → ảnh toàn khung → xanh rừng → trắng → kem.
+
 ### Planned — Giai đoạn 2 (React hoàn thiện)
 
 - Tầng nền React: `AppLayout`, `AdminLayout`, `AuthLayout`, design system, shared props (settings/menu/theme).

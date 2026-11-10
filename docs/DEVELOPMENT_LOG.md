@@ -5,6 +5,35 @@
 
 ---
 
+## [2026-11-10] FRONTEND P1.3 — TỔNG THỂ TRANG CHỦ (HOÀN THÀNH)
+
+### Đã làm
+
+- Thêm section Lựa chọn hành trình (nhóm tour thật) và band ảnh toàn chiều rộng + trích dẫn.
+- Giá trị: chương full-width; Giới thiệu: text 2 cột, bỏ ảnh.
+- Gallery chỉ dùng ảnh thật, tự solo/duo.
+- Nhịp nền xen kẽ, giữ nguyên Hero/Header.
+
+### Kiểm thử
+
+| Mục | Kết quả |
+|---|---|
+| `npm run build` | exit 0 |
+| Toàn bộ suite | 93 passed / 582 assertions |
+| Screenshot 1440 | đã đối chiếu: không còn khoảng trống/khung ảnh lỗi |
+| 390/768 | Chrome headless ép min-width ~500px → cần kiểm tra thiết bị thật |
+| Hero/Header | không sửa |
+| Backend/Admin | không sửa |
+
+### Dữ liệu còn thiếu (cần xác nhận trước khi bổ sung backend)
+
+- Điểm đến: 0/13 ảnh → chưa làm được section ảnh toàn khung + tên overlay.
+- Bài viết: 0/9 ảnh → journal hiện dùng typography.
+- Tour: 7/9 thiếu ảnh; 1 file `.webp` thực chất là JPEG (sai MIME) → Chrome không decode.
+- "Trải nghiệm thiên nhiên": chưa có bảng/field mô tả hoạt động (trekking, cắm trại, kayak...) → đề xuất bảng `experiences` (title, slug, description, image, icon, sort_order, is_active).
+
+---
+
 ## [2026-11-10] FRONTEND P1.2 — VISUAL REFINEMENT (HOÀN THÀNH)
 
 ### Đã làm

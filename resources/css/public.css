@@ -3561,3 +3561,227 @@
         flex: 1;
     }
 }
+
+/* =========================================================
+   P1.3 — HOMEPAGE SECTIONS (full-width rhythm)
+   ========================================================= */
+
+.h-journey {
+    border-top: 1px solid var(--rp-line);
+}
+
+.h-journey__row {
+    display: grid;
+    grid-template-columns: 64px minmax(0, 1fr) auto;
+    gap: 22px;
+    align-items: center;
+    padding: 26px 4px;
+    border-bottom: 1px solid var(--rp-line);
+    text-decoration: none;
+    color: inherit;
+    transition: padding-left 0.2s ease, background 0.2s ease;
+}
+
+.h-journey__row:hover {
+    padding-left: 14px;
+    background: #fffdf8;
+}
+
+.h-journey__num {
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    color: var(--rp-earth);
+}
+
+.h-journey__name {
+    margin: 0;
+    font-family: var(--font-heading, sans-serif);
+    font-size: clamp(1.15rem, 2vw, 1.5rem);
+    font-weight: 800;
+    color: var(--rp-forest);
+}
+
+.h-journey__go {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rp-earth);
+}
+
+.h-band {
+    position: relative;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    overflow: hidden;
+    background: var(--rp-forest);
+}
+
+.h-band__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.h-band::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(8, 26, 20, 0.92) 0%, rgba(8, 26, 20, 0.55) 55%, rgba(8, 26, 20, 0.25) 100%);
+}
+
+.h-band__inner {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    padding: 96px 0;
+}
+
+.h-band__quote {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+    line-height: 1.35;
+    margin: 0 0 26px;
+    color: #fff;
+}
+
+.h-band__source {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #e8c48d;
+}
+
+.h-chapter {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+    padding: 34px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.h-chapter__num {
+    font-family: Georgia, serif;
+    font-size: 1.4rem;
+    color: #e8c48d;
+    line-height: 1;
+}
+
+.h-chapter h3 {
+    margin: 0;
+    font-family: var(--font-heading, sans-serif);
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
+    font-weight: 800;
+    color: #fff;
+}
+
+.h-chapter p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(242, 239, 230, 0.7);
+}
+
+@media (max-width: 900px) {
+    .h-chapter {
+        grid-template-columns: 54px minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .h-chapter p {
+        grid-column: 2;
+    }
+
+    .h-band {
+        min-height: 420px;
+    }
+
+    .h-band__inner {
+        padding: 72px 0;
+    }
+}
+
+@media (max-width: 680px) {
+    .h-journey__row {
+        grid-template-columns: 34px minmax(0, 1fr) 20px;
+        gap: 12px;
+        padding: 20px 2px;
+    }
+
+    .h-journey__go span {
+        display: none;
+    }
+
+    .h-band {
+        min-height: 360px;
+    }
+
+    .h-band__inner {
+        padding: 56px 0;
+    }
+
+    .h-band__quote {
+        font-size: 1.35rem;
+    }
+}
+
+/* P1.3 — values as full-width chapters */
+.h-values {
+    display: block;
+}
+
+.h-values > div:first-child {
+    max-width: 760px;
+    margin-bottom: 10px;
+}
+
+.h-values__list {
+    display: block;
+}
+
+.h-value {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+    padding: 32px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.h-value__num {
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.h-value h3 {
+    font-size: clamp(1.2rem, 2vw, 1.55rem);
+    margin: 0;
+}
+
+.h-value p {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: rgba(242, 239, 230, 0.74);
+}
+
+@media (max-width: 900px) {
+    .h-value {
+        grid-template-columns: 54px minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .h-value p {
+        grid-column: 2;
+    }
+}

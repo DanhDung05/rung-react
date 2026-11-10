@@ -52,7 +52,6 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
     const about = settings?.about || {};
 
     const heroFallback = mediaUrl(tours.find((item) => item.featured_image)?.featured_image) || mediaUrl(sliders[0]?.image) || null;
-    const aboutImage = settings?.hero_images?.about || null;
     const ctaImage = settings?.hero_images?.contact || null;
 
     // Chỉ dùng ảnh thật: slider + ảnh hero từ settings + tour có ảnh; loại trùng.
@@ -63,13 +62,18 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
             url,
             alt: settings?.site_name || 'Rừng Adventure',
         })),
-        ...tours.filter((item) => item.featured_image).map((item) => ({ id: `t-${item.id}`, url: mediaUrl(item.featured_image), alt: item.name })),
     ]
         .filter((item) => item.url)
         .filter((item, index, list) => list.findIndex((candidate) => candidate.url === item.url) === index);
 
     const feature = tours[0] || null;
     const tourRows = tours.slice(1, 5);
+
+    const journeyTypes = [
+        ...new Map(tours.filter((item) => item.category).map((item) => [item.category.id, item.category])).values(),
+    ];
+
+    const bandImage = mediaUrl(sliders[0]?.image) || null;
 
     return (
         <AppLayout>
@@ -112,15 +116,7 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
                             </div>
 
                             <div>
-                                {aboutImage && (
-                                    <AboutMedia
-                                        src={aboutImage}
-                                        alt={settings?.site_name || 'Rừng Adventure'}
-                                        caption={about.story_title || 'Rừng Adventure'}
-                                    />
-                                )}
-
-                                <div className="h-about__text" style={{ marginTop: aboutImage ? 28 : 0 }}>
+                                <div className="h-about__text">
                                     <p>
                                         {about.mission_content ||
                                             'Chúng tôi tin rằng một chuyến đi tốt không nằm ở số điểm đến, mà ở chiều sâu của trải nghiệm: buổi sáng trong bản làng, bữa cơm cùng người địa phương, và những cung đường không có trên bản đồ.'}
@@ -133,9 +129,44 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
                 </div>
             </section>
 
-            {/* 2. Tour nổi bật */}
-            {feature && (
+            {/* 2. Lựa chọn hành trình — nhóm tour thật từ dữ liệu */}
+            {journeyTypes.length > 0 && (
                 <section className="rp-section rp-section--cream">
+                    <div className="rp-container">
+                        <div className="rp-spread" style={{ marginBottom: 30 }}>
+                            <div>
+                                <div className="rp-eyebrow">Lựa chọn hành trình</div>
+                                <h2 className="rp-h2">
+                                    Bạn muốn đi <em>theo cách nào?</em>
+                                </h2>
+                            </div>
+                            <Link href={routes.tours.index} className="rp-link-arrow">
+                                Xem tất cả <ArrowRight size={15} />
+                            </Link>
+                        </div>
+
+                        <div className="h-journey">
+                            {journeyTypes.map((category, index) => (
+                                <Link
+                                    key={category.id}
+                                    href={`${routes.tours.index}?category=${category.slug}`}
+                                    className="h-journey__row"
+                                >
+                                    <span className="h-journey__num">{String(index + 1).padStart(2, '0')}</span>
+                                    <h3 className="h-journey__name">{category.name}</h3>
+                                    <span className="h-journey__go">
+                                        Khám phá <ArrowRight size={15} />
+                                    </span>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+            )}
+
+            {/* 3. Tour nổi bật */}
+            {feature && (
+                <section className="rp-section">
                     <div className="rp-container">
                         <div className="rp-spread" style={{ marginBottom: 36 }}>
                             <div>
@@ -242,7 +273,22 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
                 </section>
             )}
 
-            {/* 4. Giá trị */}
+            {/* 4. Full-width quote band */}
+            <section className="h-band">
+                {bandImage && <img className="h-band__image" src={bandImage} alt="" decoding="async" />}
+
+                <div className="rp-container">
+                    <div className="h-band__inner">
+                        <div className="rp-eyebrow">Triết lý hành trình</div>
+                        <blockquote className="h-band__quote">
+                            “Chúng tôi không đưa bạn đi thật nhanh. Chúng tôi đưa bạn đi thật sâu.”
+                        </blockquote>
+                        <span className="h-band__source">Rừng Adventure</span>
+                    </div>
+                </div>
+            </section>
+
+            {/* 5. Giá trị */}
             <section className="rp-section rp-section--forest" style={{ paddingTop: 0 }}>
                 <div className="rp-container">
                     <Reveal>
