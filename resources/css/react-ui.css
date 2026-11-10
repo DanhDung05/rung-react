@@ -855,3 +855,251 @@
         max-height: 92vh;
     }
 }
+
+/* =========================================================
+   ADMIN DASHBOARD
+   ========================================================= */
+
+.admin-grid-2,
+.admin-grid-3 {
+    display: grid;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.admin-grid-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.admin-grid-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.admin-grid-2 > .ui-card,
+.admin-grid-3 > .ui-card {
+    margin-bottom: 0;
+}
+
+.stat-card {
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.stat-card:hover {
+    border-color: #cdd8cf;
+    transform: translateY(-1px);
+}
+
+.stat-card__hint {
+    display: block;
+    font-size: 10px;
+    font-style: normal;
+    color: #9aa59d;
+    margin-top: 2px;
+}
+
+/* Biểu đồ cột 7 ngày */
+.ui-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    height: 190px;
+    padding-top: 12px;
+}
+
+.ui-chart__col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    height: 100%;
+}
+
+.ui-chart__value {
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #7b8980;
+}
+
+.ui-chart__track {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background: #f6f8f6;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.ui-chart__bar {
+    width: 70%;
+    background: linear-gradient(180deg, #3f8f66, var(--color-primary, #307a55));
+    border-radius: 4px 4px 0 0;
+    min-height: 3px;
+    transition: height 0.3s ease;
+}
+
+.ui-chart__label {
+    font-size: 10px;
+    color: #9aa59d;
+}
+
+/* Phân bố độ khó */
+.ui-dist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.ui-dist__head {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12.5px;
+    color: #45544c;
+    margin-bottom: 5px;
+}
+
+.ui-dist__head strong {
+    color: #1d2924;
+}
+
+.ui-dist__head small {
+    color: #9aa59d;
+    font-weight: 400;
+}
+
+.ui-dist__track {
+    height: 7px;
+    background: #f1f4f1;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.ui-dist__bar {
+    height: 100%;
+    background: var(--gold, #c58b45);
+    border-radius: 999px;
+}
+
+/* Thẻ cảnh báo */
+.ui-alert-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    background: #fff;
+    border: 1px solid #e6ebe6;
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s ease;
+}
+
+.ui-alert-card:hover {
+    border-color: #cdd8cf;
+}
+
+.ui-alert-card svg {
+    color: var(--gold, #c58b45);
+}
+
+.ui-alert-card strong {
+    display: block;
+    font-size: 20px;
+    color: #1d2924;
+    line-height: 1.1;
+}
+
+.ui-alert-card span {
+    font-size: 11.5px;
+    color: #7b8980;
+}
+
+/* Danh sách feed */
+.ui-feed {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ui-feed li + li {
+    border-top: 1px solid #f1f4f1;
+}
+
+.ui-feed a {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 0;
+    text-decoration: none;
+}
+
+.ui-feed strong {
+    font-size: 13px;
+    color: #1d2924;
+    font-weight: 700;
+}
+
+.ui-feed span {
+    font-size: 11.5px;
+    color: #7b8980;
+}
+
+.ui-feed small {
+    font-size: 10.5px;
+    color: #9aa59d;
+}
+
+.ui-feed a:hover strong {
+    color: var(--color-primary, #307a55);
+}
+
+.ui-link {
+    color: #1d2924;
+    text-decoration: none;
+}
+
+.ui-link:hover {
+    color: var(--color-primary, #307a55);
+    text-decoration: underline;
+}
+
+.admin-note {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 4px 0 0;
+    font-size: 11.5px;
+    color: #9aa59d;
+}
+
+@media (max-width: 1100px) {
+    .admin-grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .admin-grid-2,
+    .admin-grid-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .ui-chart {
+        height: 160px;
+        gap: 4px;
+    }
+
+    .ui-chart__label {
+        font-size: 9px;
+    }
+}
+
