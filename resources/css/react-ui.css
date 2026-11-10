@@ -1138,6 +1138,19 @@
     width: 100%;
 }
 
+.admin-form-narrow {
+    max-width: 720px;
+}
+
+.ui-form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 8px;
+    padding-top: 16px;
+    border-top: 1px solid #eef1ee;
+}
+
 /* Filter bar */
 .ui-filter {
     display: flex;
