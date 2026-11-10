@@ -37,6 +37,59 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [0.2.0] — 2026-11-10
+
+**Giai đoạn 0 + vá bảo mật + Giai đoạn 2.0 (tầng nền React).**
+
+### Added
+
+- **Shared props Inertia**: `settings` (7 group), `theme` (màu + font H1–H6), `navigation` (menu main/footer), `app`, `flash`, `auth.user` rút gọn — `HandleInertiaRequests`.
+- **`App\Services\NavigationService`**: dựng cây menu 3 cấp, cache 1 giờ, tự xóa cache khi admin sửa menu.
+- **3 layout dùng chung**: `AppLayout` (công khai), `AdminLayout` (sidebar + topbar), `AuthLayout`.
+- **4 partial layout**: `Header`, `Footer`, `AdminSidebar`, `AdminTopbar`.
+- **14 UI component**: Button, FormField, Input, Textarea, Select, Checkbox, Badge, Card, Modal, Pagination, EmptyState, Spinner, FlashMessage, ConfirmDialog.
+- **`Seo` component**: title, description, canonical, Open Graph, Twitter card, JSON-LD.
+- **`ThemeStyles`**: inject màu/font từ Settings vào CSS variables → theme trong admin có tác dụng thật.
+- **Thư viện tiện ích**: `lib/routes.js` (toàn bộ URL), `lib/format.js`, `lib/constants.js`, `hooks/useFlash.js`.
+- **`resources/css/react-ui.css`**: CSS cho design system, tách khỏi khối inline cũ.
+- **Test**: `InertiaFoundationTest` (6 test), `UserManagementTest` (11 test).
+
+### Changed
+
+- `resources/js/app.jsx`: bỏ `eager: true` → lazy-load từng page, tách bundle theo trang; cảnh báo ở dev khi thiếu page component.
+- `Home.jsx`, `GenericPage.jsx`, `Admin/Dashboard.jsx`, `Auth/Login.jsx` chuyển sang dùng layout chung; bỏ header/footer/sidebar tự dựng.
+- `Home.jsx` dùng slider thật từ DB thay vì ảnh nền hardcode.
+- `CacheHelper` bổ sung `clearMenuCaches()`.
+- `phpunit.xml`: trỏ DB test riêng `rungadventure_test`.
+
+### Fixed
+
+- **404 trả 500** khi build production: thêm `resources/js/app.js` vào Vite input.
+- **`GenericPage` fallback im lặng**: nay có cảnh báo rõ trong môi trường dev.
+- **Menu / Settings / Theme không tới được React**: đã chia sẻ qua Inertia.
+- **`admin.css` rỗng gây warning build**: bỏ import, thay bằng `react-ui.css`.
+- **Môi trường không chạy được**: `.env` + `APP_KEY` + `storage/logs` + `npm install` + build.
+- **`public/storage` là thư mục copy** → đã chuyển thành symlink sau khi xác minh SHA256.
+
+### Security
+
+- **Vá lỗ hổng High**: editor tự nâng quyền thành admin.
+  - `App\Policies\UserPolicy` — chỉ admin quản lý người dùng.
+  - `UserController` gọi `authorize()` ở 7 action.
+  - Chặn tự đổi `role` và tự vô hiệu hóa tài khoản.
+  - `StoreUserRequest`/`UpdateUserRequest` chỉ cho admin.
+- **Xóa cache cũ** chứa hash bcrypt admin + email/PII.
+
+### Notes
+
+- **Không sửa nghiệp vụ backend** nào ngoài phần phân quyền người dùng.
+- **Không chạy `migrate:fresh`**, không import lại `rungadventure.sql`.
+- DB thật sau toàn bộ thay đổi: users 3, tours 9, posts 9, settings 45, contacts 23, menu_items 14 — **không đổi**.
+- Backup tại `C:\laragon\www\_backups-rung-react\20261110-115656` — **chưa xóa**, chờ xác nhận website ổn định.
+- 71 page component vẫn còn thiếu (thuộc 2A/2B/2C/2D).
+
+---
+
 ## [0.1.0] — 2026-11-10
 
 **Giai đoạn 1 — Audit Source.** Bản phát hành **chỉ gồm tài liệu**, không thay đổi source nghiệp vụ.

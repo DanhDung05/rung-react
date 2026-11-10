@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use Illuminate\Support\Facades\Cache;
+use App\Services\NavigationService;
 
 class CacheHelper
 {
@@ -47,6 +48,14 @@ class CacheHelper
     }
 
     /**
+     * Xóa cache menu động (main / footer / top).
+     */
+    public static function clearMenuCaches(): void
+    {
+        NavigationService::flush();
+    }
+
+    /**
      * Xóa toàn bộ cache.
      */
     public static function clearAll(): void
@@ -55,5 +64,6 @@ class CacheHelper
         self::clearDestinationCaches();
         self::clearTourCaches();
         self::clearPostCaches();
+        self::clearMenuCaches();
     }
 }

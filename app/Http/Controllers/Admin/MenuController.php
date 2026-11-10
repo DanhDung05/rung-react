@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use Inertia\Inertia;
+use App\Helpers\CacheHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\SaveMenuItemsRequest;
 use App\Http\Requests\Admin\StoreMenuRequest;
@@ -51,6 +52,8 @@ class MenuController extends Controller
 
         Menu::create($data);
 
+        CacheHelper::clearMenuCaches();
+
         return redirect()
             ->route('admin.menus.index')
             ->with('success', 'Đã thêm menu thành công.');
@@ -84,6 +87,8 @@ class MenuController extends Controller
 
         $menu->update($data);
 
+        CacheHelper::clearMenuCaches();
+
         return redirect()
             ->route('admin.menus.index')
             ->with('success', 'Đã cập nhật menu thành công.');
@@ -95,6 +100,8 @@ class MenuController extends Controller
     public function destroy(Menu $menu)
     {
         $menu->delete();
+
+        CacheHelper::clearMenuCaches();
 
         return back()->with('success', 'Đã chuyển menu vào thùng rác.');
     }
@@ -180,6 +187,8 @@ class MenuController extends Controller
             }
         });
 
+        CacheHelper::clearMenuCaches();
+
         return redirect()
             ->route('admin.menus.items', $menu)
             ->with('success', 'Đã lưu cấu trúc menu thành công.');
@@ -212,6 +221,8 @@ class MenuController extends Controller
         $menu = Menu::onlyTrashed()->findOrFail($id);
         $menu->restore();
 
+        CacheHelper::clearMenuCaches();
+
         return back()->with('success', 'Đã khôi phục menu "' . $menu->name . '".');
     }
 
@@ -234,6 +245,8 @@ class MenuController extends Controller
 
         $name = $menu->name;
         $menu->forceDelete();
+
+        CacheHelper::clearMenuCaches();
 
         return back()->with('success', 'Đã xóa vĩnh viễn menu "' . $name . '".');
     }

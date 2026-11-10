@@ -1,6 +1,114 @@
 import React from 'react';
-import { Head, Link } from '@inertiajs/react';
-import { Activity, BookOpen, Compass, FileText, Image, Mail, MapPinned, Mountain, Users } from 'lucide-react';
-import GenericPage from '../GenericPage';
-const cards=[['tours_total','Tổng số tour',Mountain],['posts_total','Bài viết',BookOpen],['destinations_total','Điểm đến',MapPinned],['contacts_new','Liên hệ mới',Mail],['users_total','Người dùng',Users],['categories_total','Danh mục',Compass],['pages_total','Trang tĩnh',FileText],['sliders_total','Slider',Image]];
-export default function Dashboard(props){if(!props.stats)return <GenericPage/>;return <><Head title="Tổng quan — Admin"/><div className="admin-page-heading"><div><div className="eyebrow dark">RUNG ADVENTURE / QUẢN TRỊ</div><h1>Tổng quan</h1><p>Theo dõi tình hình hoạt động website.</p></div></div><div className="stats-grid">{cards.map(([key,name,Icon])=><div className="stat-card" key={key}><span><Icon size={19}/></span><div><strong>{Number(props.stats[key]||0).toLocaleString('vi-VN')}</strong><small>{name}</small></div></div>)}</div><div className="dashboard-lower"><section className="data-card"><div className="data-card-head"><h2>Tour được xem nhiều</h2><Link href="/admin/tour">Quản lý tour →</Link></div><div className="table-wrap"><table><thead><tr><th>Tên tour</th><th>Lượt xem</th></tr></thead><tbody>{(props.topTours||[]).map(x=><tr key={x.id}><td>{x.name}</td><td>{x.view_count}</td></tr>)}</tbody></table></div></section><section className="data-card"><div className="data-card-head"><h2>Bài viết được xem nhiều</h2><Link href="/admin/bai-viet">Quản lý bài viết →</Link></div><div className="table-wrap"><table><thead><tr><th>Tiêu đề</th><th>Lượt xem</th></tr></thead><tbody>{(props.topPosts||[]).map(x=><tr key={x.id}><td>{x.title}</td><td>{x.view_count}</td></tr>)}</tbody></table></div></section></div></>}
+import {
+    BookOpen,
+    Compass,
+    FileText,
+    Images,
+    Mail,
+    MapPinned,
+    Mountain,
+    Users,
+} from 'lucide-react';
+import AdminLayout from '../../Layouts/AdminLayout';
+import Seo from '../../Components/Seo';
+import Card from '../../Components/UI/Card';
+import Badge from '../../Components/UI/Badge';
+import EmptyState from '../../Components/UI/EmptyState';
+import { Link } from '@inertiajs/react';
+import { routes } from '../../lib/routes';
+import { number } from '../../lib/format';
+
+const CARDS = [
+    ['tours_total', 'Tổng số tour', Mountain],
+    ['posts_total', 'Bài viết', BookOpen],
+    ['destinations_total', 'Điểm đến', MapPinned],
+    ['contacts_new', 'Liên hệ mới', Mail],
+    ['users_total', 'Người dùng', Users],
+    ['categories_total', 'Danh mục', Compass],
+    ['pages_total', 'Trang tĩnh', FileText],
+    ['sliders_total', 'Slider', Images],
+];
+
+export default function Dashboard({ stats = {}, topTours = [], topPosts = [] }) {
+    return (
+        <AdminLayout title="Tổng quan" description="Theo dõi tình hình hoạt động của website.">
+            <Seo title="Tổng quan — Quản trị" noindex />
+
+            <div className="stats-grid">
+                {CARDS.map(([key, name, Icon]) => (
+                    <div className="stat-card" key={key}>
+                        <span>
+                            <Icon size={19} />
+                        </span>
+                        <div>
+                            <strong>{number(stats[key] ?? 0)}</strong>
+                            <small>{name}</small>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <div className="dashboard-lower">
+                <Card
+                    title="Tour được xem nhiều"
+                    actions={<Link href={routes.admin.tours.index}>Quản lý tour →</Link>}
+                >
+                    {topTours.length === 0 ? (
+                        <EmptyState title="Chưa có dữ liệu" />
+                    ) : (
+                        <div className="ui-table-wrap">
+                            <table className="ui-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tên tour</th>
+                                        <th>Lượt xem</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {topTours.map((tour) => (
+                                        <tr key={tour.id}>
+                                            <td>{tour.name}</td>
+                                            <td>
+                                                <Badge tone="muted">{number(tour.view_count)}</Badge>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                </Card>
+
+                <Card
+                    title="Bài viết được xem nhiều"
+                    actions={<Link href={routes.admin.posts.index}>Quản lý bài viết →</Link>}
+                >
+                    {topPosts.length === 0 ? (
+                        <EmptyState title="Chưa có dữ liệu" />
+                    ) : (
+                        <div className="ui-table-wrap">
+                            <table className="ui-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tiêu đề</th>
+                                        <th>Lượt xem</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {topPosts.map((post) => (
+                                        <tr key={post.id}>
+                                            <td>{post.title}</td>
+                                            <td>
+                                                <Badge tone="muted">{number(post.view_count)}</Badge>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    )}
+                </Card>
+            </div>
+        </AdminLayout>
+    );
+}

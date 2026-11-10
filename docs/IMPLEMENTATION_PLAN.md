@@ -672,3 +672,66 @@ Trước khi bắt đầu Giai đoạn 2, cần chủ dự án xác nhận:
 ---
 
 *Kế hoạch này dựa trên số liệu thực tế của source, không phải ước lượng cảm tính. Mọi mốc đều có tiêu chí hoàn thành kiểm chứng được.*
+
+---
+
+## 14. TIẾN ĐỘ THỰC TẾ — cập nhật 10/11/2026
+
+### 14.1. Trạng thái các đợt
+
+| Đợt | Nội dung | Trạng thái | Ghi chú |
+|---|---|---|---|
+| **GĐ0** | Ổn định môi trường | ✅ **HOÀN THÀNH** | `.env`, `APP_KEY`, `storage/logs`, symlink, `npm install`, build, git |
+| **Vá bảo mật** | Chặn editor leo thang đặc quyền | ✅ **HOÀN THÀNH** | Làm **trước** 2.0 theo yêu cầu; 11 test |
+| **2.0** | Tầng nền React | ✅ **HOÀN THÀNH** | 3 layout, 14 UI component, shared props, SEO, lazy load |
+| 2A | Admin shell + Dashboard | ⏳ Chờ duyệt | |
+| 2B | Admin CRUD 14 module | ⏳ | |
+| 2C | Media Library | ⏳ | |
+| 2D | Frontend 13 trang | ⏳ | |
+| 2E | Dọn dẹp + error pages | ⏳ | |
+| GĐ3–6 | CMS nâng cao, Version, Activity Log, Test & Deploy | ⏳ | |
+
+### 14.2. Đối chiếu với kế hoạch 2.0
+
+| Hạng mục kế hoạch | Đã làm | Ghi chú |
+|---|:---:|---|
+| `AppLayout` / `AdminLayout` / `AuthLayout` | ✅ | |
+| Partials: Header, Footer, AdminSidebar, AdminTopbar, Breadcrumb | ✅ | Breadcrumb gộp vào `AdminLayout` |
+| 20 UI component dự kiến | ✅ 14 | Đủ dùng cho 2A/2B; các component còn lại (Tabs, Drawer, Dropdown, Switch, Radio) sẽ thêm khi module cần |
+| `lib/routes.js`, `format.js`, `constants.js`, `validation.js` | ✅ 3/4 | `validation.js` chưa cần — Laravel trả `errors` trực tiếp |
+| `hooks`: useFlash, useConfirm, useQuery, useDebounce | ✅ 1/4 | `useConfirm` sẽ làm cùng 2B (khi có nút xóa); `useQuery`/`useDebounce` làm ở 2B (khi có filter) |
+| `Seo.jsx` | ✅ | |
+| Shared props settings/theme/navigation | ✅ | Có try/catch, cache |
+| `app.jsx` lazy + cảnh báo thiếu page | ✅ | |
+| Tách CSS khổng lồ trong `app.css` | 🟡 một phần | Đã tách phần React UI sang `react-ui.css`; khối inline cũ vẫn giữ để không phá giao diện hiện tại, sẽ dọn ở 2D |
+| Chuyển 4 trang hiện có sang layout | ✅ | Home, GenericPage, Dashboard, Login |
+| Build + test | ✅ | 19 test, build exit 0 |
+
+### 14.3. Sai lệch so với kế hoạch (có lý do)
+
+1. **Thêm 1 bước bắt buộc ngoài kế hoạch: vá bảo mật trước 2.0** — theo yêu cầu của chủ dự án.
+2. **Thêm `resources/js/app.js` vào Vite input** — ngoài kế hoạch 2.0, nhưng cần để sửa lỗi 404 → 500 (B3/R7).
+3. **Hoãn `validation.js`, `useConfirm`, `useQuery`, `useDebounce`** — chưa có nơi dùng; làm cùng 2B để tránh code chết.
+4. **Không xóa 132 file Blade** — đúng cam kết, giữ đến hết GĐ2.
+5. **Không đổi dependency nào** — `package.json` giữ nguyên; chỉ thêm `package-lock.json` (trước đó chưa có).
+
+### 14.4. Ước lượng còn lại
+
+| Đợt | Dev-day |
+|---|---:|
+| 2A | 2 |
+| 2B | 20–26 |
+| 2C | 3–4 |
+| 2D | 12–16 |
+| 2E | 1–2 |
+| GĐ3 | 8–10 |
+| GĐ4 | 5–6 |
+| GĐ5 | 4–5 |
+| GĐ6 | 6–8 |
+| **Còn lại** | **61–79 dev-day** |
+
+### 14.5. Điều kiện chuyển sang 2A
+
+- [ ] Chủ dự án kiểm tra giao diện mới (header/footer/sidebar) trên trình duyệt.
+- [ ] Xác nhận backup `C:\laragon\www\_backups-rung-react\20261110-115656` vẫn giữ.
+- [ ] Phê duyệt phạm vi 2A (dashboard dùng hết 11 prop backend đã tính).

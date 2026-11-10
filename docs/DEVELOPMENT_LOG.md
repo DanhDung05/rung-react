@@ -5,6 +5,185 @@
 
 ---
 
+## [2026-11-10] GIAI ĐOẠN 2.0 — TẦNG NỀN REACT (HOÀN THÀNH)
+
+### Bối cảnh
+
+Sau khi GĐ0 ổn định môi trường và vá lỗ hổng leo thang đặc quyền, xây tầng nền cho toàn bộ giao diện React: layout, design system, shared props, SEO, tiện ích. **Chưa xây trang CRUD nào** (thuộc 2A/2B/2C/2D).
+
+### Việc đã làm
+
+| # | Việc | Kết quả |
+|---|---|---|
+| 1 | Shared props từ Laravel → React | `settings`, `theme`, `navigation`, `app`, `flash`, `auth.user` (rút gọn) |
+| 2 | Menu động vào React | `NavigationService` + cache 1h + tự xóa cache khi admin sửa menu |
+| 3 | Theme động vào React | `ThemeStyles` inject CSS variables từ settings |
+| 4 | 3 layout dùng chung | AppLayout, AdminLayout, AuthLayout + 4 partial |
+| 5 | Design system | 14 component UI (Button, Input, Select, Textarea, Checkbox, Badge, Card, Modal, Pagination, EmptyState, Spinner, FlashMessage, FormField, ConfirmDialog) |
+| 6 | SEO component | title/description/canonical/OG/Twitter/JSON-LD |
+| 7 | Tiện ích | `routes.js` (toàn bộ URL), `format.js`, `constants.js`, `useFlash` |
+| 8 | Lazy-load page | `import.meta.glob` không eager → tách chunk theo trang |
+| 9 | Cảnh báo thiếu page | `console.warn` ở dev thay vì im lặng rơi vào GenericPage |
+| 10 | Chuyển 4 trang hiện có sang layout | Home, GenericPage, Admin/Dashboard, Auth/Login |
+| 11 | Sửa lỗi 404 → 500 | Thêm `resources/js/app.js` vào Vite input |
+| 12 | Tách CSS React | `resources/css/react-ui.css` (bỏ import `admin.css` rỗng) |
+
+### File đã tạo
+
+**Backend (2)**
+- `app/Services/NavigationService.php`
+- `app/Policies/UserPolicy.php` (từ đợt vá bảo mật)
+
+**React — lib/hooks (4)**
+- `resources/js/lib/routes.js`, `resources/js/lib/format.js`, `resources/js/lib/constants.js`
+- `resources/js/hooks/useFlash.js`
+
+**React — Components (16)**
+- `resources/js/Components/Seo.jsx`, `resources/js/Components/ThemeStyles.jsx`
+- `resources/js/Components/UI/`: `Button`, `FormField`, `Input`, `Textarea`, `Select`, `Checkbox`, `Badge`, `Card`, `Modal`, `Pagination`, `EmptyState`, `Spinner`, `FlashMessage`, `ConfirmDialog` (14 file)
+
+**React — Layouts (7)**
+- `resources/js/Layouts/AppLayout.jsx`, `AdminLayout.jsx`, `AuthLayout.jsx`
+- `resources/js/Layouts/Partials/Header.jsx`, `Footer.jsx`, `AdminSidebar.jsx`, `AdminTopbar.jsx`
+
+**CSS (1)**
+- `resources/css/react-ui.css`
+
+**Test (2)**
+- `tests/Feature/InertiaFoundationTest.php`
+- `tests/Feature/Security/UserManagementTest.php`
+
+### File đã sửa
+
+| File | Thay đổi |
+|---|---|
+| `app/Http/Middleware/HandleInertiaRequests.php` | Viết lại `share()`: settings/theme/navigation/app + user rút gọn, có try/catch |
+| `app/Helpers/CacheHelper.php` | Thêm `clearMenuCaches()`, gọi trong `clearAll()` |
+| `app/Http/Controllers/Admin/MenuController.php` | Xóa cache menu sau store/update/destroy/restore/forceDestroy/saveItems |
+| `app/Http/Controllers/Admin/UserController.php` | Thêm `authorize()` + chặn tự đổi role/tự vô hiệu hóa |
+| `app/Http/Requests/Admin/StoreUserRequest.php` | `authorize()` = admin |
+| `app/Http/Requests/Admin/UpdateUserRequest.php` | `authorize()` = admin |
+| `resources/js/app.jsx` | Bỏ eager glob, lazy import, fallback động, cảnh báo dev |
+| `resources/js/Pages/Home.jsx` | Dùng AppLayout + Seo + settings; dùng slider thật |
+| `resources/js/Pages/GenericPage.jsx` | Dùng 3 layout thay vì tự dựng header/footer |
+| `resources/js/Pages/Admin/Dashboard.jsx` | Dùng AdminLayout + Card + Badge + EmptyState |
+| `resources/js/Pages/Auth/Login.jsx` | Dùng AuthLayout + Button + Checkbox |
+| `resources/css/app.css` | Bỏ import `pages/admin.css` (rỗng), thêm `react-ui.css` |
+| `vite.config.js` | Thêm `resources/js/app.js` vào input (fix 404) |
+| `phpunit.xml` | Trỏ DB test `rungadventure_test` |
+
+### Chức năng đã hoàn thành
+
+- Header/footer/nav đọc **dữ liệu thật** từ `menus` + `settings` (không còn hardcode).
+- Màu/font từ Settings áp dụng được lên React qua CSS variables.
+- Admin sidebar có 15 module, ẩn Người dùng/Cài đặt với editor.
+- Admin topbar có user menu + đăng xuất.
+- Mọi trang có flash message thống nhất.
+- SEO đầy đủ cho trang dùng `Seo`.
+- Bundle tách theo trang (Home 6.9KB, Dashboard 2.4KB, Login 3.1KB riêng).
+
+### Chức năng chưa hoàn thành
+
+- 71 page component (58 admin + 13 frontend) — thuộc 2A/2B/2C/2D.
+- Media Library upload — 2C.
+- Trang lỗi Inertia (404/403/419/500) — 2E (404 Blade hiện đã chạy đúng, không còn 500).
+- Rich text editor component — 2B (khi làm form Tour/Post).
+- Upload ảnh component — 2B/2C.
+
+### Lỗi còn tồn tại (mới phát hiện trong 2.0)
+
+| ID | Lỗi | Mức | Ghi chú |
+|---|---|---|---|
+| N1 | `Setting::get()` gọi nhiều lần trong 1 request (theme 14 lần) | Thấp | Đã có cache `settings.all` nên chỉ 1 query; có thể gộp sau |
+| N2 | `Page 404` vẫn là Blade, phụ thuộc `layouts.app` + MenuComposer | Thấp | Sẽ chuyển Inertia ở 2E |
+| N3 | Editor vẫn vào được Settings (chưa khóa) | **Trung bình** | Thuộc phạm vi GĐ3 (Policy cho Setting) |
+| N4 | `route:cache` vẫn lỗi do closure upload TinyMCE | Thấp | Xử lý ở 2B/2C khi chuyển sang controller |
+
+### Kết quả kiểm thử
+
+| Test | Kết quả |
+|---|---|
+| `php artisan test` | **19 passed, 96 assertions** |
+| UserManagementTest (bảo mật) | 11 passed |
+| InertiaFoundationTest (tầng nền) | 6 passed |
+| `php -l` 10 file PHP đã sửa/tạo | 0 lỗi |
+| `npm run build` | **exit 0**, 2442 module, 9.35s |
+| Smoke test HTTP | `/` 200, `/dang-nhap` 200, `/tour` 200, `/sitemap.xml` 200, `/khong-ton-tai` **404** (trước là 500) |
+| Shared props | `settings.site_name = "Rừng Adventure"`, `navigation.main` có 6 item thật từ DB |
+| DB thật sau kiểm thử | users 3, tours 9, posts 9, settings 45, contacts 23, menu_items 14 — **không đổi** |
+
+### Git
+
+| Commit | Nội dung |
+|---|---|
+| `61d0db5` | `chore(gd0)`: ổn định môi trường |
+| `88d0e59` | `fix(security)`: chặn editor leo thang đặc quyền |
+| *(sắp tạo)* | `feat(gd2.0)`: tầng nền React |
+
+### Bước tiếp theo
+
+Chờ phê duyệt để thực hiện **GĐ2A** (Admin shell + Dashboard nâng cao), sau đó 2B.
+
+---
+
+## [2026-11-10] GIAI ĐOẠN 0 — ỔN ĐỊNH MÔI TRƯỜNG (HOÀN THÀNH)
+
+### Việc đã làm
+
+| # | Việc | Chi tiết |
+|---|---|---|
+| 1 | Backup toàn bộ | DB dump + `public/storage` + `storage/app/public` + `resources/js` + `resources/css` + controllers/requests/middleware/routes → `C:\laragon\www\_backups-rung-react\20261110-115656` (124 file) |
+| 2 | Khởi động lại MySQL | Máy mất nguồn làm MySQL tắt; khởi động lại bằng `mysqld --defaults-file`, không đổi dữ liệu |
+| 3 | `public/storage` → symlink | Xác minh 15 file / SHA256 khớp tuyệt đối **trước khi xóa**, sau đó `storage:link` → Junction |
+| 4 | `.env` | Copy từ `.env.example` (file chưa tồn tại), sửa `APP_NAME`, `APP_URL`, `MAIL_MAILER=log` |
+| 5 | `APP_KEY` | `php artisan key:generate` |
+| 6 | `storage/logs` | Tạo thư mục + `.gitignore` |
+| 7 | Xóa cache cũ | `config:clear`, `cache:clear`, `view:clear` (cache cũ chứa PII + hash bcrypt) |
+| 8 | JS dependencies | `npm install` → 186 package, `package-lock.json` được tạo |
+| 9 | Build | `npm run build` → `public/build/manifest.json` + assets |
+| 10 | Git | `git init` + commit baseline 372 file |
+| 11 | DB test | Tạo `rungadventure_test` (DB riêng, không đụng DB thật) |
+
+### Kiểm chứng
+
+- `public/storage` là **Junction**, 15 file hiển thị qua link.
+- `/` → 200, `/dang-nhap` → 200, `/admin/dashboard` → redirect `/dang-nhap` (middleware hoạt động).
+- `php artisan about` chạy đúng: Laravel 10.50.4, PHP 8.1.10, APP_NAME "Rung Adventure".
+
+### Ghi chú
+
+- Không chạy `migrate:fresh`, `db:wipe`, hay import lại `rungadventure.sql`.
+- Backup **chưa xóa** — chờ chủ dự án xác nhận website ổn định.
+
+---
+
+## [2026-11-10] VÁ BẢO MẬT — LEO THANG ĐẶC QUYỀN (HOÀN THÀNH)
+
+### Lỗ hổng
+
+Tài khoản `editor` có thể tự đổi `role` thành `admin` qua `/admin/tai-khoan/{id}/edit` vì:
+- `EnsureUserIsAdmin` cho cả admin và editor vào khu quản trị.
+- `UpdateUserRequest` cho phép `role` và `authorize()` trả `true`.
+- `UserController@update` không kiểm tra người thực hiện.
+
+### Cách vá
+
+1. `UserPolicy`: `viewAny`/`create`/`update` chỉ admin; `toggleActive` chỉ admin và không tự tác động.
+2. `UserController`: gọi `authorize()` ở index/create/store/show/edit/update/toggleActive.
+3. Chặn tự đổi `role` và tự vô hiệu hóa tài khoản của chính mình (kể cả admin).
+4. `StoreUserRequest`/`UpdateUserRequest`: `authorize()` = `user()->isAdmin()`.
+
+### Kiểm thử
+
+`tests/Feature/Security/UserManagementTest.php` — **11 test, 20 assertion, PASS**:
+- Khách chưa đăng nhập → redirect login.
+- Editor: không xem danh sách, không mở form tạo, **không tự nâng quyền**, không tạo admin, không sửa người khác, không bật/tắt tài khoản.
+- Admin: xem danh sách, nâng quyền editor, **không tự đổi role**, **không tự vô hiệu hóa**.
+
+**Test hồi quy quan trọng nhất:** `test_editor_khong_the_tu_nang_quyen_thanh_admin` — trước khi vá sẽ fail.
+
+---
+
 ## [2026-11-10] GIAI ĐOẠN 1 — AUDIT SOURCE (HOÀN THÀNH)
 
 ### Bối cảnh

@@ -543,3 +543,64 @@ Select-String -Path app\Http\Controllers\*\*.php -Pattern "Inertia::render\('([^
 ---
 
 *Hết báo cáo kiểm toán Giai đoạn 1. Không có file source nào bị sửa trong quá trình kiểm toán.*
+
+---
+
+## 18. CẬP NHẬT TIẾN ĐỘ SAU GĐ0 + VÁ BẢO MẬT + GĐ2.0 (10/11/2026)
+
+> Phần trên giữ nguyên làm mốc lịch sử. Dưới đây là trạng thái **sau khi đã xử lý**.
+
+### 18.1. Vấn đề đã khắc phục
+
+| ID cũ | Vấn đề | Trạng thái | Cách xử lý |
+|---|---|---|---|
+| R2 | Không chạy được do thiếu `.env`, `public/build` | ✅ Đã xử lý | Tạo `.env`, `key:generate`, `npm install`, `npm run build` |
+| R4 / B4 | `public/storage` là thư mục copy | ✅ Đã xử lý | Backup + xác minh SHA256 15 file → xóa → `storage:link` (Junction) |
+| R6 | Cache cũ chứa PII | ✅ Đã xử lý | `cache:clear`, `view:clear`, `config:clear` |
+| R7 / B3 | 404 → 500 khi production | ✅ Đã xử lý | Thêm `resources/js/app.js` vào Vite input; smoke test 404 = 404 |
+| B1 / R1 | Editor tự nâng quyền thành admin | ✅ Đã vá + có test | `UserPolicy` + `authorize()` + chặn tự đổi role; 11 test |
+| B7 | Menu/Settings/Theme không tới React | ✅ Đã xử lý | Shared props + `NavigationService` + `ThemeStyles` |
+| B5 | Dashboard thiếu layout | ✅ Đã xử lý | Dùng `AdminLayout`, thêm Card/Badge/EmptyState |
+| R5 | Nguy cơ phân mảnh do không có layout | ✅ Đã xử lý | 3 layout + 14 UI component dùng chung |
+| — | `admin.css` rỗng gây warning | ✅ Đã xử lý | Thay bằng `react-ui.css` |
+| — | Fallback `GenericPage` im lặng | ✅ Cải thiện | Cảnh báo `console.warn` ở dev |
+
+### 18.2. Vấn đề còn tồn tại
+
+| ID | Vấn đề | Mức | Kế hoạch |
+|---|---|---|---|
+| R3 | 71 page component còn thiếu | **Cao** | 2A/2B/2C/2D |
+| — | 132 file Blade vẫn là dead code | Thấp | Giữ đến hết GĐ2 (đối chiếu), xóa ở GĐ6 |
+| — | Editor vẫn truy cập được Settings | **Trung bình** | GĐ3 — `SettingPolicy` |
+| B8 | Post không xóa cứng được khi còn tag | Thấp | GĐ2B (cân nhắc detach) |
+| B9 | Tour forceDestroy báo sai tên (dùng ID) | Thấp | GĐ2B |
+| B10 | Menu items cấp 3 có thể sai parent | Thấp | GĐ2B (sửa `saveItems`) |
+| B11 | Cache `tour_related_*`, `post_related_*` không xóa | Thấp | GĐ3 |
+| B12 | `route:cache` lỗi do closure upload | Thấp | GĐ2B/2C — chuyển sang controller |
+| S2 | Không throttle đăng nhập | Trung bình | GĐ3 |
+| S4 | Cho upload SVG | Trung bình | GĐ3 |
+| — | 0 test cho CRUD (chỉ có auth + Inertia nền) | Trung bình | GĐ6 |
+
+### 18.3. Số liệu cập nhật
+
+| Chỉ số | Trước GĐ0 | Sau GĐ2.0 |
+|---|---:|---:|
+| `.env` | ❌ | ✅ |
+| `vendor/` + autoload | ❌ | ✅ |
+| `node_modules/` | ❌ | ✅ (186 package) |
+| `public/build` | ❌ | ✅ |
+| `public/storage` | thư mục copy | ✅ Junction |
+| 404 hoạt động | ❌ (500) | ✅ |
+| Shared props settings/menu/theme | ❌ | ✅ |
+| Layout dùng chung | ❌ | ✅ 3 |
+| UI component dùng chung | ❌ | ✅ 14 |
+| Test tự động | 2 skeleton | **19 test / 96 assertion** |
+| Page component | 3 (+GenericPage) | 3 (+GenericPage) — **chưa đổi, thuộc 2A–2D** |
+| Thư viện JS | 309 dòng | ~1.800 dòng (có tổ chức) |
+| Bundle trang chủ | 389 KB (1 chunk) | 303 KB + chunk riêng theo trang |
+
+### 18.4. Đánh giá lại rủi ro
+
+Rủi ro **P0 còn lại duy nhất** là R3: 71 trang vẫn dùng `GenericPage`. Hai rủi ro P0 khác (leo thang đặc quyền, môi trường không chạy) **đã được xử lý và có kiểm thử**.
+
+Điều kiện để tiếp tục: hoàn thành 2A (dashboard), 2B (58 trang admin), 2C (Media), 2D (13 trang frontend), 2E (bỏ fallback).
