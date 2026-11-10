@@ -34,18 +34,22 @@ export default function Gallery({ images = [], columns = 3, layout = 'grid' }) {
     if (images.length === 0) return null;
 
     const strip = layout === 'strip';
+    const collage = layout === 'collage';
+    const collagePattern = ['is-large', 'is-tall', '', 'is-wide', '', ''];
 
     return (
         <>
             <div
-                className={strip ? 'rp-gallery-strip' : 'rp-gallery'}
-                style={strip ? undefined : { gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
+                className={strip ? 'rp-gallery-strip' : collage ? 'rp-collage' : 'rp-gallery'}
+                style={strip || collage ? undefined : { gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
             >
                 {images.map((image, i) => (
                     <button
                         key={image.id ?? i}
                         type="button"
-                        className={`rp-gallery__item ${strip ? (i % 6 === 0 ? 'is-wide' : i % 6 === 3 ? 'is-tall' : '') : ''}`.trim()}
+                        className={`rp-gallery__item ${
+                            strip ? (i % 6 === 0 ? 'is-wide' : i % 6 === 3 ? 'is-tall' : '') : collage ? collagePattern[i % 6] : ''
+                        }`.trim()}
                         onClick={() => setIndex(i)}
                         aria-label={`Xem ảnh ${i + 1}`}
                     >

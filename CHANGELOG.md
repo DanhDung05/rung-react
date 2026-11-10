@@ -43,6 +43,17 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 - `public.css` +927 dòng: header/footer/slider/editorial/responsive.
 - Dùng dữ liệu thật: `sliders`, `featuredTours`, `featuredDestinations`, `latestPosts`, `settings.hero_images`, `settings.about`.
 
+### Added — Frontend P1.1: redesign section nội dung trang chủ
+
+- **Giới thiệu**: bố cục media + editorial copy 12 cột, ảnh dọc 4:4.6 với caption đè, trích dẫn lớn, chữ ký.
+- **Tour nổi bật**: feature lớn toàn chiều cao (ảnh tràn + overlay) bên trái, 4 tour dạng danh sách đánh số bên phải (thay grid card).
+- **Điểm đến**: mosaic bất đối xứng — 1 ảnh lớn dọc + 2 card ngang overlay.
+- **Giá trị**: manifesto 2 cột (tuyên ngôn lớn + 4 giá trị dạng cột có đường kẻ, hover đổi màu viền).
+- **Thư viện**: collage 4 cột với ô lớn 2×3, ô dọc, ô ngang (`layout="collage"`).
+- **Bài viết**: journal 1 bài lớn + 2 dòng tiêu đề tối giản có đường kẻ.
+- **CTA**: band full-bleed nền ảnh + overlay tối, tiêu đề serif, khối liên hệ bên phải.
+- `public.css` +857 dòng; giữ nguyên HeroSlider và Header.
+
 ### Planned — Giai đoạn 2 (React hoàn thiện)
 
 - Tầng nền React: `AppLayout`, `AdminLayout`, `AuthLayout`, design system, shared props (settings/menu/theme).

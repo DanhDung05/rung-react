@@ -5,6 +5,32 @@
 
 ---
 
+## [2026-11-10] FRONTEND P1.1 — REDESIGN SECTION TRANG CHỦ (HOÀN THÀNH)
+
+### Đã làm
+
+- 7 section đổi **bố cục**, không chỉ đổi màu: About (media + editorial), Tour (feature + list đánh số), Destination (mosaic), Values (manifesto 2 cột), Gallery (collage), Journal (bài lớn + list), CTA (full-bleed).
+- `Gallery` thêm `layout="collage"` với pattern ô lớn/dọc/ngang.
+- `public.css` +857 dòng (layout, responsive 1100/900/680).
+- **Không sửa** `HeroSlider.jsx` và `Header.jsx` (kiểm tra bằng git).
+
+### Kiểm thử
+
+| Bài kiểm tra | Kết quả |
+|---|---|
+| `npm run build` | exit 0 — Home 16,8 KB; CSS 150,8 KB chứa đủ class mới |
+| Toàn bộ suite | 93 passed / 582 assertions |
+| `GET /` | 200, component `Home`, asset `/build/assets/`, không `:5173` |
+| CSS | 408 `{` / 408 `}` — cân bằng |
+| Phạm vi | chỉ 3 file: `Home.jsx`, `public.css`, `Gallery.jsx` |
+
+### Ghi chú
+
+- `public/hot` không xuất hiện lại trong lần build này.
+- Chưa chuyển P2.
+
+---
+
 ## [2026-11-10] FRONTEND P1 — REDESIGN HOME / HEADER / FOOTER (HOÀN THÀNH)
 
 ### Đã làm
