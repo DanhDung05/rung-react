@@ -67,14 +67,17 @@ export const routes = {
         sliders: resource('/admin/slider'),
         pages: resource('/admin/trang-tinh'),
         faqs: resource('/admin/faq'),
-        menus: resource('/admin/menu'),
+        menus: {
+            ...resource('/admin/menu'),
+            // Route admin.menus.items (GET) và admin.menus.items.save (PUT)
+            items: (id) => `/admin/menu/${id}/items`,
+            itemsSave: (id) => `/admin/menu/${id}/items`,
+        },
         users: resource('/admin/tai-khoan'),
         media: resource('/admin/media'),
         reviews: resource('/admin/danh-gia'),
         contacts: resource('/admin/lien-he'),
 
-        menuItems: (id) => `/admin/menu/${id}/items`,
-        menuItemsSave: (id) => `/admin/menu/${id}/items`,
         userToggleActive: (id) => `/admin/tai-khoan/${id}/toggle-active`,
         reviewApprove: (id) => `/admin/danh-gia/${id}/duyet`,
         reviewReject: (id) => `/admin/danh-gia/${id}/tu-choi`,

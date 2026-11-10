@@ -5,6 +5,51 @@
 
 ---
 
+## [2026-11-10] HOTFIX — DASHBOARD TRẮNG (HOÀN THÀNH)
+
+### Triệu chứng
+
+`/admin/dashboard` trắng trang, console báo:
+```
+Uncaught TypeError: routes.admin.menus.items is not a function at Dashboard.jsx
+```
+
+### Nguyên nhân gốc
+
+`resources/js/lib/routes.js` khai báo `menus: resource('/admin/menu')`. Hàm `resource()` chỉ sinh 9 method CRUD chuẩn, **không có `items`**. Trong khi đó `routes/admin.php` có thêm 2 route bổ sung:
+- `GET admin/menu/{menu}/items` → `admin.menus.items`
+- `PUT admin/menu/{menu}/items` → `admin.menus.items.save`
+
+Hai route này trước đây được khai báo rời thành `routes.admin.menuItems` / `routes.admin.menuItemsSave`, nên `routes.admin.menus.items` là `undefined`. Gọi nó trong `Dashboard.jsx:257` ném TypeError → React unmount toàn trang.
+
+Ảnh hưởng thực tế: **3 nơi** cùng gọi `routes.admin.menus.items` — `Dashboard.jsx`, `Menus/Index.jsx`, `Menus/Show.jsx` (2 trang sau cũng sẽ trắng khi mở).
+
+### Cách sửa
+
+| File | Thay đổi |
+|---|---|
+| `resources/js/lib/routes.js` | `menus` = `{ ...resource('/admin/menu'), items, itemsSave }`; bỏ alias trùng `menuItems`/`menuItemsSave` |
+| `resources/js/Pages/Admin/Menus/Items.jsx` | `routes.admin.menuItemsSave` → `routes.admin.menus.itemsSave` |
+
+Không sửa `Dashboard.jsx`, `Menus/Index.jsx`, `Menus/Show.jsx` — chúng đã gọi đúng tên, chỉ thiếu định nghĩa.
+
+### Kiểm chứng
+
+| Kiểm tra | Kết quả |
+|---|---|
+| Node: `typeof routes.admin.menus.items` | `function`, trả `/admin/menu/5/items` |
+| Node: quét toàn bộ `routes.*(` trong `resources/js` | **76 call site — 0 lỗi** |
+| `npm run build` | exit 0, bundle có `items: e => \`/admin/menu/${e}/items\`` |
+| `DashboardTest` + `AdminPagesExistTest` | **8 passed / 75 assertions** |
+| Route backend | Không đổi (3 route Settings/Menu giữ nguyên) |
+| DB / giao diện | Không đổi |
+
+### Bài học / phòng ngừa
+
+Route helper dạng `resource()` không tự có các route bổ sung. Khi backend thêm route ngoài CRUD chuẩn, phải bổ sung vào đúng object module. Có thể thêm bước kiểm tra tĩnh này vào CI (script Node đã dùng để audit 76 call site).
+
+---
+
 ## [2026-11-10] TOÀN BỘ ADMIN SANG REACT (HOÀN THÀNH)
 
 ### Mục tiêu

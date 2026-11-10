@@ -68,7 +68,7 @@ export default function MenusItems({ menu }) {
         }));
 
         setProcessing(true);
-        router.put(routes.admin.menuItemsSave(menu.id), { items: payload }, {
+        router.put(routes.admin.menus.itemsSave(menu.id), { items: payload }, {
             preserveScroll: true,
             onFinish: () => setProcessing(false),
         });

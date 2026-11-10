@@ -37,6 +37,27 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [0.3.1] — 2026-11-10
+
+**Sửa lỗi Dashboard trắng do gọi route helper không tồn tại.**
+
+### Fixed
+
+- `Uncaught TypeError: routes.admin.menus.items is not a function` tại `Dashboard.jsx`.
+- **Nguyên nhân gốc:** `routes.admin.menus` được tạo bằng `resource('/admin/menu')` — helper này chỉ sinh 9 method CRUD chuẩn (`index/create/store/show/edit/update/destroy/trash/restore/forceDestroy`), **không có** `items`. Route `admin.menus.items` là route bổ sung trong `routes/admin.php`, trước đó được khai báo rời ở `routes.admin.menuItems`.
+- **Cách sửa:** bổ sung `items` và `itemsSave` vào chính `routes.admin.menus` (khớp tên route Laravel), bỏ 2 alias trùng `menuItems`/`menuItemsSave`, cập nhật `Menus/Items.jsx` sang `menus.itemsSave`.
+- Sửa luôn 2 chỗ cùng lỗi tiềm ẩn: `Menus/Index.jsx`, `Menus/Show.jsx` (dùng chung helper nên không phải sửa code).
+
+### Verified
+
+- Node kiểm tra **76 lời gọi route** trong toàn bộ `resources/js` → tất cả là hàm hợp lệ.
+- `menus.items(5)` → `/admin/menu/5/items`; `menus.itemsSave(5)` → cùng URL (GET/PUT).
+- `npm run build`: exit 0; bundle chứa đúng `items: e => \`/admin/menu/${e}/items\``.
+- `DashboardTest` + `AdminPagesExistTest`: 8 passed (75 assertions).
+- Không đổi URL, không đổi route backend, không đổi DB, không đổi giao diện.
+
+---
+
 ## [0.3.0] — 2026-11-10
 
 **Toàn bộ giao diện quản trị chuyển sang React + Inertia.**
