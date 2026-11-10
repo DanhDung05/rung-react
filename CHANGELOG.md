@@ -80,6 +80,13 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 - **Thư viện** chỉ dùng ảnh thật tải được (slider + hero settings), tự chuyển solo/duo.
 - Nhịp section xen kẽ: trắng → kem → trắng → xanh rừng → ảnh toàn khung → xanh rừng → trắng → kem.
 
+### Changed — Frontend P1.5: tinh gọn homepage
+
+- Xóa hoàn toàn section Câu chuyện, Bạn muốn đi theo cách nào, Giá trị cốt lõi.
+- Gộp toàn bộ tour vào một lưới duy nhất (3/2/1 cột) + nút Xem tất cả.
+- Nền xen kẽ: Welcome kem → Tour trắng → Banner ảnh → Gallery kem → Cẩm nang trắng → CTA ảnh → Footer forest.
+- TourCard/Gallery có placeholder nền dự phòng khi ảnh lỗi.
+
 ### Planned — Giai đoạn 2 (React hoàn thiện)
 
 - Tầng nền React: `AppLayout`, `AdminLayout`, `AuthLayout`, design system, shared props (settings/menu/theme).

@@ -133,6 +133,7 @@ export default function Gallery({ images = [], columns = 3, layout = 'grid' }) {
                         className={itemClass(i)}
                         onClick={() => setIndex(i)}
                         aria-label={`Xem ảnh ${i + 1}`}
+                        style={{ backgroundImage: `url("${image.url}")`, backgroundSize: 'cover', backgroundPosition: 'center' }}
                     >
                         <img src={image.url} alt={image.alt || ''} decoding="async" />
                     </button>

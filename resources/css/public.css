@@ -3794,6 +3794,13 @@
     }
 }
 
+/* P1.5 — single tours section */
+.h-tours-foot {
+    display: flex;
+    justify-content: center;
+    margin-top: 46px;
+}
+
 /* P1.6 — hai màu nền xen kẽ: cream & white */
 .rp-section--cream .h-dest__list,
 .rp-section--cream .h-dest__row {
