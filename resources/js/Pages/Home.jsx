@@ -5,9 +5,11 @@ import AppLayout from '../Layouts/AppLayout';
 import Seo from '../Components/Seo';
 import Reveal from '../Components/Public/Reveal';
 import HeroSlider from '../Components/Public/HeroSlider';
+import TourCard from '../Components/Public/TourCard';
 import Gallery from '../Components/Public/Gallery';
 import { routes } from '../lib/routes';
 import { mediaUrl, money, date } from '../lib/format';
+import { placeholderImage } from '../lib/placeholder';
 import { DIFFICULTY } from '../lib/constants';
 
 const VALUES = [
@@ -66,6 +68,15 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
         .filter((item) => item.url)
         .filter((item, index, list) => list.findIndex((candidate) => candidate.url === item.url) === index);
 
+    const galleryFinal = [...galleryImages];
+    while (galleryFinal.length < 5) {
+        galleryFinal.push({
+            id: `ph-${galleryFinal.length}`,
+            url: placeholderImage(`gallery-${galleryFinal.length}`),
+            alt: 'Rừng Adventure',
+        });
+    }
+
     const feature = tours[0] || null;
     const tourRows = tours.slice(1, 5);
 
@@ -74,6 +85,11 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
     ];
 
     const bandImage = mediaUrl(sliders[0]?.image) || null;
+
+    const tourGroups = [
+        { label: 'Hành trình nhiều ngày', items: tours.filter((tour) => Number(tour.duration_days || 1) >= 2).slice(0, 3) },
+        { label: 'Tour trong ngày', items: tours.filter((tour) => Number(tour.duration_days || 1) < 2) },
+    ].filter((group) => group.items.length > 0);
 
     return (
         <AppLayout>
@@ -189,15 +205,15 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
                 </section>
             )}
 
-            {/* 3. Tour nổi bật */}
-            {feature && (
+                        {/* 3. Tour nổi bật — lưới card theo nhóm thời lượng */}
+            {tourGroups.length > 0 && (
                 <section className="rp-section">
                     <div className="rp-container">
-                        <div className="rp-spread" style={{ marginBottom: 36 }}>
+                        <div className="h-tours-head">
                             <div>
-                                <div className="rp-eyebrow">Hành trình nổi bật</div>
+                                <div className="rp-eyebrow">Chọn hành trình của bạn</div>
                                 <h2 className="rp-h2">
-                                    Chọn cung đường <em>của bạn</em>
+                                    Hành trình <em>nổi bật</em>
                                 </h2>
                             </div>
                             <Link href={routes.tours.index} className="rp-link-arrow">
@@ -205,100 +221,24 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
                             </Link>
                         </div>
 
-                        <Reveal>
-                            <div className={`h-tours ${tourRows.length === 0 ? 'h-tours--solo' : ''}`}>
-                                <Link href={routes.tours.show(feature.slug)} className="h-tour-hero">
-                                    <SafeImage src={mediaUrl(feature.featured_image)} alt={feature.name} />
+                        {tourGroups.map((group) => (
+                            <div className="h-tour-group" key={group.label}>
+                                <div className="h-tour-group__head">
+                                    <h3>{group.label}</h3>
+                                    <span>{group.items.length} hành trình</span>
+                                </div>
 
-                                    <div className="h-tour-hero__body">
-                                        <span className="h-tour-hero__cat">
-                                            {feature.category?.name || 'Hành trình nổi bật'}
-                                        </span>
-
-                                        <h3 className="h-tour-hero__title">{feature.name}</h3>
-
-                                        {feature.excerpt && <p className="h-tour-hero__desc">{feature.excerpt}</p>}
-
-                                        <div className="h-tour-hero__meta">
-                                            {durationText(feature) && <span>{durationText(feature)}</span>}
-                                            {feature.difficulty && <span>{DIFFICULTY[feature.difficulty]}</span>}
-                                            {feature.start_point && <span>{feature.start_point}</span>}
-                                            <span className="h-tour-hero__price">{money(feature.price_reference)}</span>
-                                        </div>
-
-                                        <span className="h-tour-hero__cta">
-                                            Xem chi tiết hành trình <ArrowRight size={14} />
-                                        </span>
-                                    </div>
-                                </Link>
-
-                                {tourRows.length > 0 && (
-                                    <div className="h-tour-index">
-                                        {tourRows.map((tour, index) => (
-                                            <Link key={tour.id} href={routes.tours.show(tour.slug)} className="h-tour-row">
-                                                <span className="h-tour-row__num">{String(index + 2).padStart(2, '0')}</span>
-
-                                                <div className="h-tour-row__main">
-                                                    <SafeImage src={mediaUrl(tour.featured_image)} alt="" className="h-tour-row__thumb" />
-                                                    <div>
-                                                        <span className="h-tour-row__title">{tour.name}</span>
-                                                        <span className="h-tour-row__meta">
-                                                            {[durationText(tour), tour.difficulty ? DIFFICULTY[tour.difficulty] : null]
-                                                                .filter(Boolean)
-                                                                .join(' · ')}
-                                                        </span>
-                                                    </div>
-                                                </div>
-
-                                                <span className="h-tour-row__price">{money(tour.price_reference)}</span>
-                                            </Link>
-                                        ))}
-                                    </div>
-                                )}
+                                <div className="h-tour-grid">
+                                    {group.items.map((tour) => (
+                                        <TourCard key={tour.id} tour={tour} />
+                                    ))}
+                                </div>
                             </div>
-                        </Reveal>
+                        ))}
                     </div>
                 </section>
             )}
-
-            {/* 3. Điểm đến — danh mục typographic */}
-            {destinations.length > 0 && (
-                <section className="rp-section rp-section--forest">
-                    <div className="rp-container">
-                        <div className="h-dest__head">
-                            <div>
-                                <div className="rp-eyebrow">Điểm đến</div>
-                                <h2 className="rp-h2">
-                                    Nơi rừng gọi <em>tên bạn</em>
-                                </h2>
-                            </div>
-                            <Link href={routes.destinations.index} className="rp-link-arrow">
-                                Khám phá điểm đến <ArrowRight size={15} />
-                            </Link>
-                        </div>
-
-                        <Reveal>
-                            <div className="h-dest__list">
-                                {destinations.slice(0, 6).map((destination, index) => (
-                                    <Link key={destination.id} href={routes.destinations.show(destination.slug)} className="h-dest__row">
-                                        <span className="h-dest__num">{String(index + 1).padStart(2, '0')}</span>
-                                        <h3 className="h-dest__name">{destination.name}</h3>
-                                        <span className="h-dest__region">
-                                            {[destination.province, destination.region].filter(Boolean).join(' · ')}
-                                        </span>
-                                        <span className="h-dest__count">
-                                            {destination.tours_count !== undefined ? `${destination.tours_count} tour` : ''}
-                                        </span>
-                                        <ArrowUpRight size={18} className="h-dest__arrow" />
-                                    </Link>
-                                ))}
-                            </div>
-                        </Reveal>
-                    </div>
-                </section>
-            )}
-
-            {/* 4. Full-width quote band */}
+{/* 4. Full-width quote band */}
             <section className="h-band">
                 {bandImage && <img className="h-band__image" src={bandImage} alt="" decoding="async" />}
 
@@ -361,7 +301,7 @@ export default function Home({ sliders = [], featuredTours = [], featuredDestina
 
                     {galleryImages.length > 0 ? (
                         <Reveal>
-                            <Gallery images={galleryImages.slice(0, 2)} layout="duo" />
+                            <Gallery images={galleryFinal.slice(0, 5)} layout="collage" />
                         </Reveal>
                     ) : (
                         <div className="h-gallery__empty">

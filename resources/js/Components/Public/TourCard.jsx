@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from '@inertiajs/react';
 import { mediaUrl, money } from '../../lib/format';
+import { resolveImage } from '../../lib/placeholder';
 import { routes } from '../../lib/routes';
 import { DIFFICULTY } from '../../lib/constants';
 
 export default function TourCard({ tour, tall = false }) {
-    const image = mediaUrl(tour.featured_image);
+    const image = resolveImage(mediaUrl(tour.featured_image), tour.slug || tour.name);
     const duration = tour.duration_days ? `${tour.duration_days} ngày` : null;
     const nights = tour.duration_nights ? `${tour.duration_nights} đêm` : null;
 

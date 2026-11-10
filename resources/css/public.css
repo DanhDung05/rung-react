@@ -3794,6 +3794,67 @@
     }
 }
 
+/* P1.4a — grouped tour grid */
+.h-tours-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 38px;
+}
+
+.h-tour-group + .h-tour-group {
+    margin-top: 56px;
+}
+
+.h-tour-group__head {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rp-line);
+    margin-bottom: 24px;
+}
+
+.h-tour-group__head h3 {
+    margin: 0;
+    font-family: var(--font-heading, sans-serif);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--rp-forest);
+}
+
+.h-tour-group__head span {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rp-earth);
+}
+
+.h-tour-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 26px;
+}
+
+.h-tour-grid .rp-card__media {
+    aspect-ratio: 4 / 3;
+}
+
+@media (max-width: 900px) {
+    .h-tour-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .h-tour-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* P1.3 — values as full-width chapters */
 .h-values {
     display: block;
