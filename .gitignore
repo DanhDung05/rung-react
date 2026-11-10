@@ -22,3 +22,6 @@ Ignore compiled Laravel Blade views
 
 /storage/framework/views/*
 !/storage/framework/views/.gitignore
+
+# TinyMCE self-hosted (copy từ node_modules khi build)
+/public/vendor

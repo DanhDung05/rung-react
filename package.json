@@ -2,8 +2,9 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "vite",
-        "build": "vite build"
+        "vendor:tinymce": "node scripts/copy-tinymce.mjs",
+        "dev": "node scripts/copy-tinymce.mjs && vite",
+        "build": "node scripts/copy-tinymce.mjs && vite build"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.11",
