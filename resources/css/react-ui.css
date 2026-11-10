@@ -1151,6 +1151,46 @@
     border-top: 1px solid #eef1ee;
 }
 
+.ui-message {
+    white-space: pre-wrap;
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: #2f3d35;
+    padding: 14px 16px;
+    background: #fbfcfb;
+    border: 1px solid #eef1ee;
+    border-radius: 8px;
+}
+
+.ui-qa {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.ui-ua {
+    word-break: break-word;
+    font-size: 11.5px;
+    color: #7b8980;
+}
+
+.ui-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ui-stars {
+    letter-spacing: 1px;
+    color: #d7ded8;
+    font-size: 13px;
+}
+
+.ui-stars .is-on {
+    color: #d99b3c;
+}
+
 /* Filter bar */
 .ui-filter {
     display: flex;
