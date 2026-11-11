@@ -25,6 +25,7 @@ Cập nhật: 2026-11-11 · commit `9f03af2` · Build: OK · Test: 103 passed / 
 - Public: Home, Tour Index/Show, Destination Index/Show, Blog Index/Category/Tag/Show, About, Contact (form), FAQ, Pages/Show, Search, trang lỗi 403/404/419/500.
 - Theme: palette 6 màu → CSS vars; typography 10 nhóm; loại trừ Hero Slider H1.
 - Visual Editor: draft/published/history (5 bản), undo/redo, 3 breakpoint, iframe preview.
+- Màu nền: Palette (palette_cream, palette_white) là nguồn duy nhất; Appearance chỉ còn thông báo + liên kết, g_* giữ làm fallback không ghi đè.
 
 ## 3. Đang triển khai / dở dang
 

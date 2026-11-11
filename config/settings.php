@@ -222,24 +222,13 @@ return [
                 'typo_footer_line_height' => ['label' => 'Footer — line-height', 'type' => 'string', 'default' => ''],
             ],
         ],
-        'appearance' => [
-            'label'       => 'Màu nền',
-            'description' => 'Hai màu nền xen kẽ cho các section trang chủ',
+                'appearance' => [
+            'label'       => 'Màu nền (đã chuyển)',
+            'description' => 'Màu nền toàn website được quản lý tại Bảng màu.',
             'icon'        => 'palette',
-            'fields'      => [
-                'bg_primary' => [
-                    'label'   => 'Màu nền chính',
-                    'type'    => 'color',
-                    'default' => '#F7F5EF',
-                    'hint'    => 'Màu nền kem chủ đạo (mặc định #F7F5EF)',
-                ],
-                'bg_alternate' => [
-                    'label'   => 'Màu nền xen kẽ',
-                    'type'    => 'color',
-                    'default' => '#FFFFFF',
-                    'hint'    => 'Màu nền trắng xen kẽ (mặc định #FFFFFF)',
-                ],
-            ],
+            'notice'      => 'Màu nền toàn website đã chuyển sang mục Bảng màu (Palette). Giá trị cũ trong nhóm này vẫn được giữ để tương thích nhưng không còn ghi đè Palette.',
+            'link'        => ['label' => 'Mở Bảng màu', 'url' => '/admin/cau-hinh/palette'],
+            'fields'      => [],
         ],
 
         // ============================================================

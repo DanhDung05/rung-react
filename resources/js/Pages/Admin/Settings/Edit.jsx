@@ -223,6 +223,14 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
             breadcrumbs={[{ label: 'Quản trị' }, { label: 'Cài đặt', href: routes.admin.settings.index }, { label: groupConfig.label || group }]}
             actions={<Button href={routes.admin.settings.index} variant="outline">← Cài đặt</Button>}
         >
+            {groupConfig.notice && (
+                <Card title="Thông báo" description={groupConfig.description}>
+                    <p style={{ marginTop: 0 }}>{groupConfig.notice}</p>
+                    {groupConfig.link && (
+                        <Button href={groupConfig.link.url} variant="outline">{groupConfig.link.label}</Button>
+                    )}
+                </Card>
+            )}
             {isThemeGroup && (
                 <Card title="Xem trước giao diện thật" description="Iframe dùng chính trang public. Thay đổi chỉ nằm trong trình duyệt Admin, không ghi database.">
                     <div className="theme-preview-toolbar">
@@ -268,7 +276,15 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
 
                     <div className="ui-form-actions">
                         <Button href={routes.admin.settings.index} variant="outline">Thoát</Button>
-                        {isThemeGroup && (
+                        {groupConfig.notice && (
+                <Card title="Thông báo" description={groupConfig.description}>
+                    <p style={{ marginTop: 0 }}>{groupConfig.notice}</p>
+                    {groupConfig.link && (
+                        <Button href={groupConfig.link.url} variant="outline">{groupConfig.link.label}</Button>
+                    )}
+                </Card>
+            )}
+            {isThemeGroup && (
                             <Button type="button" variant="outline" onClick={() => { setValues({ ...current }); setFiles({}); }}>
                                 Hủy thay đổi
                             </Button>

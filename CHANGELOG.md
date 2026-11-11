@@ -17,6 +17,16 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-11] Chuẩn hóa màu nền
+
+### Changed
+- Palette (`palette_cream`, `palette_white`) trở thành nguồn màu nền duy nhất cho `--rp-cream` / `--rp-white`.
+- `bg_primary` / `bg_alternate` chỉ còn fallback tương thích ngược, không ghi đè Palette; dữ liệu cũ giữ nguyên.
+- Admin → Cài đặt → Màu nền: ẩn 2 trường màu, thêm thông báo và liên kết tới Bảng màu.
+- ThemeStyles kiểm tra HEX hợp lệ trước khi áp dụng; màu sai/trống fallback an toàn.
+
+### Tests
+- Thêm `BackgroundColorTest` (palette thắng, appearance không ghi bg, màu sai bị từ chối).
 ## [2026-11-11] Chuẩn hóa tài liệu dự án
 
 ### Added

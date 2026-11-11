@@ -13,6 +13,8 @@ const SIZE_SELECTORS = {
     footer: '.rp-footer',
 };
 
+const HEX = /^#[0-9a-f]{6}$/i;
+
 export default function ThemeStyles({ theme, bgPrimary, bgAlternate }) {
     if (!theme && !bgPrimary && !bgAlternate) return null;
 
@@ -25,20 +27,22 @@ export default function ThemeStyles({ theme, bgPrimary, bgAlternate }) {
         `--color-secondary:${theme?.secondary || '#f97316'};`,
     ];
 
-    if (bgPrimary) lines.push(`--rp-cream:${bgPrimary};`);
-    if (bgAlternate) lines.push(`--rp-white:${bgAlternate};`);
+    // Palette là nguồn màu nền toàn site. bg_* chỉ fallback tương thích ngược.
+    const cream = HEX.test(palette.cream || '') ? palette.cream : HEX.test(bgPrimary || '') ? bgPrimary : '#f7f3e9';
+    const white = HEX.test(palette.white || '') ? palette.white : HEX.test(bgAlternate || '') ? bgAlternate : '#ffffff';
+
+    lines.push(`--rp-cream:${cream};`);
+    lines.push(`--rp-white:${white};`);
 
     const paletteMap = {
         forest: '--rp-forest',
-        cream: '--rp-cream',
-        white: '--rp-white',
         earth: '--rp-earth',
         text: '--rp-ink',
         muted: '--rp-muted',
     };
 
     Object.entries(paletteMap).forEach(([key, variable]) => {
-        if (palette[key]) lines.push(`${variable}:${palette[key]};`);
+        if (HEX.test(palette[key] || '')) lines.push(`${variable}:${palette[key]};`);
     });
 
     Object.entries(typography).forEach(([group, values]) => {
@@ -52,12 +56,11 @@ export default function ThemeStyles({ theme, bgPrimary, bgAlternate }) {
 
     Object.entries(headings).forEach(([tag, value]) => {
         if (value?.color) lines.push(`--color-${tag}:${value.color};`);
-        if (value?.font) lines.push(`--font-${tag}:'${value.font}','Inter',sans-serif;`);
     });
 
     const propMap = { font: 'font-family', color: 'color', weight: 'font-weight', line_height: 'line-height', size: 'font-size' };
 
-    const sizeRules = Object.entries(typography)
+    const rules = Object.entries(typography)
         .filter(([group]) => SIZE_SELECTORS[group])
         .flatMap(([group, values]) =>
             Object.entries(propMap)
@@ -69,7 +72,7 @@ export default function ThemeStyles({ theme, bgPrimary, bgAlternate }) {
     return (
         <>
             <style>{`:root{${lines.join('')}}`}</style>
-            {sizeRules && <style>{sizeRules}</style>}
+            {rules && <style>{rules}</style>}
         </>
     );
 }
