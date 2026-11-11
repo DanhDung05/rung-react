@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
+    /** Key giữ dữ liệu nhưng ẩn khỏi Admin (đã có cấu hình thay thế). */
+    private const HIDDEN_KEYS = [
+        'theme_h1_color', 'theme_h1_font', 'theme_h2_color', 'theme_h2_font',
+        'theme_h3_color', 'theme_h3_font', 'theme_h4_color', 'theme_h4_font',
+        'theme_h5_color', 'theme_h5_font', 'theme_h6_color', 'theme_h6_font',
+        'google_analytics_id',
+    ];
     /**
      * Tổng quan các nhóm cấu hình.
      */
@@ -73,6 +80,10 @@ class SettingController extends Controller
         $replacedImages = [];
 
         foreach ($groupConfig['fields'] as $key => $field) {
+            if (in_array($key, self::HIDDEN_KEYS, true)) {
+                continue;
+            }
+
             $value = $data[$key] ?? null;
 
             // Xử lý ảnh upload

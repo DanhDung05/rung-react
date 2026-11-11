@@ -70,19 +70,48 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
     const fields = groupConfig.fields || {};
 
     const resetDefaults = () => {
-        const payload = {};
+        if (!window.confirm('Khôi phục các trường về giá trị mặc định? Thay đổi chỉ áp dụng sau khi bấm Lưu.')) {
+            return;
+        }
+
+        const defaults = {};
 
         Object.entries(fields).forEach(([key, field]) => {
-            if (field.type === 'image') return;
-            payload[key] = field.type === 'boolean' ? (field.default ? 1 : null) : field.default ?? null;
+            defaults[key] = field.type === 'boolean' ? !!field.default : field.default ?? '';
         });
 
-        setProcessing(true);
-        router.post(routes.admin.settings.update(group), { ...payload, _method: 'put' }, {
-            preserveScroll: true,
-            onFinish: () => setProcessing(false),
-        });
+        setValues(defaults);
+        setFiles({});
     };
+
+    const isThemeGroup = ['palette', 'typography'].includes(group);
+
+    const previewVars = (() => {
+        const vars = {};
+        const map = {
+            palette_forest: '--rp-forest',
+            palette_cream: '--rp-cream',
+            palette_white: '--rp-white',
+            palette_earth: '--rp-earth',
+            palette_text: '--rp-ink',
+            palette_muted: '--rp-muted',
+        };
+
+        Object.entries(map).forEach(([key, variable]) => {
+            if (values[key]) vars[variable] = values[key];
+        });
+
+        ['h1', 'h2', 'h3', 'page_title', 'section_title', 'body', 'lead', 'eyebrow', 'breadcrumb', 'footer'].forEach((key) => {
+            const suffix = key.replace(/_/g, '-');
+            if (values[`typo_${key}_font`]) vars[`--typo-${suffix}-font`] = values[`typo_${key}_font`];
+            if (values[`typo_${key}_color`]) vars[`--typo-${suffix}-color`] = values[`typo_${key}_color`];
+            if (values[`typo_${key}_weight`]) vars[`--typo-${suffix}-weight`] = values[`typo_${key}_weight`];
+            if (values[`typo_${key}_line_height`]) vars[`--typo-${suffix}-line-height`] = values[`typo_${key}_line_height`];
+            if (values[`typo_${key}_size`]) vars[`--typo-${suffix}-size`] = values[`typo_${key}_size`];
+        });
+
+        return vars;
+    })();
 
     const submit = (event) => {
         event.preventDefault();
@@ -111,6 +140,23 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
         });
     };
 
+    const pv = (key) => {
+        const style = {};
+        const color = values[`typo_${key}_color`];
+        const font = values[`typo_${key}_font`];
+        const weight = values[`typo_${key}_weight`];
+        const size = values[`typo_${key}_size`];
+        const lineHeight = values[`typo_${key}_line_height`];
+
+        if (color) style.color = color;
+        if (font) style.fontFamily = font;
+        if (weight) style.fontWeight = weight;
+        if (size) style.fontSize = size;
+        if (lineHeight) style.lineHeight = lineHeight;
+
+        return style;
+    };
+
     return (
         <AdminLayout
             title={groupConfig.label || `Cấu hình: ${group}`}
@@ -118,6 +164,32 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
             breadcrumbs={[{ label: 'Quản trị' }, { label: 'Cài đặt', href: routes.admin.settings.index }, { label: groupConfig.label || group }]}
             actions={<Button href={routes.admin.settings.index} variant="outline">← Cài đặt</Button>}
         >
+            {isThemeGroup && (
+                <Card title="Xem trước trực tiếp" description="Preview cập nhật ngay khi đổi màu/font. Chưa bấm Lưu thì website công khai không thay đổi.">
+                    <div className="rp-app theme-preview" style={previewVars}>
+                        <div className="rp-eyebrow" style={pv('eyebrow')}>Nhãn nhỏ · Eyebrow</div>
+                        <h1 className="rp-pagehead__title" style={pv('h1')}>Tiêu đề trang (H1)</h1>
+                        <h2 className="rp-h2" style={pv('h2')}>Tiêu đề section (H2)</h2>
+                        <h3 className="rp-h3" style={pv('h3')}>Tiêu đề phụ (H3)</h3>
+                        <p className="rp-lead" style={pv('lead')}>Mô tả ngắn — lead text.</p>
+                        <p style={pv('body')}>Nội dung văn bản mẫu cho phần body.</p>
+                        <nav className="rp-breadcrumb" style={pv('breadcrumb')}>Trang chủ / Mẫu</nav>
+
+                        <div className="theme-swatches">
+                            {['palette_forest', 'palette_cream', 'palette_white', 'palette_earth', 'palette_text', 'palette_muted'].map((key) => (
+                                <span key={key} title={key}>
+                                    <i style={{ background: values[key] || '#ddd' }} />
+                                    {values[key] || '—'}
+                                </span>
+                            ))}
+                        </div>
+
+                        <div className="theme-footer-sample" style={pv('footer')}>Footer mẫu — chữ liên hệ, bản quyền.</div>
+                    </div>
+                    <p className="ui-hint">Giá trị đang chỉnh hiển thị ở trên. Bấm “Hủy thay đổi” để quay về bản đã lưu.</p>
+                </Card>
+            )}
+
             <form onSubmit={submit} noValidate className="admin-form-narrow">
                 <Card title="Cấu hình" description={`${Object.keys(fields).length} trường · nhóm “${group}”`}>
                     {Object.entries(fields).map(([key, field]) => (
@@ -134,7 +206,12 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
                     ))}
 
                     <div className="ui-form-actions">
-                        <Button href={routes.admin.settings.index} variant="outline">Hủy</Button>
+                        <Button href={routes.admin.settings.index} variant="outline">Thoát</Button>
+                        {isThemeGroup && (
+                            <Button type="button" variant="outline" onClick={() => { setValues({ ...current }); setFiles({}); }}>
+                                Hủy thay đổi
+                            </Button>
+                        )}
                         <Button type="button" variant="outline" onClick={resetDefaults}>
                             Khôi phục mặc định
                         </Button>

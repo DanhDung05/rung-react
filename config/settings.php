@@ -136,6 +136,92 @@ return [
         // ============================================================
         // APPEARANCE (màu nền public)
         // ============================================================
+        // ============================================================
+        // PALETTE (màu toàn cục)
+        // ============================================================
+        'palette' => [
+            'label'       => 'Bảng màu',
+            'description' => 'Màu nền và màu chữ dùng chung toàn website',
+            'icon'        => 'palette',
+            'fields'      => [
+                'palette_forest' => ['label' => 'Forest Green', 'type' => 'color', 'default' => '#102c24'],
+                'palette_cream'  => ['label' => 'Warm Cream', 'type' => 'color', 'default' => '#f7f3e9'],
+                'palette_white'  => ['label' => 'White', 'type' => 'color', 'default' => '#ffffff'],
+                'palette_earth'  => ['label' => 'Earth Brown', 'type' => 'color', 'default' => '#a77942'],
+                'palette_text'   => ['label' => 'Màu chữ chính', 'type' => 'color', 'default' => '#1b2a22'],
+                'palette_muted'  => ['label' => 'Màu chữ phụ', 'type' => 'color', 'default' => '#6b7a70'],
+            ],
+        ],
+
+        // ============================================================
+        // TYPOGRAPHY (toàn cục)
+        // ============================================================
+        'typography' => [
+            'label'       => 'Typography',
+            'description' => 'Font, màu, cỡ chữ dùng chung cho toàn website public',
+            'icon'        => 'type',
+            'fields'      => [
+                'typo_h1_font' => ['label' => 'H1 — font', 'type' => 'string', 'default' => ''],
+                'typo_h1_color' => ['label' => 'H1 — màu', 'type' => 'color', 'default' => ''],
+                'typo_h1_weight' => ['label' => 'H1 — weight', 'type' => 'string', 'default' => ''],
+                'typo_h1_size' => ['label' => 'H1 — cỡ chữ', 'type' => 'string', 'default' => ''],
+                'typo_h1_line_height' => ['label' => 'H1 — line-height', 'type' => 'string', 'default' => ''],
+
+                'typo_h2_font' => ['label' => 'H2 — font', 'type' => 'string', 'default' => ''],
+                'typo_h2_color' => ['label' => 'H2 — màu', 'type' => 'color', 'default' => ''],
+                'typo_h2_weight' => ['label' => 'H2 — weight', 'type' => 'string', 'default' => ''],
+                'typo_h2_size' => ['label' => 'H2 — cỡ chữ', 'type' => 'string', 'default' => ''],
+                'typo_h2_line_height' => ['label' => 'H2 — line-height', 'type' => 'string', 'default' => ''],
+
+                'typo_h3_font' => ['label' => 'H3 — font', 'type' => 'string', 'default' => ''],
+                'typo_h3_color' => ['label' => 'H3 — màu', 'type' => 'color', 'default' => ''],
+                'typo_h3_weight' => ['label' => 'H3 — weight', 'type' => 'string', 'default' => ''],
+                'typo_h3_size' => ['label' => 'H3 — cỡ chữ', 'type' => 'string', 'default' => ''],
+                'typo_h3_line_height' => ['label' => 'H3 — line-height', 'type' => 'string', 'default' => ''],
+
+                'typo_page_title_font' => ['label' => 'Page Title — font', 'type' => 'string', 'default' => ''],
+                'typo_page_title_color' => ['label' => 'Page Title — màu', 'type' => 'color', 'default' => ''],
+                'typo_page_title_weight' => ['label' => 'Page Title — weight', 'type' => 'string', 'default' => ''],
+                'typo_page_title_size' => ['label' => 'Page Title — cỡ chữ', 'type' => 'string', 'default' => ''],
+                'typo_page_title_line_height' => ['label' => 'Page Title — line-height', 'type' => 'string', 'default' => ''],
+
+                'typo_section_title_font' => ['label' => 'Section Title — font', 'type' => 'string', 'default' => ''],
+                'typo_section_title_color' => ['label' => 'Section Title — màu', 'type' => 'color', 'default' => ''],
+                'typo_section_title_weight' => ['label' => 'Section Title — weight', 'type' => 'string', 'default' => ''],
+                'typo_section_title_size' => ['label' => 'Section Title — cỡ chữ', 'type' => 'string', 'default' => ''],
+                'typo_section_title_line_height' => ['label' => 'Section Title — line-height', 'type' => 'string', 'default' => ''],
+
+                'typo_body_font' => ['label' => 'Body — font', 'type' => 'string', 'default' => ''],
+                'typo_body_color' => ['label' => 'Body — màu', 'type' => 'color', 'default' => ''],
+                'typo_body_weight' => ['label' => 'Body — weight', 'type' => 'string', 'default' => ''],
+                'typo_body_size' => ['label' => 'Body — cỡ chữ', 'type' => 'string', 'default' => ''],
+                'typo_body_line_height' => ['label' => 'Body — line-height', 'type' => 'string', 'default' => ''],
+
+                'typo_lead_font' => ['label' => 'Lead — font', 'type' => 'string', 'default' => ''],
+                'typo_lead_color' => ['label' => 'Lead — màu', 'type' => 'color', 'default' => ''],
+                'typo_lead_weight' => ['label' => 'Lead — weight', 'type' => 'string', 'default' => ''],
+                'typo_lead_size' => ['label' => 'Lead — cỡ chữ', 'type' => 'string', 'default' => ''],
+                'typo_lead_line_height' => ['label' => 'Lead — line-height', 'type' => 'string', 'default' => ''],
+
+                'typo_eyebrow_font' => ['label' => 'Eyebrow — font', 'type' => 'string', 'default' => ''],
+                'typo_eyebrow_color' => ['label' => 'Eyebrow — màu', 'type' => 'color', 'default' => ''],
+                'typo_eyebrow_weight' => ['label' => 'Eyebrow — weight', 'type' => 'string', 'default' => ''],
+                'typo_eyebrow_size' => ['label' => 'Eyebrow — cỡ chữ', 'type' => 'string', 'default' => ''],
+                'typo_eyebrow_line_height' => ['label' => 'Eyebrow — line-height', 'type' => 'string', 'default' => ''],
+
+                'typo_breadcrumb_font' => ['label' => 'Breadcrumb — font', 'type' => 'string', 'default' => ''],
+                'typo_breadcrumb_color' => ['label' => 'Breadcrumb — màu', 'type' => 'color', 'default' => ''],
+                'typo_breadcrumb_weight' => ['label' => 'Breadcrumb — weight', 'type' => 'string', 'default' => ''],
+                'typo_breadcrumb_size' => ['label' => 'Breadcrumb — cỡ chữ', 'type' => 'string', 'default' => ''],
+                'typo_breadcrumb_line_height' => ['label' => 'Breadcrumb — line-height', 'type' => 'string', 'default' => ''],
+
+                'typo_footer_font' => ['label' => 'Footer — font', 'type' => 'string', 'default' => ''],
+                'typo_footer_color' => ['label' => 'Footer — màu chữ', 'type' => 'color', 'default' => '#e9e4d6'],
+                'typo_footer_weight' => ['label' => 'Footer — weight', 'type' => 'string', 'default' => ''],
+                'typo_footer_size' => ['label' => 'Footer — cỡ chữ', 'type' => 'string', 'default' => ''],
+                'typo_footer_line_height' => ['label' => 'Footer — line-height', 'type' => 'string', 'default' => ''],
+            ],
+        ],
         'appearance' => [
             'label'       => 'Màu nền',
             'description' => 'Hai màu nền xen kẽ cho các section trang chủ',

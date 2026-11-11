@@ -214,10 +214,35 @@ class HandleInertiaRequests extends Middleware
                 ];
             }
 
+            $typography = [];
+            $groups = ['h1', 'h2', 'h3', 'page-title', 'section-title', 'body', 'lead', 'eyebrow', 'breadcrumb', 'footer'];
+
+            foreach ($groups as $group) {
+                $key = str_replace('-', '_', $group);
+                $legacyColor = in_array($group, ['h1', 'h2', 'h3'], true) ? Setting::get("theme_{$group}_color", '') : '';
+
+                $typography[$group] = [
+                    'font'        => Setting::get("typo_{$key}_font", ''),
+                    'color'       => Setting::get("typo_{$key}_color", $legacyColor),
+                    'weight'      => Setting::get("typo_{$key}_weight", ''),
+                    'size'        => Setting::get("typo_{$key}_size", ''),
+                    'line_height' => Setting::get("typo_{$key}_line_height", ''),
+                ];
+            }
+
             return [
                 'primary'   => Setting::get('theme_primary_color', $defaults['primary']),
                 'secondary' => Setting::get('theme_secondary_color', $defaults['secondary']),
                 'headings'  => $headings,
+                'palette'   => [
+                    'forest' => Setting::get('palette_forest', '#102c24'),
+                    'cream'  => Setting::get('palette_cream', '#f7f3e9'),
+                    'white'  => Setting::get('palette_white', '#ffffff'),
+                    'earth'  => Setting::get('palette_earth', '#a77942'),
+                    'text'   => Setting::get('palette_text', '#1b2a22'),
+                    'muted'  => Setting::get('palette_muted', '#6b7a70'),
+                ],
+                'typography' => $typography,
             ];
         } catch (\Throwable $e) {
             report($e);
