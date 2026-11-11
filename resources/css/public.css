@@ -4192,6 +4192,41 @@
     }
 }
 
+/* P3 — destinations */
+.rp-dest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 26px;
+}
+
+.rp-dest-grid .rp-card__media {
+    aspect-ratio: 4 / 3;
+}
+
+.rp-filterbar--3 {
+    grid-template-columns: 1.6fr 1fr 1fr;
+}
+
+@media (max-width: 1024px) {
+    .rp-dest-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .rp-filterbar--3 {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 680px) {
+    .rp-dest-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .rp-filterbar--3 {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* P1.5 — single tours section */
 .h-tours-foot {
     display: flex;
