@@ -5,13 +5,13 @@
    ========================================================= */
 
 :root {
-    --rp-forest: #102c24;
+    --rp-forest: var(--rp-forest, #102c24);
     --rp-forest-2: #1c4034;
     --rp-forest-3: #2c5a49;
-    --rp-cream: #f7f3e9;
+    --rp-cream: var(--rp-cream, #f7f3e9);
     --rp-cream-2: #efe9db;
     --rp-sand: #e3d6bd;
-    --rp-earth: #a77942;
+    --rp-earth: var(--rp-earth, #a77942);
     --rp-gold: #c58b45;
     --rp-ink: #1b2823;
     --rp-muted: #6f7d75;
@@ -4669,7 +4669,7 @@
 
 .rp-section--cream .h-dest__region,
 .rp-section--cream .h-dest__count {
-    color: #6b7a70;
+    color: var(--rp-muted, #6b7a70);
 }
 
 .rp-section--cream .h-dest__num,

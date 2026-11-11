@@ -62,7 +62,7 @@ export default function ThemeStyles({ theme, bgPrimary, bgAlternate }) {
         .flatMap(([group, values]) =>
             Object.entries(propMap)
                 .filter(([prop]) => values?.[prop])
-                .map(([prop, cssProp]) => `${SIZE_SELECTORS[group]}{${cssProp}:${values[prop]} !important;}`)
+                .map(([prop, cssProp]) => `${SIZE_SELECTORS[group]}{${cssProp}:${values[prop]};}`)
         )
         .join('');
 
