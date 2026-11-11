@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SIZE_SELECTORS = {
-    h1: '.rp-app h1, .rp-app .rp-display, .rp-app .rp-pagehead__title, .rp-app .h-welcome__title',
+    h1: '.rp-app h1:not(.rp-slider__title), .rp-app .rp-display, .rp-app .rp-pagehead__title, .rp-app .h-welcome__title',
     h2: '.rp-app .rp-h2, .rp-app .h-about__title',
     h3: '.rp-app h3, .rp-app .rp-h3',
     'page-title': '.rp-app .rp-pagehead__title',
