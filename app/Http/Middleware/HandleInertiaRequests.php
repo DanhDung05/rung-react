@@ -140,7 +140,19 @@ class HandleInertiaRequests extends Middleware
                 'seo_title'        => Setting::get('seo_default_title', $defaults['site_name']),
                 'seo_description'  => Setting::get('seo_default_description', ''),
                 'seo_keywords'     => Setting::get('seo_keywords'),
-                'ui'               => (function () {
+                'visual'           => (function () {
+                    $isAdmin = auth()->check() && (bool) auth()->user()?->is_admin;
+                    $rawPublished = Setting::get('ve_pub_home', []);
+                    $rawDraft = Setting::get('ve_draft_home', []);
+                    $published = is_array($rawPublished) ? $rawPublished : (json_decode((string) $rawPublished, true) ?: []);
+                    $draft = is_array($rawDraft) ? $rawDraft : (json_decode((string) $rawDraft, true) ?: []);
+                    $wantDraft = $isAdmin && (request()->boolean('ve') || request()->boolean('preview'));
+
+                    return [
+                        'home'   => $wantDraft && $draft ? $draft : $published,
+                        'editor' => $isAdmin && request()->boolean('ve'),
+                    ];
+                })(),                'ui'               => (function () {
                     $out = [];
                     foreach (config('ui_texts', []) as $page => $config) {
                         foreach ($config['sections'] as $section => $sectionConfig) {

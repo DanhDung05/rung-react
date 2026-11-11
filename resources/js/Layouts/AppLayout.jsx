@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { usePage } from '@inertiajs/react';
 import Header from './Partials/Header';
 import Footer from './Partials/Footer';
@@ -10,7 +10,23 @@ import ThemeStyles from '../Components/ThemeStyles';
  * Mọi trang frontend phải dùng layout này (không tự dựng header/footer).
  */
 export default function AppLayout({ children, className = '', overlayHeader = true }) {
-    const { settings, navigation, theme } = usePage().props;
+    const { settings, navigation, theme, visual } = usePage().props;
+
+    useEffect(() => {
+        if (!visual?.home) return;
+
+        Object.entries(visual.home).forEach(([id, entry]) => {
+            document.querySelectorAll(`[data-ui="${id}"]`).forEach((element) => {
+                if (entry?.text !== undefined && entry.text !== null) {
+                    element.textContent = entry.text;
+                }
+
+                Object.entries(entry?.style || {}).forEach(([key, value]) => {
+                    if (value) element.style[key] = value;
+                });
+            });
+        });
+    }, [visual]);
 
     return (
         <div className={`rp-app ui-app ${className}`.trim()}>

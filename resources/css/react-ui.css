@@ -1799,3 +1799,22 @@
 .ui-preview__text{font-size:.8rem;color:#5b6b61;line-height:1.6}
 .ui-preview__empty{color:#a9a394;font-style:italic}
 @media(max-width:1200px){.ui-split{grid-template-columns:1fr}}
+
+/* Visual editor */
+.ve-shell{display:flex;flex-direction:column;gap:12px}
+.ve-toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:#102c24;padding:10px 14px;border-radius:10px}
+.ve-btn{border:1px solid rgba(255,255,255,.25);background:transparent;color:#eef3ec;padding:7px 12px;border-radius:6px;font-size:.75rem;font-weight:700;cursor:pointer;text-decoration:none}
+.ve-btn.is-active,.ve-btn:hover{background:rgba(255,255,255,.15)}
+.ve-btn--gold{background:#c58b45;border-color:#c58b45;color:#fff}
+.ve-btn:disabled{opacity:.4;cursor:not-allowed}
+.ve-sep{width:1px;height:22px;background:rgba(255,255,255,.25)}
+.ve-body{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;align-items:start}
+.ve-canvas{max-width:100%;overflow:auto;border:1px solid #e2ded0;border-radius:10px;background:#fff}
+.ve-frame{border:0;display:block;height:76vh;margin:0 auto}
+.ve-panel{background:#fff;border:1px solid #e2ded0;border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:12px;max-height:76vh;overflow:auto}
+.ve-panel h3{font-size:.8rem;margin:0;color:#102c24;word-break:break-all}
+.ve-color{width:100%;height:36px;border:1px solid #ddd;border-radius:6px;background:#fff}
+.ve-versions{border-top:1px solid #e8e3d6;padding-top:12px;display:flex;flex-direction:column;gap:6px}
+.ve-versions h4{font-size:.72rem;margin:0;color:#7a8479;text-transform:uppercase;letter-spacing:.08em}
+.ve-version{border:1px solid #e3ded0;background:#fff;padding:8px 10px;border-radius:6px;font-size:.75rem;text-align:left;cursor:pointer}
+@media(max-width:1200px){.ve-body{grid-template-columns:1fr}.ve-frame{width:100%!important}}

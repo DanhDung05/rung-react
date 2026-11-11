@@ -83,6 +83,13 @@ export const routes = {
         reviewReject: (id) => `/admin/danh-gia/${id}/tu-choi`,
         contactStatus: (id) => `/admin/lien-he/${id}/status`,
 
+        visualEditor: {
+            index: '/admin/visual-editor',
+            draft: '/admin/visual-editor/draft',
+            publish: '/admin/visual-editor/publish',
+            restore: '/admin/visual-editor/restore',
+        },
+
         uiTexts: {
             index: (page = 'tour.index') => `/admin/noi-dung-giao-dien/${page}`,
             update: (page, section) => `/admin/noi-dung-giao-dien/${page}/${section}`,

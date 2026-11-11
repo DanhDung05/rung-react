@@ -54,11 +54,11 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
                 <div className="rp-container">
                     <Reveal>
                         <div className="h-welcome">
-                            <div className="rp-eyebrow">Rừng Adventure · Việt Nam</div>
+                            <div className="rp-eyebrow" data-ui="home.welcome.eyebrow">Rừng Adventure · Việt Nam</div>
                             <h2 className="h-welcome__title">
-                                Chào mừng đến <em>Rừng Adventure</em>
+                                Chào mừng đến <em data-ui="home.welcome.accent">Rừng Adventure</em>
                             </h2>
-                            <p className="h-welcome__lead">
+                            <p className="h-welcome__lead" data-ui="home.welcome.lead">
                                 {settings?.site_description ||
                                     'Những hành trình trekking và khám phá thiên nhiên Việt Nam dành cho người muốn đi chậm, hiểu sâu và tôn trọng vùng đất mình đi qua.'}
                             </p>
@@ -80,9 +80,9 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
                     <div className="rp-container">
                         <div className="h-tours-head">
                             <div>
-                                <div className="rp-eyebrow">Chọn hành trình của bạn</div>
+                                <div className="rp-eyebrow" data-ui="home.tours.eyebrow">Chọn hành trình của bạn</div>
                                 <h2 className="rp-h2">
-                                    Hành trình <em>nổi bật</em>
+                                    <span data-ui="home.tours.title">Hành trình</span> <em data-ui="home.tours.accent">nổi bật</em>
                                 </h2>
                             </div>
                             <Link href={routes.tours.index} className="rp-link-arrow">
@@ -113,11 +113,11 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
 
                 <div className="rp-container">
                     <div className="h-band__inner">
-                        <div className="rp-eyebrow">Triết lý hành trình</div>
-                        <blockquote className="h-band__quote">
+                        <div className="rp-eyebrow" data-ui="home.band.eyebrow">Triết lý hành trình</div>
+                        <blockquote className="h-band__quote" data-ui="home.band.quote">
                             “Chúng tôi không đưa bạn đi thật nhanh. Chúng tôi đưa bạn đi thật sâu.”
                         </blockquote>
-                        <span className="h-band__source">Rừng Adventure</span>
+                        <span className="h-band__source" data-ui="home.band.source">Rừng Adventure</span>
                     </div>
                 </div>
             </section>
@@ -170,9 +170,9 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
                     <div className="rp-container">
                         <div className="rp-spread" style={{ marginBottom: 36 }}>
                             <div>
-                                <div className="rp-eyebrow">Cẩm nang</div>
+                                <div className="rp-eyebrow" data-ui="home.posts.eyebrow">Cẩm nang</div>
                                 <h2 className="rp-h2">
-                                    Ghi chép <em>từ rừng</em>
+                                    <span data-ui="home.posts.title">Ghi chép</span> <em data-ui="home.posts.accent">từ rừng</em>
                                 </h2>
                             </div>
                             <Link href={routes.posts.index} className="rp-link-arrow">
@@ -227,13 +227,13 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
                     <Reveal>
                         <div className="h-cta__inner">
                             <div>
-                                <div className="rp-eyebrow">Bắt đầu từ đây</div>
+                                <div className="rp-eyebrow" data-ui="home.cta.eyebrow">Bắt đầu từ đây</div>
                                 <h2 className="h-cta__title">
                                     Sẵn sàng cho
                                     <br />
-                                    <em>hành trình tiếp theo?</em>
+                                    <em data-ui="home.cta.accent">hành trình tiếp theo?</em>
                                 </h2>
-                                <p className="h-cta__lead">
+                                <p className="h-cta__lead" data-ui="home.cta.lead">
                                     Cho chúng tôi biết bạn muốn đi đâu, bao lâu và cùng ai — đội ngũ Rừng Adventure sẽ thiết kế
                                     lịch trình phù hợp với bạn.
                                 </p>

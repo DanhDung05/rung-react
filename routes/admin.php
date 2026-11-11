@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\HomeSectionController;
 use App\Http\Controllers\Admin\UiTextController;
+use App\Http\Controllers\Admin\VisualEditorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -307,6 +308,13 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::get('noi-dung-giao-dien/{page?}', [UiTextController::class, 'index'])->name('ui-texts.index');
     Route::put('noi-dung-giao-dien/{page}/{section}', [UiTextController::class, 'update'])->name('ui-texts.update');
     Route::post('noi-dung-giao-dien/{page}/{section}/khoi-phuc', [UiTextController::class, 'reset'])->name('ui-texts.reset');
+    // ============================================================
+    // VISUAL EDITOR
+    // ============================================================
+    Route::get('visual-editor', [VisualEditorController::class, 'index'])->name('visual-editor.index');
+    Route::post('visual-editor/draft', [VisualEditorController::class, 'draft'])->name('visual-editor.draft');
+    Route::post('visual-editor/publish', [VisualEditorController::class, 'publish'])->name('visual-editor.publish');
+    Route::post('visual-editor/restore', [VisualEditorController::class, 'restore'])->name('visual-editor.restore');
     // CONTACT ROUTES
     // ============================================================
 
