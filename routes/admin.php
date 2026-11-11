@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\HomeSectionController;
+use App\Http\Controllers\Admin\UiTextController;
 
 /*
 |--------------------------------------------------------------------------
@@ -300,6 +301,12 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::get('noi-dung-trang-chu/{section?}', [HomeSectionController::class, 'index'])->name('home-sections.index');
     Route::put('noi-dung-trang-chu/{section}', [HomeSectionController::class, 'update'])->name('home-sections.update');
     Route::post('noi-dung-trang-chu/{section}/khoi-phuc', [HomeSectionController::class, 'reset'])->name('home-sections.reset');
+    // ============================================================
+    // NỘI DUNG GIAO DIỆN (text/label toàn site)
+    // ============================================================
+    Route::get('noi-dung-giao-dien/{page?}', [UiTextController::class, 'index'])->name('ui-texts.index');
+    Route::put('noi-dung-giao-dien/{page}/{section}', [UiTextController::class, 'update'])->name('ui-texts.update');
+    Route::post('noi-dung-giao-dien/{page}/{section}/khoi-phuc', [UiTextController::class, 'reset'])->name('ui-texts.reset');
     // CONTACT ROUTES
     // ============================================================
 

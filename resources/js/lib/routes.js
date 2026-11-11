@@ -83,6 +83,11 @@ export const routes = {
         reviewReject: (id) => `/admin/danh-gia/${id}/tu-choi`,
         contactStatus: (id) => `/admin/lien-he/${id}/status`,
 
+        uiTexts: {
+            index: (page = 'tour.index') => `/admin/noi-dung-giao-dien/${page}`,
+            update: (page, section) => `/admin/noi-dung-giao-dien/${page}/${section}`,
+            reset: (page, section) => `/admin/noi-dung-giao-dien/${page}/${section}/khoi-phuc`,
+        },
         homeSections: {
             index: '/admin/noi-dung-trang-chu',
             update: (section = 'gallery') => `/admin/noi-dung-trang-chu/${section}`,

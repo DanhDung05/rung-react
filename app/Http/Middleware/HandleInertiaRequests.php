@@ -140,7 +140,17 @@ class HandleInertiaRequests extends Middleware
                 'seo_title'        => Setting::get('seo_default_title', $defaults['site_name']),
                 'seo_description'  => Setting::get('seo_default_description', ''),
                 'seo_keywords'     => Setting::get('seo_keywords'),
-                'bg_primary'       => Setting::get('bg_primary', '#F7F5EF'),
+                'ui'               => (function () {
+                    $out = [];
+                    foreach (config('ui_texts', []) as $page => $config) {
+                        foreach ($config['sections'] as $section => $sectionConfig) {
+                            foreach ($sectionConfig['fields'] as $field => $meta) {
+                                $out[$page][$section][$field] = Setting::get("ui_{$page}_{$section}_{$field}", $meta['default'] ?? '');
+                            }
+                        }
+                    }
+                    return $out;
+                })(),                'bg_primary'       => Setting::get('bg_primary', '#F7F5EF'),
                 'bg_alternate'     => Setting::get('bg_alternate', '#FFFFFF'),
                 'hero_images'      => [
                     'blog'        => $this->publicUrl(Setting::get('hero_image_blog')),

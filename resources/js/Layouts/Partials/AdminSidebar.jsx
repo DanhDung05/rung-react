@@ -44,6 +44,7 @@ const NAV = [
         items: [
             { label: 'Menu', href: routes.admin.menus.index, icon: MenuIcon },
             { label: 'Nội dung trang chủ', href: routes.admin.homeSections.index, icon: Images },
+            { label: 'Nội dung giao diện', href: routes.admin.uiTexts.index(), icon: FileText },
             { label: 'Thư viện ảnh', href: routes.admin.media.index, icon: Images },
         ],
     },
