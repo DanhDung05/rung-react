@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdateSettingRequest;
 use App\Models\Setting;
 use App\Services\ImageService;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
@@ -69,17 +70,26 @@ class SettingController extends Controller
 
         $groupConfig = $groups[$group];
         $data        = $request->validated();
+        $replacedImages = [];
 
         foreach ($groupConfig['fields'] as $key => $field) {
             $value = $data[$key] ?? null;
 
             // Xử lý ảnh upload
             if ($field['type'] === 'image') {
+                $file = $request->file($key);
+
+                if ($file && ! $file->isValid()) {
+                    throw ValidationException::withMessages([
+                        $key => 'Khong tai duoc anh len may chu: ' . $file->getErrorMessage() . '. Kiem tra dung luong toi da (upload_max_filesize=' . ini_get('upload_max_filesize') . ').',
+                    ]);
+                }
+
                 if ($request->hasFile($key)) {
                     // Xóa ảnh cũ
                     $oldPath = Setting::where('key', $key)->value('value');
                     if ($oldPath) {
-                        app(ImageService::class)->delete($oldPath);
+                        $replacedImages[$key] = $oldPath;
                     }
 
                     // Upload ảnh mới
@@ -114,6 +124,12 @@ class SettingController extends Controller
         }
 
         // Xóa cache settings
+        foreach ($replacedImages as $oldImage) {
+            if ($oldImage) {
+                app(ImageService::class)->delete($oldImage);
+            }
+        }
+
         Setting::flushCache();
 
         return redirect()
