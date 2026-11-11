@@ -78,7 +78,7 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
         });
 
         setProcessing(true);
-        router.put(routes.admin.settings.update(group), payload, {
+        router.post(routes.admin.settings.update(group), { ...payload, _method: 'put' }, {
             preserveScroll: true,
             onFinish: () => setProcessing(false),
         });
@@ -104,7 +104,7 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
         });
 
         setProcessing(true);
-        router.put(routes.admin.settings.update(group), payload, {
+        router.post(routes.admin.settings.update(group), { ...payload, _method: 'put' }, {
             forceFormData: true,
             preserveScroll: true,
             onFinish: () => setProcessing(false),
