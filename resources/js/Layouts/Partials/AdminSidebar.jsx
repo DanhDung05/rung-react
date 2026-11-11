@@ -59,6 +59,7 @@ const NAV = [
     {
         title: 'Hệ thống',
         items: [
+            { label: 'Hướng dẫn sử dụng', href: routes.admin.guide.index, icon: BookOpen },
             { label: 'Người dùng', href: routes.admin.users.index, icon: Users, adminOnly: true },
             { label: 'Cài đặt', href: routes.admin.settings.index, icon: Settings, adminOnly: true },
         ],

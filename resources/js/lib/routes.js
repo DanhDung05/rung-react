@@ -83,6 +83,10 @@ export const routes = {
         reviewReject: (id) => `/admin/danh-gia/${id}/tu-choi`,
         contactStatus: (id) => `/admin/lien-he/${id}/status`,
 
+        guide: {
+            index: '/admin/huong-dan',
+        },
+
         visualEditor: {
             index: '/admin/visual-editor',
             draft: '/admin/visual-editor/draft',

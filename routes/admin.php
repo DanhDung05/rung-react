@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\HomeSectionController;
 use App\Http\Controllers\Admin\UiTextController;
 use App\Http\Controllers\Admin\VisualEditorController;
+use App\Http\Controllers\Admin\GuideController;
 
 /*
 |--------------------------------------------------------------------------
@@ -315,6 +316,10 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::post('visual-editor/draft', [VisualEditorController::class, 'draft'])->name('visual-editor.draft');
     Route::post('visual-editor/publish', [VisualEditorController::class, 'publish'])->name('visual-editor.publish');
     Route::post('visual-editor/restore', [VisualEditorController::class, 'restore'])->name('visual-editor.restore');
+    // ============================================================
+    // HƯỚNG DẪN SỬ DỤNG
+    // ============================================================
+    Route::get('huong-dan', [GuideController::class, 'index'])->name('guide.index');
     // CONTACT ROUTES
     // ============================================================
 
