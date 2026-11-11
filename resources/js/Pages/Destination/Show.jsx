@@ -50,7 +50,7 @@ export default function DestinationShow({ destination }) {
                 ]}
             />
 
-            <PageHero title={destination.name} lead={destination.description} image={heroImage} size="tall" breadcrumbs={breadcrumbs} />
+            <PageHero heroKey="destination" title={destination.name} lead={destination.description} image={heroImage} size="tall" breadcrumbs={breadcrumbs} />
 
             <section className="rp-section">
                 <div className="rp-container rp-detail">

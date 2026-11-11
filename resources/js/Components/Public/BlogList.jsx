@@ -26,7 +26,7 @@ export default function BlogList({
         <AppLayout>
             <Seo title={seoTitle || `${title} — Rừng Adventure`} description={seoDescription || lead} />
 
-            <PageHero eyebrow={eyebrow} title={title} lead={lead} breadcrumbs={breadcrumbs} />
+            <PageHero heroKey="blog" eyebrow={eyebrow} title={title} lead={lead} breadcrumbs={breadcrumbs} />
 
             <section className="rp-section">
                 <div className="rp-container rp-blog-layout">

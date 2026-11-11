@@ -20,7 +20,7 @@ export default function About({ page }) {
                 image={image}
             />
 
-            <PageHero
+            <PageHero heroKey="about"
                 eyebrow="Về chúng tôi"
                 title={page?.title || 'Câu chuyện Rừng Adventure'}
                 lead="Hành trình bắt đầu từ những cung đường nhỏ và những người muốn đi chậm."

@@ -42,7 +42,7 @@ export default function DestinationIndex({ destinations, regions = [] }) {
                 description="Khám phá các điểm đến thiên nhiên nổi bật của Việt Nam cùng Rừng Adventure."
             />
 
-            <PageHero
+            <PageHero heroKey="destination"
                 eyebrow="Điểm đến"
                 title="Nơi rừng gọi tên bạn"
                 lead="Từ núi rừng phía Bắc đến cao nguyên và biển đảo phía Nam — chọn vùng đất cho hành trình tiếp theo."

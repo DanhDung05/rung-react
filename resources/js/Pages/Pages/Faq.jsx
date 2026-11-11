@@ -26,7 +26,7 @@ export default function Faq({ faqs = [] }) {
                 jsonLd={faqSchema(faqs)}
             />
 
-            <PageHero
+            <PageHero heroKey="faq"
                 eyebrow="Hỗ trợ"
                 title="Câu hỏi thường gặp"
                 lead="Những điều bạn cần biết trước khi bắt đầu hành trình."

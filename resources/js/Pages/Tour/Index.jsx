@@ -43,7 +43,7 @@ export default function TourIndex({ tours, categories = [], difficulties = {} })
                 description="Khám phá các hành trình trekking, cắm trại và khám phá thiên nhiên Việt Nam."
             />
 
-            <PageHero
+            <PageHero heroKey="tour"
                 eyebrow="Hành trình"
                 title="Chọn cung đường của bạn"
                 lead="Từ trekking nhiều ngày đến những chuyến đi trong ngày — lọc theo nhóm, độ khó và ngân sách."

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { placeholderImage } from '../../lib/placeholder';
 
 /**
@@ -19,13 +19,15 @@ export default function PageHero({
     lead = null,
     image = null,
     size = 'default',
+    heroKey = null,
     breadcrumbs = [],
     actions = null,
     align = 'left',
     children = null,
 }) {
+    const { settings } = usePage().props;
     const sizeClass = size === 'compact' ? 'rp-hero--compact' : size === 'tall' ? 'rp-hero--tall' : '';
-    const heroImage = image || placeholderImage(title || 'rung-adventure');
+    const heroImage = image || settings?.hero_images?.[heroKey] || placeholderImage(title || 'rung-adventure');
 
     return (
         <>

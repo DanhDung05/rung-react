@@ -28,7 +28,7 @@ export default function Contact() {
                 description="Liên hệ Rừng Adventure để được tư vấn hành trình trekking và khám phá thiên nhiên."
             />
 
-            <PageHero
+            <PageHero heroKey="contact"
                 eyebrow="Liên hệ"
                 title="Nói cho chúng tôi nghe về chuyến đi của bạn"
                 lead="Đội ngũ Rừng Adventure sẽ phản hồi trong thời gian sớm nhất."

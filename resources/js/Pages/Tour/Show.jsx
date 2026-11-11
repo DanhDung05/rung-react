@@ -101,7 +101,7 @@ export default function TourShow({ tour, relatedTours = [] }) {
                 ]}
             />
 
-            <PageHero
+            <PageHero heroKey="tour"
                 title={tour.name}
                 lead={tour.excerpt}
                 image={heroImage}

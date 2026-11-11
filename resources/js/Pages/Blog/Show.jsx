@@ -36,7 +36,7 @@ export default function BlogShow({ post, relatedPosts = [], recentPosts = [], po
                 ]}
             />
 
-            <PageHero title={post.title} lead={post.excerpt} image={cover} size="tall" breadcrumbs={breadcrumbs} />
+            <PageHero heroKey="blog" title={post.title} lead={post.excerpt} image={cover} size="tall" breadcrumbs={breadcrumbs} />
 
             <section className="rp-section">
                 <div className="rp-container rp-blog-layout">
