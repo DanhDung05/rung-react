@@ -18,6 +18,13 @@ return [
                 'role'    => 'section',
                 'hint'    => 'Tắt để ẩn toàn bộ section khỏi trang chủ.',
             ],
+            'override_enabled' => [
+                'label'   => 'Ghi đè màu riêng cho section',
+                'type'    => 'boolean',
+                'default' => false,
+                'role'    => 'section',
+                'hint'    => 'Bật để dùng màu bên dưới; tắt để kế thừa Palette/Typography toàn cục.',
+            ],
             'background' => [
                 'label'   => 'Màu nền section',
                 'type'    => 'select',

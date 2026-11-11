@@ -16,6 +16,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
     const posts = Array.isArray(latestPosts) ? latestPosts : latestPosts?.data || [];
     const about = settings?.about || {};
     const gallery = settings?.home_gallery || {};
+    const galleryOverride = gallery.override_enabled === true;
 
     const heroImage = mediaUrl(sliders[0]?.image) || null;
     const bandImage = heroImage;
@@ -129,13 +130,13 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
                         <div className="rp-spread" style={{ marginBottom: 34 }}>
                             <div>
                                 {gallery.label_on !== false && (
-                                    <div className="rp-eyebrow" style={{ color: gallery.label_color || undefined }}>
+                                    <div className="rp-eyebrow" style={galleryOverride ? { color: gallery.label_color } : undefined}>
                                         {gallery.label_text || 'Thư viện'}
                                     </div>
                                 )}
-                                <h2 className="rp-h2" style={{ color: gallery.title_color || undefined }}>
+                                <h2 className="rp-h2" style={galleryOverride ? { color: gallery.title_color } : undefined}>
                                     {gallery.title || 'Những khoảnh khắc'}{' '}
-                                    <em style={{ color: gallery.accent_color || undefined }}>{gallery.accent ?? 'đường rừng'}</em>
+                                    <em style={galleryOverride ? { color: gallery.accent_color } : undefined}>{gallery.accent ?? 'đường rừng'}</em>
                                 </h2>
                                 {gallery.lead && (
                                     <p className="rp-lead" style={{ color: gallery.lead_color || undefined }}>{gallery.lead}</p>
@@ -146,11 +147,11 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
                                 <Link
                                     href={gallery.button_url || routes.posts.index}
                                     className="rp-btn rp-btn--outline"
-                                    style={{
-                                        color: gallery.button_color || undefined,
-                                        background: gallery.button_bg || undefined,
-                                        borderColor: gallery.button_color || undefined,
-                                    }}
+                                    style={galleryOverride ? {
+                                        color: gallery.button_color,
+                                        background: gallery.button_bg,
+                                        borderColor: gallery.button_color,
+                                    } : undefined}
                                 >
                                     {gallery.button_text || 'Đọc cẩm nang'} <ArrowRight size={15} />
                                 </Link>
