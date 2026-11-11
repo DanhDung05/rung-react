@@ -3794,6 +3794,404 @@
     }
 }
 
+/* =========================================================
+   P2 — LISTING + DETAIL
+   ========================================================= */
+
+.rp-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.rp-field > span {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rp-earth);
+}
+
+.rp-field input,
+.rp-field select,
+.rp-field textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--rp-line);
+    border-radius: 6px;
+    background: #fff;
+    font-size: 0.9rem;
+    color: var(--rp-forest);
+    font-family: inherit;
+}
+
+.rp-field input:focus,
+.rp-field select:focus,
+.rp-field textarea:focus {
+    outline: none;
+    border-color: var(--rp-gold);
+}
+
+.rp-field__input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.rp-field__input svg {
+    position: absolute;
+    left: 12px;
+    color: var(--rp-muted);
+}
+
+.rp-field__input input {
+    padding-left: 36px;
+}
+
+.rp-filterbar {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 14px;
+    padding: 22px;
+    background: #fff;
+    border: 1px solid var(--rp-line);
+    border-radius: 8px;
+}
+
+.rp-results-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 26px 0 24px;
+    font-size: 0.82rem;
+    color: var(--rp-muted);
+}
+
+.rp-results-head span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.rp-empty {
+    padding: 64px 24px;
+    text-align: center;
+    border: 1px dashed var(--rp-sand);
+    border-radius: 8px;
+}
+
+.rp-empty h3 {
+    margin: 0 0 8px;
+    color: var(--rp-forest);
+}
+
+.rp-pager {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 48px;
+}
+
+.rp-pager__item {
+    min-width: 40px;
+    height: 40px;
+    display: inline-grid;
+    place-items: center;
+    padding: 0 10px;
+    border: 1px solid var(--rp-line);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--rp-forest);
+    text-decoration: none;
+    background: #fff;
+}
+
+.rp-pager__item.is-active {
+    background: var(--rp-forest);
+    border-color: var(--rp-forest);
+    color: #fff;
+}
+
+.rp-pager__item.is-disabled {
+    opacity: 0.4;
+}
+
+.rp-detail {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 56px;
+    align-items: start;
+}
+
+.rp-detail__side {
+    position: sticky;
+    top: 104px;
+}
+
+.rp-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.rp-fact {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border: 1px solid var(--rp-line);
+    border-radius: 999px;
+    font-size: 0.8rem;
+    color: var(--rp-forest);
+    background: #fff;
+}
+
+.rp-prose {
+    font-size: 1rem;
+    line-height: 1.85;
+    color: #45544c;
+}
+
+.rp-prose h2,
+.rp-prose h3 {
+    color: var(--rp-forest);
+    margin: 1.6em 0 0.5em;
+}
+
+.rp-prose img {
+    border-radius: 6px;
+    margin: 1em 0;
+}
+
+.rp-prose ul,
+.rp-prose ol {
+    padding-left: 1.2em;
+}
+
+.rp-itinerary {
+    margin-top: 46px;
+}
+
+.rp-itinerary__day {
+    border-top: 1px solid var(--rp-line);
+    padding: 6px 0;
+}
+
+.rp-itinerary__day:last-child {
+    border-bottom: 1px solid var(--rp-line);
+}
+
+.rp-itinerary__day summary {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    padding: 16px 0;
+    cursor: pointer;
+    list-style: none;
+}
+
+.rp-itinerary__num {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rp-earth);
+    min-width: 62px;
+}
+
+.rp-itinerary__title {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 1.02rem;
+    font-weight: 800;
+    color: var(--rp-forest);
+}
+
+.rp-itinerary__body {
+    padding: 0 0 18px 78px;
+    font-size: 0.92rem;
+    line-height: 1.75;
+    color: #52625a;
+}
+
+.rp-itinerary__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 10px;
+    font-size: 0.76rem;
+    color: var(--rp-muted);
+}
+
+.rp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 28px 0 0;
+}
+
+.rp-reviews {
+    margin-top: 52px;
+}
+
+.rp-reviews__score {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: var(--rp-muted);
+}
+
+.rp-stars {
+    display: inline-flex;
+    gap: 3px;
+    color: var(--rp-gold);
+}
+
+.rp-stars--input button {
+    border: 0;
+    background: none;
+    padding: 2px;
+    cursor: pointer;
+    color: var(--rp-gold);
+}
+
+.rp-review {
+    padding: 20px 0;
+    border-top: 1px solid var(--rp-line);
+}
+
+.rp-review__head {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 0.78rem;
+    color: var(--rp-muted);
+    margin-bottom: 8px;
+}
+
+.rp-review p {
+    margin: 8px 0 0;
+    font-size: 0.92rem;
+    line-height: 1.7;
+    color: #45544c;
+}
+
+.rp-review-form {
+    margin-top: 30px;
+    padding: 24px;
+    border: 1px solid var(--rp-line);
+    border-radius: 8px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.rp-review-form h3 {
+    margin: 0;
+    font-family: var(--font-heading, sans-serif);
+    color: var(--rp-forest);
+}
+
+.rp-error {
+    color: #b3261e;
+    font-size: 0.76rem;
+}
+
+.rp-price-card {
+    padding: 26px;
+    border: 1px solid var(--rp-line);
+    border-radius: 8px;
+    background: #fff;
+}
+
+.rp-price-card__label {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rp-earth);
+}
+
+.rp-price-card__value {
+    font-family: var(--font-heading, sans-serif);
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--rp-forest);
+    margin-top: 6px;
+}
+
+.rp-price-card__unit {
+    font-size: 0.78rem;
+    color: var(--rp-muted);
+    margin-bottom: 20px;
+}
+
+.rp-btn--block {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.rp-price-card__list {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 18px 0 0;
+    border-top: 1px solid var(--rp-line);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 0.85rem;
+    color: #45544c;
+}
+
+.rp-price-card__list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rp-muted {
+    color: var(--rp-muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 1024px) {
+    .rp-detail {
+        grid-template-columns: 1fr;
+        gap: 34px;
+    }
+
+    .rp-detail__side {
+        position: static;
+    }
+
+    .rp-filterbar {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 680px) {
+    .rp-filterbar {
+        grid-template-columns: 1fr;
+        padding: 16px;
+    }
+
+    .rp-results-head {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .rp-itinerary__body {
+        padding-left: 0;
+    }
+}
+
 /* P1.5 — single tours section */
 .h-tours-foot {
     display: flex;
