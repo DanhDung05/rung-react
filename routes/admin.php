@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ReviewController;
 use App\Http\Controllers\Admin\MediaController;
+use App\Http\Controllers\Admin\HomeSectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -293,6 +294,12 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
         ->name('settings.update');
 
     // ============================================================
+    // ============================================================
+    // NỘI DUNG TRANG CHỦ (trình chỉnh sửa trực quan)
+    // ============================================================
+    Route::get('noi-dung-trang-chu/{section?}', [HomeSectionController::class, 'index'])->name('home-sections.index');
+    Route::put('noi-dung-trang-chu/{section}', [HomeSectionController::class, 'update'])->name('home-sections.update');
+    Route::post('noi-dung-trang-chu/{section}/khoi-phuc', [HomeSectionController::class, 'reset'])->name('home-sections.reset');
     // CONTACT ROUTES
     // ============================================================
 

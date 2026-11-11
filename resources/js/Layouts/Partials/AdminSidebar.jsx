@@ -43,6 +43,7 @@ const NAV = [
         title: 'Giao diện',
         items: [
             { label: 'Menu', href: routes.admin.menus.index, icon: MenuIcon },
+            { label: 'Nội dung trang chủ', href: routes.admin.homeSections.index, icon: Images },
             { label: 'Thư viện ảnh', href: routes.admin.media.index, icon: Images },
         ],
     },

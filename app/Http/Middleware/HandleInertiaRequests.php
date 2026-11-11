@@ -122,6 +122,15 @@ class HandleInertiaRequests extends Middleware
                 'contact_phone'    => Setting::get('contact_phone'),
                 'contact_address'  => Setting::get('contact_address'),
                 'contact_hours'    => Setting::get('contact_hours'),
+                'home_gallery'     => (function () {
+                    $fields = config('home_sections.gallery.fields', []);
+                    $values = [];
+                    foreach ($fields as $key => $field) {
+                        $value = Setting::get("home_gallery_{$key}", $field['default'] ?? null);
+                        $values[$key] = $field['type'] === 'boolean' ? (bool) $value : $value;
+                    }
+                    return $values;
+                })(),
                 'social'           => [
                     'facebook'  => Setting::get('social_facebook'),
                     'instagram' => Setting::get('social_instagram'),

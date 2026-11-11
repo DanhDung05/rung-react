@@ -83,6 +83,11 @@ export const routes = {
         reviewReject: (id) => `/admin/danh-gia/${id}/tu-choi`,
         contactStatus: (id) => `/admin/lien-he/${id}/status`,
 
+        homeSections: {
+            index: '/admin/noi-dung-trang-chu',
+            update: (section = 'gallery') => `/admin/noi-dung-trang-chu/${section}`,
+            reset: (section = 'gallery') => `/admin/noi-dung-trang-chu/${section}/khoi-phuc`,
+        },
         settings: {
             index: '/admin/cau-hinh',
             edit: (group) => `/admin/cau-hinh/${group}`,

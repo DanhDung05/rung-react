@@ -15,6 +15,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
     const tours = Array.isArray(featuredTours) ? featuredTours : featuredTours?.data || [];
     const posts = Array.isArray(latestPosts) ? latestPosts : latestPosts?.data || [];
     const about = settings?.about || {};
+    const gallery = settings?.home_gallery || {};
 
     const heroImage = mediaUrl(sliders[0]?.image) || null;
     const bandImage = heroImage;
@@ -121,26 +122,47 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
                 </div>
             </section>
 
-            {/* 4. Thư viện — Warm Cream */}
-            <section className="rp-section rp-section--cream">
-                <div className="rp-container">
-                    <div className="rp-spread" style={{ marginBottom: 34 }}>
-                        <div>
-                            <div className="rp-eyebrow">Thư viện</div>
-                            <h2 className="rp-h2">
-                                Những khoảnh khắc <em>đường rừng</em>
-                            </h2>
-                        </div>
-                        <Link href={routes.posts.index} className="rp-link-arrow">
-                            Đọc cẩm nang <ArrowRight size={15} />
-                        </Link>
-                    </div>
+            {/* 4. Thư viện — cấu hình từ Admin */}
+            {gallery.enabled !== false && (
+                <section className={`rp-section${gallery.background === 'white' ? '' : ' rp-section--cream'}`}>
+                    <div className="rp-container">
+                        <div className="rp-spread" style={{ marginBottom: 34 }}>
+                            <div>
+                                {gallery.label_on !== false && (
+                                    <div className="rp-eyebrow" style={{ color: gallery.label_color || undefined }}>
+                                        {gallery.label_text || 'Thư viện'}
+                                    </div>
+                                )}
+                                <h2 className="rp-h2" style={{ color: gallery.title_color || undefined }}>
+                                    {gallery.title || 'Những khoảnh khắc'}{' '}
+                                    <em style={{ color: gallery.accent_color || undefined }}>{gallery.accent ?? 'đường rừng'}</em>
+                                </h2>
+                                {gallery.lead && (
+                                    <p className="rp-lead" style={{ color: gallery.lead_color || undefined }}>{gallery.lead}</p>
+                                )}
+                            </div>
 
-                    <Reveal>
-                        <Gallery images={galleryImages.slice(0, 5)} layout="collage" />
-                    </Reveal>
-                </div>
-            </section>
+                            {gallery.button_on !== false && (
+                                <Link
+                                    href={gallery.button_url || routes.posts.index}
+                                    className="rp-btn rp-btn--outline"
+                                    style={{
+                                        color: gallery.button_color || undefined,
+                                        background: gallery.button_bg || undefined,
+                                        borderColor: gallery.button_color || undefined,
+                                    }}
+                                >
+                                    {gallery.button_text || 'Đọc cẩm nang'} <ArrowRight size={15} />
+                                </Link>
+                            )}
+                        </div>
+
+                        <Reveal>
+                            <Gallery images={galleryImages.slice(0, 5)} layout="collage" />
+                        </Reveal>
+                    </div>
+                </section>
+            )}
 
             {/* 5. Cẩm nang — White */}
             {posts.length > 0 && (
