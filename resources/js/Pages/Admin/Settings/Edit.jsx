@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { router, usePage } from '@inertiajs/react';
 import AdminLayout from '../../../Layouts/AdminLayout';
 import Card from '../../../Components/UI/Card';
@@ -157,6 +157,65 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
         return style;
     };
 
+    const [previewPage, setPreviewPage] = useState('home');
+    const [previewDevice, setPreviewDevice] = useState(1440);
+    const [previewMode, setPreviewMode] = useState('editing');
+    const [previewKey, setPreviewKey] = useState(0);
+    const [previewTick, setPreviewTick] = useState(0);
+    const previewRef = useRef(null);
+
+    const buildPreviewCss = (source) => {
+        const paletteMap = {
+            palette_forest: '--rp-forest',
+            palette_cream: '--rp-cream',
+            palette_white: '--rp-white',
+            palette_earth: '--rp-earth',
+            palette_text: '--rp-ink',
+            palette_muted: '--rp-muted',
+        };
+        const lines = [];
+        Object.entries(paletteMap).forEach(([key, variable]) => {
+            if (source[key]) lines.push(`${variable}:${source[key]};`);
+        });
+
+        const selectors = {
+            h1: '.rp-app h1:not(.rp-slider__title), .rp-app .rp-display, .rp-app .rp-pagehead__title, .rp-app .h-welcome__title',
+            h2: '.rp-app .rp-h2, .rp-app .h-about__title',
+            h3: '.rp-app h3, .rp-app .rp-h3',
+            page_title: '.rp-app .rp-pagehead__title',
+            section_title: '.rp-app .rp-h2',
+            body: '.rp-app p, .rp-app .rp-prose',
+            lead: '.rp-app .rp-lead, .rp-app .h-welcome__lead, .rp-app .rp-pagehead__lead',
+            eyebrow: '.rp-app .rp-eyebrow',
+            breadcrumb: '.rp-app .rp-breadcrumb',
+            footer: '.rp-footer',
+        };
+        const props = { font: 'font-family', color: 'color', weight: 'font-weight', line_height: 'line-height', size: 'font-size' };
+        const rules = [];
+
+        Object.entries(selectors).forEach(([group, selector]) => {
+            Object.entries(props).forEach(([prop, cssProp]) => {
+                const value = source[`typo_${group}_${prop}`];
+                if (value) rules.push(`${selector}{${cssProp}:${value};}`);
+            });
+        });
+
+        return `:root{${lines.join('')}}${rules.join('')}`;
+    };
+
+    useEffect(() => {
+        const doc = previewRef.current?.contentDocument;
+        if (!doc || !isThemeGroup) return;
+
+        let style = doc.getElementById('theme-preview-style');
+        if (!style) {
+            style = doc.createElement('style');
+            style.id = 'theme-preview-style';
+            doc.head.appendChild(style);
+        }
+
+        style.textContent = buildPreviewCss(previewMode === 'saved' ? current : values);
+    }, [values, current, previewMode, previewPage, previewKey, previewTick, isThemeGroup]);
     return (
         <AdminLayout
             title={groupConfig.label || `Cấu hình: ${group}`}
@@ -165,31 +224,33 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
             actions={<Button href={routes.admin.settings.index} variant="outline">← Cài đặt</Button>}
         >
             {isThemeGroup && (
-                <Card title="Xem trước trực tiếp" description="Preview cập nhật ngay khi đổi màu/font. Chưa bấm Lưu thì website công khai không thay đổi.">
-                    <div className="rp-app theme-preview" style={previewVars}>
-                        <div className="rp-eyebrow" style={pv('eyebrow')}>Nhãn nhỏ · Eyebrow</div>
-                        <h1 className="rp-pagehead__title" style={pv('h1')}>Tiêu đề trang (H1)</h1>
-                        <h2 className="rp-h2" style={pv('h2')}>Tiêu đề section (H2)</h2>
-                        <h3 className="rp-h3" style={pv('h3')}>Tiêu đề phụ (H3)</h3>
-                        <p className="rp-lead" style={pv('lead')}>Mô tả ngắn — lead text.</p>
-                        <p style={pv('body')}>Nội dung văn bản mẫu cho phần body.</p>
-                        <nav className="rp-breadcrumb" style={pv('breadcrumb')}>Trang chủ / Mẫu</nav>
-
-                        <div className="theme-swatches">
-                            {['palette_forest', 'palette_cream', 'palette_white', 'palette_earth', 'palette_text', 'palette_muted'].map((key) => (
-                                <span key={key} title={key}>
-                                    <i style={{ background: values[key] || '#ddd' }} />
-                                    {values[key] || '—'}
-                                </span>
-                            ))}
-                        </div>
-
-                        <div className="theme-footer-sample" style={pv('footer')}>Footer mẫu — chữ liên hệ, bản quyền.</div>
+                <Card title="Xem trước giao diện thật" description="Iframe dùng chính trang public. Thay đổi chỉ nằm trong trình duyệt Admin, không ghi database.">
+                    <div className="theme-preview-toolbar">
+                        <button type="button" className={`ui-btn ui-btn--sm ${previewPage === 'home' ? 'ui-btn--primary' : 'ui-btn--ghost'}`.trim()} onClick={() => setPreviewPage('home')}>Trang chủ</button>
+                        <button type="button" className={`ui-btn ui-btn--sm ${previewPage === 'tour' ? 'ui-btn--primary' : 'ui-btn--ghost'}`.trim()} onClick={() => setPreviewPage('tour')}>Tour Index</button>
+                        <span className="ui-hint">|</span>
+                        {[[1440, 'Desktop'], [768, 'Tablet'], [390, 'Mobile']].map(([size, label]) => (
+                            <button key={size} type="button" className={`ui-btn ui-btn--sm ${previewDevice === size ? 'ui-btn--primary' : 'ui-btn--ghost'}`.trim()} onClick={() => setPreviewDevice(size)}>{label}</button>
+                        ))}
+                        <span className="ui-hint">|</span>
+                        <button type="button" className={`ui-btn ui-btn--sm ${previewMode === 'saved' ? 'ui-btn--primary' : 'ui-btn--ghost'}`.trim()} onClick={() => setPreviewMode('saved')}>Đang lưu</button>
+                        <button type="button" className={`ui-btn ui-btn--sm ${previewMode === 'editing' ? 'ui-btn--primary' : 'ui-btn--ghost'}`.trim()} onClick={() => setPreviewMode('editing')}>Đang chỉnh</button>
+                        <button type="button" className="ui-btn ui-btn--sm ui-btn--ghost" onClick={() => setPreviewKey((key) => key + 1)}>Làm mới</button>
                     </div>
-                    <p className="ui-hint">Giá trị đang chỉnh hiển thị ở trên. Bấm “Hủy thay đổi” để quay về bản đã lưu.</p>
+
+                    <div className="theme-preview-canvas">
+                        <iframe
+                            key={`${previewPage}-${previewKey}`}
+                            ref={previewRef}
+                            title="Preview giao diện public"
+                            src={previewPage === 'tour' ? '/tour' : '/'}
+                            style={{ width: previewDevice }}
+                            onLoad={() => setPreviewTick((tick) => tick + 1)}
+                        />
+                    </div>
+                    <p className="ui-hint">“Đang lưu” hiển thị cấu hình đã lưu; “Đang chỉnh” hiển thị giá trị trên form. Không có dữ liệu nào được ghi khi xem trước.</p>
                 </Card>
             )}
-
             <form onSubmit={submit} noValidate className="admin-form-narrow">
                 <Card title="Cấu hình" description={`${Object.keys(fields).length} trường · nhóm “${group}”`}>
                     {Object.entries(fields).map(([key, field]) => (

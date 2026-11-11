@@ -1832,3 +1832,8 @@
 .theme-swatches span{display:inline-flex;align-items:center;gap:6px;font-size:.68rem;color:#5b6b61}
 .theme-swatches i{width:20px;height:20px;border-radius:4px;border:1px solid #ddd;display:inline-block}
 .theme-footer-sample{margin-top:6px;background:var(--rp-forest,#102c24);color:var(--typo-footer-color,#e9e4d6);padding:12px;border-radius:6px;font-size:.75rem}
+
+/* B2.3 theme preview iframe */
+.theme-preview-toolbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:10px}
+.theme-preview-canvas{border:1px solid #e2ded0;border-radius:8px;background:#f4f1e8;overflow:auto;max-height:72vh;padding:8px}
+.theme-preview-canvas iframe{display:block;margin:0 auto;border:0;height:70vh;max-width:100%;background:#fff}
