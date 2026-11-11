@@ -121,6 +121,7 @@ class HandleInertiaRequests extends Middleware
                 'contact_email'    => Setting::get('contact_email'),
                 'contact_phone'    => Setting::get('contact_phone'),
                 'contact_address'  => Setting::get('contact_address'),
+                'contact_hours'    => Setting::get('contact_hours'),
                 'social'           => [
                     'facebook'  => Setting::get('social_facebook'),
                     'instagram' => Setting::get('social_instagram'),

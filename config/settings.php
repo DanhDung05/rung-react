@@ -60,6 +60,12 @@ return [
                     'type'    => 'string',
                     'default' => '0123 456 789',
                 ],
+                'contact_hours' => [
+                    'label'   => 'Giờ làm việc',
+                    'type'    => 'string',
+                    'default' => 'Thứ 2 – Thứ 7, 08:00 – 18:00',
+                    'hint'    => 'Hiển thị ở footer và trang liên hệ.',
+                ],
                 'contact_address' => [
                     'label'   => 'Địa chỉ',
                     'type'    => 'string',

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm, usePage } from '@inertiajs/react';
-import { Mail, MapPin, Phone, Send } from 'lucide-react';
+import { Clock, Mail, MapPin, Phone, Send } from 'lucide-react';
 import AppLayout from '../../Layouts/AppLayout';
 import Seo from '../../Components/Seo';
 import PageHero from '../../Components/Public/PageHero';
@@ -86,6 +86,9 @@ export default function Contact() {
                                 )}
                                 {settings?.contact_phone && (
                                     <a href={`tel:${settings.contact_phone}`}><Phone size={16} /> {settings.contact_phone}</a>
+                                )}
+                                {settings?.contact_hours && (
+                                    <span className="rp-contact-info__row"><Clock size={16} /> {settings.contact_hours}</span>
                                 )}
                                 {settings?.contact_email && (
                                     <a href={`mailto:${settings.contact_email}`}><Mail size={16} /> {settings.contact_email}</a>

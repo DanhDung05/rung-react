@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from '@inertiajs/react';
-import { Phone, Mail, MapPin, Mountain, ArrowUpRight } from 'lucide-react';
+import { Phone, Mail, MapPin, Mountain, ArrowUpRight, Clock } from 'lucide-react';
 import { routes } from '../../lib/routes';
 
 const FALLBACK_NAV = [
@@ -81,6 +81,11 @@ export default function Footer({ settings = {}, navigation = {} }) {
                                 <a href={`tel:${settings.contact_phone}`}>
                                     <Phone size={15} style={{ marginTop: 2, flex: 'none' }} /> {settings.contact_phone}
                                 </a>
+                            )}
+                            {settings?.contact_hours && (
+                                <span>
+                                    <Clock size={15} style={{ marginTop: 2, flex: 'none' }} /> {settings.contact_hours}
+                                </span>
                             )}
                             {settings?.contact_email && (
                                 <a href={`mailto:${settings.contact_email}`}>
