@@ -4803,3 +4803,32 @@
         grid-column: 2;
     }
 }
+
+/* P7 — font stack ti?ng Vi?t ?n ð?nh (tránh synthetic bold c?a Arial) */
+.rp-app {
+    --font-sans: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+    --font-heading: var(--font-sans);
+    --font-h1: var(--font-sans);
+    --font-h2: var(--font-sans);
+    --font-h3: var(--font-sans);
+    --font-h4: var(--font-sans);
+    --font-h5: var(--font-sans);
+    --font-h6: var(--font-sans);
+    font-family: var(--font-sans);
+}
+
+.rp-app h1,
+.rp-app h2,
+.rp-app h3,
+.rp-app h4,
+.rp-app h5,
+.rp-app h6,
+.rp-app .rp-display,
+.rp-app .rp-h2,
+.rp-app .rp-h3,
+.rp-app .rp-pagehead__title,
+.rp-app .rp-about__title,
+.rp-app .h-welcome__title {
+    font-weight: 700;
+    font-synthesis-weight: none;
+}
