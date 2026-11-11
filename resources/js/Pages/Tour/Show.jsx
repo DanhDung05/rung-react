@@ -10,6 +10,7 @@ import { routes } from '../../lib/routes';
 import { mediaUrl, money, date } from '../../lib/format';
 import { DIFFICULTY } from '../../lib/constants';
 import { placeholderImage } from '../../lib/placeholder';
+import { tourSchema, breadcrumbSchema } from '../../lib/schema';
 
 function Stars({ value = 0, onChange = null }) {
     return (
@@ -86,7 +87,19 @@ export default function TourShow({ tour, relatedTours = [] }) {
 
     return (
         <AppLayout>
-            <Seo title={`${tour.name} — Rừng Adventure`} description={tour.excerpt || tour.meta_description} image={heroImage} />
+            <Seo
+                title={`${tour.name} — Rừng Adventure`}
+                description={tour.excerpt || tour.meta_description}
+                image={heroImage}
+                jsonLd={[
+                    tourSchema(tour),
+                    breadcrumbSchema([
+                        { name: 'Trang chủ', url: routes.home },
+                        { name: 'Hành trình', url: routes.tours.index },
+                        { name: tour.name, url: `/tour/${tour.slug}` },
+                    ]),
+                ]}
+            />
 
             <PageHero
                 title={tour.name}
