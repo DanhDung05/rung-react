@@ -17,6 +17,22 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-11] Chuẩn hóa tài liệu dự án
+
+### Added
+- `docs/README.md`, `docs/PROJECT_STATUS.md`, `docs/ARCHITECTURE.md`, `docs/ADMIN_FEATURES.md`.
+- `docs/development/DOCUMENTATION_RULES.md` — quy tắc bắt buộc cập nhật tài liệu sau mỗi task.
+
+### Changed
+- Tài liệu phản ánh trạng thái thực tế tại commit `9f03af2`.
+
+### Ghi nhận các thay đổi lớn trước đó (đã có trong DEVELOPMENT_LOG)
+- P2–P6: Tour, Điểm đến, Blog, Pages/Contact/FAQ/Search, SEO JSON-LD (`d6c831d`, `5ddb701`, `91508e1`, `eff3a9f`, `ce73462`).
+- PageHead tách khỏi hero (`fc3286b`), font tiếng Việt (`2ec4fc3`).
+- Settings: giờ làm việc, sửa lưu ảnh multipart (`d16cf42`, `f3c0632`, `e0a4307`).
+- UI Text manager (`616b05a`), Home Section editor (`79899f8`).
+- Visual Editor GĐ1 (`015f2db`).
+- Palette/Typography toàn cục (`aa57f5b`, `eb2eb8b`, `0e89b15`), Gallery override (`7577077`), preview iframe (`9f03af2`).
 ## [Unreleased]
 
 ### Added — Frontend P0: nền tảng giao diện public
