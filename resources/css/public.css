@@ -283,7 +283,7 @@
     display: flex;
     align-items: flex-end;
     min-height: 560px;
-    padding: 120px 0 64px;
+    padding: 120px 0 180px;
     color: #fff;
     overflow: hidden;
     background: var(--rp-forest);
@@ -291,11 +291,12 @@
 
 .rp-hero--compact {
     min-height: 380px;
-    padding: 130px 0 54px;
+    padding: 130px 0 110px;
 }
 
 .rp-hero--tall {
     min-height: 680px;
+    padding-bottom: 236px;
 }
 
 .rp-hero__media {
@@ -328,12 +329,28 @@
     color: #fff;
     font-size: clamp(2.3rem, 5.2vw, 4rem);
     text-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
+    margin-bottom: 16px;
 }
 
 .rp-hero .rp-lead {
     color: rgba(255, 255, 255, 0.86);
     font-size: 1.06rem;
     max-width: 60ch;
+    margin: 0;
+}
+
+@media (max-width: 680px) {
+    .rp-hero {
+        padding-bottom: 120px;
+    }
+
+    .rp-hero--tall {
+        padding-bottom: 150px;
+    }
+
+    .rp-hero--compact {
+        padding-bottom: 90px;
+    }
 }
 
 .rp-hero__actions {
@@ -352,7 +369,7 @@
     flex-wrap: wrap;
     font-size: 0.76rem;
     color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 20px;
+    margin-bottom: 14px;
 }
 
 .rp-breadcrumb a {
