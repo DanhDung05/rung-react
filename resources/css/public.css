@@ -1410,7 +1410,7 @@
 }
 
 .rp-slider__title em {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: Cambria, 'Times New Roman', Cambria, 'Times New Roman', serif;
     font-style: italic;
     font-weight: 400;
     color: #f0d3a8;
@@ -1510,7 +1510,7 @@
 }
 
 .rp-intro__title em {
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: Cambria, 'Times New Roman', Cambria, 'Times New Roman', serif;
     font-style: italic;
     font-weight: 400;
     color: var(--rp-earth);
@@ -1607,7 +1607,7 @@
 }
 
 .rp-value__num {
-    font-family: Georgia, serif;
+    font-family: Cambria, 'Times New Roman', serif;
     font-size: 1.6rem;
     color: var(--rp-gold);
     line-height: 1;
@@ -1894,7 +1894,7 @@
 
 .h-about__title em {
     display: block;
-    font-family: Georgia, 'Times New Roman', serif;
+    font-family: Cambria, 'Times New Roman', Cambria, 'Times New Roman', serif;
     font-style: italic;
     font-weight: 400;
     color: var(--rp-earth);
@@ -1912,7 +1912,7 @@
     margin: 0 0 28px;
     padding: 26px 0 26px 26px;
     border-left: 2px solid var(--rp-gold);
-    font-family: Georgia, serif;
+    font-family: Cambria, 'Times New Roman', serif;
     font-style: italic;
     font-size: 1.35rem;
     line-height: 1.5;
@@ -1957,7 +1957,7 @@
 }
 
 .h-about__fact b {
-    font-family: Georgia, serif;
+    font-family: Cambria, 'Times New Roman', serif;
     font-size: 1.5rem;
     font-weight: 400;
     color: var(--rp-earth);
@@ -2123,7 +2123,7 @@
 }
 
 .h-tour-row__num {
-    font-family: Georgia, serif;
+    font-family: Cambria, 'Times New Roman', serif;
     font-size: 1.05rem;
     color: var(--rp-earth);
 }
@@ -2191,7 +2191,7 @@
 }
 
 .h-dest__num {
-    font-family: Georgia, serif;
+    font-family: Cambria, 'Times New Roman', serif;
     font-size: 1.15rem;
     color: #e8c48d;
 }
@@ -2250,7 +2250,7 @@
 }
 
 .h-value__num {
-    font-family: Georgia, serif;
+    font-family: Cambria, 'Times New Roman', serif;
     font-size: 1rem;
     color: #e8c48d;
     display: block;
@@ -2486,7 +2486,7 @@
 }
 
 .h-cta__title em {
-    font-family: Georgia, serif;
+    font-family: Cambria, 'Times New Roman', serif;
     font-style: italic;
     font-weight: 400;
     color: #e8c48d;
@@ -2701,7 +2701,7 @@
 
 .rp-about__title em {
     display: block;
-    font-family: Georgia, serif;
+    font-family: Cambria, 'Times New Roman', serif;
     font-style: italic;
     font-weight: 400;
     color: var(--rp-earth);
@@ -2718,7 +2718,7 @@
     margin: 26px 0;
     padding: 18px 0 18px 22px;
     border-left: 2px solid var(--rp-gold);
-    font-family: Georgia, serif;
+    font-family: Cambria, 'Times New Roman', serif;
     font-style: italic;
     font-size: 1.15rem;
     line-height: 1.55;
@@ -2874,7 +2874,7 @@
 }
 
 .rp-tour-row__index {
-    font-family: Georgia, serif;
+    font-family: Cambria, 'Times New Roman', serif;
     font-size: 0.9rem;
     color: var(--rp-earth);
 }
@@ -3063,7 +3063,7 @@
 }
 
 .rp-manifesto__title em {
-    font-family: Georgia, serif;
+    font-family: Cambria, 'Times New Roman', serif;
     font-style: italic;
     font-weight: 400;
     color: #e8c48d;
@@ -3095,7 +3095,7 @@
 
 .rp-value-col__num {
     display: block;
-    font-family: Georgia, serif;
+    font-family: Cambria, 'Times New Roman', serif;
     font-size: 0.95rem;
     color: var(--rp-gold);
     margin-bottom: 12px;
@@ -3307,7 +3307,7 @@
 }
 
 .rp-cta-band__title em {
-    font-family: Georgia, serif;
+    font-family: Cambria, 'Times New Roman', serif;
     font-style: italic;
     font-weight: 400;
     color: #e8c48d;
@@ -3588,7 +3588,7 @@
 }
 
 .h-journey__num {
-    font-family: Georgia, serif;
+    font-family: Cambria, 'Times New Roman', serif;
     font-size: 1rem;
     color: var(--rp-earth);
 }
@@ -3645,7 +3645,7 @@
 }
 
 .h-band__quote {
-    font-family: Georgia, serif;
+    font-family: Cambria, 'Times New Roman', serif;
     font-style: italic;
     font-weight: 400;
     font-size: clamp(1.6rem, 3.4vw, 2.6rem);
@@ -3672,7 +3672,7 @@
 }
 
 .h-chapter__num {
-    font-family: Georgia, serif;
+    font-family: Cambria, 'Times New Roman', serif;
     font-size: 1.4rem;
     color: #e8c48d;
     line-height: 1;
@@ -3759,7 +3759,7 @@
 }
 
 .h-welcome__title em {
-    font-family: Georgia, serif;
+    font-family: Cambria, 'Times New Roman', serif;
     font-style: italic;
     font-weight: 400;
     color: var(--rp-earth);

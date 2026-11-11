@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { placeholderImage } from '../../lib/placeholder';
 
 /**
  * Thư viện ảnh có lightbox (không cần thư viện ngoài).
@@ -133,7 +134,7 @@ export default function Gallery({ images = [], columns = 3, layout = 'grid' }) {
                         className={itemClass(i)}
                         onClick={() => setIndex(i)}
                         aria-label={`Xem ảnh ${i + 1}`}
-                        style={{ backgroundImage: `url("${image.url}")`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+                        style={{ backgroundImage: `url("${image.url}"), url("${placeholderImage(`g-${i}`)}")`, backgroundSize: 'cover', backgroundPosition: 'center' }}
                     >
                         <img src={image.url} alt={image.alt || ''} decoding="async" />
                     </button>
