@@ -144,12 +144,42 @@ return [
             'description' => 'Màu nền và màu chữ dùng chung toàn website',
             'icon'        => 'palette',
             'fields'      => [
-                'palette_forest' => ['label' => 'Forest Green', 'type' => 'color', 'default' => '#102c24'],
-                'palette_cream'  => ['label' => 'Warm Cream', 'type' => 'color', 'default' => '#f7f3e9'],
-                'palette_white'  => ['label' => 'White', 'type' => 'color', 'default' => '#ffffff'],
-                'palette_earth'  => ['label' => 'Earth Brown', 'type' => 'color', 'default' => '#a77942'],
-                'palette_text'   => ['label' => 'Màu chữ chính', 'type' => 'color', 'default' => '#1b2a22'],
-                'palette_muted'  => ['label' => 'Màu chữ phụ', 'type' => 'color', 'default' => '#6b7a70'],
+                'palette_forest' => [
+                    'label'   => 'Forest Green',
+                    'type'    => 'color',
+                    'default' => '#102c24',
+                    'hint'    => 'Nền Footer, khối CTA, nền tối và chữ tiêu đề đậm.',
+                ],
+                'palette_cream'  => [
+                    'label'   => 'Warm Cream',
+                    'type'    => 'color',
+                    'default' => '#f7f3e9',
+                    'hint'    => 'Nền section kem, dải PageHead dưới hero, author box.',
+                ],
+                'palette_white'  => [
+                    'label'   => 'White',
+                    'type'    => 'color',
+                    'default' => '#ffffff',
+                    'hint'    => 'Nền trang, card, form và section trắng.',
+                ],
+                'palette_earth'  => [
+                    'label'   => 'Earth Brown',
+                    'type'    => 'color',
+                    'default' => '#a77942',
+                    'hint'    => 'Nhãn nhỏ, chữ nhấn mạnh, số thứ tự, link hover.',
+                ],
+                'palette_text'   => [
+                    'label'   => 'Màu chữ chính',
+                    'type'    => 'color',
+                    'default' => '#1b2a22',
+                    'hint'    => 'Màu chữ chính của nội dung (body).',
+                ],
+                'palette_muted'  => [
+                    'label'   => 'Màu chữ phụ',
+                    'type'    => 'color',
+                    'default' => '#6b7a70',
+                    'hint'    => 'Chữ phụ: meta, caption, breadcrumb, ghi chú.',
+                ],
             ],
         ],
 

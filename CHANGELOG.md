@@ -17,6 +17,11 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-12] Mô tả màu trong Bảng màu
+
+### Added
+- Gợi ý dưới từng màu Palette: phạm vi tác động (Footer/CTA, nền section, nền trang, nhãn nhấn, chữ chính, chữ phụ) để Admin biết sửa màu nào ảnh hưởng phần nào.
+
 ## [2026-11-11] Chuẩn hóa màu nền
 
 ### Changed
