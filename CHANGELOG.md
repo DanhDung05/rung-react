@@ -17,6 +17,10 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-13] Sửa font tiêu đề Admin
+
+### Fixed
+- Tiêu đề/card Admin dùng `Segoe UI` + weight 700 thật, tắt `font-synthesis-weight` (nguyên nhân chữ bị dày giả, răng cưa).
 ## [2026-11-13] Hoàn thiện dark mode Admin
 
 ### Fixed

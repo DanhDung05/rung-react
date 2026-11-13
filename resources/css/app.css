@@ -107,3 +107,19 @@ body{margin:0;background:#fff;color:var(--ink);font-family:Inter,ui-sans-serif,s
 .admin-shell[data-theme="dark"] .ui-feed div{color:#c9d6ce}
 .admin-shell[data-theme="dark"] .ui-feed small,
 .admin-shell[data-theme="dark"] .ui-feed time{color:#8fa398}
+
+/* Admin: font hi?n th? r? nét (tránh synthetic bold c?a Arial) */
+.admin-shell {
+    font-family: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+.admin-shell h1,
+.admin-shell h2,
+.admin-shell h3,
+.admin-shell h4,
+.admin-shell .ui-card__title,
+.admin-shell .stat-card strong,
+.admin-shell .ui-alert-card strong {
+    font-weight: 700;
+    font-synthesis-weight: none;
+    letter-spacing: -0.01em;
+}
