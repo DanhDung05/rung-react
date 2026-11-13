@@ -43,6 +43,9 @@ export default function VisualEditorIndex({ config, published, draft, versions =
         setSelected(id);
         setCurrent({
             text: el.textContent || '',
+            image: el.tagName === 'IMG' ? el.getAttribute('src') || '' : '',
+            url: el.getAttribute('href') || '',
+            enabled: el.style.display !== 'none',
             style: {
                 color: el.style.color || '',
                 fontSize: el.style.fontSize || '',
@@ -93,6 +96,26 @@ export default function VisualEditorIndex({ config, published, draft, versions =
             else el.style[key] = value;
         }
     };
+
+    const applyExtra = (kind, value) => {
+        const baseId = selected?.endsWith('.text') ? selected.slice(0, -5) : selected;
+        if (!baseId) return;
+
+        const next = {
+            ...values,
+            [baseId]: { ...(values[baseId] || {}), [kind]: value },
+        };
+        pushHistory(next);
+
+        const doc = frameRef.current?.contentDocument;
+        const el = doc?.querySelector(`[data-ui="${selected}"]`);
+        const baseEl = doc?.querySelector(`[data-ui="${baseId}"]`);
+
+        if (kind === 'enabled' && baseEl) baseEl.style.display = value ? '' : 'none';
+        if (kind === 'image' && el) el.setAttribute('src', value);
+        if (kind === 'url' && baseEl) baseEl.setAttribute('href', value);
+    };
+
 
     const saveDraft = () => {
         setProcessing(true);
@@ -160,10 +183,38 @@ export default function VisualEditorIndex({ config, published, draft, versions =
 
                         {selected && (
                             <>
-                                <label className="ui-field">
-                                    <span className="ui-label">Nội dung</span>
-                                    <textarea className="ui-input" rows={3} value={current.text} onChange={(event) => applyField('text', event.target.value)} />
-                                </label>
+                                {!selected.endsWith('.image') && (
+                                    <label className="ui-field">
+                                        <span className="ui-label">Nội dung</span>
+                                        <textarea className="ui-input" rows={3} value={current.text} onChange={(event) => applyField('text', event.target.value)} />
+                                    </label>
+                                )}
+
+                                {selected.endsWith('.section') && (
+                                    <label className="ui-check">
+                                        <input type="checkbox" checked={current.enabled !== false} onChange={(event) => applyExtra('enabled', event.target.checked)} />
+                                        <span>Hiện section này</span>
+                                    </label>
+                                )}
+
+                                {selected.endsWith('.image') && (
+                                    <label className="ui-field">
+                                        <span className="ui-label">Đường dẫn ảnh (Media: /storage/...)</span>
+                                        <input className="ui-input" value={current.image || ''} onChange={(event) => applyExtra('image', event.target.value)} placeholder="/storage/media/..." />
+                                    </label>
+                                )}
+
+                                {(selected.endsWith('.button') || selected.endsWith('.button.text')) && (
+                                    <label className="ui-field">
+                                        <span className="ui-label">Liên kết nút</span>
+                                        <input
+                                            className="ui-input"
+                                            value={values[selected.replace(/\.text$/, '')]?.url || current.url || ''}
+                                            onChange={(event) => applyExtra('url', event.target.value)}
+                                            placeholder="/tour"
+                                        />
+                                    </label>
+                                )}
 
                                 {STYLE_FIELDS.map(([key, label, type]) => (
                                     <label className="ui-field" key={key}>

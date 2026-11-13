@@ -11,16 +11,19 @@ import { routes } from '../lib/routes';
 import { mediaUrl, date } from '../lib/format';
 import { placeholderImage } from '../lib/placeholder';
 
-export default function Home({ sliders = [], featuredTours = [], latestPosts = [], settings = {} }) {
+export default function Home({ sliders = [], featuredTours = [], latestPosts = [], settings = {}, visual = {} }) {
     const tours = Array.isArray(featuredTours) ? featuredTours : featuredTours?.data || [];
     const posts = Array.isArray(latestPosts) ? latestPosts : latestPosts?.data || [];
     const about = settings?.about || {};
     const gallery = settings?.home_gallery || {};
     const galleryOverride = gallery.override_enabled === true;
 
+    const ve = (id) => visual?.home?.[id] || {};
+    const sectionOn = (name) => ve(`home.${name}.enabled`).enabled !== false;
+
     const heroImage = mediaUrl(sliders[0]?.image) || null;
-    const bandImage = heroImage;
-    const ctaImage = settings?.hero_images?.contact || heroImage;
+    const bandImage = ve('home.band.image').image || heroImage;
+    const ctaImage = ve('home.cta.image').image || settings?.hero_images?.contact || heroImage;
 
     const galleryImages = [
         ...sliders.map((item) => ({ id: `s-${item.id}`, url: mediaUrl(item.image), alt: item.title || '' })),
@@ -52,7 +55,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
             />
 
             {/* 1. Welcome — Warm Cream */}
-            <section className="rp-section rp-section--cream">
+            <section className="rp-section rp-section--cream" data-ui="home.welcome.section" style={{ display: sectionOn('welcome') ? undefined : 'none' }}>
                 <div className="rp-container">
                     <Reveal>
                         <div className="h-welcome">
@@ -78,7 +81,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
 
             {/* 2. Hành trình nổi bật — White, một lưới duy nhất */}
             {tours.length > 0 && (
-                <section className="rp-section">
+                <section className="rp-section" data-ui="home.tours.section" style={{ display: sectionOn('tours') ? undefined : 'none' }}>
                     <div className="rp-container">
                         <div className="h-tours-head">
                             <div>
@@ -101,8 +104,8 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
                         </Reveal>
 
                         <div className="h-tours-foot">
-                            <Link href={routes.tours.index} className="rp-btn rp-btn--outline">
-                                Xem tất cả hành trình <ArrowRight size={15} />
+                            <Link href={ve('home.tours.button').url || routes.tours.index} className="rp-btn rp-btn--outline" data-ui="home.tours.button">
+                                <span data-ui="home.tours.button.text">Xem tất cả hành trình</span> <ArrowRight size={15} />
                             </Link>
                         </div>
                     </div>
@@ -110,8 +113,8 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
             )}
 
             {/* 3. Banner ảnh thiên nhiên */}
-            <section className="h-band">
-                {bandImage && <img className="h-band__image" src={bandImage} alt="" decoding="async" />}
+            <section className="h-band" data-ui="home.band.section" style={{ display: sectionOn('band') ? undefined : 'none' }}>
+                {bandImage && <img className="h-band__image" data-ui="home.band.image" src={bandImage} alt="" decoding="async" />}
 
                 <div className="rp-container">
                     <div className="h-band__inner">
@@ -126,7 +129,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
 
             {/* 4. Thư viện — cấu hình từ Admin */}
             {gallery.enabled !== false && (
-                <section className={`rp-section${gallery.background === 'white' ? '' : ' rp-section--cream'}`}>
+                <section className={`rp-section${gallery.background === 'white' ? '' : ' rp-section--cream'}`} data-ui="home.gallery.section" style={{ display: sectionOn('gallery') ? undefined : 'none' }}>
                     <div className="rp-container">
                         <div className="rp-spread" style={{ marginBottom: 34 }}>
                             <div>
@@ -146,15 +149,16 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
 
                             {gallery.button_on !== false && (
                                 <Link
-                                    href={gallery.button_url || routes.posts.index}
+                                    href={ve('home.gallery.button').url || gallery.button_url || routes.posts.index}
                                     className="rp-btn rp-btn--outline"
+                                    data-ui="home.gallery.button"
                                     style={galleryOverride ? {
                                         color: gallery.button_color,
                                         background: gallery.button_bg,
                                         borderColor: gallery.button_color,
                                     } : undefined}
                                 >
-                                    {gallery.button_text || 'Đọc cẩm nang'} <ArrowRight size={15} />
+                                    <span data-ui="home.gallery.button.text">{gallery.button_text || 'Đọc cẩm nang'}</span> <ArrowRight size={15} />
                                 </Link>
                             )}
                         </div>
@@ -168,7 +172,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
 
             {/* 5. Cẩm nang — White */}
             {posts.length > 0 && (
-                <section className="rp-section">
+                <section className="rp-section" data-ui="home.posts.section" style={{ display: sectionOn('posts') ? undefined : 'none' }}>
                     <div className="rp-container">
                         <div className="rp-spread" style={{ marginBottom: 36 }}>
                             <div>
@@ -177,8 +181,8 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
                                     <span data-ui="home.posts.title">Ghi chép</span> <em data-ui="home.posts.accent">từ rừng</em>
                                 </h2>
                             </div>
-                            <Link href={routes.posts.index} className="rp-link-arrow">
-                                Tất cả bài viết <ArrowRight size={15} />
+                            <Link href={ve('home.posts.button').url || routes.posts.index} className="rp-link-arrow" data-ui="home.posts.button">
+                                <span data-ui="home.posts.button.text">Tất cả bài viết</span> <ArrowRight size={15} />
                             </Link>
                         </div>
 
@@ -222,8 +226,8 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
             )}
 
             {/* 6. CTA — ảnh thiên nhiên */}
-            <section className="h-cta">
-                {ctaImage && <img className="h-cta__image" src={ctaImage} alt="" decoding="async" />}
+            <section className="h-cta" data-ui="home.cta.section" style={{ display: sectionOn('cta') ? undefined : 'none' }}>
+                {ctaImage && <img className="h-cta__image" data-ui="home.cta.image" src={ctaImage} alt="" decoding="async" />}
 
                 <div className="rp-container">
                     <Reveal>
@@ -257,8 +261,8 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
                                     )}
                                 </div>
 
-                                <Link href={routes.contact} className="rp-btn rp-btn--gold">
-                                    Liên hệ tư vấn <ArrowRight size={16} />
+                                <Link href={ve('home.cta.button').url || routes.contact} className="rp-btn rp-btn--gold" data-ui="home.cta.button">
+                                    <span data-ui="home.cta.button.text">Liên hệ tư vấn</span> <ArrowRight size={16} />
                                 </Link>
 
                                 <Link href={routes.tours.index} className="rp-btn rp-btn--ghost-light">

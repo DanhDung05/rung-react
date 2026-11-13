@@ -17,6 +17,13 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-13] Visual Editor GĐ1b — nút, ảnh, bật/tắt section
+
+### Added
+- 6 section trang chủ có `enabled` + data-ui; tắt sẽ ẩn section (cả public lẫn preview).
+- Ảnh nền Banner/CTA chỉnh được (field `image`, nhập đường dẫn Media `/storage/...`).
+- Nút: chọn nút để sửa **liên kết**; chọn phần chữ để sửa nội dung (giữ icon).
+- Panel editor hiện checkbox “Hiện section”, ô ảnh, ô liên kết nút; thay đổi áp dụng ngay trong iframe.
 ## [2026-11-13] Tắt lớp phủ Hero: giữ dải tối cho menu
 
 ### Changed

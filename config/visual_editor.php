@@ -13,6 +13,7 @@ return [
             'welcome' => [
                 'label'  => 'Welcome',
                 'fields' => [
+                    'enabled' => ['label' => 'Bật section này', 'type' => 'section', 'default' => true],
                     'eyebrow' => ['label' => 'Nhãn nhỏ', 'type' => 'text', 'default' => 'Rừng Adventure · Việt Nam'],
                     'title'   => ['label' => 'Tiêu đề', 'type' => 'text', 'default' => 'Chào mừng đến'],
                     'accent'  => ['label' => 'Chữ nhấn mạnh', 'type' => 'text', 'default' => 'Rừng Adventure'],
@@ -23,6 +24,7 @@ return [
             'tours' => [
                 'label'  => 'Tour nổi bật',
                 'fields' => [
+                    'enabled' => ['label' => 'Bật section này', 'type' => 'section', 'default' => true],
                     'eyebrow' => ['label' => 'Nhãn nhỏ', 'type' => 'text', 'default' => 'Chọn hành trình của bạn'],
                     'title'   => ['label' => 'Tiêu đề', 'type' => 'text', 'default' => 'Hành trình'],
                     'accent'  => ['label' => 'Chữ nhấn mạnh', 'type' => 'text', 'default' => 'nổi bật'],
@@ -33,6 +35,8 @@ return [
             'band' => [
                 'label'  => 'Banner thiên nhiên',
                 'fields' => [
+                    'enabled' => ['label' => 'Bật section này', 'type' => 'section', 'default' => true],
+                    'image'   => ['label' => 'Ảnh nền (URL/Media)', 'type' => 'image', 'default' => ''],
                     'eyebrow' => ['label' => 'Nhãn nhỏ', 'type' => 'text', 'default' => 'Triết lý hành trình'],
                     'quote'   => ['label' => 'Câu trích dẫn', 'type' => 'textarea', 'default' => '“Chúng tôi không đưa bạn đi thật nhanh. Chúng tôi đưa bạn đi thật sâu.”'],
                     'source'  => ['label' => 'Nguồn', 'type' => 'text', 'default' => 'Rừng Adventure'],
@@ -42,6 +46,7 @@ return [
             'gallery' => [
                 'label'  => 'Thư viện',
                 'fields' => [
+                    'enabled' => ['label' => 'Bật section này', 'type' => 'section', 'default' => true],
                     'label'   => ['label' => 'Nhãn nhỏ', 'type' => 'text', 'default' => 'Thư viện'],
                     'title'   => ['label' => 'Tiêu đề', 'type' => 'text', 'default' => 'Những khoảnh khắc'],
                     'accent'  => ['label' => 'Chữ nhấn mạnh', 'type' => 'text', 'default' => 'đường rừng'],
@@ -52,6 +57,7 @@ return [
             'posts' => [
                 'label'  => 'Cẩm nang',
                 'fields' => [
+                    'enabled' => ['label' => 'Bật section này', 'type' => 'section', 'default' => true],
                     'eyebrow' => ['label' => 'Nhãn nhỏ', 'type' => 'text', 'default' => 'Cẩm nang'],
                     'title'   => ['label' => 'Tiêu đề', 'type' => 'text', 'default' => 'Ghi chép'],
                     'accent'  => ['label' => 'Chữ nhấn mạnh', 'type' => 'text', 'default' => 'từ rừng'],
@@ -62,6 +68,8 @@ return [
             'cta' => [
                 'label'  => 'CTA cuối trang',
                 'fields' => [
+                    'enabled' => ['label' => 'Bật section này', 'type' => 'section', 'default' => true],
+                    'image'   => ['label' => 'Ảnh nền CTA (URL/Media)', 'type' => 'image', 'default' => ''],
                     'eyebrow' => ['label' => 'Nhãn nhỏ', 'type' => 'text', 'default' => 'Bắt đầu từ đây'],
                     'title'   => ['label' => 'Tiêu đề', 'type' => 'text', 'default' => 'Sẵn sàng cho'],
                     'accent'  => ['label' => 'Chữ nhấn mạnh', 'type' => 'text', 'default' => 'hành trình tiếp theo?'],
