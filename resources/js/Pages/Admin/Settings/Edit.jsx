@@ -140,6 +140,7 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
         router.post(routes.admin.settings.update(group), { ...payload, _method: 'put' }, {
             forceFormData: true,
             preserveScroll: true,
+            onSuccess: () => setPreviewKey((key) => key + 1),
             onFinish: () => setProcessing(false),
         });
     };
@@ -183,7 +184,7 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
         };
         const lines = [];
         Object.entries(paletteMap).forEach(([key, variable]) => {
-            if (source[key]) lines.push(`${variable}:${source[key]};`);
+            if (source[key]) lines.push(`${variable}:${source[key]} !important;`);
         });
 
         const selectors = {
@@ -204,7 +205,7 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
         Object.entries(selectors).forEach(([group, selector]) => {
             Object.entries(props).forEach(([prop, cssProp]) => {
                 const value = source[`typo_${group}_${prop}`];
-                if (value) rules.push(`${selector}{${cssProp}:${value};}`);
+                if (value) rules.push(`${selector}{${cssProp}:${value} !important;}`);
             });
         });
 
@@ -219,9 +220,10 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
         if (!style) {
             style = doc.createElement('style');
             style.id = 'theme-preview-style';
-            doc.head.appendChild(style);
         }
 
+        // Luôn đặt style cuối <html> để thắng style ThemeStyles trong <body>.
+        doc.documentElement.appendChild(style);
         style.textContent = buildPreviewCss(previewMode === 'saved' ? current : values);
     }, [values, current, previewMode, previewPage, previewKey, previewTick, isThemeGroup]);
     return (
