@@ -17,6 +17,11 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-13] Sửa lưu công tắc bật/tắt trong Settings
+
+### Fixed
+- Checkbox boolean luôn lưu `0` đúng: controller dùng `$request->boolean()` thay vì `isset()` (trước đó gửi 0 vẫn bị lưu thành 1).
+- Trang Settings đọc lại boolean đã cast, checkbox hiển thị đúng trạng thái sau F5.
 ## [2026-11-13] Bật/tắt lớp phủ tối Hero
 
 ### Added

@@ -93,6 +93,21 @@ class BackgroundColorTest extends TestCase
             ->where('theme.typography.h1.color', '#102c24'));
     }
 
+    public function test_boolean_setting_stays_off_after_reload(): void
+    {
+        $admin = $this->admin();
+
+        $this->actingAs($admin)->put(route('admin.settings.update', 'hero'), [
+            'hero_overlay_enabled' => 0,
+            'hero_image_blog' => null,
+        ])->assertRedirect();
+
+        $this->assertFalse((bool) Setting::get('hero_overlay_enabled'));
+
+        $this->actingAs($admin)->get(route('admin.settings.edit', 'hero'))
+            ->assertInertia(fn ($page) => $page->where('current.hero_overlay_enabled', false));
+    }
+
     public function test_hero_overlay_can_be_disabled(): void
     {
         Setting::set('hero_overlay_enabled', '0', 'hero', 'boolean');

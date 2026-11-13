@@ -64,6 +64,10 @@ class SettingController extends Controller
         $current = [];
         foreach ($groupConfig['fields'] as $key => $field) {
             $current[$key] = $values[$key] ?? ($field['default'] ?? null);
+
+            if (($field['type'] ?? null) === 'boolean') {
+                $current[$key] = filter_var($current[$key], FILTER_VALIDATE_BOOLEAN);
+            }
         }
 
         return Inertia::render('Admin/Settings/Edit', compact('group', 'groupConfig', 'current'));
@@ -121,7 +125,7 @@ class SettingController extends Controller
 
             // Xử lý boolean
             if ($field['type'] === 'boolean') {
-                $value = isset($data[$key]) ? '1' : '0';
+                $value = $request->boolean($key) ? '1' : '0';
             }
 
             // Xử lý color (đảm bảo bắt đầu bằng #)
