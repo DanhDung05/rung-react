@@ -17,6 +17,11 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-13] Sửa logo trắng bị vỡ
+
+### Fixed
+- Bỏ `filter: invert()` trên logo (gây vỡ nét); dùng **logo trắng PNG riêng** (`logo-white.png`, alpha mượt).
+- Header trong suốt, Footer và menu mobile hiển thị logo trắng sắc nét; header nền kem dùng logo xanh gốc.
 ## [2026-11-13] Đồng nhất màu brand
 
 ### Changed

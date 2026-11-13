@@ -28,7 +28,7 @@ export default function Footer({ settings = {}, navigation = {} }) {
                     <div className="rp-footer__brand">
                         <Link href={routes.home} className="rp-brand">
                             {settings?.logo_url ? (
-                                <img src={settings.logo_url} alt={siteName} className="rp-brand__logo" />
+                                <><img src={settings.logo_url} alt={siteName} className="rp-brand__logo rp-brand__logo--color" /><img src="/storage/media/brand/logo-white.png" alt="" aria-hidden="true" className="rp-brand__logo rp-brand__logo--white" /></>
                             ) : (
                                 <span className="rp-brand__mark">
                                     <Mountain size={21} />

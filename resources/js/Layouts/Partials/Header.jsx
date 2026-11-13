@@ -54,7 +54,7 @@ export default function Header({ settings = {}, navigation = {}, overlay = true 
                 <div className="rp-container rp-header__inner">
                     <Link href={routes.home} className="rp-brand" aria-label={siteName}>
                         {settings?.logo_url ? (
-                            <img src={settings.logo_url} alt={siteName} className="rp-brand__logo" />
+                            <><img src={settings.logo_url} alt={siteName} className="rp-brand__logo rp-brand__logo--color" /><img src="/storage/media/brand/logo-white.png" alt="" aria-hidden="true" className="rp-brand__logo rp-brand__logo--white" /></>
                         ) : (
                             <span className="rp-brand__mark">
                                 <Mountain size={22} />
@@ -119,7 +119,7 @@ export default function Header({ settings = {}, navigation = {}, overlay = true 
                     <div className="rp-mobile__head">
                         <Link href={routes.home} className="rp-brand" onClick={() => setOpen(false)}>
                             {settings?.logo_url ? (
-                                <img src={settings.logo_url} alt={siteName} className="rp-brand__logo" />
+                                <><img src={settings.logo_url} alt={siteName} className="rp-brand__logo rp-brand__logo--color" /><img src="/storage/media/brand/logo-white.png" alt="" aria-hidden="true" className="rp-brand__logo rp-brand__logo--white" /></>
                             ) : (
                                 <span className="rp-brand__mark">
                                     <Mountain size={20} />

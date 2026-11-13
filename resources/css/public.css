@@ -4826,8 +4826,8 @@
 }
 
 /* =========================================================
-   Th?ng nh?t heading: ch? nh?n m?nh dùng cùng font/màu
-   (Hero Slider ðý?c gi? thi?t k? riêng theo yêu c?u)
+   Th?ng nh?t heading: ch? nh?n m?nh dï¿½ng cï¿½ng font/mï¿½u
+   (Hero Slider ï¿½ï¿½?c gi? thi?t k? riï¿½ng theo yï¿½u c?u)
    ========================================================= */
 .rp-app h1 em,
 .rp-app h2 em,
@@ -4846,7 +4846,7 @@
     letter-spacing: inherit !important;
 }
 
-/* Gi? nguyên Hero Slider */
+/* Gi? nguyï¿½n Hero Slider */
 .rp-app .rp-slider__title em {
     font-family: Cambria, 'Times New Roman', Georgia, 'DejaVu Serif', serif !important;
     font-style: italic !important;
@@ -4854,20 +4854,22 @@
     color: #f0d3a8 !important;
 }
 
-/* Brand: dùng chung m?t màu (RUNG / ADVENTURE / tagline) */
+/* Brand: dï¿½ng chung m?t mï¿½u (RUNG / ADVENTURE / tagline) */
 .rp-brand__gold,
 .rp-header.is-overlay:not(.is-solid) .rp-brand__gold {
     color: inherit !important;
 }
 
 /* Logo brand image */
-.rp-brand__logo { height: 64px; width: auto; max-width: 220px; object-fit: contain; }
-.rp-footer .rp-brand__logo { height: 72px; }
-@media (max-width: 680px) { .rp-brand__logo { height: 54px; } }
+.rp-brand__logo { display: block; height: 62px; width: auto; max-width: 200px; object-fit: contain; flex: none; }
+.rp-brand__logo--white { display: none; }
+.rp-header.is-overlay:not(.is-solid) .rp-brand__logo--color,
+.rp-footer .rp-brand__logo--color,
+.rp-mobile .rp-brand__logo--color { display: none; }
+.rp-header.is-overlay:not(.is-solid) .rp-brand__logo--white,
+.rp-footer .rp-brand__logo--white,
+.rp-mobile .rp-brand__logo--white { display: block; }
+.rp-footer .rp-brand__logo { height: 70px; }
+@media (max-width: 680px) { .rp-brand__logo { height: 50px; } }
 
-/* Logo trên n?n t?i: ð?o sang tr?ng ð? d? ð?c */
-.rp-header.is-overlay:not(.is-solid) .rp-brand__logo,
-.rp-footer .rp-brand__logo,
-.rp-mobile .rp-brand__logo {
-    filter: brightness(0) invert(1);
-}
+
