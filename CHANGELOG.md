@@ -17,6 +17,10 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-13] Cố định sidebar Admin
+
+### Changed
+- Sidebar Admin `position: sticky; top: 0; height: 100vh` trên desktop — không trôi theo nội dung khi cuộn; mobile giữ nguyên drawer.
 ## [2026-11-13] Sửa logo trắng bị vỡ
 
 ### Fixed
