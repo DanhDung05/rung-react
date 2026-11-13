@@ -39,6 +39,10 @@ export default function ThemeStyles({ theme, bgPrimary, bgAlternate }) {
         earth: '--rp-earth',
         text: '--rp-ink',
         muted: '--rp-muted',
+        gold: '--rp-gold',
+        surface: '--rp-surface',
+        border: '--rp-line',
+        on_dark: '--rp-on-dark',
     };
 
     Object.entries(paletteMap).forEach(([key, variable]) => {

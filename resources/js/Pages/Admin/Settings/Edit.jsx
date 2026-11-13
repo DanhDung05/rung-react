@@ -95,6 +95,10 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
             palette_earth: '--rp-earth',
             palette_text: '--rp-ink',
             palette_muted: '--rp-muted',
+            palette_gold: '--rp-gold',
+            palette_surface: '--rp-surface',
+            palette_border: '--rp-line',
+            palette_on_dark: '--rp-on-dark',
         };
 
         Object.entries(map).forEach(([key, variable]) => {
@@ -172,6 +176,10 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
             palette_earth: '--rp-earth',
             palette_text: '--rp-ink',
             palette_muted: '--rp-muted',
+            palette_gold: '--rp-gold',
+            palette_surface: '--rp-surface',
+            palette_border: '--rp-line',
+            palette_on_dark: '--rp-on-dark',
         };
         const lines = [];
         Object.entries(paletteMap).forEach(([key, variable]) => {

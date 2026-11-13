@@ -18,7 +18,6 @@ class SettingController extends Controller
         'theme_h1_color', 'theme_h1_font', 'theme_h2_color', 'theme_h2_font',
         'theme_h3_color', 'theme_h3_font', 'theme_h4_color', 'theme_h4_font',
         'theme_h5_color', 'theme_h5_font', 'theme_h6_color', 'theme_h6_font',
-        'google_analytics_id',
     ];
     /**
      * Tổng quan các nhóm cấu hình.

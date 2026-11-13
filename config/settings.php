@@ -125,11 +125,6 @@ return [
                     'type'  => 'string',
                     'hint'  => 'Phân cách bằng dấu phẩy',
                 ],
-                'google_analytics_id' => [
-                    'label' => 'Google Analytics ID',
-                    'type'  => 'string',
-                    'hint'  => 'Ví dụ: G-XXXXXXXXXX',
-                ],
             ],
         ],
 
@@ -179,6 +174,30 @@ return [
                     'type'    => 'color',
                     'default' => '#6b7a70',
                     'hint'    => 'Chữ phụ: meta, caption, breadcrumb, ghi chú.',
+                ],
+                'palette_gold' => [
+                    'label'   => 'Gold (nhấn)',
+                    'type'    => 'color',
+                    'default' => '#c58b45',
+                    'hint'    => 'Nút CTA vàng, badge, sao đánh giá.',
+                ],
+                'palette_surface' => [
+                    'label'   => 'Surface (card/form)',
+                    'type'    => 'color',
+                    'default' => '#ffffff',
+                    'hint'    => 'Nền card, input, form, khối nội dung.',
+                ],
+                'palette_border' => [
+                    'label'   => 'Viền',
+                    'type'    => 'color',
+                    'default' => '#e4e0d5',
+                    'hint'    => 'Đường viền card, input, divider.',
+                ],
+                'palette_on_dark' => [
+                    'label'   => 'Chữ trên nền tối',
+                    'type'    => 'color',
+                    'default' => '#e9e4d6',
+                    'hint'    => 'Chữ trong Footer và các khối nền Forest.',
                 ],
             ],
         ],

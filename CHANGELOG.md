@@ -17,6 +17,21 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-13] Chuẩn hóa Design Tokens (GĐ2)
+
+### Added
+- 4 palette key chuẩn: `palette_gold`, `palette_surface`, `palette_border`, `palette_on_dark` (map `--rp-gold/--rp-surface/--rp-line/--rp-on-dark`).
+- Command `tokens:migrate [--dry-run]`: chuyển `bg_primary/bg_alternate/theme_h1..h3_color` sang key chuẩn, idempotent, chỉ ghi khi đích trống.
+- `docs/DESIGN_TOKENS.md` — danh mục token, thứ tự ưu tiên, bản đồ legacy.
+
+### Changed
+- Định nghĩa gốc `--rp-*` chuyển từ `public.css` (tự tham chiếu) sang `tokens.css`.
+- `public.css` dùng `var(--rp-*, fallback)` cho vàng/viền/chữ-trên-nền-tối và surface; giữ shade/overlay/trạng thái làm CSS constant.
+- Preview Admin nhận thêm 4 token mới.
+
+### Removed
+- `google_analytics_id`: xóa khỏi config + row Settings (đã backup `storage/app/backups/`).
+
 ## [2026-11-12] Mô tả màu trong Bảng màu
 
 ### Added

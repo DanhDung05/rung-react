@@ -26,6 +26,7 @@ Cập nhật: 2026-11-11 · commit `9f03af2` · Build: OK · Test: 103 passed / 
 - Theme: palette 6 màu → CSS vars; typography 10 nhóm; loại trừ Hero Slider H1.
 - Visual Editor: draft/published/history (5 bản), undo/redo, 3 breakpoint, iframe preview.
 - Màu nền: Palette (palette_cream, palette_white) là nguồn duy nhất; Appearance chỉ còn thông báo + liên kết, g_* giữ làm fallback không ghi đè.
+- Design tokens: 10 palette + 10 nhóm typography; 	okens.css là nguồn gốc, ThemeStyles override từ Settings; command 	okens:migrate cho legacy.
 
 ## 3. Đang triển khai / dở dang
 

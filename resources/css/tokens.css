@@ -167,3 +167,23 @@
   --z-modal:    1050;
   --z-tooltip:  1070;
 }
+/* =========================================================
+   PUBLIC DESIGN TOKENS (single source of truth)
+   ThemeStyles ch? override các bi?n này t? Settings.
+   ========================================================= */
+:root {
+  --rp-forest: #102c24;
+  --rp-forest-2: #1c4034;
+  --rp-forest-3: #2c5a49;
+  --rp-cream: #f7f3e9;
+  --rp-cream-2: #efe9db;
+  --rp-sand: #e3d6bd;
+  --rp-earth: #a77942;
+  --rp-gold: #c58b45;
+  --rp-ink: #1b2823;
+  --rp-muted: #6f7d75;
+  --rp-line: #e4e0d5;
+  --rp-white: #ffffff;
+  --rp-surface: #ffffff;
+  --rp-on-dark: #e9e4d6;
+}
