@@ -34,7 +34,7 @@ export default function Footer({ settings = {}, navigation = {} }) {
                                     <Mountain size={21} />
                                 </span>
                             )}
-                            <span className="rp-brand__text">
+                            <span className="rp-brand__text" style={settings?.logo_url ? { display: 'none' } : undefined}>
                                 RUNG<span className="rp-brand__gold">ADVENTURE</span>
                                 <small>EXPLORE THE WILD</small>
                             </span>

@@ -60,7 +60,7 @@ export default function Header({ settings = {}, navigation = {}, overlay = true 
                                 <Mountain size={22} />
                             </span>
                         )}
-                        <span className="rp-brand__text">
+                        <span className="rp-brand__text" style={settings?.logo_url ? { display: 'none' } : undefined}>
                             RUNG<span className="rp-brand__gold">ADVENTURE</span>
                             <small>EXPLORE THE WILD</small>
                         </span>
@@ -118,10 +118,14 @@ export default function Header({ settings = {}, navigation = {}, overlay = true 
                 <div className="rp-mobile" role="dialog" aria-modal="true" aria-label="Menu di động">
                     <div className="rp-mobile__head">
                         <Link href={routes.home} className="rp-brand" onClick={() => setOpen(false)}>
-                            <span className="rp-brand__mark">
-                                <Mountain size={20} />
-                            </span>
-                            <span className="rp-brand__text">
+                            {settings?.logo_url ? (
+                                <img src={settings.logo_url} alt={siteName} className="rp-brand__logo" />
+                            ) : (
+                                <span className="rp-brand__mark">
+                                    <Mountain size={20} />
+                                </span>
+                            )}
+                            <span className="rp-brand__text" style={settings?.logo_url ? { display: 'none' } : undefined}>
                                 RUNG<span className="rp-brand__gold">ADVENTURE</span>
                                 <small>EXPLORE THE WILD</small>
                             </span>

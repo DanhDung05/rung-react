@@ -4859,3 +4859,15 @@
 .rp-header.is-overlay:not(.is-solid) .rp-brand__gold {
     color: inherit !important;
 }
+
+/* Logo brand image */
+.rp-brand__logo { height: 64px; width: auto; max-width: 220px; object-fit: contain; }
+.rp-footer .rp-brand__logo { height: 72px; }
+@media (max-width: 680px) { .rp-brand__logo { height: 54px; } }
+
+/* Logo trên n?n t?i: ð?o sang tr?ng ð? d? ð?c */
+.rp-header.is-overlay:not(.is-solid) .rp-brand__logo,
+.rp-footer .rp-brand__logo,
+.rp-mobile .rp-brand__logo {
+    filter: brightness(0) invert(1);
+}
