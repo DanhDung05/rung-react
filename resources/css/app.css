@@ -79,3 +79,31 @@ body{margin:0;background:#fff;color:var(--ink);font-family:Inter,ui-sans-serif,s
 .admin-shell[data-theme="dark"] table td{color:#c9d6ce;border-color:#22382c}
 .admin-shell[data-theme="dark"] .ui-label,
 .admin-shell[data-theme="dark"] .ui-field > span{color:#c9d6ce}
+
+/* Dark mode: dashboard surfaces */
+.admin-shell[data-theme="dark"] .stat-card{background:#13241d;border-color:#24382e;color:#dbe6df}
+.admin-shell[data-theme="dark"] .stat-card strong,
+.admin-shell[data-theme="dark"] .stat-card h3{color:#e8f0ea}
+.admin-shell[data-theme="dark"] .stat-card__hint{color:#8fa398}
+.admin-shell[data-theme="dark"] .ui-alert-card{background:#13241d;border-color:#24382e;color:#dbe6df}
+.admin-shell[data-theme="dark"] .ui-alert-card strong{color:#e8f0ea}
+.admin-shell[data-theme="dark"] .ui-chart__track{background:#1c3128}
+.admin-shell[data-theme="dark"] .ui-chart__value,
+.admin-shell[data-theme="dark"] .ui-chart__label{color:#a9bcb1}
+.admin-shell[data-theme="dark"] .ui-dist__track{background:#1c3128}
+.admin-shell[data-theme="dark"] .ui-dist__head{color:#c9d6ce}
+.admin-shell[data-theme="dark"] .ui-table-wrap{background:#13241d;border-color:#24382e}
+.admin-shell[data-theme="dark"] .ui-table td{color:#c9d6ce}
+.admin-shell[data-theme="dark"] .ui-link{color:#8fd0b0}
+.admin-shell[data-theme="dark"] .ui-feed{color:#c9d6ce}
+.admin-shell[data-theme="dark"] .ui-feed li{border-color:#24382e}
+.admin-shell[data-theme="dark"] .admin-note{color:#8fa398}
+
+/* Dark mode: feed/list text */
+.admin-shell[data-theme="dark"] .ui-feed a,
+.admin-shell[data-theme="dark"] .ui-feed strong,
+.admin-shell[data-theme="dark"] .ui-feed span,
+.admin-shell[data-theme="dark"] .ui-feed li,
+.admin-shell[data-theme="dark"] .ui-feed div{color:#c9d6ce}
+.admin-shell[data-theme="dark"] .ui-feed small,
+.admin-shell[data-theme="dark"] .ui-feed time{color:#8fa398}

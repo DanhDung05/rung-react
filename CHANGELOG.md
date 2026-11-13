@@ -17,6 +17,11 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-13] Hoàn thiện dark mode Admin
+
+### Fixed
+- Dashboard dark: stat cards, alert cards, chart tracks, distribution bars, bảng, feed (liên hệ/tour/menu) — hết mảng trắng và chữ tối trên nền tối.
+- Bổ sung màu link/ghi chú trong dark mode.
 ## [2026-11-13] Admin: giao diện Sáng/Tối + thu gọn sidebar
 
 ### Added
