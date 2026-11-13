@@ -239,6 +239,55 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
                     )}
                 </Card>
             )}
+            {group === 'palette' && (
+                <Card title="Màu này ảnh hưởng phần nào?" description="Mỗi ô là thành phần thật trên website, cập nhật theo màu đang chỉnh.">
+                    <div className="palette-impact">
+                        <div className="palette-impact__item">
+                            <span className="palette-impact__label">Forest — Footer / CTA / tiêu đề</span>
+                            <div style={{ background: values.palette_forest || '#102c24', color: values.palette_on_dark || '#e9e4d6', padding: '12px 14px', borderRadius: 6, fontWeight: 700 }}>Rừng Adventure</div>
+                        </div>
+                        <div className="palette-impact__item">
+                            <span className="palette-impact__label">Warm Cream — nền section</span>
+                            <div style={{ background: values.palette_cream || '#f7f3e9', border: '1px solid #e4e0d5', padding: 14, borderRadius: 6 }}>
+                                <div className="rp-eyebrow" style={{ color: values.palette_earth || '#a77942' }}>NHÃN NHỎ</div>
+                            </div>
+                        </div>
+                        <div className="palette-impact__item">
+                            <span className="palette-impact__label">White — nền trang</span>
+                            <div style={{ background: values.palette_white || '#fff', border: '1px solid #e4e0d5', padding: 14, borderRadius: 6 }}>Nội dung trên nền trắng</div>
+                        </div>
+                        <div className="palette-impact__item">
+                            <span className="palette-impact__label">Earth — nhãn & chữ nhấn</span>
+                            <div style={{ background: '#fff', border: '1px solid #e4e0d5', padding: 14, borderRadius: 6 }}>
+                                <div className="rp-eyebrow" style={{ color: values.palette_earth || '#a77942' }}>THƯ VIỆN</div>
+                                <div style={{ color: values.palette_forest || '#102c24', fontWeight: 800 }}>Khoảnh khắc <em style={{ color: values.palette_earth || '#a77942' }}>đường rừng</em></div>
+                            </div>
+                        </div>
+                        <div className="palette-impact__item">
+                            <span className="palette-impact__label">Text / Muted — chữ chính & phụ</span>
+                            <div style={{ background: '#fff', border: '1px solid #e4e0d5', padding: 14, borderRadius: 6 }}>
+                                <div style={{ color: values.palette_text || '#1b2a22' }}>Chữ nội dung chính</div>
+                                <div style={{ color: values.palette_muted || '#6b7a70', fontSize: '.8rem' }}>Meta, ngày tháng, ghi chú</div>
+                            </div>
+                        </div>
+                        <div className="palette-impact__item">
+                            <span className="palette-impact__label">Gold — nút CTA</span>
+                            <div style={{ background: '#fff', border: '1px solid #e4e0d5', padding: 14, borderRadius: 6 }}>
+                                <span style={{ background: values.palette_gold || '#c58b45', color: '#fff', padding: '9px 16px', borderRadius: 999, fontWeight: 800, fontSize: '.75rem' }}>Khám phá hành trình</span>
+                            </div>
+                        </div>
+                        <div className="palette-impact__item">
+                            <span className="palette-impact__label">Surface / Border — card & viền</span>
+                            <div style={{ background: values.palette_surface || '#fff', border: `1px solid ${values.palette_border || '#e4e0d5'}`, padding: 14, borderRadius: 6 }}>Card nội dung</div>
+                        </div>
+                        <div className="palette-impact__item">
+                            <span className="palette-impact__label">On-dark — chữ trên nền tối</span>
+                            <div style={{ background: values.palette_forest || '#102c24', color: values.palette_on_dark || '#e9e4d6', padding: 14, borderRadius: 6, fontSize: '.85rem' }}>Chữ trong Footer</div>
+                        </div>
+                    </div>
+                </Card>
+            )}
+
             {isThemeGroup && (
                 <Card title="Xem trước giao diện thật" description="Iframe dùng chính trang public. Thay đổi chỉ nằm trong trình duyệt Admin, không ghi database.">
                     <div className="theme-preview-toolbar">

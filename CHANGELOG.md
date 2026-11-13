@@ -17,6 +17,13 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-13] Đơn giản hóa trang Cài đặt màu
+
+### Changed
+- Trang Cài đặt ẩn nhóm **Màu nền (đã chuyển)**; nhóm **Giao diện** chỉ còn 2 trường màu Admin (12 key h1..h6 legacy không còn hiển thị/đếm).
+- Đổi tên: “Bảng màu website”, “Màu giao diện Admin” để phân biệt màu web và màu Admin.
+- Trang Bảng màu thêm khối **“Màu này ảnh hưởng phần nào?”**: 8 mẫu thành phần thật (Footer, nền section, nền trang, nhãn, chữ, nút, card/viền, chữ trên nền tối) cập nhật theo màu đang chỉnh.
+
 ## [2026-11-13] Heading kế thừa Palette Forest
 
 ### Changed

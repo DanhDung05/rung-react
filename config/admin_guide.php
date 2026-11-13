@@ -147,7 +147,7 @@ return [
                 'title' => 'Bảng màu (Palette)',
                 'path' => '/admin/cau-hinh/palette',
                 'purpose' => 'Nguồn màu toàn website: Forest, Cream, White, Earth, Text, Muted, Gold, Surface, Border, On-dark.',
-                'steps' => ['Mở Cài đặt → Bảng màu.', 'Chọn màu hoặc nhập HEX.', 'Xem khối “Xem trước giao diện thật” (iframe Home/Tour, Desktop/Tablet/Mobile).', 'Bấm Lưu cấu hình.'],
+                'steps' => ['Mở Cài đặt → Bảng màu.', 'Xem khối “Màu này ảnh hưởng phần nào?” để biết mỗi màu tác động lên thành phần nào.', 'Chọn màu hoặc nhập HEX.', 'Xem khối “Xem trước giao diện thật” (iframe Home/Tour, Desktop/Tablet/Mobile).', 'Bấm Lưu cấu hình.'],
                 'effect' => 'Cập nhật CSS variables --rp-*.',
                 'public' => 'Các thành phần dùng biến palette; một số màu shade/màu chức năng giữ nguyên.',
                 'notes' => 'Đây là nơi duy nhất quản lý màu nền toàn site. Preview không ghi DB; chưa Lưu thì khách không thấy đổi.',

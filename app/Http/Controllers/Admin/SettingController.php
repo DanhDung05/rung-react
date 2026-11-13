@@ -29,6 +29,14 @@ class SettingController extends Controller
 
         $groups = config('settings.groups', []);
 
+        // Ẩn nhóm đã thay thế và field legacy khỏi danh sách
+        $hiddenGroups = ['appearance'];
+        $groups = array_diff_key($groups, array_flip($hiddenGroups));
+
+        foreach ($groups as $key => $group) {
+            $groups[$key]['fields'] = array_diff_key($group['fields'], array_flip(self::HIDDEN_KEYS));
+        }
+
         return Inertia::render('Admin/Settings/Index', compact('groups'));
     }
 

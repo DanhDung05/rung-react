@@ -135,7 +135,7 @@ return [
         // PALETTE (màu toàn cục)
         // ============================================================
         'palette' => [
-            'label'       => 'Bảng màu',
+            'label'       => 'Bảng màu website',
             'description' => 'Màu nền và màu chữ dùng chung toàn website',
             'icon'        => 'palette',
             'fields'      => [
@@ -284,8 +284,8 @@ return [
         // THEME
         // ============================================================
         'theme' => [
-            'label'       => 'Giao diện',
-            'description' => 'Màu sắc và font chữ',
+            'label'       => 'Màu giao diện Admin',
+            'description' => 'Màu nút/badge của khu quản trị (không phải màu website)',
             'icon'        => 'palette',
             'fields'      => [
                 // MÀU CHUNG
