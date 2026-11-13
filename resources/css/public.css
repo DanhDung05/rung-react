@@ -4824,3 +4824,32 @@
     font-weight: 700;
     font-synthesis-weight: none;
 }
+
+/* =========================================================
+   Th?ng nh?t heading: ch? nh?n m?nh dùng cùng font/màu
+   (Hero Slider ðý?c gi? thi?t k? riêng theo yêu c?u)
+   ========================================================= */
+.rp-app h1 em,
+.rp-app h2 em,
+.rp-app h3 em,
+.rp-app .rp-display em,
+.rp-app .rp-h2 em,
+.rp-app .rp-h3 em,
+.rp-app .h-welcome__title em,
+.rp-app .h-about__title em,
+.rp-app .rp-pagehead__title em,
+.rp-app .h-cta__title em {
+    font-family: inherit !important;
+    font-style: inherit !important;
+    font-weight: inherit !important;
+    color: inherit !important;
+    letter-spacing: inherit !important;
+}
+
+/* Gi? nguyên Hero Slider */
+.rp-app .rp-slider__title em {
+    font-family: Cambria, 'Times New Roman', Georgia, 'DejaVu Serif', serif !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    color: #f0d3a8 !important;
+}

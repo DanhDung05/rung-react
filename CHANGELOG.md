@@ -17,6 +17,12 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-13] Đồng nhất font/màu chữ nhấn trong tiêu đề
+
+### Changed
+- Chữ nhấn mạnh (`<em>`) trong H1/H2/H3, Welcome, About, PageHead, CTA kế thừa **cùng font, cùng màu, cùng độ đậm** với tiêu đề (bỏ serif nghiêng + màu Earth riêng).
+- Hero Slider giữ nguyên thiết kế riêng (không đổi).
+
 ## [2026-11-13] Đơn giản hóa trang Cài đặt màu
 
 ### Changed
