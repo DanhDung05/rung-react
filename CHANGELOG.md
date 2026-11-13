@@ -17,6 +17,15 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-13] Admin: giao diện Sáng/Tối + thu gọn sidebar
+
+### Added
+- Nút chuyển **Sáng / Tối** trên topbar Admin; lưu lựa chọn vào localStorage.
+- Nút **thu nhỏ / mở rộng sidebar** (76px, chỉ còn icon); lưu trạng thái.
+
+### Changed
+- Sidebar vẫn cố định (sticky) khi cuộn; mobile giữ drawer.
+- Dark mode áp cho nền, topbar, card, input, bảng, chữ — không ảnh hưởng public.
 ## [2026-11-13] Cố định sidebar Admin
 
 ### Changed

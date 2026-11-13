@@ -72,12 +72,12 @@ function isActive(currentUrl, href, exact = false) {
     return path === href || path.startsWith(`${href}/`);
 }
 
-export default function AdminSidebar({ open = false, onNavigate }) {
+export default function AdminSidebar({ open = false, collapsed = false, onNavigate }) {
     const { url, props } = usePage();
     const isAdmin = props.auth?.user?.is_admin === true;
 
     return (
-        <aside className={`admin-sidebar ${open ? 'is-open' : ''}`}>
+        <aside className={`admin-sidebar ${open ? 'is-open' : ''} ${collapsed ? 'is-collapsed' : ''}`.trim()}>
             <Link href={routes.home} className="brand admin-brand">
                 <span className="brand-mark">
                     <Mountain size={20} />
@@ -106,7 +106,7 @@ export default function AdminSidebar({ open = false, onNavigate }) {
                                         className={`side-link ${isActive(url, item.href, item.exact) ? 'is-active' : ''}`}
                                     >
                                         <Icon size={18} />
-                                        {item.label}
+                                        <span className="side-link__label">{item.label}</span>
                                     </Link>
                                 );
                             })}
@@ -118,7 +118,7 @@ export default function AdminSidebar({ open = false, onNavigate }) {
             <div className="admin-nav__footer">
                 <Link href={routes.home} className="side-link" onClick={onNavigate}>
                     <ExternalLink size={18} />
-                    Xem website
+                    <span className="side-link__label">Xem website</span>
                 </Link>
             </div>
         </aside>

@@ -41,3 +41,41 @@ body{margin:0;background:#fff;color:var(--ink);font-family:Inter,ui-sans-serif,s
         flex: 1;
     }
 }
+
+/* ============ Admin: theme sáng/t?i + sidebar thu g?n ============ */
+.admin-top__icon{width:36px;height:36px;border-radius:8px;border:1px solid #e3ded0;background:#fff;color:#33443a;display:grid;place-items:center;cursor:pointer;margin-right:6px}
+.admin-top__icon:hover{background:#f5f1e7}
+
+.admin-shell.is-collapsed .admin-sidebar{width:76px;padding-left:8px;padding-right:8px}
+.admin-shell.is-collapsed .admin-sidebar .sidebar-caption,
+.admin-shell.is-collapsed .admin-sidebar .side-link__label,
+.admin-shell.is-collapsed .admin-sidebar .admin-brand > span:last-child{display:none}
+.admin-shell.is-collapsed .admin-sidebar .side-link{justify-content:center;padding-left:0;padding-right:0}
+.admin-shell.is-collapsed .admin-sidebar .admin-brand{justify-content:center;padding-left:0;padding-right:0}
+
+.admin-shell[data-theme="dark"]{background:#0d1a15;color:#dbe6df}
+.admin-shell[data-theme="dark"] .admin-main,
+.admin-shell[data-theme="dark"] .admin-content{background:#0d1a15;color:#dbe6df}
+.admin-shell[data-theme="dark"] .admin-top{background:#12241d;border-bottom-color:#22382c;color:#cfdad2}
+.admin-shell[data-theme="dark"] .admin-top__icon{background:#16291f;border-color:#2a4136;color:#dbe6df}
+.admin-shell[data-theme="dark"] .admin-page-heading h1,
+.admin-shell[data-theme="dark"] .admin-content h1,
+.admin-shell[data-theme="dark"] .admin-content h2,
+.admin-shell[data-theme="dark"] .admin-content h3{color:#e8f0ea}
+.admin-shell[data-theme="dark"] .admin-page-heading p,
+.admin-shell[data-theme="dark"] .ui-hint,
+.admin-shell[data-theme="dark"] .ui-breadcrumb{color:#8fa398}
+.admin-shell[data-theme="dark"] .ui-card,
+.admin-shell[data-theme="dark"] .data-card,
+.admin-shell[data-theme="dark"] .ui-preview,
+.admin-shell[data-theme="dark"] .theme-preview{background:#13241d;border-color:#24382e;color:#dbe6df}
+.admin-shell[data-theme="dark"] .ui-input,
+.admin-shell[data-theme="dark"] .ui-select,
+.admin-shell[data-theme="dark"] textarea,
+.admin-shell[data-theme="dark"] select,
+.admin-shell[data-theme="dark"] input[type="text"],
+.admin-shell[data-theme="dark"] input[type="search"]{background:#0f201a;border-color:#2a4136;color:#e5efe8}
+.admin-shell[data-theme="dark"] table th{background:#16291f;color:#b9c9bf}
+.admin-shell[data-theme="dark"] table td{color:#c9d6ce;border-color:#22382c}
+.admin-shell[data-theme="dark"] .ui-label,
+.admin-shell[data-theme="dark"] .ui-field > span{color:#c9d6ce}

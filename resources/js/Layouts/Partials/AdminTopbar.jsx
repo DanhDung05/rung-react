@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link, router, usePage } from '@inertiajs/react';
-import { Menu, LogOut, ExternalLink, ChevronDown } from 'lucide-react';
+import { Menu, LogOut, ExternalLink, ChevronDown, Sun, Moon, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import { routes } from '../../lib/routes';
 import { ROLE } from '../../lib/constants';
 
-export default function AdminTopbar({ onToggleSidebar }) {
+export default function AdminTopbar({ onToggleSidebar, mode = 'light', onToggleMode, collapsed = false, onToggleCollapsed }) {
     const { props } = usePage();
     const user = props.auth?.user;
     const [open, setOpen] = useState(false);
@@ -24,6 +24,12 @@ export default function AdminTopbar({ onToggleSidebar }) {
             <span className="admin-top__title">Khu vực quản trị</span>
 
             <div className="admin-top__right">
+                <button type="button" className="admin-top__icon" onClick={onToggleCollapsed} title={collapsed ? 'Mở rộng sidebar' : 'Thu nhỏ sidebar'} aria-label="Thu nhỏ sidebar">
+                    {collapsed ? <PanelLeftOpen size={17} /> : <PanelLeftClose size={17} />}
+                </button>
+                <button type="button" className="admin-top__icon" onClick={onToggleMode} title={mode === 'dark' ? 'Chuyển giao diện sáng' : 'Chuyển giao diện tối'} aria-label="Đổi giao diện sáng tối">
+                    {mode === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
+                </button>
                 <Link href={routes.home} className="admin-top__site" target="_blank" rel="noopener noreferrer">
                     Xem website <ExternalLink size={14} />
                 </Link>
