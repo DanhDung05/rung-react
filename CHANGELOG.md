@@ -17,6 +17,11 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-13] Tắt lớp phủ Hero: giữ dải tối cho menu
+
+### Changed
+- Khi tắt `hero_overlay_enabled`, bỏ gradient tối toàn ảnh nhưng giữ **dải tối 190px trên cùng** để menu/header đọc rõ.
+- Áp dụng cho cả Hero trang chủ và `PageHero` các trang con (trước đây chỉ trang chủ).
 ## [2026-11-13] Sửa lưu công tắc bật/tắt trong Settings
 
 ### Fixed

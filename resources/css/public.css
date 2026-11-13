@@ -4873,3 +4873,14 @@
 @media (max-width: 680px) { .rp-brand__logo { height: 50px; } }
 
 
+
+/* Khi t?t l?p ph?: ch? gi? d?i t?i trên cùng ð? menu ð?c r? */
+.rp-slider__topshade,
+.rp-hero__topshade {
+    position: absolute;
+    inset: 0 0 auto;
+    height: 190px;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(8, 26, 20, 0.55), rgba(8, 26, 20, 0));
+}

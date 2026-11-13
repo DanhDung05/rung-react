@@ -37,7 +37,11 @@ export default function PageHero({
                 aria-hidden="true"
             >
                 <img className="rp-hero__media" src={heroImage} alt="" fetchPriority="high" decoding="async" />
-                <div className="rp-hero__overlay" />
+                {settings?.hero_overlay_enabled !== false ? (
+                    <div className="rp-hero__overlay" />
+                ) : (
+                    <div className="rp-hero__topshade" />
+                )}
             </section>
 
             <header className="rp-pagehead">

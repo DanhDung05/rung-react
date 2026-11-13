@@ -68,7 +68,7 @@ export default function HeroSlider({ sliders = [], fallbackImage = null, fallbac
             {slides.map((slide, i) => (
                 <div key={slide.id} className={`rp-slider__slide ${i === index ? 'is-active' : ''}`} aria-hidden={i !== index}>
                     {slide.image && <img src={slide.image} alt="" fetchPriority={i === 0 ? 'high' : 'low'} decoding="async" />}
-                    {overlay && <div className="rp-slider__shade" />}
+                    {overlay ? <div className="rp-slider__shade" /> : <div className="rp-slider__topshade" />}
                 </div>
             ))}
 
