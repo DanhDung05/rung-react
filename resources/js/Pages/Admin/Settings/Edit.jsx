@@ -303,6 +303,9 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
                         <button type="button" className={`ui-btn ui-btn--sm ${previewMode === 'saved' ? 'ui-btn--primary' : 'ui-btn--ghost'}`.trim()} onClick={() => setPreviewMode('saved')}>Đang lưu</button>
                         <button type="button" className={`ui-btn ui-btn--sm ${previewMode === 'editing' ? 'ui-btn--primary' : 'ui-btn--ghost'}`.trim()} onClick={() => setPreviewMode('editing')}>Đang chỉnh</button>
                         <button type="button" className="ui-btn ui-btn--sm ui-btn--ghost" onClick={() => setPreviewKey((key) => key + 1)}>Làm mới</button>
+                        <span className="ui-hint">|</span>
+                        <button type="button" className="ui-btn ui-btn--sm ui-btn--ghost" onClick={() => previewRef.current?.contentWindow?.scrollTo({ top: 0, behavior: 'smooth' })}>Về đầu</button>
+                        <button type="button" className="ui-btn ui-btn--sm ui-btn--ghost" onClick={() => previewRef.current?.contentWindow?.scrollTo({ top: 620, behavior: 'smooth' })}>Tới nội dung</button>
                     </div>
 
                     <div className="theme-preview-canvas">
@@ -315,7 +318,7 @@ export default function SettingsEdit({ group, groupConfig = {}, current = {} }) 
                             onLoad={() => setPreviewTick((tick) => tick + 1)}
                         />
                     </div>
-                    <p className="ui-hint">“Đang lưu” hiển thị cấu hình đã lưu; “Đang chỉnh” hiển thị giá trị trên form. Không có dữ liệu nào được ghi khi xem trước.</p>
+                    <p className="ui-hint">“Đang lưu” hiển thị cấu hình đã lưu; “Đang chỉnh” hiển thị giá trị trên form. Màu chủ yếu thấy từ phần nội dung trở xuống (hero giữ ảnh gốc) — bấm “Tới nội dung” để xem. Không có dữ liệu nào được ghi khi xem trước.</p>
                 </Card>
             )}
             <form onSubmit={submit} noValidate className="admin-form-narrow">
