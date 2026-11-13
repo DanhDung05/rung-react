@@ -67,4 +67,21 @@ class BackgroundColorTest extends TestCase
 
         $this->assertNull(Setting::get('palette_cream'));
     }
+
+    public function test_legacy_theme_heading_color_no_longer_overrides_typography(): void
+    {
+        Setting::set('theme_h1_color', '#307a55', 'theme');
+
+        $this->get('/')->assertOk()->assertInertia(fn ($page) => $page
+            ->where('theme.typography.h1.color', '')
+            ->where('theme.typography.h2.color', ''));
+    }
+
+    public function test_explicit_typography_color_still_applies(): void
+    {
+        Setting::set('typo_h1_color', '#102c24', 'typography');
+
+        $this->get('/')->assertOk()->assertInertia(fn ($page) => $page
+            ->where('theme.typography.h1.color', '#102c24'));
+    }
 }

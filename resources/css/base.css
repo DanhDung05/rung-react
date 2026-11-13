@@ -31,7 +31,7 @@ h1 {
   font-family: var(--font-h1);
   font-weight: var(--font-bold);
   line-height: var(--leading-tight);
-  color: var(--color-h1);
+  color: var(--color-h1, var(--rp-forest, #102c24));
   font-size: var(--text-4xl);
 }
 
@@ -39,7 +39,7 @@ h2 {
   font-family: var(--font-h2);
   font-weight: var(--font-bold);
   line-height: var(--leading-tight);
-  color: var(--color-h2);
+  color: var(--color-h2, var(--rp-forest, #102c24));
   font-size: var(--text-3xl);
 }
 
@@ -47,7 +47,7 @@ h3 {
   font-family: var(--font-h3);
   font-weight: var(--font-bold);
   line-height: var(--leading-tight);
-  color: var(--color-h3);
+  color: var(--color-h3, var(--rp-forest, #102c24));
   font-size: var(--text-2xl);
 }
 
@@ -55,7 +55,7 @@ h4 {
   font-family: var(--font-h4);
   font-weight: var(--font-bold);
   line-height: var(--leading-tight);
-  color: var(--color-h4);
+  color: var(--color-h4, var(--rp-forest, #102c24));
   font-size: var(--text-xl);
 }
 
@@ -63,7 +63,7 @@ h5 {
   font-family: var(--font-h5);
   font-weight: var(--font-bold);
   line-height: var(--leading-tight);
-  color: var(--color-h5);
+  color: var(--color-h5, var(--rp-forest, #102c24));
   font-size: var(--text-lg);
 }
 
@@ -71,7 +71,7 @@ h6 {
   font-family: var(--font-h6);
   font-weight: var(--font-bold);
   line-height: var(--leading-tight);
-  color: var(--color-h6);
+  color: var(--color-h6, var(--rp-forest, #102c24));
   font-size: var(--text-base);
 }
 

@@ -219,11 +219,9 @@ class HandleInertiaRequests extends Middleware
 
             foreach ($groups as $group) {
                 $key = str_replace('-', '_', $group);
-                $legacyColor = in_array($group, ['h1', 'h2', 'h3'], true) ? Setting::get("theme_{$group}_color", '') : '';
-
                 $typography[$group] = [
                     'font'        => Setting::get("typo_{$key}_font", ''),
-                    'color'       => Setting::get("typo_{$key}_color", $legacyColor),
+                    'color'       => Setting::get("typo_{$key}_color", ''),
                     'weight'      => Setting::get("typo_{$key}_weight", ''),
                     'size'        => Setting::get("typo_{$key}_size", ''),
                     'line_height' => Setting::get("typo_{$key}_line_height", ''),

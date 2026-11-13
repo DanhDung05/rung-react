@@ -17,7 +17,18 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
-## [2026-11-13] Chuẩn hóa Design Tokens (GĐ2)
+## [2026-11-13] Heading kế thừa Palette Forest
+
+### Changed
+- Bỏ fallback màu legacy `theme_h1..h3_color` khỏi Typography: `typo_h1..h3_color` mặc định trống để H1/H2/H3 kế thừa `palette_forest`.
+- `ThemeStyles` không còn inject `--color-h1..h6` từ theme cũ; `base.css` heading fallback về `--rp-forest`.
+- **Không chạy** `tokens:migrate` cho 3 màu heading; legacy vẫn giữ nguyên dữ liệu, không ghi đè.
+- `bg_primary/bg_alternate` tiếp tục SKIP vì Palette đích đã có giá trị.
+
+### Tests
+- Thêm test: legacy `theme_h1_color` không còn xuất hiện trong props typography; `typo_h1_color` đặt tay vẫn áp dụng.
+
+
 
 ### Added
 - 4 palette key chuẩn: `palette_gold`, `palette_surface`, `palette_border`, `palette_on_dark` (map `--rp-gold/--rp-surface/--rp-line/--rp-on-dark`).

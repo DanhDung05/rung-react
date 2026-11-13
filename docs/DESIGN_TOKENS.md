@@ -53,7 +53,7 @@ Tắt → kế thừa Global; bật → dùng màu section.
 |---|---|---|
 | `bg_primary` | `palette_cream` | `php artisan tokens:migrate` |
 | `bg_alternate` | `palette_white` | như trên |
-| `theme_h1..h3_color` | `typo_h1..h3_color` | như trên |
+| `theme_h1..h3_color` | — | **Không map, không fallback**; H1–H3 kế thừa `palette_forest`. Legacy giữ dữ liệu nhưng bị bỏ qua. |
 | `theme_h1..h6_font` | — | giữ dữ liệu, không map (font cũ không có trên máy) |
 | `theme_primary/secondary_color` | — | **Admin UI only**, không trộn Public Palette |
 | `google_analytics_id` | — | đã xóa code + row (backup `storage/app/backups/`) |

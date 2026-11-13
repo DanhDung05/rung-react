@@ -18,7 +18,6 @@ const HEX = /^#[0-9a-f]{6}$/i;
 export default function ThemeStyles({ theme, bgPrimary, bgAlternate }) {
     if (!theme && !bgPrimary && !bgAlternate) return null;
 
-    const headings = theme?.headings || {};
     const palette = theme?.palette || {};
     const typography = theme?.typography || {};
 
@@ -56,10 +55,6 @@ export default function ThemeStyles({ theme, bgPrimary, bgAlternate }) {
         if (values.color) lines.push(`${prefix}-color:${values.color};`);
         if (values.weight) lines.push(`${prefix}-weight:${values.weight};`);
         if (values.line_height) lines.push(`${prefix}-line-height:${values.line_height};`);
-    });
-
-    Object.entries(headings).forEach(([tag, value]) => {
-        if (value?.color) lines.push(`--color-${tag}:${value.color};`);
     });
 
     const propMap = { font: 'font-family', color: 'color', weight: 'font-weight', line_height: 'line-height', size: 'font-size' };
