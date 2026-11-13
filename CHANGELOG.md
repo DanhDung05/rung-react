@@ -17,6 +17,11 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-13] Đồng nhất màu brand
+
+### Changed
+- “ADVENTURE” trong logo không còn màu vàng riêng; toàn bộ brand (RUNG / ADVENTURE / EXPLORE THE WILD) dùng chung màu kế thừa (Header/Footer), tagline giữ opacity nhẹ.
+
 ## [2026-11-13] Đồng nhất font/màu chữ nhấn trong tiêu đề
 
 ### Changed

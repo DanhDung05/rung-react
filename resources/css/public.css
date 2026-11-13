@@ -4853,3 +4853,9 @@
     font-weight: 400 !important;
     color: #f0d3a8 !important;
 }
+
+/* Brand: dùng chung m?t màu (RUNG / ADVENTURE / tagline) */
+.rp-brand__gold,
+.rp-header.is-overlay:not(.is-solid) .rp-brand__gold {
+    color: inherit !important;
+}
