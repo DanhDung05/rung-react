@@ -17,6 +17,11 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-13] Bật/tắt lớp phủ tối Hero
+
+### Added
+- Setting `hero_overlay_enabled` (nhóm Ảnh Hero): bật/tắt lớp phủ tối trên ảnh hero trang chủ.
+- HeroSlider nhận prop `overlay`; mặc định bật. Tắt để ảnh sáng/rõ hơn (chữ có thể khó đọc trên ảnh sáng).
 ## [2026-11-13] Sửa font tiêu đề Admin
 
 ### Fixed

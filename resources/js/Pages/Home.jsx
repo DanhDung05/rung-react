@@ -48,6 +48,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
                 fallbackImage={heroImage}
                 fallbackTitle={about.hero_title}
                 fallbackLead={about.hero_subtitle || settings?.site_description}
+                overlay={settings?.hero_overlay_enabled !== false}
             />
 
             {/* 1. Welcome — Warm Cream */}

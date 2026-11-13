@@ -162,7 +162,8 @@ class HandleInertiaRequests extends Middleware
                         }
                     }
                     return $out;
-                })(),                'bg_primary'       => Setting::get('bg_primary', '#F7F5EF'),
+                })(),                'hero_overlay_enabled' => (bool) Setting::get('hero_overlay_enabled', true),
+                'bg_primary'       => Setting::get('bg_primary', '#F7F5EF'),
                 'bg_alternate'     => Setting::get('bg_alternate', '#FFFFFF'),
                 'hero_images'      => [
                     'blog'        => $this->publicUrl(Setting::get('hero_image_blog')),

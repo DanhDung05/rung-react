@@ -92,4 +92,12 @@ class BackgroundColorTest extends TestCase
         $this->get('/')->assertOk()->assertInertia(fn ($page) => $page
             ->where('theme.typography.h1.color', '#102c24'));
     }
+
+    public function test_hero_overlay_can_be_disabled(): void
+    {
+        Setting::set('hero_overlay_enabled', '0', 'hero', 'boolean');
+
+        $this->get('/')->assertOk()->assertInertia(fn ($page) => $page
+            ->where('settings.hero_overlay_enabled', false));
+    }
 }

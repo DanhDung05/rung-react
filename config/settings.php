@@ -533,6 +533,12 @@ return [
     'description' => 'Ảnh nền cho các trang index và trang tĩnh. Để trống sẽ dùng ảnh đầu tiên của slider.',
     'icon'        => 'photo',
     'fields'      => [
+        'hero_overlay_enabled' => [
+            'label'   => 'Lớp phủ tối trên ảnh Hero',
+            'type'    => 'boolean',
+            'default' => true,
+            'hint'    => 'Bật để chữ dễ đọc; tắt nếu muốn ảnh sáng và rõ hơn.',
+        ],
         'hero_image_blog' => [
             'label' => 'Blog — Ảnh hero',
             'type'  => 'image',
