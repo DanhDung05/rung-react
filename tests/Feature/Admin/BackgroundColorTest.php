@@ -32,13 +32,21 @@ class BackgroundColorTest extends TestCase
                 'palette_earth'  => '#a77942',
                 'palette_text'   => '#1b2a22',
                 'palette_muted'  => '#6b7a70',
+                'palette_gold'   => '#c58b45',
+                'palette_surface' => '#fafafa',
+                'palette_border' => '#dddddd',
+                'palette_on_dark' => '#eeeeee',
             ])->assertRedirect();
 
         $this->assertSame('#efe7d2', Setting::get('palette_cream'));
 
         $this->get('/')->assertInertia(fn ($page) => $page
             ->where('theme.palette.cream', '#efe7d2')
-            ->where('theme.palette.white', '#fcfcfc'));
+            ->where('theme.palette.white', '#fcfcfc')
+            ->where('theme.palette.gold', '#c58b45')
+            ->where('theme.palette.surface', '#fafafa')
+            ->where('theme.palette.border', '#dddddd')
+            ->where('theme.palette.on_dark', '#eeeeee'));
     }
 
     public function test_appearance_no_longer_writes_bg_keys(): void

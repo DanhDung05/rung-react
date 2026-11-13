@@ -239,6 +239,10 @@ class HandleInertiaRequests extends Middleware
                     'earth'  => Setting::get('palette_earth', '#a77942'),
                     'text'   => Setting::get('palette_text', '#1b2a22'),
                     'muted'  => Setting::get('palette_muted', '#6b7a70'),
+                    'gold'    => Setting::get('palette_gold', '#c58b45'),
+                    'surface' => Setting::get('palette_surface', '#ffffff'),
+                    'border'  => Setting::get('palette_border', '#e4e0d5'),
+                    'on_dark' => Setting::get('palette_on_dark', '#e9e4d6'),
                 ],
                 'typography' => $typography,
             ];
