@@ -20,6 +20,7 @@ use App\Http\Controllers\Admin\HomeSectionController;
 use App\Http\Controllers\Admin\UiTextController;
 use App\Http\Controllers\Admin\VisualEditorController;
 use App\Http\Controllers\Admin\GuideController;
+use App\Http\Controllers\Admin\ReleaseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,22 @@ use App\Http\Controllers\Admin\GuideController;
 */
 
 Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
+
+    // ============================================================
+    // UPDATE HISTORY (Lịch sử cập nhật)
+    // ============================================================
+
+    Route::resource('lich-su-cap-nhat', ReleaseController::class)
+        ->parameters(['lich-su-cap-nhat' => 'release'])
+        ->names([
+            'index'   => 'releases.index',
+            'create'  => 'releases.create',
+            'store'   => 'releases.store',
+            'show'    => 'releases.show',
+            'edit'    => 'releases.edit',
+            'update'  => 'releases.update',
+            'destroy' => 'releases.destroy',
+        ]);
 
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])

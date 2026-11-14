@@ -1879,3 +1879,32 @@
 .ve-order__row:active{cursor:grabbing}
 .ve-order__grip{color:#9aa79c;font-size:.9rem}
 .ve-order__name{flex:1}
+
+/* Releases / update history */
+.release-hero{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 22px;margin-bottom:16px;border-radius:14px;background:#102c24;color:#f7f3e9}
+.release-hero__eyebrow{display:block;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:#c9bda3}
+.release-hero__version{font-size:2rem;line-height:1.1}
+.release-hero__hint{font-size:.75rem;color:#c9bda3;max-width:340px;text-align:right}
+.release-hero code{background:rgba(255,255,255,.1);padding:1px 5px;border-radius:4px}
+.release-filters{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr auto;gap:8px;margin-bottom:18px}
+.release-timeline{list-style:none;margin:0;padding:0}
+.release-item{position:relative;padding:0 0 20px 22px;border-left:2px solid #e4e0d5;margin-left:6px}
+.release-item:last-child{border-left-color:transparent;padding-bottom:4px}
+.release-item__dot{position:absolute;left:-7px;top:4px;width:12px;height:12px;border-radius:50%;background:#c58b45;border:2px solid #fff}
+.release-item.is-dev .release-item__dot{background:#8a8f7d}
+.release-item__head{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.release-item__version{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.release-item__version strong{font-size:1.05rem;color:#102c24}
+.release-item__head time{font-size:.76rem;color:#7a8479}
+.release-item h3{margin:6px 0 2px;font-size:1rem}
+.release-item__previous{font-size:.75rem;color:#7a8479;display:flex;align-items:center;gap:4px}
+.release-item__excerpt{margin:6px 0 8px;font-size:.85rem;color:#55645a;line-height:1.55}
+.release-item__actions{display:flex;gap:14px;flex-wrap:wrap}
+.ui-link--danger{color:#b3261e;background:none;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.release-empty{padding:26px;text-align:center;color:#7a8479;border:1px dashed #ddd6c5;border-radius:10px}
+.release-detail__meta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;font-size:.8rem;color:#6f7d75}
+.release-detail__meta span{display:inline-flex;align-items:center;gap:4px}
+.release-detail__title{margin:14px 0 10px;font-size:1.5rem}
+.release-detail__content p{margin:0 0 8px;line-height:1.7}
+.release-detail__content li{margin:0 0 4px 18px;line-height:1.6}
+@media(max-width:900px){.release-filters{grid-template-columns:1fr 1fr}.release-hero{flex-direction:column;align-items:flex-start}.release-hero__hint{text-align:left}}

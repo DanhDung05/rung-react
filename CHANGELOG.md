@@ -17,6 +17,16 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-14] Trang Lịch sử cập nhật (Admin)
+
+### Added
+- Bảng `releases` + model `Release` (version duy nhất, loại, trạng thái, nội dung, ngày, người tạo).
+- Admin `/admin/lich-su-cap-nhat`: timeline, version hiện tại, lọc version/loại/trạng thái/ngày, xem chi tiết, thêm/sửa/xóa (có xác nhận).
+- Menu “Lịch sử cập nhật”; hướng dẫn Admin; `docs/RELEASES.md`; tệp `VERSION` (2.2.0).
+- 7 feature test cho CRUD/quyền/filter/version trùng.
+
+### Notes
+- Không seed bản ghi phát hành; không tự công bố bản “Đang phát triển”.
 ## [2026-11-14] Sắp xếp section linh động (kéo-thả + từng section bổ sung)
 
 ### Added

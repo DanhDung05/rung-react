@@ -86,6 +86,15 @@ export const routes = {
         guide: {
             index: '/admin/huong-dan',
         },
+        releases: {
+            index: '/admin/lich-su-cap-nhat',
+            create: '/admin/lich-su-cap-nhat/create',
+            store: '/admin/lich-su-cap-nhat',
+            show: (id) => `/admin/lich-su-cap-nhat/${id}`,
+            edit: (id) => `/admin/lich-su-cap-nhat/${id}/edit`,
+            update: (id) => `/admin/lich-su-cap-nhat/${id}`,
+            destroy: (id) => `/admin/lich-su-cap-nhat/${id}`,
+        },
 
         visualEditor: {
             index: '/admin/visual-editor',

@@ -260,4 +260,15 @@ return [
             ],
         ],
     ],
+            [
+                'key' => 'releases',
+                'title' => 'Lịch sử cập nhật',
+                'path' => '/admin/lich-su-cap-nhat',
+                'purpose' => 'Quản lý các phiên bản đã phát hành/đang phát triển, đồng bộ với VERSION và CHANGELOG.md.',
+                'steps' => ['Mở Lịch sử cập nhật.', 'Bấm Thêm bản cập nhật.', 'Nhập version trùng với tệp VERSION, chọn loại thay đổi và trạng thái.', 'Chỉ chọn “Đã phát hành” khi bản đó thực sự hoàn tất.', 'Lưu, kiểm tra timeline và trang chi tiết.'],
+                'effect' => 'Tạo/sửa/xóa bản ghi trong bảng releases; version hiện tại đọc từ tệp VERSION.',
+                'public' => 'Chỉ hiển thị trong Admin, không xuất hiện trên website public.',
+                'notes' => 'Version không được trùng. Không nhập đường dẫn máy chủ, lỗi kỹ thuật hay dữ liệu nội bộ vào nội dung.',
+                'example' => 'Phát hành 2.3.0: cập nhật VERSION, CHANGELOG.md rồi thêm bản ghi tương ứng.',
+            ],
 ];

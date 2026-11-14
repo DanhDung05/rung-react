@@ -5,7 +5,7 @@ import {
     Mountain,
     MapPinned,
     Compass,
-    BookOpen,
+    BookOpen, History,
     FileText,
     CircleHelp,
     Images,
@@ -60,6 +60,7 @@ const NAV = [
         title: 'Hệ thống',
         items: [
             { label: 'Hướng dẫn sử dụng', href: routes.admin.guide.index, icon: BookOpen },
+            { label: 'Lịch sử cập nhật', href: routes.admin.releases.index, icon: History },
             { label: 'Người dùng', href: routes.admin.users.index, icon: Users, adminOnly: true },
             { label: 'Cài đặt', href: routes.admin.settings.index, icon: Settings, adminOnly: true },
         ],

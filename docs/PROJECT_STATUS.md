@@ -53,3 +53,4 @@ Cập nhật: 2026-11-11 · commit `9f03af2` · Build: OK · Test: 103 passed / 
 3. Hoàn tất kiểm thử palette/typography đa trang, đa breakpoint.
 4. Bổ sung upload Media.
 5. Chuẩn hóa ảnh nội dung (đúng MIME, đủ ảnh).
+- Lịch sử cập nhật: bảng `releases` + Admin timeline, đồng bộ `VERSION`/`CHANGELOG.md` (`docs/RELEASES.md`).
