@@ -4884,3 +4884,7 @@
     pointer-events: none;
     background: linear-gradient(180deg, rgba(8, 26, 20, 0.55), rgba(8, 26, 20, 0));
 }
+
+/* Home: s?p x?p section b?ng CSS order (Visual Editor) */
+.h-home .rp-app__main{display:flex;flex-direction:column}
+.h-home .rp-app__main > .rp-slider{order:-1}

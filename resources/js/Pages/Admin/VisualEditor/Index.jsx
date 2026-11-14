@@ -41,6 +41,42 @@ export default function VisualEditorIndex({ config, published, draft, versions =
         pushHistory({ ...values, 'home.custom': { sections } });
     };
 
+    const DEFAULT_SECTION_ORDER = ['welcome', 'tours', 'band', 'custom', 'gallery', 'posts', 'cta'];
+    const SECTION_LABELS = {
+        welcome: 'Chào mừng',
+        tours: 'Hành trình nổi bật',
+        band: 'Banner thiên nhiên',
+        custom: 'Section bổ sung',
+        gallery: 'Thư viện',
+        posts: 'Cẩm nang',
+        cta: 'CTA',
+    };
+    const panelOrder = values['home.layout']?.order || DEFAULT_SECTION_ORDER;
+
+    const moveSection = (index, direction) => {
+        const next = [...panelOrder];
+        const target = index + direction;
+        if (target < 0 || target >= next.length) return;
+        [next[index], next[target]] = [next[target], next[index]];
+        pushHistory({ ...values, 'home.layout': { order: next } });
+
+        const ids = {
+            welcome: 'home.welcome.section',
+            tours: 'home.tours.section',
+            band: 'home.band.section',
+            custom: 'home.custom',
+            gallery: 'home.gallery.section',
+            posts: 'home.posts.section',
+            cta: 'home.cta.section',
+        };
+        const doc = frameRef.current?.contentDocument;
+        next.forEach((key, position) => {
+            doc?.querySelectorAll(`[data-ui="${ids[key]}"]`).forEach((el) => {
+                el.style.order = position;
+            });
+        });
+    };
+
     const select = useCallback((id, doc) => {
         const el = doc.querySelector(`[data-ui="${id}"]`);
         if (!el) return;
@@ -249,6 +285,20 @@ export default function VisualEditorIndex({ config, published, draft, versions =
                                 ))}
                             </>
                         )}
+
+                        <div className="ve-order">
+                            <h4>Thứ tự section</h4>
+                            <p className="ui-hint">Dùng mũi tên để đổi vị trí; Hero luôn ở đầu.</p>
+                            {panelOrder.map((key, index) => (
+                                <div className="ve-order__row" key={key}>
+                                    <span>{SECTION_LABELS[key] || key}</span>
+                                    <div>
+                                        <button type="button" className="ui-btn ui-btn--sm ui-btn--ghost" onClick={() => moveSection(index, -1)} disabled={index === 0}>↑</button>
+                                        <button type="button" className="ui-btn ui-btn--sm ui-btn--ghost" onClick={() => moveSection(index, 1)} disabled={index === panelOrder.length - 1}>↓</button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
 
                         <div className="ve-custom">
                             <h4>Section bổ sung (quote band)</h4>

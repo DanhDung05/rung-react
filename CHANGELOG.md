@@ -17,6 +17,11 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-14] Sắp xếp thứ tự section trang chủ
+
+### Added
+- Panel **“Thứ tự section”** trong Visual Editor: đổi vị trí 7 khối (Chào mừng, Hành trình, Banner, Section bổ sung, Thư viện, Cẩm nang, CTA) bằng nút ↑/↓.
+- Lưu ở `home.layout.order`; Home dùng CSS `order` (Hero luôn đầu) nên không đổi cấu trúc JSX.
 ## [2026-11-14] Visual Editor: section bổ sung + sửa toggle
 
 ### Added

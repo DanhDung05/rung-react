@@ -21,6 +21,12 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
     const ve = (id) => visual?.home?.[id] || {};
     const sectionOn = (name) => ve(`home.${name}.enabled`).enabled !== false;
     const customSections = visual?.home?.['home.custom']?.sections || [];
+    const DEFAULT_ORDER = ['welcome', 'tours', 'band', 'custom', 'gallery', 'posts', 'cta'];
+    const sectionOrder = visual?.home?.['home.layout']?.order || DEFAULT_ORDER;
+    const orderOf = (key) => {
+        const index = sectionOrder.indexOf(key);
+        return index === -1 ? 99 : index;
+    };
 
     const heroImage = mediaUrl(sliders[0]?.image) || null;
     const bandImage = ve('home.band.image').image || heroImage;
@@ -44,7 +50,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
     }
 
     return (
-        <AppLayout>
+        <AppLayout className="h-home">
             <Seo description={settings?.site_description} />
 
             <HeroSlider
@@ -56,7 +62,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
             />
 
             {/* 1. Welcome — Warm Cream */}
-            <section className="rp-section rp-section--cream" data-ui="home.welcome.section" style={{ display: sectionOn('welcome') ? undefined : 'none' }}>
+            <section className="rp-section rp-section--cream" data-ui="home.welcome.section" style={{ display: sectionOn('welcome') ? undefined : 'none', order: orderOf('welcome') }}>
                 <div className="rp-container">
                     <Reveal>
                         <div className="h-welcome">
@@ -82,7 +88,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
 
             {/* 2. Hành trình nổi bật — White, một lưới duy nhất */}
             {tours.length > 0 && (
-                <section className="rp-section" data-ui="home.tours.section" style={{ display: sectionOn('tours') ? undefined : 'none' }}>
+                <section className="rp-section" data-ui="home.tours.section" style={{ display: sectionOn('tours') ? undefined : 'none', order: orderOf('tours') }}>
                     <div className="rp-container">
                         <div className="h-tours-head">
                             <div>
@@ -114,7 +120,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
             )}
 
             {/* 3. Banner ảnh thiên nhiên */}
-            <section className="h-band" data-ui="home.band.section" style={{ display: sectionOn('band') ? undefined : 'none' }}>
+            <section className="h-band" data-ui="home.band.section" style={{ display: sectionOn('band') ? undefined : 'none', order: orderOf('band') }}>
                 {bandImage && <img className="h-band__image" data-ui="home.band.image" src={bandImage} alt="" decoding="async" />}
 
                 <div className="rp-container">
@@ -130,7 +136,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
 
             {/* Section bổ sung (quote band) — thêm từ Visual Editor */}
             {customSections.filter((item) => item.enabled !== false).map((item) => (
-                <section className="h-band" key={item.id}>
+                <section className="h-band" key={item.id} data-ui="home.custom" style={{ order: orderOf('custom') }}>
                     {item.image && <img className="h-band__image" src={item.image} alt="" decoding="async" />}
                     <div className="rp-container">
                         <div className="h-band__inner">
@@ -144,7 +150,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
 
             {/* 4. Thư viện — cấu hình từ Admin */}
             {gallery.enabled !== false && (
-                <section className={`rp-section${gallery.background === 'white' ? '' : ' rp-section--cream'}`} data-ui="home.gallery.section" style={{ display: sectionOn('gallery') ? undefined : 'none' }}>
+                <section className={`rp-section${gallery.background === 'white' ? '' : ' rp-section--cream'}`} data-ui="home.gallery.section" style={{ display: sectionOn('gallery') ? undefined : 'none', order: orderOf('gallery') }}>
                     <div className="rp-container">
                         <div className="rp-spread" style={{ marginBottom: 34 }}>
                             <div>
@@ -187,7 +193,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
 
             {/* 5. Cẩm nang — White */}
             {posts.length > 0 && (
-                <section className="rp-section" data-ui="home.posts.section" style={{ display: sectionOn('posts') ? undefined : 'none' }}>
+                <section className="rp-section" data-ui="home.posts.section" style={{ display: sectionOn('posts') ? undefined : 'none', order: orderOf('posts') }}>
                     <div className="rp-container">
                         <div className="rp-spread" style={{ marginBottom: 36 }}>
                             <div>
@@ -241,7 +247,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
             )}
 
             {/* 6. CTA — ảnh thiên nhiên */}
-            <section className="h-cta" data-ui="home.cta.section" style={{ display: sectionOn('cta') ? undefined : 'none' }}>
+            <section className="h-cta" data-ui="home.cta.section" style={{ display: sectionOn('cta') ? undefined : 'none', order: orderOf('cta') }}>
                 {ctaImage && <img className="h-cta__image" data-ui="home.cta.image" src={ctaImage} alt="" decoding="async" />}
 
                 <div className="rp-container">
