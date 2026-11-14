@@ -30,6 +30,7 @@ export default function VisualEditorIndex({ config, published, draft, versions =
     const [history, setHistory] = useState([]);
     const [future, setFuture] = useState([]);
     const [processing, setProcessing] = useState(false);
+    const [dragKey, setDragKey] = useState(null);
 
     const pushHistory = (next) => {
         setHistory((previous) => [...previous.slice(-49), values]);
@@ -38,45 +39,96 @@ export default function VisualEditorIndex({ config, published, draft, versions =
     };
 
     const setCustom = (sections) => {
-        pushHistory({ ...values, 'home.custom': { sections } });
+        const order = (values['home.layout']?.order || []).filter((key) => !key.startsWith('custom:') || sections.some((item) => `custom:${item.id}` === key));
+        sections.forEach((item) => {
+            const key = `custom:${item.id}`;
+            if (!order.includes(key)) {
+                const band = order.indexOf('band');
+                order.splice(band === -1 ? order.length : band + 1, 0, key);
+            }
+        });
+        pushHistory({ ...values, 'home.custom': { sections }, 'home.layout': { order } });
     };
 
-    const DEFAULT_SECTION_ORDER = ['welcome', 'tours', 'band', 'custom', 'gallery', 'posts', 'cta'];
     const SECTION_LABELS = {
         welcome: 'Chào mừng',
         tours: 'Hành trình nổi bật',
         band: 'Banner thiên nhiên',
-        custom: 'Section bổ sung',
         gallery: 'Thư viện',
         posts: 'Cẩm nang',
         cta: 'CTA',
     };
-    const panelOrder = values['home.layout']?.order || DEFAULT_SECTION_ORDER;
+    const customList = values['home.custom']?.sections || [];
+
+    const buildOrder = () => {
+        let order = [...(values['home.layout']?.order || [])];
+        if (!order.length) {
+            order = ['welcome', 'tours', 'band', ...customList.map((item) => `custom:${item.id}`), 'gallery', 'posts', 'cta'];
+        }
+        if (order.includes('custom')) {
+            const index = order.indexOf('custom');
+            order = [...order.slice(0, index), ...customList.map((item) => `custom:${item.id}`), ...order.slice(index + 1)];
+        }
+        order = order.filter((key) => !key.startsWith('custom:') || customList.some((item) => `custom:${item.id}` === key));
+        customList.forEach((item) => {
+            const key = `custom:${item.id}`;
+            if (!order.includes(key)) {
+                const band = order.indexOf('band');
+                order.splice(band === -1 ? order.length : band + 1, 0, key);
+            }
+        });
+        ['welcome', 'tours', 'band', 'gallery', 'posts', 'cta'].forEach((key) => {
+            if (!order.includes(key)) order.push(key);
+        });
+        return order;
+    };
+    const panelOrder = buildOrder();
+    const labelFor = (key) =>
+        key.startsWith('custom:')
+            ? `Section bổ sung ${customList.findIndex((item) => `custom:${item.id}` === key) + 1}`
+            : SECTION_LABELS[key] || key;
+
+    const applyOrderDom = (order) => {
+        const ids = {
+            welcome: 'home.welcome.section',
+            tours: 'home.tours.section',
+            band: 'home.band.section',
+            gallery: 'home.gallery.section',
+            posts: 'home.posts.section',
+            cta: 'home.cta.section',
+        };
+        const doc = frameRef.current?.contentDocument;
+        order.forEach((key, position) => {
+            const selector = key.startsWith('custom:') ? `[data-custom-id="${key.slice(7)}"]` : `[data-ui="${ids[key]}"]`;
+            doc?.querySelectorAll(selector).forEach((el) => {
+                el.style.order = position;
+            });
+        });
+    };
+
+    const saveOrder = (order) => {
+        pushHistory({ ...values, 'home.layout': { order } });
+        applyOrderDom(order);
+    };
 
     const moveSection = (index, direction) => {
         const next = [...panelOrder];
         const target = index + direction;
         if (target < 0 || target >= next.length) return;
         [next[index], next[target]] = [next[target], next[index]];
-        pushHistory({ ...values, 'home.layout': { order: next } });
-
-        const ids = {
-            welcome: 'home.welcome.section',
-            tours: 'home.tours.section',
-            band: 'home.band.section',
-            custom: 'home.custom',
-            gallery: 'home.gallery.section',
-            posts: 'home.posts.section',
-            cta: 'home.cta.section',
-        };
-        const doc = frameRef.current?.contentDocument;
-        next.forEach((key, position) => {
-            doc?.querySelectorAll(`[data-ui="${ids[key]}"]`).forEach((el) => {
-                el.style.order = position;
-            });
-        });
+        saveOrder(next);
     };
 
+    const moveToKey = (fromKey, toKey) => {
+        if (!fromKey || fromKey === toKey) return;
+        const arr = [...panelOrder];
+        const from = arr.indexOf(fromKey);
+        const to = arr.indexOf(toKey);
+        if (from < 0 || to < 0) return;
+        arr.splice(to, 0, arr.splice(from, 1)[0]);
+        saveOrder(arr);
+        setDragKey(null);
+    };
     const select = useCallback((id, doc) => {
         const el = doc.querySelector(`[data-ui="${id}"]`);
         if (!el) return;
@@ -290,8 +342,16 @@ export default function VisualEditorIndex({ config, published, draft, versions =
                             <h4>Thứ tự section</h4>
                             <p className="ui-hint">Dùng mũi tên để đổi vị trí; Hero luôn ở đầu.</p>
                             {panelOrder.map((key, index) => (
-                                <div className="ve-order__row" key={key}>
-                                    <span>{SECTION_LABELS[key] || key}</span>
+                                <div
+                                    className="ve-order__row"
+                                    key={key}
+                                    draggable
+                                    onDragStart={() => setDragKey(key)}
+                                    onDragOver={(event) => event.preventDefault()}
+                                    onDrop={() => moveToKey(dragKey, key)}
+                                >
+                                    <span className="ve-order__grip" aria-hidden="true">⠿</span>
+                                    <span className="ve-order__name">{labelFor(key)}</span>
                                     <div>
                                         <button type="button" className="ui-btn ui-btn--sm ui-btn--ghost" onClick={() => moveSection(index, -1)} disabled={index === 0}>↑</button>
                                         <button type="button" className="ui-btn ui-btn--sm ui-btn--ghost" onClick={() => moveSection(index, 1)} disabled={index === panelOrder.length - 1}>↓</button>

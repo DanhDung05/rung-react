@@ -1874,3 +1874,8 @@
 .ve-order h4{margin:0 0 4px;font-size:.9rem}
 .ve-order__row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;border-bottom:1px dashed #e4e0d5;font-size:.82rem}
 .ve-order__row:last-child{border-bottom:0}
+
+.ve-order__row{cursor:grab}
+.ve-order__row:active{cursor:grabbing}
+.ve-order__grip{color:#9aa79c;font-size:.9rem}
+.ve-order__name{flex:1}

@@ -17,6 +17,13 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-14] Sắp xếp section linh động (kéo-thả + từng section bổ sung)
+
+### Added
+- Kéo-thả hoặc dùng ↑/↓ trong panel **Thứ tự section**.
+- Mỗi **Section bổ sung** là một mục riêng, đặt được ở bất kỳ vị trí nào giữa các khối.
+- Thêm section mới tự chèn sau Banner; xóa section tự bỏ khỏi thứ tự.
+- `home.layout.order` lưu danh sách khóa (`custom:<id>` cho từng section).
 ## [2026-11-14] Sắp xếp thứ tự section trang chủ
 
 ### Added

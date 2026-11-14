@@ -21,11 +21,18 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
     const ve = (id) => visual?.home?.[id] || {};
     const sectionOn = (name) => ve(`home.${name}.enabled`).enabled !== false;
     const customSections = visual?.home?.['home.custom']?.sections || [];
-    const DEFAULT_ORDER = ['welcome', 'tours', 'band', 'custom', 'gallery', 'posts', 'cta'];
+    const DEFAULT_ORDER = ['welcome', 'tours', 'band', 'gallery', 'posts', 'cta'];
     const sectionOrder = visual?.home?.['home.layout']?.order || DEFAULT_ORDER;
     const orderOf = (key) => {
         const index = sectionOrder.indexOf(key);
-        return index === -1 ? 99 : index;
+        if (index !== -1) return index;
+        const group = sectionOrder.indexOf('custom');
+        if (group !== -1) return group;
+        if (key.startsWith('custom:')) {
+            const band = sectionOrder.indexOf('band');
+            if (band !== -1) return band;
+        }
+        return 99;
     };
 
     const heroImage = mediaUrl(sliders[0]?.image) || null;
@@ -136,7 +143,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
 
             {/* Section bổ sung (quote band) — thêm từ Visual Editor */}
             {customSections.filter((item) => item.enabled !== false).map((item) => (
-                <section className="h-band" key={item.id} data-ui="home.custom" style={{ order: orderOf('custom') }}>
+                <section className="h-band" key={item.id} data-ui="home.custom" data-custom-id={item.id} style={{ order: orderOf(`custom:${item.id}`) }}>
                     {item.image && <img className="h-band__image" src={item.image} alt="" decoding="async" />}
                     <div className="rp-container">
                         <div className="h-band__inner">
