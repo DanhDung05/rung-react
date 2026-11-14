@@ -20,6 +20,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
 
     const ve = (id) => visual?.home?.[id] || {};
     const sectionOn = (name) => ve(`home.${name}.enabled`).enabled !== false;
+    const customSections = visual?.home?.['home.custom']?.sections || [];
 
     const heroImage = mediaUrl(sliders[0]?.image) || null;
     const bandImage = ve('home.band.image').image || heroImage;
@@ -126,6 +127,20 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
                     </div>
                 </div>
             </section>
+
+            {/* Section bổ sung (quote band) — thêm từ Visual Editor */}
+            {customSections.filter((item) => item.enabled !== false).map((item) => (
+                <section className="h-band" key={item.id}>
+                    {item.image && <img className="h-band__image" src={item.image} alt="" decoding="async" />}
+                    <div className="rp-container">
+                        <div className="h-band__inner">
+                            {item.eyebrow && <div className="rp-eyebrow">{item.eyebrow}</div>}
+                            <blockquote className="h-band__quote">{item.quote}</blockquote>
+                            {item.source && <span className="h-band__source">{item.source}</span>}
+                        </div>
+                    </div>
+                </section>
+            ))}
 
             {/* 4. Thư viện — cấu hình từ Admin */}
             {gallery.enabled !== false && (

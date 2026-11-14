@@ -17,6 +17,14 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-14] Visual Editor: section bổ sung + sửa toggle
+
+### Added
+- Khối **Section bổ sung (quote band)**: thêm/xóa nhiều section ảnh nền + nhãn + trích dẫn + nguồn, hiển thị giữa Banner và Thư viện trang chủ.
+- Lưu trong `home.custom.sections` của bản nháp/xuất bản.
+
+### Fixed
+- Panel bật/tắt section cập nhật đúng trạng thái checkbox sau khi bấm; giá trị `enabled` được lưu và áp dụng khi tải lại.
 ## [2026-11-13] Visual Editor GĐ1b — nút, ảnh, bật/tắt section
 
 ### Added

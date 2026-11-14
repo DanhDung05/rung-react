@@ -37,6 +37,10 @@ export default function VisualEditorIndex({ config, published, draft, versions =
         setValues(next);
     };
 
+    const setCustom = (sections) => {
+        pushHistory({ ...values, 'home.custom': { sections } });
+    };
+
     const select = useCallback((id, doc) => {
         const el = doc.querySelector(`[data-ui="${id}"]`);
         if (!el) return;
@@ -114,6 +118,8 @@ export default function VisualEditorIndex({ config, published, draft, versions =
         if (kind === 'enabled' && baseEl) baseEl.style.display = value ? '' : 'none';
         if (kind === 'image' && el) el.setAttribute('src', value);
         if (kind === 'url' && baseEl) baseEl.setAttribute('href', value);
+
+        setCurrent((previous) => ({ ...previous, [kind]: value }));
     };
 
 
@@ -243,6 +249,52 @@ export default function VisualEditorIndex({ config, published, draft, versions =
                                 ))}
                             </>
                         )}
+
+                        <div className="ve-custom">
+                            <h4>Section bổ sung (quote band)</h4>
+                            <p className="ui-hint">Thêm khối ảnh nền + trích dẫn giữa Banner và Thư viện. Lưu/Xuất bản để thấy trên web.</p>
+
+                            {(values['home.custom']?.sections || []).map((item, index) => (
+                                <div className="ve-custom__item" key={item.id}>
+                                    <div className="ve-custom__head">
+                                        <strong>Section {index + 1}</strong>
+                                        <button
+                                            type="button"
+                                            className="ve-btn ve-btn--gold"
+                                            onClick={() => setCustom((values['home.custom']?.sections || []).filter((entry) => entry.id !== item.id))}
+                                        >
+                                            Xóa
+                                        </button>
+                                    </div>
+
+                                    {[['eyebrow', 'Nhãn nhỏ'], ['quote', 'Trích dẫn'], ['source', 'Nguồn'], ['image', 'Ảnh nền (/storage/...)']].map(([field, label]) => (
+                                        <label className="ui-field" key={field}>
+                                            <span className="ui-label">{label}</span>
+                                            <input
+                                                className="ui-input"
+                                                value={item[field] || ''}
+                                                onChange={(event) =>
+                                                    setCustom((values['home.custom']?.sections || []).map((entry) => (entry.id === item.id ? { ...entry, [field]: event.target.value } : entry)))
+                                                }
+                                            />
+                                        </label>
+                                    ))}
+                                </div>
+                            ))}
+
+                            <button
+                                type="button"
+                                className="ui-btn ui-btn--outline ui-btn--sm"
+                                onClick={() =>
+                                    setCustom([
+                                        ...(values['home.custom']?.sections || []),
+                                        { id: `quote-${Date.now()}`, eyebrow: 'Triết lý hành trình', quote: '“Câu trích dẫn của bạn.”', source: 'Rừng Adventure', image: '' },
+                                    ])
+                                }
+                            >
+                                + Thêm section
+                            </button>
+                        </div>
 
                         <div className="ve-versions">
                             <h4>Phiên bản đã xuất bản ({versions.length}/5)</h4>
