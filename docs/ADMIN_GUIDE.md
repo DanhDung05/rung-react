@@ -242,6 +242,7 @@ Chỉ 2 màu nút/badge của khu quản trị, không ảnh hưởng website pu
 - Có khách gửi mới → toast góc phải, bấm để mở chi tiết; admin khác đổi trạng thái → **không toast**, chỉ cập nhật badge/danh sách.
 - Đang mở form sửa/thêm (Tour, Bài viết, Cài đặt, Visual Editor…) sẽ **không bị reload** khi có sự kiện.
 - Trang chi tiết liên hệ tự đổi badge trạng thái khi admin khác cập nhật.
+- Khi duyệt/từ chối/xóa đánh giá, trang tour phía khách tự thêm/xóa đánh giá ngay (không cần F5) nếu realtime bật; không bật thì tự cập nhật sau tối đa 15 giây.
 - Không bật Soketi/Pusher: hệ thống polling mỗi 60 giây (khi tab đang mở), cập nhật badge và hiện toast khi có liên hệ/đánh giá mới; bật lại socket sẽ tự bù dữ liệu.
 - Muốn thông báo **ngay lập tức** phải bật realtime (Soketi/Pusher + VITE_PUSHER_APP_KEY).
 - Nếu badge không đổi: kiểm tra `VITE_PUSHER_APP_KEY`/Soketi, hoặc chờ tối đa 60 giây cho polling.

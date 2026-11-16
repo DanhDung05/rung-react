@@ -167,10 +167,56 @@ function TourInquiryForm({ tour, onDone }) {
 export default function TourShow({ tour, relatedTours = [] }) {
     const { auth, settings } = usePage().props;
     const heroImage = mediaUrl(tour.featured_image) || placeholderImage(tour.slug);
-    const reviews = tour.reviews || [];
+    const [reviews, setReviews] = useState(tour.reviews || []);
     const itinerary = tour.itineraries || [];
     const destinations = tour.destinations || [];
     const [inquiryOpen, setInquiryOpen] = useState(false);
+
+    useEffect(() => {
+        setReviews(tour.reviews || []);
+    }, [tour.id, tour.reviews]);
+
+    useEffect(() => {
+        const echo = typeof window === 'undefined' ? null : window.Echo;
+
+        if (!echo) {
+            const interval = Number(import.meta.env.VITE_TOUR_REVIEWS_POLL_INTERVAL || 15000);
+            const timer = window.setInterval(() => {
+                if (document.visibilityState === 'visible') {
+                    router.reload({ only: ['tour'], preserveScroll: true, preserveState: true });
+                }
+            }, interval);
+
+            return () => window.clearInterval(timer);
+        }
+
+        const channelName = `tour.${tour.id}.reviews`;
+        const channel = echo.channel(channelName);
+
+        channel.listen('.reviews.changed', (event) => {
+            if (event.action === 'approved' || event.action === 'restored') {
+                if (!event.review) return;
+
+                setReviews((current) => [
+                    event.review,
+                    ...current.filter((review) => Number(review.id) !== Number(event.review.id)),
+                ]);
+            }
+
+            if (event.action === 'rejected' || event.action === 'deleted') {
+                setReviews((current) => current.filter((review) => Number(review.id) !== Number(event.review_id)));
+            }
+        });
+
+        return () => {
+            try {
+                channel.stopListening('.reviews.changed');
+                echo.leave(channelName);
+            } catch {
+                // ignore
+            }
+        };
+    }, [tour.id]);
     // Khi quay lại tab public sau khi admin duyệt, tải lại riêng dữ liệu tour (giữ form đang nhập).
     useEffect(() => {
         const refresh = () => {

@@ -4,11 +4,13 @@ namespace Tests\Feature;
 
 use App\Events\ContactStatusChanged;
 use App\Events\ReviewModerated;
+use App\Events\TourReviewsChanged;
 use App\Models\Contact;
 use App\Models\Review;
 use App\Models\Tour;
 use App\Models\User;
 use App\Services\AdminEventBroadcaster;
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Cache;
@@ -95,6 +97,7 @@ class AdminRealtimeTest extends TestCase
             $mock->shouldReceive('reviewModerated')->once()->withArgs(fn ($review, $status) => $status === 'rejected');
             $mock->shouldReceive('reviewModerated')->once()->withArgs(fn ($review, $status) => $status === 'deleted');
             $mock->shouldReceive('reviewModerated')->once()->withArgs(fn ($review, $status) => $status === 'restored');
+            $mock->shouldReceive('tourReviewsChanged')->times(4);
         });
 
         $admin = $this->admin();
@@ -119,14 +122,33 @@ class AdminRealtimeTest extends TestCase
         $this->assertSame('replied', $contact->fresh()->status);
     }
 
-    public function test_all_events_use_private_channel_only(): void
+    public function test_admin_events_private_and_public_review_event_has_no_pii(): void
     {
-        foreach (File::files(app_path('Events')) as $file) {
-            $content = File::get($file->getPathname());
+        $review = $this->review();
+        $publicEvent = new TourReviewsChanged($review->tour_id, 'approved', $review);
+        $this->assertInstanceOf(Channel::class, $publicEvent->broadcastOn()[0]);
 
+        foreach (File::files(app_path('Events')) as $file) {
+            if ($file->getFilename() === 'TourReviewsChanged.php') {
+                continue;
+            }
+
+            $content = File::get($file->getPathname());
             $this->assertStringNotContainsString('new Channel(', $content, $file->getFilename());
             $this->assertStringContainsString('PrivateChannel', $content, $file->getFilename());
         }
+    }
+
+    public function test_public_review_event_payload_has_no_email(): void
+    {
+        $review = $this->review();
+        $review->update(['status' => 'approved']);
+
+        $payload = (new TourReviewsChanged($review->tour_id, 'approved', $review))->broadcastWith();
+
+        $this->assertSame('approved', $payload['action']);
+        $this->assertSame('Khách B', $payload['review']['author_name']);
+        $this->assertStringNotContainsString('b@example.com', json_encode($payload));
     }
 
     public function test_admin_badges_not_shared_for_guests(): void

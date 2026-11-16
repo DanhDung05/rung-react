@@ -30,6 +30,7 @@ class ReviewController extends Controller
     {
         $review->update(['status' => Review::STATUS_APPROVED]);
         app(\App\Services\AdminEventBroadcaster::class)->reviewModerated($review, 'approved');
+        app(\App\Services\AdminEventBroadcaster::class)->tourReviewsChanged($review, 'approved');
         return back()->with('success', 'Đã duyệt đánh giá.');
     }
 
@@ -37,6 +38,7 @@ class ReviewController extends Controller
     {
         $review->update(['status' => Review::STATUS_REJECTED]);
         app(\App\Services\AdminEventBroadcaster::class)->reviewModerated($review, 'rejected');
+        app(\App\Services\AdminEventBroadcaster::class)->tourReviewsChanged($review, 'rejected');
         return back()->with('success', 'Đã từ chối đánh giá.');
     }
 
@@ -47,6 +49,7 @@ class ReviewController extends Controller
     {
         $review->delete();
         app(\App\Services\AdminEventBroadcaster::class)->reviewModerated($review, 'deleted');
+        app(\App\Services\AdminEventBroadcaster::class)->tourReviewsChanged($review, 'deleted');
         return back()->with('success', 'Đã chuyển đánh giá vào thùng rác.');
     }
 
@@ -77,6 +80,7 @@ class ReviewController extends Controller
         $review = Review::onlyTrashed()->findOrFail($id);
         $review->restore();
         app(\App\Services\AdminEventBroadcaster::class)->reviewModerated($review, 'restored');
+        app(\App\Services\AdminEventBroadcaster::class)->tourReviewsChanged($review, 'restored');
 
         return back()->with('success', 'Đã khôi phục đánh giá.');
     }
@@ -89,6 +93,7 @@ class ReviewController extends Controller
         $review = Review::onlyTrashed()->findOrFail($id);
         $review->forceDelete();
         app(\App\Services\AdminEventBroadcaster::class)->reviewModerated($review, 'deleted');
+        app(\App\Services\AdminEventBroadcaster::class)->tourReviewsChanged($review, 'deleted');
 
         return back()->with('success', 'Đã xóa vĩnh viễn đánh giá.');
     }

@@ -103,11 +103,12 @@ scripts/dev.mjs                                 # npm run dev (Laravel+Vite+Soke
 
 ## 11. Realtime Admin (v2.4.0)
 
-- Kênh: `PrivateChannel('admin-notifications')`; authorize qua `AdminChannel` (đăng nhập, `is_active`, admin/editor).
+- Kênh admin: `PrivateChannel('admin-notifications')`; authorize qua `AdminChannel` (đăng nhập, `is_active`, admin/editor).
 - Event khách: `NewContactNotification`, `NewReviewNotification`. Event admin: `ContactStatusChanged`, `ReviewModerated` (afterCommit).
 - Payload chỉ `id`, `type`, `title`, `status` (nếu có), `time`, `contacts_new`, `reviews_pending`; không PII.
 - `AdminBadges::counts()` cache 10 giây, flush khi có thay đổi; middleware chỉ tính cho admin/editor.
 - `useAdminRealtime` trong `AdminLayout`: subscribe một lần, cập nhật badge/title, toast cho sự kiện mới, debounce reload 500ms chỉ ở Contacts/Reviews Index + Dashboard; trang form không reload.
 - `toOthers()` + header `X-Socket-ID` (gắn qua `inertia:before`) để admin thao tác không nhận lại event của mình.
 - Không có Echo/socket mất kết nối → polling `admin_badges` 60 giây, chỉ khi tab hiển thị; kết nối lại reload bù và tắt polling.
+- **Public**: event `TourReviewsChanged` trên kênh `tour.{id}.reviews` chỉ chứa đánh giá đã duyệt (id, tên, sao, nội dung, thời gian), để trang tour cập nhật ngay khi admin duyệt; không chứa email/SĐT.
 - `/broadcasting/auth` giới hạn 60 lần/phút.

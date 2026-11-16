@@ -17,6 +17,15 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2.4.4] - 2026-11-16
+
+### Added
+- **Realtime đánh giá phía public**: event `TourReviewsChanged` trên kênh công khai `tour.{id}.reviews`; khi admin duyệt/từ chối/xóa/khôi phục, trang chi tiết tour của khách tự thêm/xóa đánh giá ngay, không cần F5.
+- Client giữ danh sách review trong state, cập nhật theo event; fallback polling 15 giây khi không có Echo.
+- Payload public chỉ gồm id, tên hiển thị, số sao, nội dung, thời gian — không email/SĐT.
+
+### Changed
+- `AdminEventBroadcaster` phát thêm sự kiện public khi moderate review; `VERSION` → 2.4.4.
 ## [2.4.3] - 2026-11-16
 
 ### Changed

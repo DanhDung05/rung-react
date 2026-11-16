@@ -6,6 +6,7 @@ use App\Events\ContactStatusChanged;
 use App\Events\NewContactNotification;
 use App\Events\NewReviewNotification;
 use App\Events\ReviewModerated;
+use App\Events\TourReviewsChanged;
 use App\Models\Contact;
 use App\Models\Review;
 use App\Support\AdminBadges;
@@ -38,6 +39,11 @@ class AdminEventBroadcaster
     {
         AdminBadges::flush();
         $this->safe(new ReviewModerated($review, $status, AdminBadges::counts()));
+    }
+
+    public function tourReviewsChanged(Review $review, string $action): void
+    {
+        $this->safe(new TourReviewsChanged($review->tour_id, $action, $review));
     }
 
     private function safe(object $event): void
