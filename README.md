@@ -34,24 +34,32 @@ php artisan storage:link
 
 Nếu đang có database cũ, hãy sao lưu trước khi chạy migration. Không chạy `migrate:fresh` trên dữ liệu thật.
 
-### 3. JavaScript dependencies
+### 3. Chạy môi trường dev (một lệnh)
 
 ```bash
 npm install
 npm run dev
 ```
 
-Build production:
+`npm run dev` sẽ tự:
+
+- copy TinyMCE vào `public/vendor/tinymce`
+- chạy **Laravel** tại `http://127.0.0.1:8000`
+- chạy **Vite HMR** tại `http://localhost:5173`
+- dừng cả hai khi nhấn `Ctrl+C`
+
+Yêu cầu: MySQL đang chạy (Laragon), `.env` đã cấu hình và đã chạy `php artisan migrate`.
+
+Tùy chọn:
 
 ```bash
-npm run build
+npm run dev:client   # chỉ Vite
+npm run serve        # chỉ Laravel
+PORT=8080 npm run dev  # đổi cổng Laravel
+npm run build        # build production
 ```
 
-### 4. Chạy Laravel
-
-```bash
-php artisan serve
-```
+Không chạy `php artisan serve` riêng khi đang dùng `npm run dev` (sẽ trùng cổng 8000).
 
 ## Cấu trúc React/Inertia
 

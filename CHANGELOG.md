@@ -17,6 +17,14 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-16] Một lệnh `npm run dev` cho toàn bộ môi trường dev
+
+### Added
+- `scripts/dev.mjs`: chạy song song Laravel (`:8000`) + Vite HMR, copy TinyMCE, kiểm tra MySQL, dọn `public/hot` khi dừng.
+- Scripts: `dev`, `dev:client`, `serve`; hỗ trợ `PORT` để đổi cổng Laravel.
+
+### Changed
+- README hướng dẫn chạy dev bằng một lệnh duy nhất; không cần mở terminal thứ hai cho `php artisan serve`.
 ## [2026-11-14] Trang Lịch sử cập nhật (Admin)
 
 ### Added
