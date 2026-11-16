@@ -17,6 +17,11 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2.4.3] - 2026-11-16
+
+### Changed
+- Trang chi tiết tour tự tải lại riêng dữ liệu `tour` khi quay lại tab public (visibilitychange), nhờ đó đánh giá vừa được duyệt hiện ra mà không cần F5; form đang nhập được giữ nguyên.
+- `VERSION` → 2.4.3.
 ## [2.4.2] - 2026-11-16
 
 ### Fixed

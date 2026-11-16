@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useForm, usePage } from '@inertiajs/react';
+import React, { useEffect, useState } from 'react';
+import { Link, router, useForm, usePage } from '@inertiajs/react';
 import { ArrowRight, CalendarDays, Clock, MapPin, Mountain, Phone, Star, Users } from 'lucide-react';
 import AppLayout from '../../Layouts/AppLayout';
 import Seo from '../../Components/Seo';
@@ -171,6 +171,18 @@ export default function TourShow({ tour, relatedTours = [] }) {
     const itinerary = tour.itineraries || [];
     const destinations = tour.destinations || [];
     const [inquiryOpen, setInquiryOpen] = useState(false);
+    // Khi quay lại tab public sau khi admin duyệt, tải lại riêng dữ liệu tour (giữ form đang nhập).
+    useEffect(() => {
+        const refresh = () => {
+            if (document.visibilityState === 'visible') {
+                router.reload({ only: ['tour'], preserveScroll: true, preserveState: true });
+            }
+        };
+
+        document.addEventListener('visibilitychange', refresh);
+
+        return () => document.removeEventListener('visibilitychange', refresh);
+    }, []);
 
     const average = reviews.length
         ? reviews.reduce((sum, review) => sum + Number(review.rating || 0), 0) / reviews.length

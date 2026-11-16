@@ -1,6 +1,6 @@
 # PROJECT STATUS — Rừng Adventure
 
-Cập nhật: 2026-11-16 · version `2.4.2` · Build: OK · Test: **173 passed / 1103 assertions**.
+Cập nhật: 2026-11-16 · version `2.4.3` · Build: OK · Test: **173 passed / 1103 assertions**.
 
 ## 1. Trạng thái tổng quan
 
