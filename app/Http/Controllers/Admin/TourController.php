@@ -93,8 +93,10 @@ class TourController extends Controller
         $itineraries    = $data['itineraries'] ?? [];
         unset($data['destination_ids'], $data['itineraries']);
 
-        DB::transaction(function () use ($data, $destinationIds, $itineraries, $request) {
-            $tour = Tour::create($data);
+        $createdTour = null;
+
+        DB::transaction(function () use ($data, $destinationIds, $itineraries, $request, &$createdTour) {
+            $createdTour = $tour = Tour::create($data);
 
             if (!empty($destinationIds)) {
                 $tour->destinations()->sync($destinationIds);
@@ -108,6 +110,10 @@ class TourController extends Controller
 
         CacheHelper::clearTourCaches();
         CacheHelper::clearHomepage();
+
+        if ($createdTour) {
+            CacheHelper::clearTourRelated($createdTour->id, $createdTour->category_id);
+        }
 
         return redirect()
             ->route('admin.tours.index')
@@ -142,6 +148,7 @@ class TourController extends Controller
     public function update(UpdateTourRequest $request, Tour $tour)
     {
         $data = $request->validated();
+        $oldCategoryId = $tour->category_id;
 
         if (empty($data['slug'])) {
             $data['slug'] = $this->generateSlug($data['name'], $tour->id);
@@ -174,6 +181,11 @@ class TourController extends Controller
 
         CacheHelper::clearTourCaches();
         CacheHelper::clearHomepage();
+        CacheHelper::clearTourRelated($tour->id, $tour->category_id);
+
+        if ($oldCategoryId !== $tour->category_id) {
+            CacheHelper::clearTourRelated($tour->id, $oldCategoryId);
+        }
 
         return redirect()
             ->route('admin.tours.index')
@@ -185,9 +197,11 @@ class TourController extends Controller
      */
     public function destroy(Tour $tour)
     {
+        $categoryId = $tour->category_id;
         $tour->delete();
 
         CacheHelper::clearTourCaches();
+        CacheHelper::clearTourRelated($tour->id, $categoryId);
         CacheHelper::clearHomepage();
 
         return back()->with('success', 'Đã chuyển tour vào thùng rác.');
@@ -221,6 +235,7 @@ class TourController extends Controller
         $tour->restore();
 
         CacheHelper::clearTourCaches();
+        CacheHelper::clearTourRelated($tour->id, $tour->category_id);
         CacheHelper::clearHomepage();
 
         return back()->with('success', 'Đã khôi phục tour "' . $tour->name . '".');
@@ -232,6 +247,7 @@ class TourController extends Controller
     public function forceDestroy(int $id)
     {
         $tour = Tour::onlyTrashed()->findOrFail($id);
+        $categoryId = $tour->category_id;
 
         DB::transaction(function () use ($tour) {
             $tour->destinations()->detach();
@@ -265,6 +281,7 @@ class TourController extends Controller
 
         CacheHelper::clearTourCaches();
         CacheHelper::clearHomepage();
+        CacheHelper::clearTourRelated($id, $categoryId);
 
         return back()->with('success', 'Đã xóa vĩnh viễn tour "' . $id . '".');
     }

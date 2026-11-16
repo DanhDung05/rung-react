@@ -132,8 +132,8 @@ class TourController extends Controller
             session()->put($viewedKey, true);
         }
 
-        // Cache related tours 10 phút — key theo category_id
-        $relatedTours = Cache::remember("tour_related_{$tour->category_id}", 600, function () use ($tour) {
+        // Cache related tours 5 phút — key theo từng tour để không lẫn tour hiện tại.
+        $relatedTours = Cache::remember("tour_related_{$tour->id}", 300, function () use ($tour) {
             return Tour::query()
                 ->published()
                 ->where('id', '!=', $tour->id)

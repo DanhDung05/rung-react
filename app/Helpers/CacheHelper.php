@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use Illuminate\Support\Facades\Cache;
+use App\Models\Tour;
 use App\Services\NavigationService;
 
 class CacheHelper
@@ -34,6 +35,21 @@ class CacheHelper
     {
         Cache::forget('tour_categories');
         Cache::forget('home_featured_tours');
+    }
+
+    /**
+     * Xóa cache "tour liên quan" của một tour và các tour cùng danh mục.
+     */
+    public static function clearTourRelated(int $tourId, ?int $categoryId = null): void
+    {
+        Cache::forget("tour_related_{$tourId}");
+
+        if ($categoryId) {
+            Tour::withTrashed()
+                ->where('category_id', $categoryId)
+                ->pluck('id')
+                ->each(fn ($id) => Cache::forget("tour_related_{$id}"));
+        }
     }
 
     /**
