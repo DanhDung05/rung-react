@@ -694,18 +694,19 @@ To√†n b·ªô Giai ƒëo·∫°n 2‚Äì6 (theo k·∫ø ho·∫°ch). C·ª• th·ªÉ:
 
 ---
 
-## 2026-11-16 ó Ki?m kÍ t‡i li?u & Tr? gi˙p Admin t? Markdown
+## 2026-11-16 ‚Äî v2.3.0: ƒë√°nh gi√° kh√°ch, t∆∞ v·∫•n tour, ch·ªëng spam, realtime
 
-- R‡ so·t Git ?n `3e7854a`; ph·t hi?n ADMIN_FEATURES/PROJECT_STATUS/ARCHITECTURE d?ng ? `9f03af2`, thi?u releases, carousel, dark mode, brand, dev script.
-- T?o `docs/ADMIN_GUIDE.md`; c?p nh?t ADMIN_FEATURES, PROJECT_STATUS, ARCHITECTURE, DATABASE, README, DOCUMENTATION_RULES.
-- Trang `/admin/huong-dan` chuy?n sang render Markdown t? `docs/` qua `config/admin_docs.php`; b? d˘ng `config/admin_guide.php`.
-- Ki?m th?: 6 test Guide (quy?n, ch?n t‡i li?u, fallback, rewrite link, sanitize); to‡n b? 126 pass.
+- A: review kh√°ch v√£ng lai (nullable user_id, author_name/email, unique tour+email, StoreReviewRequest, b·ªè auth, UI 2 √¥).
+- B: RateLimiter contact/review/login, honeypot website, LoginController is_active + kh√≥a 5 l·∫ßn/ph√∫t.
+- C: contacts tour_id/people_count/preferred_date/type; TourInquiryController + modal; ContactNotifier; admin hi·ªÉn th·ªã lead.
+- D: private channel admin-notifications + AdminChannel; payload t·ªëi thi·ªÉu; Echo c√≥ key; badge/toast Admin.
 
+## 2026-11-16 ‚Äî v2.3.1 v√° E‚ÄìJ
 
-## 2026-11-16 ó v2.3.0: ·nh gi· kh·ch, t˝ v?n tour, ch?ng spam, realtime
-
-- A: review kh·ch v?ng lai (migration nullable user_id + author_name/email, unique tour+email, StoreReviewRequest, route b? auth, UI 2 Ù h? tÍn/email); email khÙng l? public.
-- B: RateLimiter contact/review/login, honeypot website, LoginController is_active + khÛa 5 l?n/ph˙t.
-- C: contacts thÍm tour_id/people_count/preferred_date/type; TourInquiryController + modal; ContactNotifier d˘ng chung mail/event; admin hi?n th? lead.
-- D: private channel admin-notifications + AdminChannel authorize; payload t?i thi?u; Echo ch? b?t khi cÛ key; badge/toast Admin.
-- Test: 149 passed; build OK; VERSION 2.3.0.
+- E: Handler throttle ‚Üí redirect + flash ti·∫øng Vi·ªát cho form Inertia; JSON 429; preserveState.
+- F: TRUSTED_PROXIES env; test trusted/untrusted.
+- G: honeypot review/inquiry assert no event/mail; v·∫´n t√≠nh throttle.
+- H: login IP 20 l·∫ßn/ph√∫t; x√≥a email+IP khi th√†nh c√¥ng.
+- I: Echo WSS theo VITE_PUSHER_SCHEME.
+- J: cache related theo tour + clear c√πng danh m·ª•c; test.
+- 160 test pass; build OK; VERSION 2.3.1.

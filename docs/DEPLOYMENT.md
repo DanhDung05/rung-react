@@ -408,31 +408,27 @@ curl -I https://rungadventure.com/
 curl -s https://rungadventure.com/sitemap.xml | head
 ```
 
-## �?ng sau Nginx/Cloudflare � IP th?t
+## Đằng sau Nginx/Cloudflare — IP thật
 
-N?u website ch?y sau proxy m� Laravel kh�ng tin proxy, `$request->ip()` lu�n l� IP proxy ? rate limit, log, ch?ng spam g?p t?t c? kh�ch v�o m?t IP.
-
-1. C?u h?nh `.env`:
+Nếu website chạy sau proxy mà Laravel không tin proxy, `$request->ip()` luôn là IP proxy → rate limit/log gộp mọi khách vào một IP.
 
 ```env
-# �? tr?ng n?u ch?y tr?c ti?p (m?c �?nh an to�n)
-# D�ng IP/CIDR c?a proxy, ph�n t�ch d?u ph?y
+# Để trống nếu chạy trực tiếp (mặc định an toàn)
+# Hoặc IP/CIDR proxy, phân tách dấu phẩy
 TRUSTED_PROXIES=10.0.0.1,172.16.0.0/12
 ```
 
-- `*` ch? d�ng khi proxy c?a b?n **lu�n ghi ��** `X-Forwarded-For` (Cloudflare/load balancer tin c?y); n?u kh�ng, k? t?n c�ng c� th? gi? IP.
-- Nginx chu?n: `proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;` v� `proxy_set_header X-Real-IP $remote_addr;`.
+- `*` chỉ dùng khi proxy **luôn ghi đè** `X-Forwarded-For` (Cloudflare/LB tin cậy); nếu không, kẻ xấu có thể giả IP.
+- Nginx: `proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;`
+- Kiểm tra: log `$request->ip()` khi gọi từ ngoài phải là IP công cộng của khách, không phải IP proxy.
+- Đổi `.env` trên production: `php artisan config:clear` (rồi `config:cache` nếu dùng cache cấu hình).
 
-2. Ki?m tra IP th?t: t?m th�m route/log `logger($request->ip())`, g?i t? tr?nh duy?t ngo�i ? ph?i th?y IP c�ng c?ng c?a b?n, kh�ng ph?i IP m�y ch? proxy. Ho?c xem log Laravel sau khi g?i form.
+**Sai cấu hình:** mọi khách chung IP → limiter 5/giờ chặn oan; tin proxy bừa → có thể né giới hạn bằng header giả.
 
-3. Sau khi �?i `.env` tr�n production: `php artisan config:clear` (v� `config:cache` n?u �ang cache c?u h?nh).
+## Realtime WebSocket (Soketi/Pusher)
 
-**H?u qu? n?u sai:** m?i kh�ch b? chung m?t IP ? rate limit 5/gi? ch?n oan to�n b? ng�?i d�ng; ng�?c l?i n?u tin proxy b?a, k? x?u c� th? gi? `X-Forwarded-For` �? n� gi?i h?n.
-
-## Realtime WebSocket (Soketi/Pusher) tr�n production
-
-- Local Soketi: `VITE_PUSHER_HOST=127.0.0.1`, `VITE_PUSHER_PORT=6001`, `VITE_PUSHER_SCHEME=http` ? Echo d�ng `ws`, kh�ng TLS.
-- Production (Pusher/Soketi sau TLS): `VITE_PUSHER_SCHEME=https`, port `443`, host domain WSS ? Echo b?t `forceTLS` v� transports `ws,wss`.
-- `BROADCAST_DRIVER=pusher` + `PUSHER_APP_ID/KEY/SECRET`; frontend c?n `VITE_PUSHER_APP_KEY` (n?u tr?ng, Echo kh�ng kh?i t?o v� Admin kh�ng l?i).
-- `VITE_*` ��?c nh�ng l�c **build**; �?i env ph?i ch?y l?i `npm run build`.
-- Ki?m tra tay: m? DevTools ? Network ? WS ph?i k?t n?i `wss://.../app/<key>`; g?i form li�n h? ? Admin nh?n badge/toast; Console kh�ng c� l?i 403 ? `/broadcasting/auth` (ki?m tra user l� admin/editor v� `is_active`).
+- Local Soketi: `VITE_PUSHER_HOST=127.0.0.1`, `VITE_PUSHER_PORT=6001`, `VITE_PUSHER_SCHEME=http` → Echo dùng `ws`.
+- Production TLS: `VITE_PUSHER_SCHEME=https`, port `443`, host WSS → Echo bật `forceTLS` + transports `ws,wss`.
+- `BROADCAST_DRIVER=pusher` + `PUSHER_APP_ID/KEY/SECRET`; frontend cần `VITE_PUSHER_APP_KEY` (trống thì Echo không khởi tạo, không lỗi).
+- `VITE_*` nhúng lúc build → đổi env phải `npm run build` lại.
+- Kiểm tra tay: DevTools → Network → WS kết nối; gửi form liên hệ → Admin có badge/toast; `/broadcasting/auth` không 403 với admin/editor active.

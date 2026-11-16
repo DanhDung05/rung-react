@@ -89,11 +89,12 @@ scripts/dev.mjs                                 # npm run dev (Laravel+Vite+Soke
 
 `npm run dev` → `scripts/dev.mjs`: copy TinyMCE, chạy `php artisan serve` (:8000), Vite HMR (:5173), kiểm tra MySQL, tự chạy Soketi (:6001) nếu `BROADCAST_DRIVER=pusher` và đã cài; dọn `public/hot` khi dừng.
 
-## 10. B?o m?t form & realtime (v2.3.0)
+## 10. Bảo mật form & realtime
 
-- **RateLimiter** (`RouteServiceProvider`): `contact` 5/gi?/IP, `review` 3/gi?/IP, `login` 5 l?n/ph�t theo email+IP (LoginController hit/clear, kh�a k�m s? gi�y).
-- **Honeypot**: field ?n `website` trong contact, review, tour inquiry; c� gi� tr? ? tr? success nh�ng kh�ng l�u/g?i mail.
-- **��nh gi� kh�ch**: `reviews.user_id` nullable; `author_name`, `author_email`; unique `(tour_id, author_email)`; route `{tour:slug}`; payload public ch? select id/tour_id/user_id/rating/comment/author_name/created_at + user id/name.
-- **T� v?n tour**: `contacts.tour_id/people_count/preferred_date/type`; route `POST /tour/{slug}/yeu-cau-tu-van` (tr�?c show); `TourInquiryController`; `ContactNotifier` d�ng chung mail queue + event.
-- **Broadcast**: `PrivateChannel('admin-notifications')`; `AdminChannel::allows()` y�u c?u ��ng nh?p + `is_active` + role admin/editor; payload ch? id/type/title/time; Echo ch? t?o khi c� `VITE_PUSHER_APP_KEY`, `authEndpoint=/broadcasting/auth`.
-- **Admin**: badge counts chia s? qua `admin_badges`; toast realtime; Contacts hi?n th? lead tour; Reviews hi?n th? email ng�?i g?i.
+- **RateLimiter** (`RouteServiceProvider` + `LoginController`): `contact` 5/giờ/IP, `review` 3/giờ/IP, `login` 5 lần/phút theo email+IP và **20 lần/phút theo IP**.
+- **Honeypot** `website` ở contact/review/tour inquiry; có giá trị → trả success nhưng không lưu/gửi mail, vẫn tính vào throttle của route.
+- **Đánh giá khách**: `reviews.user_id` nullable, `author_name`/`author_email`, unique `(tour_id, author_email)`; payload public chỉ select id/tour_id/user_id/rating/comment/author_name/created_at + user id/name.
+- **Tư vấn tour**: `contacts.tour_id/people_count/preferred_date/type`; route `POST /tour/{slug}/yeu-cau-tu-van`; `ContactNotifier` dùng chung mail queue + event.
+- **Broadcast**: `PrivateChannel('admin-notifications')`; `AdminChannel::allows()` yêu cầu đăng nhập + `is_active` + role admin/editor; payload chỉ id/type/title/time; Echo tạo khi có `VITE_PUSHER_APP_KEY`, scheme https → WSS.
+- **429**: `Handler` đổi throttle thành redirect + flash tiếng Việt cho form Inertia; JSON/API giữ 429.
+- **Proxy**: `TRUSTED_PROXIES` (rỗng/không tin, `*`, hoặc IP/CIDR) để `$request->ip()` đúng sau nginx/Cloudflare.

@@ -529,41 +529,14 @@ SELECT `key`, `group`, `type` FROM settings ORDER BY `group`, `key`;
 
 ---
 
-## C?p nh?t 2026-11-16 — b?ng `releases` và Media Gallery
-
-### `releases` (L?ch s? c?p nh?t)
-
-| C?t | Ki?u | Ghi chú |
-|---|---|---|
-| id | bigint | PK |
-| version | varchar(32) unique | d?ng `X.Y.Z`, có th? có ti?n t? `v` |
-| previous_version | varchar(32) null | version trı?c |
-| title | varchar | tiêu ğ? b?n c?p nh?t |
-| category | varchar(24) | `feature` / `improvement` / `fix` / `security` |
-| status | varchar(24) | `released` / `development` |
-| content | text | n?i dung nhi?u d?ng; d?ng `-` là danh sách |
-| released_at | date null | ngày phát hành |
-| created_by | FK users null | ngı?i t?o, null khi user b? xóa |
-| created_at / updated_at | timestamp | |
-
-Index: `status+released_at`, `category`. Không seed d? li?u.
-
-### Media collection `gallery`
-
-- 20 ?nh The Window: `file_path = media/gallery/the-window/*.webp`, `sort_order` 0..19.
-- Import: `php artisan media:import-the-window` (b? qua file ğ? có).
-- Trang ch? ğ?c t?i ğa 24 ?nh collection này qua `settings.home_gallery_media`.
-
----
-
-## C?p nh?t 2026-11-16 — v2.3.0
+## Cáº­p nháº­t 2026-11-16 â€” v2.3.0
 
 ### `reviews`
-- `user_id` **nullable** (khách v?ng lai), gi? FK `users` cascade.
-- Thêm `author_name` varchar(100) null, `author_email` varchar(255) null.
-- B? unique `(tour_id, user_id)`, thêm unique `(tour_id, author_email)` + index `tour_id`.
-- Tr?ng thái m?c ğ?nh `pending`; ch? `approved` m?i public.
+- `user_id` **nullable** (khÃ¡ch vÃ£ng lai), giá»¯ FK `users` cascade.
+- ThÃªm `author_name` varchar(100) null, `author_email` varchar(255) null.
+- Bá» unique `(tour_id, user_id)`, thÃªm unique `(tour_id, author_email)` + index `tour_id`.
+- Tráº¡ng thÃ¡i máº·c Ä‘á»‹nh `pending`; chá»‰ `approved` má»›i public.
 
 ### `contacts`
-- Thêm `tour_id` FK nullable (nullOnDelete), `people_count` smallint null, `preferred_date` date null, `type` varchar(20) default `general` (`general` | `tour_inquiry`).
-- Index `tour_id`, `type`; quan h? `tour()` dùng `withTrashed()`.
+- ThÃªm `tour_id` FK nullable (nullOnDelete), `people_count` smallint null, `preferred_date` date null, `type` varchar(20) default `general` (`general` | `tour_inquiry`).
+- Index `tour_id`, `type`; quan há»‡ `tour()` dÃ¹ng `withTrashed()`.

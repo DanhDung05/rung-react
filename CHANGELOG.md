@@ -17,6 +17,19 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-16] v2.3.1 — Vá lỗi 429, proxy, login IP, realtime TLS, cache related
+
+### Fixed
+- **E**: Form Inertia bị throttle nhận redirect về form kèm flash `error` tiếng Việt (“Bạn thao tác quá nhanh…”, giây/phút theo `Retry-After`); JSON/API vẫn 429. Form review/tư vấn/contact giữ state (`preserveState`) để không mất dữ liệu/modal.
+- **F**: `TRUSTED_PROXIES` cấu hình qua env (rỗng/không tin, `*`, hoặc IP/CIDR); lấy đúng IP sau nginx/Cloudflare cho rate limit.
+- **H**: Login thêm giới hạn **20 lần thất bại/phút theo IP** độc lập với email+IP; thành công chỉ xóa bộ đếm email+IP.
+- **I**: Echo đọc `VITE_PUSHER_SCHEME`; https bật `forceTLS` + transports `ws,wss`, http giữ hành vi Soketi local.
+- **J**: Cache “tour liên quan” đổi key theo từng tour (`tour_related_{id}`, TTL 300s) và `CacheHelper::clearTourRelated()` xóa tour + các tour cùng danh mục khi thêm/sửa/xóa/khôi phục; không còn tour tự hiện trong related.
+- **G**: Bổ sung assert honeypot review/tư vấn không dispatch event, không queue mail (honeypot vẫn tính vào throttle của route, không bypass).
+
+### Docs
+- `docs/DEPLOYMENT.md`: proxy tin cậy, realtime WSS; `.env.example` thêm `TRUSTED_PROXIES`, chú thích Pusher.
+- `VERSION` → **2.3.1**.
 ## [2026-11-16] v2.3.0 — Đánh giá khách, tư vấn tour, chống spam, realtime bảo mật
 
 ### Added

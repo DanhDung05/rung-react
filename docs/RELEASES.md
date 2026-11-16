@@ -6,7 +6,7 @@ Cập nhật: 2026-11-14.
 
 Admin → **Lịch sử cập nhật** (`/admin/lich-su-cap-nhat`).
 
-- Phiên bản hiện tại: **2.3.0** (VERSION).
+- Phiên bản hiện tại: **2.3.1** (VERSION).
 - Timeline version mới nhất trên cùng.
 - Lọc theo version, loại thay đổi, trạng thái, khoảng ngày.
 - Xem chi tiết / sửa / xóa từng bản (có xác nhận trước khi xóa).
@@ -45,6 +45,7 @@ Không có seed/ bản ghi mặc định — không tự tạo “bản phát h�
 
 | Version | Ngày | Nội dung chính |
 |---|---|---|
+| 2.3.1 | 2026-11-16 | Vá 429 Inertia, trusted proxies, login IP 20/phút, Echo WSS, cache related tour |
 | 2.3.0 | 2026-11-16 | Đánh giá khách vãng lai, yêu cầu tư vấn tour, rate limit/honeypot, private channel realtime |
 | 2.2.0 | 2026-11-14 | Lịch sử cập nhật, Visual Editor GĐ1b, carousel The Window |
 
