@@ -17,6 +17,16 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-16] Thư viện ảnh “The Window” trên trang chủ
+
+### Added
+- 20 ảnh WebP + metadata (tiêu đề/nhóm) tại `storage/app/public/media/gallery/the-window/`.
+- Command `media:import-the-window` (idempotent) tạo Media collection `gallery`.
+- Chia sẻ `settings.home_gallery_media`; section Thư viện ưu tiên hiển thị ảnh này trước ảnh slider/tour.
+- Test `HomeGalleryMediaTest`.
+
+### Notes
+- Layout collage hiển thị 5 ảnh đầu; 20 ảnh vẫn quản lý trong Media Admin.
 ## [2026-11-16] Soketi tùy chọn trong `npm run dev`
 
 ### Added

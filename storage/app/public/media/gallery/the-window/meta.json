@@ -1,0 +1,102 @@
+[
+  {
+    "title": "Soft Focus",
+    "category": "Women / Studio portrait",
+    "file": "01-soft-focus.webp"
+  },
+  {
+    "title": "Modern Gentleman",
+    "category": "Men / Modern tailoring",
+    "file": "02-modern-gentleman.webp"
+  },
+  {
+    "title": "Blue Hour",
+    "category": "Women / Color study",
+    "file": "03-blue-hour.webp"
+  },
+  {
+    "title": "The Close-Up",
+    "category": "Men / Beauty portrait",
+    "file": "04-the-close-up.webp"
+  },
+  {
+    "title": "Copper Muse",
+    "category": "Women / Beauty portrait",
+    "file": "05-copper-muse.webp"
+  },
+  {
+    "title": "Raw Presence",
+    "category": "Men / Editorial portrait",
+    "file": "06-raw-presence.webp"
+  },
+  {
+    "title": "Poise",
+    "category": "Women / Beauty portrait",
+    "file": "07-poise.webp"
+  },
+  {
+    "title": "City Tailoring",
+    "category": "Men / Formal style",
+    "file": "08-city-tailoring.webp"
+  },
+  {
+    "title": "Sun Statement",
+    "category": "Women / Street editorial",
+    "file": "09-sun-statement.webp"
+  },
+  {
+    "title": "Denim Days",
+    "category": "Men / Street style",
+    "file": "10-denim-days.webp"
+  },
+  {
+    "title": "Pure Form",
+    "category": "Women / Minimal portrait",
+    "file": "11-pure-form.webp"
+  },
+  {
+    "title": "After Hours",
+    "category": "Men / Classic tailoring",
+    "file": "12-after-hours.webp"
+  },
+  {
+    "title": "Summer Gaze",
+    "category": "Women / Color portrait",
+    "file": "13-summer-gaze.webp"
+  },
+  {
+    "title": "Off Duty",
+    "category": "Men / Casual portrait",
+    "file": "14-off-duty.webp"
+  },
+  {
+    "title": "Pink Attitude",
+    "category": "Women / Denim portrait",
+    "file": "15-pink-attitude.webp"
+  },
+  {
+    "title": "The New Classic",
+    "category": "Men / Formal style",
+    "file": "16-the-new-classic.webp"
+  },
+  {
+    "title": "Milan Moment",
+    "category": "Women / Street editorial",
+    "file": "17-milan-moment.webp"
+  },
+  {
+    "title": "Open Geometry",
+    "category": "Men / Street editorial",
+    "file": "18-open-geometry.webp"
+  },
+  {
+    "title": "Golden Ease",
+    "category": "Women / Natural light",
+    "file": "19-golden-ease.webp"
+  },
+  {
+    "title": "Urban Edit",
+    "category": "Men / Street tailoring",
+    "file": "20-urban-edit.webp"
+  }
+]

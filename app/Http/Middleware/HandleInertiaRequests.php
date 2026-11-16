@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Media;
 use App\Models\Setting;
 use App\Services\NavigationService;
 use Illuminate\Http\Request;
@@ -130,6 +131,19 @@ class HandleInertiaRequests extends Middleware
                         $values[$key] = $field['type'] === 'boolean' ? (bool) $value : $value;
                     }
                     return $values;
+                })(),
+                'home_gallery_media' => (function () {
+                    return Media::query()
+                        ->where('collection', 'gallery')
+                        ->where('file_path', 'like', 'media/gallery/the-window/%')
+                        ->orderBy('sort_order')
+                        ->limit(10)
+                        ->get()
+                        ->map(fn ($media) => [
+                            'url' => Storage::disk('public')->url($media->file_path),
+                            'alt' => $media->alt_text ?: 'Rừng Adventure',
+                        ])
+                        ->values();
                 })(),
                 'social'           => [
                     'facebook'  => Setting::get('social_facebook'),

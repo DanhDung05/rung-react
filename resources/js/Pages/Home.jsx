@@ -40,6 +40,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
     const ctaImage = ve('home.cta.image').image || settings?.hero_images?.contact || heroImage;
 
     const galleryImages = [
+        ...(Array.isArray(settings?.home_gallery_media) ? settings.home_gallery_media : []).map((item, index) => ({ id: `g-${index}`, url: item.url, alt: item.alt || '' })),
         ...sliders.map((item) => ({ id: `s-${item.id}`, url: mediaUrl(item.image), alt: item.title || '' })),
         ...tours
             .filter((item) => item.featured_image)
