@@ -17,6 +17,11 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-16] Carousel thư viện chuyển khung ảnh ngang
+
+### Changed
+- Card carousel dùng tỉ lệ **4:3** (ưu tiên ảnh ngang du lịch), rộng tối đa 760px; thumbnail ngang 88×58.
+- Giảm góc xoay/độ lệch để ảnh ngang không bị che; mobile 72–86vw.
 ## [2026-11-16] Carousel Media kiểu “The Window”
 
 ### Added

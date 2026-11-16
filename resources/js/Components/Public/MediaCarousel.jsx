@@ -77,7 +77,7 @@ export default function MediaCarousel({ images = [], interval = 5000 }) {
                             key={item.id || i}
                             className={`tw-card ${i === index ? 'is-active' : ''}`}
                             style={{
-                                transform: `translate(-50%, -50%) translateX(${offset * 46}%) rotateY(${offset * -24}deg) scale(${1 - Math.min(distance * 0.13, 0.4)})`,
+                                transform: `translate(-50%, -50%) translateX(${offset * 38}%) rotateY(${offset * -18}deg) scale(${1 - Math.min(distance * 0.11, 0.36)})`,
                                 zIndex: 20 - distance,
                                 opacity: 1,
                             }}
