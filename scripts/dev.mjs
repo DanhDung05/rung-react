@@ -130,16 +130,26 @@ function startSoketi() {
 
     log('Soketi: ws://127.0.0.1:6001');
 
-    run('Soketi', 'soketi', ['start'], {
-        shell: true,
-        env: {
-            ...process.env,
-            SOKETI_DEFAULT_APP_ID: appId,
-            SOKETI_DEFAULT_APP_KEY: appKey,
-            SOKETI_DEFAULT_APP_SECRET: appSecret,
-            SOKETI_PORT: '6001',
-        },
-    });
+    const soketiEnv = {
+        ...process.env,
+        SOKETI_DEFAULT_APP_ID: appId,
+        SOKETI_DEFAULT_APP_KEY: appKey,
+        SOKETI_DEFAULT_APP_SECRET: appSecret,
+        SOKETI_PORT: '6001',
+    };
+
+    // uWebSockets của Soketi chỉ hỗ trợ Node 14/16/18; Laragon có sẵn Node 18.
+    const node18 = process.env.SOKETI_NODE || (process.platform === 'win32'
+        ? 'C:\\laragon\\bin\\nodejs\\node-v18\\node.exe'
+        : null);
+    const entry = process.env.SOKETI_ENTRY || path.join(process.env.APPDATA || '', 'npm', 'node_modules', '@soketi', 'soketi', 'bin', 'server.js');
+
+    if (node18 && existsSync(node18) && existsSync(entry)) {
+        run('Soketi', node18, [entry, 'start'], { env: soketiEnv });
+        return;
+    }
+
+    run('Soketi', 'soketi', ['start'], { shell: true, env: soketiEnv });
 }
 
 function checkMysql() {

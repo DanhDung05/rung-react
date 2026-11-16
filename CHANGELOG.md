@@ -23,6 +23,10 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 - Khi **không có WebSocket**, polling 60 giây giờ không chỉ cập nhật badge mà còn hiện toast “Có liên hệ/tư vấn mới” hoặc “Có đánh giá mới chờ duyệt”, kèm link danh sách; tự làm mới danh sách trang đang mở.
 - Cho phép đổi chu kỳ polling bằng `VITE_ADMIN_POLL_INTERVAL` (ms), mặc định 60000.
 
+### Fixed
+- 
+pm run dev tự chạy Soketi bằng Node 18 (C:\\laragon\\bin\\nodejs\\node-v18\\node.exe) vì uWebSockets không hỗ trợ Node 26; hỗ trợ SOKETI_NODE/SOKETI_ENTRY để tùy chỉnh.
+
 ### Notes
 - Thông báo **tức thời** vẫn cần Soketi/Pusher (`BROADCAST_DRIVER=pusher` + `VITE_PUSHER_APP_KEY`); không có socket sẽ trễ tối đa bằng chu kỳ polling.
 - `VERSION` → 2.4.1.
