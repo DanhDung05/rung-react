@@ -34,7 +34,7 @@ class SecurityAndBroadcastTest extends TestCase
             ]);
         }
 
-        $this->withServerVariables(['REMOTE_ADDR' => '10.20.30.40'])->post('/lien-he', [
+        $this->withServerVariables(['REMOTE_ADDR' => '10.20.30.40'])->postJson('/lien-he', [
             'name'    => 'Khách cuối',
             'email'   => 'contact9@example.com',
             'message' => 'Nội dung liên hệ đủ dài để hợp lệ.',
@@ -69,7 +69,7 @@ class SecurityAndBroadcastTest extends TestCase
             ]);
         }
 
-        $this->withServerVariables(['REMOTE_ADDR' => '10.20.30.50'])->post(route('tours.review.store', $tour->slug), [
+        $this->withServerVariables(['REMOTE_ADDR' => '10.20.30.50'])->postJson(route('tours.review.store', $tour->slug), [
             'rating'       => 5,
             'comment'      => 'Đánh giá thứ tư phải bị chặn bởi giới hạn.',
             'author_name'  => 'Khách 4',

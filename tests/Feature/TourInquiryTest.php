@@ -106,7 +106,7 @@ class TourInquiryTest extends TestCase
         }
 
         $this->withServerVariables(['REMOTE_ADDR' => '10.10.10.5'])
-            ->post(route('tours.inquiry.store', $tour->slug), $this->payload(['email' => 'lead9@example.com']))
+            ->postJson(route('tours.inquiry.store', $tour->slug), $this->payload(['email' => 'lead9@example.com']))
             ->assertStatus(429);
     }
 
