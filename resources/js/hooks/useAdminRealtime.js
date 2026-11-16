@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { router, usePage } from '@inertiajs/react';
 
-const POLL_INTERVAL = 60000;
+const POLL_INTERVAL = Number(import.meta.env.VITE_ADMIN_POLL_INTERVAL || 60000);
 const RELOAD_DEBOUNCE = 500;
 
 const PAGE_PROPS = {
@@ -24,14 +24,20 @@ export default function useAdminRealtime(initialBadges) {
     const { component } = usePage();
     const [badges, setBadges] = useState(() => normalizeCounts(initialBadges));
     const [toasts, setToasts] = useState([]);
+    const badgesRef = useRef(normalizeCounts(initialBadges));
     const componentRef = useRef(component);
     const baseTitle = useRef(typeof document === 'undefined' ? '' : document.title.replace(/^\(\d+\)\s*/, ''));
     const reloadTimer = useRef(null);
 
     componentRef.current = component;
 
+    const updateBadges = (next) => {
+        badgesRef.current = next;
+        setBadges(next);
+    };
+
     useEffect(() => {
-        if (initialBadges) setBadges(normalizeCounts(initialBadges));
+        if (initialBadges) updateBadges(normalizeCounts(initialBadges));
     }, [initialBadges?.contacts_new, initialBadges?.reviews_pending]);
 
     const pushToast = (toast) => {
@@ -57,7 +63,7 @@ export default function useAdminRealtime(initialBadges) {
 
         const applyCounts = (event) => {
             if (typeof event.contacts_new === 'number' || typeof event.reviews_pending === 'number') {
-                setBadges({
+                updateBadges({
                     contacts_new: Number(event.contacts_new ?? 0),
                     reviews_pending: Number(event.reviews_pending ?? 0),
                 });
@@ -66,7 +72,27 @@ export default function useAdminRealtime(initialBadges) {
 
         const poll = () => {
             if (document.visibilityState !== 'visible') return;
-            router.reload({ only: ['admin_badges'], preserveScroll: true, preserveState: true });
+
+            router.reload({
+                only: ['admin_badges'],
+                preserveScroll: true,
+                preserveState: true,
+                onSuccess: (page) => {
+                    const next = normalizeCounts(page?.props?.admin_badges);
+                    const previous = badgesRef.current;
+                    updateBadges(next);
+
+                    if (next.contacts_new > previous.contacts_new) {
+                        pushToast({ type: 'contact', id: 'poll', title: 'Có liên hệ/tư vấn mới', href: '/admin/lien-he' });
+                        scheduleReload();
+                    }
+
+                    if (next.reviews_pending > previous.reviews_pending) {
+                        pushToast({ type: 'review', id: 'poll', title: 'Có đánh giá mới chờ duyệt', href: '/admin/danh-gia' });
+                        scheduleReload();
+                    }
+                },
+            });
         };
 
         const stopPolling = () => {

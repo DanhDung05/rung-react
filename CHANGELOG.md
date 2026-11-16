@@ -17,6 +17,15 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2.4.1] - 2026-11-16
+
+### Fixed
+- Khi **không có WebSocket**, polling 60 giây giờ không chỉ cập nhật badge mà còn hiện toast “Có liên hệ/tư vấn mới” hoặc “Có đánh giá mới chờ duyệt”, kèm link danh sách; tự làm mới danh sách trang đang mở.
+- Cho phép đổi chu kỳ polling bằng `VITE_ADMIN_POLL_INTERVAL` (ms), mặc định 60000.
+
+### Notes
+- Thông báo **tức thời** vẫn cần Soketi/Pusher (`BROADCAST_DRIVER=pusher` + `VITE_PUSHER_APP_KEY`); không có socket sẽ trễ tối đa bằng chu kỳ polling.
+- `VERSION` → 2.4.1.
 ## [2.4.0] - 2026-11-16
 
 ### Added
