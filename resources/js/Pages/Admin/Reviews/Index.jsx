@@ -55,7 +55,12 @@ export default function ReviewsIndex({ reviews }) {
                     rows={rows}
                     columns={[
                         { key: 'tour', label: 'Tour', render: (review) => (review.tour ? <Link className="ui-link" href={routes.admin.tours.show(review.tour.id)}>{truncate(review.tour.name, 40)}</Link> : '—') },
-                        { key: 'user', label: 'Người đánh giá', render: (review) => review.user?.name || '—' },
+                        { key: 'user', label: 'Người đánh giá', render: (review) => (
+                            <div>
+                                <strong>{review.author_name || review.user?.name || 'Khách hàng'}</strong>
+                                <div className="ui-sub">{review.author_email || review.user?.email || '—'}</div>
+                            </div>
+                        ) },
                         { key: 'rating', label: 'Sao', render: (review) => <Stars rating={review.rating} /> },
                         { key: 'comment', label: 'Nội dung', render: (review) => truncate(review.comment, 70) },
                         { key: 'status', label: 'Trạng thái', render: (review) => <Badge tone={REVIEW_STATUS[review.status]?.tone}>{REVIEW_STATUS[review.status]?.label || review.status}</Badge> },

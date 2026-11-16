@@ -33,6 +33,14 @@ export default function ContactsIndex({ contacts, newCount = 0 }) {
                             label: 'Trạng thái',
                             options: Object.entries(CONTACT_STATUS).map(([value, meta]) => ({ value, label: meta.label })),
                         },
+                        {
+                            name: 'type',
+                            label: 'Loại',
+                            options: [
+                                { value: 'general', label: 'Liên hệ chung' },
+                                { value: 'tour_inquiry', label: 'Tư vấn tour' },
+                            ],
+                        },
                     ]}
                 />
 
@@ -49,6 +57,23 @@ export default function ContactsIndex({ contacts, newCount = 0 }) {
                                         {contact.name}
                                     </Link>
                                     <div className="ui-sub">{contact.email}</div>
+                                </div>
+                            ),
+                        },
+                        {
+                            key: 'type',
+                            label: 'Loại',
+                            render: (contact) => (
+                                <div>
+                                    <Badge tone={contact.type === 'tour_inquiry' ? 'gold' : 'muted'}>
+                                        {contact.type === 'tour_inquiry' ? 'Tư vấn tour' : 'Liên hệ chung'}
+                                    </Badge>
+                                    {contact.type === 'tour_inquiry' && contact.tour && (
+                                        <div className="ui-sub">
+                                            {contact.tour.name}
+                                            {contact.people_count ? ` · ${contact.people_count} người` : ''}
+                                        </div>
+                                    )}
                                 </div>
                             ),
                         },

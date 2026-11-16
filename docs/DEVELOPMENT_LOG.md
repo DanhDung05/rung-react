@@ -701,3 +701,11 @@ ToÃ n bá»™ Giai Ä‘oáº¡n 2â€“6 (theo káº¿ hoáº¡ch). Cá»¥ thá»ƒ:
 - Trang `/admin/huong-dan` chuy?n sang render Markdown t? `docs/` qua `config/admin_docs.php`; b? dùng `config/admin_guide.php`.
 - Ki?m th?: 6 test Guide (quy?n, ch?n tài li?u, fallback, rewrite link, sanitize); toàn b? 126 pass.
 
+
+## 2026-11-16 — v2.3.0: ðánh giá khách, tý v?n tour, ch?ng spam, realtime
+
+- A: review khách v?ng lai (migration nullable user_id + author_name/email, unique tour+email, StoreReviewRequest, route b? auth, UI 2 ô h? tên/email); email không l? public.
+- B: RateLimiter contact/review/login, honeypot website, LoginController is_active + khóa 5 l?n/phút.
+- C: contacts thêm tour_id/people_count/preferred_date/type; TourInquiryController + modal; ContactNotifier dùng chung mail/event; admin hi?n th? lead.
+- D: private channel admin-notifications + AdminChannel authorize; payload t?i thi?u; Echo ch? b?t khi có key; badge/toast Admin.
+- Test: 149 passed; build OK; VERSION 2.3.0.

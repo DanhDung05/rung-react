@@ -1,6 +1,6 @@
 # PROJECT STATUS — Rừng Adventure
 
-Cập nhật: 2026-11-16 · commit `3e7854a` · version `2.2.0` · Build: OK · Test: **123 passed / 815 assertions**.
+Cập nhật: 2026-11-16 · version `2.3.0` · Build: OK · Test: **149 passed / 938 assertions**.
 
 ## 1. Trạng thái tổng quan
 
@@ -14,6 +14,10 @@ Cập nhật: 2026-11-16 · commit `3e7854a` · version `2.2.0` · Build: OK · 
 | Palette 10 màu + Typography 10 nhóm | Hoàn thành |
 | Visual Editor (6 section, nút/ảnh/toggle/order) | Hoàn thành (GĐ1b) |
 | Thư viện ảnh + carousel The Window | Hoàn thành |
+| Đánh giá khách vãng lai (không cần tài khoản) | Hoàn thành |
+| Yêu cầu tư vấn tour (lead) | Hoàn thành |
+| Chống spam: rate limit + honeypot | Hoàn thành |
+| Realtime private channel + badge/toast Admin | Hoàn thành |
 | Lịch sử cập nhật (`releases`) | Hoàn thành |
 | Trợ giúp Admin render từ Markdown | Hoàn thành |
 | Dark mode + sidebar thu gọn | Hoàn thành |
@@ -28,7 +32,10 @@ Cập nhật: 2026-11-16 · commit `3e7854a` · version `2.2.0` · Build: OK · 
 - **Design tokens**: `tokens.css` nguồn gốc; `ThemeStyles` override; `tokens:migrate` cho legacy; H1–H3 kế thừa Forest.
 - **Visual Editor**: chọn thành phần, style, bật/tắt section, ảnh Banner/CTA, nút, section quote band, kéo-thả thứ tự, draft/publish/history 5 bản.
 - **Media/Gallery**: 20 ảnh The Window import idempotent; `home_gallery_media`; carousel 3D responsive khung 4:3, modal.
-- **Lịch sử cập nhật**: bảng `releases`, version duy nhất, timeline/lọc/CRUD, `VERSION` 2.2.0, `docs/RELEASES.md`.
+- **Lịch sử cập nhật**: bảng `releases`, version duy nhất, timeline/lọc/CRUD, `VERSION` 2.3.0, `docs/RELEASES.md`.
+- **Đánh giá khách**: user_id nullable, author_name/email, pending duyệt, email không lộ public.
+- **Tư vấn tour**: contacts thêm tour_id/people_count/preferred_date/type; mail + broadcast; admin hiển thị tour.
+- **Bảo mật**: limiter contact/review/login, honeypot, private channel admin-notifications.
 - **Admin UX**: dark/light, sidebar sticky + thu gọn, font rõ nét, logo brand, preview Settings.
 - **Dev**: `npm run dev` chạy Laravel + Vite + kiểm tra MySQL; Soketi tự chạy khi bật pusher.
 - **Docs**: ADMIN_GUIDE, ADMIN_FEATURES, ARCHITECTURE, PROJECT_STATUS, RELEASES, DESIGN_TOKENS, DEVELOPMENT_LOG, quy tắc tài liệu.

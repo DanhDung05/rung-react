@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { createInertiaApp } from '@inertiajs/react';
+import './echo';
 
 /**
  * Lazy-load từng page → không bundle toàn bộ 70+ trang vào 1 chunk.

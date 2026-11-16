@@ -3,8 +3,8 @@
 namespace App\Events;
 
 use App\Models\Contact;
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
@@ -22,7 +22,7 @@ class NewContactNotification implements ShouldBroadcast
 
     public function broadcastOn(): array
     {
-        return [new Channel('admin-notifications')];
+        return [new PrivateChannel('admin-notifications')];
     }
 
     public function broadcastAs(): string
@@ -30,14 +30,18 @@ class NewContactNotification implements ShouldBroadcast
         return 'new-contact';
     }
 
+    /**
+     * Chỉ dữ liệu tối thiểu — không email, SĐT, nội dung tin nhắn.
+     */
     public function broadcastWith(): array
     {
         return [
-            'id' => $this->contact->id,
-            'name' => $this->contact->name,
-            'email' => $this->contact->email,
-            'message' => \Illuminate\Support\Str::limit($this->contact->message, 60),
-            'time' => $this->contact->created_at->diffForHumans(),
+            'id'    => $this->contact->id,
+            'type'  => $this->contact->type === 'tour_inquiry' ? 'tour_inquiry' : 'contact',
+            'title' => $this->contact->type === 'tour_inquiry'
+                ? 'Yêu cầu tư vấn tour mới'
+                : 'Liên hệ mới từ website',
+            'time'  => $this->contact->created_at?->diffForHumans() ?? now()->diffForHumans(),
         ];
     }
 }

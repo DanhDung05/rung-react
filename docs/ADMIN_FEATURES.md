@@ -1,6 +1,6 @@
 # ADMIN FEATURES — Rừng Adventure
 
-Cập nhật: 2026-11-16 · commit `3e7854a` · version `2.2.0`.
+Cập nhật: 2026-11-16 · version `2.3.0`.
 Mọi route nằm dưới `/admin`, middleware `admin`. Hướng dẫn thao tác chi tiết: [ADMIN_GUIDE.md](ADMIN_GUIDE.md).
 
 ## 1. Danh mục module
@@ -66,6 +66,12 @@ Mọi route nằm dưới `/admin`, middleware `admin`. Hướng dẫn thao tác
 - Version hiện tại đọc từ `VERSION`; nội dung nhiều dòng/danh sách.
 - Không seed bản ghi; đồng bộ `CHANGELOG.md` theo quy trình [RELEASES.md](RELEASES.md).
 
+### Đánh giá khách & tư vấn tour
+- Khách gửi đánh giá không cần tài khoản (họ tên + email), luôn pending tới khi duyệt; email không trả ra public.
+- Nút **Yêu cầu tư vấn** trên trang tour mở modal (tên, email, SĐT, số người, ngày, ghi chú); lưu Contact `tour_inquiry`, gửi mail queue + broadcast.
+- Rate limit: contact 5/giờ/IP, review 3/giờ/IP, login 5 lần/phút; honeypot `website`.
+- Realtime: private channel `admin-notifications` (admin/editor active), payload tối thiểu, badge + toast trong Admin.
+
 ### Trợ giúp trong Admin
 - Trang `/admin/huong-dan` render trực tiếp Markdown từ `docs/` (ADMIN_GUIDE, ADMIN_FEATURES, RELEASES, DESIGN_TOKENS, ARCHITECTURE).
 - Tìm kiếm, mục lục, điều hướng tài liệu; chỉ admin/editor đăng nhập mới xem.
@@ -79,4 +85,5 @@ Mọi route nằm dưới `/admin`, middleware `admin`. Hướng dẫn thao tác
 - Menu tối đa 2 cấp.
 - B2.2 chưa kiểm thử đủ 8 trang × 3 breakpoint.
 - Nhiều tour/điểm đến/bài viết còn thiếu ảnh thật.
-- Soketi realtime mặc định tắt (`BROADCAST_DRIVER=log`).
+- Soketi realtime mặc định tắt (`BROADCAST_DRIVER=log`); chỉ bật khi có key + Soketi.
+- Sticky CTA mobile cho trang tour chưa triển khai (nút tư vấn nằm trong price card).

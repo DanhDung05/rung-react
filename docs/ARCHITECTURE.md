@@ -88,3 +88,12 @@ scripts/dev.mjs                                 # npm run dev (Laravel+Vite+Soke
 ## 9. MÃ´i trÆ°á»ng dev
 
 `npm run dev` â†’ `scripts/dev.mjs`: copy TinyMCE, cháº¡y `php artisan serve` (:8000), Vite HMR (:5173), kiá»ƒm tra MySQL, tá»± cháº¡y Soketi (:6001) náº¿u `BROADCAST_DRIVER=pusher` vÃ  Ä‘Ã£ cÃ i; dá»n `public/hot` khi dá»«ng.
+
+## 10. B?o m?t form & realtime (v2.3.0)
+
+- **RateLimiter** (`RouteServiceProvider`): `contact` 5/gi?/IP, `review` 3/gi?/IP, `login` 5 l?n/phút theo email+IP (LoginController hit/clear, khóa kèm s? giây).
+- **Honeypot**: field ?n `website` trong contact, review, tour inquiry; có giá tr? ? tr? success nhıng không lıu/g?i mail.
+- **Ğánh giá khách**: `reviews.user_id` nullable; `author_name`, `author_email`; unique `(tour_id, author_email)`; route `{tour:slug}`; payload public ch? select id/tour_id/user_id/rating/comment/author_name/created_at + user id/name.
+- **Tı v?n tour**: `contacts.tour_id/people_count/preferred_date/type`; route `POST /tour/{slug}/yeu-cau-tu-van` (trı?c show); `TourInquiryController`; `ContactNotifier` dùng chung mail queue + event.
+- **Broadcast**: `PrivateChannel('admin-notifications')`; `AdminChannel::allows()` yêu c?u ğãng nh?p + `is_active` + role admin/editor; payload ch? id/type/title/time; Echo ch? t?o khi có `VITE_PUSHER_APP_KEY`, `authEndpoint=/broadcasting/auth`.
+- **Admin**: badge counts chia s? qua `admin_badges`; toast realtime; Contacts hi?n th? lead tour; Reviews hi?n th? email ngı?i g?i.

@@ -16,7 +16,7 @@ class ContactController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Contact::query();
+        $query = Contact::query()->with('tour');
 
         // Lọc theo status
         if ($request->filled('status')) {
@@ -24,6 +24,10 @@ class ContactController extends Controller
         } else {
             // Mặc định: chỉ hiện chưa archive
             $query->where('status', '!=', 'archived');
+        }
+
+        if ($request->filled('type')) {
+            $query->where('type', $request->string('type'));
         }
 
         // Tìm kiếm
@@ -35,13 +39,12 @@ class ContactController extends Controller
             });
         }
 
+        $newCount = $query->clone()->where('status', 'new')->count();
+
         $contacts = $query
             ->orderByDesc('created_at')
             ->paginate(20)
             ->withQueryString();
-
-        // Đếm số liên hệ mới
-        $newCount = Contact::where('status', 'new')->count();
 
         return Inertia::render('Admin/Contacts/Index', compact('contacts', 'newCount'));
     }
@@ -55,6 +58,8 @@ class ContactController extends Controller
         if ($contact->status === 'new') {
             $contact->update(['status' => 'read']);
         }
+
+        $contact->load('tour');
 
         return Inertia::render('Admin/Contacts/Show', compact('contact'));
     }

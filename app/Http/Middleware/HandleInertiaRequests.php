@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use App\Models\Media;
+use App\Models\Contact;
+use App\Models\Review;
 use App\Models\Setting;
 use App\Services\NavigationService;
 use Illuminate\Http\Request;
@@ -42,6 +44,16 @@ class HandleInertiaRequests extends Middleware
             'settings'   => fn () => $this->settings(),
             'theme'      => fn () => $this->theme(),
             'navigation' => fn () => $this->navigation(),
+            'admin_badges' => function () {
+                $user = auth()->user();
+                if (! $user || ! in_array($user->role, ['admin', 'editor'], true)) {
+                    return null;
+                }
+                return [
+                    'contacts' => Contact::where('status', 'new')->count(),
+                    'reviews'  => Review::pending()->count(),
+                ];
+            },
             'app'        => [
                 'name' => config('app.name'),
                 'url'  => rtrim(config('app.url'), '/'),

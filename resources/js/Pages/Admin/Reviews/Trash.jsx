@@ -31,7 +31,12 @@ export default function ReviewsTrash({ reviews }) {
                     rows={rows}
                     columns={[
                         { key: 'tour', label: 'Tour', render: (review) => review.tour?.name || '—' },
-                        { key: 'user', label: 'Người đánh giá', render: (review) => review.user?.name || '—' },
+                        { key: 'user', label: 'Người đánh giá', render: (review) => (
+                            <div>
+                                <strong>{review.author_name || review.user?.name || 'Khách hàng'}</strong>
+                                <div className="ui-sub">{review.author_email || review.user?.email || '—'}</div>
+                            </div>
+                        ) },
                         { key: 'comment', label: 'Nội dung', render: (review) => truncate(review.comment, 70) },
                         { key: 'deleted_at', label: 'Đã xóa lúc', render: (review) => datetime(review.deleted_at) },
                         {

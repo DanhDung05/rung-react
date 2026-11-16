@@ -83,8 +83,23 @@ php artisan media:import-the-window
 
 ## 9. Liên hệ & Đánh giá
 
-- **Liên hệ** `/admin/lien-he`: xem nội dung form, đổi trạng thái (mới/đã xử lý), xóa.
-- **Đánh giá** `/admin/danh-gia`: duyệt/từ chối/xóa; đánh giá đã duyệt mới hiện trên trang Tour.
+### 9.1 Hộp thư liên hệ — `/admin/lien-he`
+
+- Hiển thị tên, email, SĐT, tiêu đề, thời gian; lọc theo trạng thái và **Loại** (Liên hệ chung / Tư vấn tour).
+- **Tư vấn tour**: hiện thêm tên tour, số người, ngày dự kiến; bấm tên tour mở trang quản trị tour.
+- Chi tiết: SĐT bấm gọi được (`tel:`), email trả lời nhanh, nút đổi trạng thái (mới/đã đọc/đã trả lời/lưu trữ).
+- Lead mới gửi email thông báo cho admin và (nếu bật) hiện toast realtime.
+- Form liên hệ/lead có **honeypot** và giới hạn **5 lượt/giờ/IP**; vượt sẽ nhận lỗi 429.
+
+### 9.2 Đánh giá — `/admin/danh-gia`
+
+- Khách **không cần đăng nhập** vẫn gửi được đánh giá (họ tên + email bắt buộc).
+- Mọi đánh giá mới ở trạng thái **Chờ duyệt**; chỉ đánh giá **Đã duyệt** hiện trên trang Tour.
+- Danh sách hiển thị tên + email người gửi (kể cả khách), tour, số sao, nội dung, thời gian.
+- Duyệt / Từ chối / chuyển vào thùng rác; khôi phục hoặc xóa vĩnh viễn trong Thùng rác.
+- Một email chỉ đánh giá một tour một lần; khách trùng email sẽ bị từ chối.
+- Giới hạn gửi: **3 lượt/giờ/IP**; email người đánh giá **không** xuất hiện trên website public.
+- Thông báo realtime chỉ gửi id/loại/tiêu đề/thời gian — không gửi email/SĐT/nội dung.
 
 ## 10. Người dùng
 
@@ -203,6 +218,8 @@ Chỉ 2 màu nút/badge của khu quản trị, không ảnh hưởng website pu
 | Trang trắng sau khi sửa | `npm run build` lại; xem log trình duyệt/ Laravel log |
 | Lỗi database | Bật MySQL (Laragon), kiểm tra `.env` |
 | 419 Page Expired | Phiên hết hạn; tải lại và đăng nhập |
+| 429 Too Many Requests | Đã vượt giới hạn liên hệ/đánh giá/đăng nhập; chờ theo thời gian thông báo |
+| Toast/badge realtime không xuất hiện | Kiểm tra `VITE_PUSHER_APP_KEY`, Soketi đang chạy; không có key thì tính năng tự tắt, form vẫn hoạt động |
 
 ## 19. Tài liệu liên quan
 

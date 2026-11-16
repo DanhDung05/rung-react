@@ -115,7 +115,9 @@ class TourController extends Controller
                 'destinations',
                 'reviews' => function ($q) {
                     // Chỉ đánh giá đã duyệt (quan hệ reviews() đã lọc status=approved).
-                    $q->with('user');
+                    // Không trả email người đánh giá ra public.
+                    $q->select(['id', 'tour_id', 'user_id', 'rating', 'comment', 'author_name', 'created_at'])
+                      ->with('user:id,name');
                 },
                 'itineraries' => function ($q) {
                     $q->orderBy('day_number');

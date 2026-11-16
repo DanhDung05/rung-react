@@ -15,7 +15,7 @@ class ReviewController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Review::with(['tour', 'user'])->latest();
+        $query = Review::with(['tour', 'user:id,name,email'])->latest();
 
         if ($request->filled('status')) {
             $query->where('status', $request->status);
@@ -52,7 +52,7 @@ class ReviewController extends Controller
      */
     public function trash(Request $request)
     {
-        $query = Review::onlyTrashed()->with(['tour', 'user']);
+        $query = Review::onlyTrashed()->with(['tour', 'user:id,name,email']);
 
         if ($request->filled('keyword')) {
             $query->where('comment', 'like', '%' . $request->keyword . '%');

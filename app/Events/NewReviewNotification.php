@@ -3,8 +3,8 @@
 namespace App\Events;
 
 use App\Models\Review;
-use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
@@ -22,7 +22,7 @@ class NewReviewNotification implements ShouldBroadcast
 
     public function broadcastOn(): array
     {
-        return [new Channel('admin-notifications')];
+        return [new PrivateChannel('admin-notifications')];
     }
 
     public function broadcastAs(): string
@@ -30,14 +30,16 @@ class NewReviewNotification implements ShouldBroadcast
         return 'new-review';
     }
 
+    /**
+     * Chỉ dữ liệu tối thiểu — không email, nội dung, tên khách.
+     */
     public function broadcastWith(): array
     {
         return [
-            'id' => $this->review->id,
-            'tour_name' => $this->review->tour->name ?? 'Tour',
-            'rating' => $this->review->rating,
-            'comment' => \Illuminate\Support\Str::limit($this->review->comment, 60),
-            'time' => $this->review->created_at->diffForHumans(),
+            'id'    => $this->review->id,
+            'type'  => 'review',
+            'title' => 'Đánh giá mới cần duyệt',
+            'time'  => $this->review->created_at?->diffForHumans() ?? now()->diffForHumans(),
         ];
     }
 }

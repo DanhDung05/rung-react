@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\PageController;
 use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\Frontend\TourController;
+use App\Http\Controllers\Frontend\TourInquiryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SitemapController;
@@ -29,6 +30,10 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::prefix('tour')->name('tours.')->group(function () {
     Route::get('/', [TourController::class, 'index'])->name('index');
     Route::get('/danh-muc/{slug}', [TourController::class, 'category'])->name('category');
+    Route::post('/{slug}/yeu-cau-tu-van', [TourInquiryController::class, 'store'])
+        ->middleware('throttle:contact')
+        ->name('inquiry.store');
+
     Route::get('/{slug}', [TourController::class, 'show'])->name('show');
 });
 
@@ -54,7 +59,7 @@ Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 
 // Liên hệ
 Route::get('/lien-he', [ContactController::class, 'show'])->name('contact');
-Route::post('/lien-he', [ContactController::class, 'store'])->name('contact.store');
+Route::post('/lien-he', [ContactController::class, 'store'])->middleware('throttle:contact')->name('contact.store');
 
 // Tìm kiếm
 Route::get('/tim-kiem', [SearchController::class, 'index'])->name('search');
@@ -62,6 +67,6 @@ Route::get('/tim-kiem', [SearchController::class, 'index'])->name('search');
 // Trang tĩnh chung (đặt CUỐI để không conflict)
 Route::get('/trang-tinh/{slug}', [PageController::class, 'show'])->name('pages.show');
 
-Route::post('/tour/{tour}/review', [\App\Http\Controllers\Frontend\ReviewController::class, 'store'])
-    ->middleware('auth')
+Route::post('/tour/{tour:slug}/review', [\App\Http\Controllers\Frontend\ReviewController::class, 'store'])
+    ->middleware('throttle:review')
     ->name('tours.review.store');

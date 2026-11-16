@@ -10,6 +10,11 @@ Bạn vừa nhận được một liên hệ mới từ form liên hệ trên **
 | **Email** | [{{ $contact->email }}](mailto:{{ $contact->email }}) |
 | **Điện thoại** | {{ $contact->phone ?: '—' }} |
 | **Chủ đề** | {{ $contact->subject ?: '—' }} |
+@if($contact->type === 'tour_inquiry')
+| **Tour** | [{{ $contact->tour?->name ?: '—' }}]({{ $contact->tour_id ? route('admin.tours.show', $contact->tour_id) : '#' }}) |
+| **Số người** | {{ $contact->people_count ?: '—' }} |
+| **Ngày dự kiến** | {{ $contact->preferred_date ? $contact->preferred_date->format('d/m/Y') : '—' }} |
+@endif
 | **Thời gian** | {{ $contact->created_at->format('d/m/Y H:i') }} |
 | **IP** | {{ $contact->ip_address ?: '—' }} |
 @endcomponent

@@ -17,6 +17,28 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-16] v2.3.0 — Đánh giá khách, tư vấn tour, chống spam, realtime bảo mật
+
+### Added
+- **Đánh giá khách vãng lai**: migration cho `reviews.user_id` nullable + `author_name`/`author_email`; bỏ unique cũ, unique `(tour_id, author_email)`; `StoreReviewRequest`; route review bỏ `auth`, rate limit 3/giờ.
+- **Yêu cầu tư vấn tour**: mở rộng `contacts` (`tour_id`, `people_count`, `preferred_date`, `type`); `StoreTourInquiryRequest`; route `POST /tour/{slug}/yeu-cau-tu-van`; `TourInquiryController`; mail + broadcast dùng chung `ContactNotifier`; modal form trên trang tour.
+- **Chống spam**: RateLimiter `contact` (5/giờ/IP), `review` (3/giờ/IP), `login` (5 lần/phút theo email+IP); honeypot `website` cho contact/review/inquiry.
+- **Realtime bảo mật**: `PrivateChannel('admin-notifications')` + `AdminChannel` authorize admin/editor đang hoạt động; payload chỉ id/type/title/time; Echo chỉ khởi tạo khi có `VITE_PUSHER_APP_KEY`; badge + toast trong Admin.
+- Admin Contacts: cột Loại, lọc loại, thông tin tour/số người/ngày dự kiến, SĐT `tel:`.
+- Admin Reviews: hiển thị tên + email người gửi (kể cả khách).
+
+### Changed
+- `LoginController` dùng `is_active=1` trong credentials; khóa 5 lần/phút; không lộ trạng thái tài khoản khi sai mật khẩu.
+- Mail `NewContactNotification` hiển thị thông tin tour cho lead tư vấn.
+- `HandleInertiaRequests` chia sẻ `admin_badges`; public review payload loại bỏ email người đánh giá.
+- `VERSION` → **2.3.0**.
+
+### Fixed
+- Form đánh giá trước đây trỏ `/login` và chỉ dành cho user đăng nhập.
+- Broadcast event từng dùng kênh public và gửi email/nội dung khách.
+
+### Security
+- Private channel chỉ admin/editor active; payload tối thiểu; throttle + honeypot; không trả `author_email` ra public.
 ## [2026-11-16] Kiểm kê tài liệu & Trợ giúp Admin từ Markdown
 
 ### Added

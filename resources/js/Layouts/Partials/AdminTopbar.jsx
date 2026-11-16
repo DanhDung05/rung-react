@@ -4,7 +4,7 @@ import { Menu, LogOut, ExternalLink, ChevronDown, Sun, Moon, PanelLeftClose, Pan
 import { routes } from '../../lib/routes';
 import { ROLE } from '../../lib/constants';
 
-export default function AdminTopbar({ onToggleSidebar, mode = 'light', onToggleMode, collapsed = false, onToggleCollapsed }) {
+export default function AdminTopbar({ onToggleSidebar, mode = 'light', onToggleMode, collapsed = false, onToggleCollapsed, badges = null }) {
     const { props } = usePage();
     const user = props.auth?.user;
     const [open, setOpen] = useState(false);
@@ -22,6 +22,17 @@ export default function AdminTopbar({ onToggleSidebar, mode = 'light', onToggleM
             </button>
 
             <span className="admin-top__title">Khu vực quản trị</span>
+
+            {badges?.contacts > 0 && (
+                <Link href={routes.admin.contacts.index} className="admin-top__badge" title="Liên hệ chưa đọc">
+                    Liên hệ <strong>{badges.contacts}</strong>
+                </Link>
+            )}
+            {badges?.reviews > 0 && (
+                <Link href={routes.admin.reviews.index} className="admin-top__badge" title="Đánh giá chờ duyệt">
+                    Đánh giá <strong>{badges.reviews}</strong>
+                </Link>
+            )}
 
             <div className="admin-top__right">
                 <button type="button" className="admin-top__icon" onClick={onToggleCollapsed} title={collapsed ? 'Mở rộng sidebar' : 'Thu nhỏ sidebar'} aria-label="Thu nhỏ sidebar">

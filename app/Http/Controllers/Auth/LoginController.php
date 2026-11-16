@@ -2,34 +2,61 @@
 
 namespace App\Http\Controllers\Auth;
 
-
-use Inertia\Inertia;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Str;
+use Inertia\Inertia;
 
 class LoginController extends Controller
 {
-    /**
-     * Hiển thị trang đăng nhập.
-     */
+    private const MAX_ATTEMPTS = 5;
+
+    private const DECAY_SECONDS = 60;
+
     public function showLoginForm()
     {
         return Inertia::render('Auth/Login');
     }
 
-    /**
-     * Xử lý đăng nhập.
-     */
     public function login(LoginRequest $request): RedirectResponse
     {
-        $credentials = $request->only('email', 'password');
-        $remember    = $request->boolean('remember');
+        $key = Str::lower((string) $request->input('email')) . '|' . $request->ip();
+        $throttleKey = 'login:' . $key;
 
-        // Thử đăng nhập
-        if (!Auth::attempt($credentials, $remember)) {
+        if (RateLimiter::tooManyAttempts($throttleKey, self::MAX_ATTEMPTS)) {
+            $seconds = RateLimiter::availableIn($throttleKey);
+
+            return back()
+                ->withInput($request->only('email', 'remember'))
+                ->withErrors([
+                    'email' => "Bạn đã thử đăng nhập quá nhiều lần. Vui lòng thử lại sau {$seconds} giây.",
+                ]);
+        }
+
+        $credentials = $request->only('email', 'password');
+        $credentials['is_active'] = 1;
+        $remember = $request->boolean('remember');
+
+        if (! Auth::attempt($credentials, $remember)) {
+            RateLimiter::hit($throttleKey, self::DECAY_SECONDS);
+
+            // Chỉ báo "bị vô hiệu hóa" khi đúng mật khẩu; sai mật khẩu luôn dùng thông báo chung.
+            $user = User::where('email', $request->input('email'))->first();
+
+            if ($user && ! $user->is_active && Hash::check((string) $request->input('password'), $user->password)) {
+                return back()
+                    ->withInput($request->only('email'))
+                    ->withErrors([
+                        'email' => 'Tài khoản của bạn đã bị vô hiệu hóa. Vui lòng liên hệ quản trị viên.',
+                    ]);
+            }
+
             return back()
                 ->withInput($request->only('email', 'remember'))
                 ->withErrors([
@@ -37,27 +64,12 @@ class LoginController extends Controller
                 ]);
         }
 
-        // Kiểm tra is_active
-        if (!auth()->user()->is_active) {
-            Auth::logout();
-
-            return back()
-                ->withInput($request->only('email'))
-                ->withErrors([
-                    'email' => 'Tài khoản của bạn đã bị vô hiệu hóa. Vui lòng liên hệ quản trị viên.',
-                ]);
-        }
-
-        // Regenerate session (chống session fixation)
+        RateLimiter::clear($throttleKey);
         $request->session()->regenerate();
 
-        // Redirect theo role
         return redirect()->intended($this->redirectTo());
     }
 
-    /**
-     * Đăng xuất.
-     */
     public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
@@ -70,16 +82,12 @@ class LoginController extends Controller
             ->with('success', 'Đã đăng xuất thành công.');
     }
 
-    /**
-     * Xác định URL redirect sau khi đăng nhập — theo role.
-     */
     protected function redirectTo(): string
     {
         $role = auth()->user()->role;
 
         return match ($role) {
             'admin', 'editor' => route('admin.dashboard'),
-            // 'user'         => route('user.dashboard'),  // Mở rộng sau
             default           => url('/'),
         };
     }

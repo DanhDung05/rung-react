@@ -14,6 +14,8 @@ class Review extends Model
     protected $fillable = [
         'tour_id',
         'user_id',
+        'author_name',
+        'author_email',
         'rating',
         'comment',
         'status',

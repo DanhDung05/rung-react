@@ -57,10 +57,19 @@ export default function ContactsShow({ contact }) {
                     <Card title="Thông tin người gửi">
                         <div className="ui-detail-row"><span>Họ tên</span><div>{contact.name}</div></div>
                         <div className="ui-detail-row"><span>Email</span><div><a className="ui-link" href={`mailto:${contact.email}`}>{contact.email}</a></div></div>
-                        <div className="ui-detail-row"><span>Điện thoại</span><div>{contact.phone || '—'}</div></div>
+                        <div className="ui-detail-row"><span>Điện thoại</span><div>{contact.phone ? <a className="ui-link" href={`tel:${contact.phone}`}>{contact.phone}</a> : '—'}</div></div>
+                        <div className="ui-detail-row"><span>Loại</span><div><Badge tone={contact.type === 'tour_inquiry' ? 'gold' : 'muted'}>{contact.type === 'tour_inquiry' ? 'Tư vấn tour' : 'Liên hệ chung'}</Badge></div></div>
                         <div className="ui-detail-row"><span>IP</span><div><code>{contact.ip_address || '—'}</code></div></div>
                         <div className="ui-detail-row"><span>Thiết bị</span><div className="ui-ua">{contact.user_agent || '—'}</div></div>
                     </Card>
+
+                    {contact.type === 'tour_inquiry' && (
+                        <Card title="Thông tin tư vấn tour">
+                            <div className="ui-detail-row"><span>Tour</span><div>{contact.tour ? <Link className="ui-link" href={routes.admin.tours.show(contact.tour.id)}>{contact.tour.name}</Link> : '—'}</div></div>
+                            <div className="ui-detail-row"><span>Số người</span><div>{contact.people_count || '—'}</div></div>
+                            <div className="ui-detail-row"><span>Ngày dự kiến</span><div>{contact.preferred_date ? new Date(contact.preferred_date).toLocaleDateString('vi-VN') : '—'}</div></div>
+                        </Card>
+                    )}
 
                     <Card title="Cập nhật trạng thái">
                         <div className="ui-stack">

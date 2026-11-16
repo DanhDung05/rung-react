@@ -14,6 +14,7 @@ export default function Contact() {
         phone: '',
         subject: '',
         message: '',
+        website: '',
     });
 
     const submit = (event) => {
@@ -71,6 +72,10 @@ export default function Contact() {
                             <textarea rows={5} value={data.message} onChange={(e) => setData('message', e.target.value)} placeholder="Bạn muốn đi đâu, khi nào, bao nhiêu người?" />
                             {errors.message && <small className="rp-error">{errors.message}</small>}
                         </label>
+
+                        <div className="hp-field" aria-hidden="true">
+                            <label>Website<input type="text" name="website" value={data.website} onChange={(e) => setData('website', e.target.value)} tabIndex={-1} autoComplete="off" /></label>
+                        </div>
 
                         <button type="submit" className="rp-btn rp-btn--gold" disabled={processing}>
                             <Send size={15} /> {processing ? 'Đang gửi...' : 'Gửi yêu cầu'}

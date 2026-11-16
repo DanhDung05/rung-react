@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useForm, usePage } from '@inertiajs/react';
 import { ArrowRight, CalendarDays, Clock, MapPin, Mountain, Phone, Star, Users } from 'lucide-react';
 import AppLayout from '../../Layouts/AppLayout';
@@ -6,6 +6,7 @@ import Seo from '../../Components/Seo';
 import PageHero from '../../Components/Public/PageHero';
 import TourCard from '../../Components/Public/TourCard';
 import Reveal from '../../Components/Public/Reveal';
+import Modal from '../../Components/UI/Modal';
 import { routes } from '../../lib/routes';
 import { mediaUrl, money, date } from '../../lib/format';
 import { DIFFICULTY } from '../../lib/constants';
@@ -28,12 +29,18 @@ function Stars({ value = 0, onChange = null }) {
     );
 }
 
-function ReviewForm({ slug }) {
-    const { data, setData, post, processing, errors, reset } = useForm({ rating: 5, comment: '' });
+function ReviewForm({ slug, guest = false }) {
+    const { data, setData, post, processing, errors, reset } = useForm({
+        rating: 5,
+        comment: '',
+        author_name: '',
+        author_email: '',
+        website: '',
+    });
 
     const submit = (event) => {
         event.preventDefault();
-        post(`/tour/${slug}/review`, {
+        post(routes.tours.review(slug), {
             preserveScroll: true,
             onSuccess: () => reset('comment'),
         });
@@ -42,6 +49,21 @@ function ReviewForm({ slug }) {
     return (
         <form className="rp-review-form" onSubmit={submit}>
             <h3>Viết đánh giá</h3>
+
+            {guest && (
+                <div className="rp-form-grid">
+                    <label className="rp-field">
+                        <span>Họ tên</span>
+                        <input value={data.author_name} onChange={(event) => setData('author_name', event.target.value)} placeholder="Nguyễn Văn A" />
+                        {errors.author_name && <small className="rp-error">{errors.author_name}</small>}
+                    </label>
+                    <label className="rp-field">
+                        <span>Email</span>
+                        <input type="email" value={data.author_email} onChange={(event) => setData('author_email', event.target.value)} placeholder="email@example.com" />
+                        {errors.author_email && <small className="rp-error">{errors.author_email}</small>}
+                    </label>
+                </div>
+            )}
 
             <div className="rp-field">
                 <span>Chấm điểm</span>
@@ -60,8 +82,81 @@ function ReviewForm({ slug }) {
                 {errors.comment && <small className="rp-error">{errors.comment}</small>}
             </label>
 
+            <div className="hp-field" aria-hidden="true">
+                <label>Website<input type="text" name="website" value={data.website} onChange={(event) => setData('website', event.target.value)} tabIndex={-1} autoComplete="off" /></label>
+            </div>
+
             <button type="submit" className="rp-btn rp-btn--gold" disabled={processing}>
                 {processing ? 'Đang gửi...' : 'Gửi đánh giá'}
+            </button>
+        </form>
+    );
+}
+
+function TourInquiryForm({ tour, onDone }) {
+    const { data, setData, post, processing, errors, reset } = useForm({
+        name: '',
+        email: '',
+        phone: '',
+        people_count: 2,
+        preferred_date: '',
+        message: '',
+        website: '',
+    });
+
+    const submit = (event) => {
+        event.preventDefault();
+        post(routes.tours.inquiry(tour.slug), {
+            preserveScroll: true,
+            onSuccess: () => {
+                reset();
+                onDone();
+            },
+        });
+    };
+
+    return (
+        <form className="rp-inquiry-form" onSubmit={submit}>
+            <div className="rp-form-grid">
+                <label className="rp-field">
+                    <span>Họ tên *</span>
+                    <input value={data.name} onChange={(event) => setData('name', event.target.value)} />
+                    {errors.name && <small className="rp-error">{errors.name}</small>}
+                </label>
+                <label className="rp-field">
+                    <span>Email *</span>
+                    <input type="email" value={data.email} onChange={(event) => setData('email', event.target.value)} />
+                    {errors.email && <small className="rp-error">{errors.email}</small>}
+                </label>
+                <label className="rp-field">
+                    <span>Số điện thoại *</span>
+                    <input value={data.phone} onChange={(event) => setData('phone', event.target.value)} placeholder="0912345678" />
+                    {errors.phone && <small className="rp-error">{errors.phone}</small>}
+                </label>
+                <label className="rp-field">
+                    <span>Số người *</span>
+                    <input type="number" min="1" max="50" value={data.people_count} onChange={(event) => setData('people_count', event.target.value)} />
+                    {errors.people_count && <small className="rp-error">{errors.people_count}</small>}
+                </label>
+                <label className="rp-field">
+                    <span>Ngày dự kiến</span>
+                    <input type="date" min={new Date().toISOString().slice(0, 10)} value={data.preferred_date} onChange={(event) => setData('preferred_date', event.target.value)} />
+                    {errors.preferred_date && <small className="rp-error">{errors.preferred_date}</small>}
+                </label>
+            </div>
+
+            <label className="rp-field">
+                <span>Ghi chú</span>
+                <textarea rows={3} value={data.message} onChange={(event) => setData('message', event.target.value)} placeholder="Bạn cần hỗ trợ thêm điều gì?" />
+                {errors.message && <small className="rp-error">{errors.message}</small>}
+            </label>
+
+            <div className="hp-field" aria-hidden="true">
+                <label>Website<input type="text" name="website" value={data.website} onChange={(event) => setData('website', event.target.value)} tabIndex={-1} autoComplete="off" /></label>
+            </div>
+
+            <button type="submit" className="rp-btn rp-btn--gold rp-btn--block" disabled={processing}>
+                {processing ? 'Đang gửi...' : 'Gửi yêu cầu tư vấn'}
             </button>
         </form>
     );
@@ -73,6 +168,7 @@ export default function TourShow({ tour, relatedTours = [] }) {
     const reviews = tour.reviews || [];
     const itinerary = tour.itineraries || [];
     const destinations = tour.destinations || [];
+    const [inquiryOpen, setInquiryOpen] = useState(false);
 
     const average = reviews.length
         ? reviews.reduce((sum, review) => sum + Number(review.rating || 0), 0) / reviews.length
@@ -178,7 +274,7 @@ export default function TourShow({ tour, relatedTours = [] }) {
                             {reviews.map((review) => (
                                 <article className="rp-review" key={review.id}>
                                     <div className="rp-review__head">
-                                        <strong>{review.user?.name || 'Khách hàng'}</strong>
+                                        <strong>{review.author_name || review.user?.name || 'Khách hàng'}</strong>
                                         <span>{review.created_at ? date(review.created_at) : ''}</span>
                                     </div>
                                     <Stars value={review.rating} />
@@ -186,13 +282,7 @@ export default function TourShow({ tour, relatedTours = [] }) {
                                 </article>
                             ))}
 
-                            {auth?.user ? (
-                                <ReviewForm slug={tour.slug} />
-                            ) : (
-                                <p className="rp-muted">
-                                    <Link href="/login" className="rp-link-arrow">Đăng nhập</Link> để gửi đánh giá.
-                                </p>
-                            )}
+                            <ReviewForm slug={tour.slug} guest={!auth?.user} />
                         </div>
                     </div>
 
@@ -202,9 +292,9 @@ export default function TourShow({ tour, relatedTours = [] }) {
                             <div className="rp-price-card__value">{money(tour.price_reference)}</div>
                             <div className="rp-price-card__unit">/ khách</div>
 
-                            <Link href={routes.contact} className="rp-btn rp-btn--gold rp-btn--block">
-                                Đặt hành trình <ArrowRight size={15} />
-                            </Link>
+                            <button type="button" className="rp-btn rp-btn--gold rp-btn--block" onClick={() => setInquiryOpen(true)}>
+                                Yêu cầu tư vấn <ArrowRight size={15} />
+                            </button>
 
                             <a href={`tel:${usePage().props.settings?.contact_phone || ''}`} className="rp-btn rp-btn--outline rp-btn--block">
                                 <Phone size={15} /> Gọi tư vấn
@@ -237,6 +327,10 @@ export default function TourShow({ tour, relatedTours = [] }) {
                     </div>
                 </section>
             )}
+
+            <Modal open={inquiryOpen} onClose={() => setInquiryOpen(false)} title={`Yêu cầu tư vấn: ${tour.name}`} size="md">
+                <TourInquiryForm tour={tour} onDone={() => setInquiryOpen(false)} />
+            </Modal>
         </AppLayout>
     );
 }

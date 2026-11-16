@@ -6,6 +6,7 @@ Cập nhật: 2026-11-14.
 
 Admin → **Lịch sử cập nhật** (`/admin/lich-su-cap-nhat`).
 
+- Phiên bản hiện tại: **2.3.0** (VERSION).
 - Timeline version mới nhất trên cùng.
 - Lọc theo version, loại thay đổi, trạng thái, khoảng ngày.
 - Xem chi tiết / sửa / xóa từng bản (có xác nhận trước khi xóa).
@@ -40,7 +41,14 @@ Không có seed/ bản ghi mặc định — không tự tạo “bản phát h�
 
 **Không** tạo bản ghi khi chỉ đang sửa code hoặc chưa hoàn tất; dùng trạng thái **Đang phát triển** nếu cần theo dõi nội bộ (bản ghi này vẫn hiển thị trong Admin nhưng không đại diện bản phát hành chính thức).
 
-## 4. Đồng bộ
+## 4. Lịch sử phát hành gần đây
+
+| Version | Ngày | Nội dung chính |
+|---|---|---|
+| 2.3.0 | 2026-11-16 | Đánh giá khách vãng lai, yêu cầu tư vấn tour, rate limit/honeypot, private channel realtime |
+| 2.2.0 | 2026-11-14 | Lịch sử cập nhật, Visual Editor GĐ1b, carousel The Window |
+
+## 5. Đồng bộ
 
 - `VERSION` = nguồn version hiện tại, hiển thị ở đầu trang Lịch sử cập nhật.
 - `CHANGELOG.md` = bản ghi kỹ thuật đầy đủ.
