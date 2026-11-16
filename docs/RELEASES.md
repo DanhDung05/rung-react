@@ -43,6 +43,7 @@ Không cần tạo bản ghi trong Admin. Không sửa `CHANGELOG.md` bằng tay
 
 | Version | Ngày | Nội dung chính |
 |---|---|---|
+| 2.4.2 | 2026-11-16 | Sửa nút gửi yêu cầu tư vấn tour (thiếu route helper) |
 | 2.4.1 | 2026-11-16 | Polling không socket hiện toast mới + chu kỳ cấu hình |
 | 2.4.0 | 2026-11-16 | Realtime Admin: đồng bộ trạng thái, hook badge/toast/title, polling dự phòng, Dashboard live |
 | 2.3.2 | 2026-11-16 | Lịch sử cập nhật đọc trực tiếp CHANGELOG.md (chỉ đọc) |

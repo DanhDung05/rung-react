@@ -17,6 +17,12 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2.4.2] - 2026-11-16
+
+### Fixed
+- Nút **Gửi yêu cầu tư vấn** trong chi tiết tour không phản hồi do thiếu helper `routes.tours.inquiry`; đã bổ sung đúng route `/tour/{slug}/yeu-cau-tu-van`.
+- Kiểm tra trình duyệt: modal đóng, flash “Cảm ơn bạn! Chúng tôi sẽ liên hệ tư vấn…”, Contact `tour_inquiry` được tạo.
+- `VERSION` → 2.4.2.
 ## [2.4.1] - 2026-11-16
 
 ### Fixed

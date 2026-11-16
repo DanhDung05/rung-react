@@ -32,6 +32,7 @@ export const routes = {
         show: (slug) => `/tour/${slug}`,
         category: (slug) => `/tour/danh-muc/${slug}`,
         review: (id) => `/tour/${id}/review`,
+        inquiry: (slug) => `/tour/${slug}/yeu-cau-tu-van`,
     },
 
     destinations: {
