@@ -1,12 +1,15 @@
 # Tài liệu dự án Rừng Adventure
 
-Cập nhật lần cuối: 2026-11-11 — commit `9f03af2`.
+Cập nhật: 2026-11-16 — commit `3e7854a` — version `2.2.0`.
 
 | File | Nội dung |
 |---|---|
-| [PROJECT_STATUS.md](PROJECT_STATUS.md) | Trạng thái, module đã xong, tồn đọng |
+| [ADMIN_GUIDE.md](ADMIN_GUIDE.md) | **Hướng dẫn sử dụng Admin từng bước** (nguồn trang Trợ giúp) |
+| [ADMIN_FEATURES.md](ADMIN_FEATURES.md) | Danh mục chức năng Admin + route/controller |
+| [PROJECT_STATUS.md](PROJECT_STATUS.md) | Trạng thái, đã xong, tồn đọng, commit |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Công nghệ, cấu trúc, luồng dữ liệu |
-| [ADMIN_FEATURES.md](ADMIN_FEATURES.md) | Danh sách chức năng Admin + route/controller |
+| [RELEASES.md](RELEASES.md) | Quy trình phát hành + đồng bộ VERSION/CHANGELOG |
+| [DESIGN_TOKENS.md](DESIGN_TOKENS.md) | Palette, typography, legacy mapping |
 | [FEATURES.md](FEATURES.md) | Tính năng theo module nghiệp vụ |
 | [DATABASE.md](DATABASE.md) | Bảng, quan hệ, dữ liệu |
 | [DEPLOYMENT.md](DEPLOYMENT.md) | Cài đặt, build, vận hành |
@@ -15,3 +18,4 @@ Cập nhật lần cuối: 2026-11-11 — commit `9f03af2`.
 | [development/DOCUMENTATION_RULES.md](development/DOCUMENTATION_RULES.md) | Quy tắc bắt buộc cập nhật tài liệu |
 
 Changelog gốc: [`../CHANGELOG.md`](../CHANGELOG.md).
+Trang Admin đọc trực tiếp các file trên: `/admin/huong-dan`.

@@ -1,46 +1,82 @@
 # ADMIN FEATURES — Rừng Adventure
 
-Cập nhật theo code tại commit `9f03af2`. Route nằm dưới prefix `/admin`, middleware `admin`.
+Cập nhật: 2026-11-16 · commit `3e7854a` · version `2.2.0`.
+Mọi route nằm dưới `/admin`, middleware `admin`. Hướng dẫn thao tác chi tiết: [ADMIN_GUIDE.md](ADMIN_GUIDE.md).
+
+## 1. Danh mục module
 
 | Module | Route chính | Controller | Trạng thái | Ảnh hưởng Public |
 |---|---|---|---|---|
 | Dashboard | `/admin/dashboard` | DashboardController | Hoạt động | — |
-| Tour | `admin/tour` | Admin\TourController | CRUD + thùng rác + khôi phục/xóa vĩnh viễn | `/tour`, `/tour/{slug}`, tour liên quan, Home |
-| Destination | `admin/diem-den` | Admin\DestinationController | CRUD + thùng rác | `/diem-den`, `/diem-den/{slug}` |
-| Category | `admin/danh-muc` | Admin\CategoryController | CRUD + thùng rác | Lọc tour/bài viết, menu |
-| Post | `admin/bai-viet` | Admin\PostController | CRUD + thùng rác | `/bai-viet`, danh mục, tag, Home |
-| Tag | `admin/tag` | Admin\TagController | CRUD | Trang tag bài viết |
-| Page | `admin/trang-tinh` | Admin\PageController | CRUD + thùng rác | `/gioi-thieu`, `/trang-tinh/{slug}` |
-| FAQ | `admin/faq` | Admin\FaqController | CRUD + thùng rác | `/faq` |
-| Slider | `admin/slider` | Admin\SliderController | CRUD + thùng rác; upload ảnh | Hero trang chủ |
-| Menu | `admin/menu` | Admin\MenuController | CRUD menu + items (2 cấp) | Header/Footer navigation |
-| Media | `admin/media` | Admin\MediaController | Xem, thùng rác, xóa | Ảnh dùng trong nội dung |
-| Contact | `admin/lien-he` | Admin\ContactController | Xem, đổi trạng thái | Không (chỉ nhận form) |
-| Review | `admin/danh-gia` | Admin\ReviewController | Duyệt, xóa | Đánh giá trên Tour/Show |
-| User | `admin/tai-khoan` | Admin\UserController | CRUD, khóa/mở, đổi role | Không |
-| Settings | `admin/cau-hinh` | Admin\SettingController | Sửa nhóm cấu hình | Toàn site |
-| Nội dung trang chủ | `admin/noi-dung-trang-chu` | Admin\HomeSectionController | Sửa Gallery + override | Section Thư viện |
-| Nội dung giao diện | `admin/noi-dung-giao-dien/{page}` | Admin\UiTextController | Sửa text/label (Tour Index) | Trang Tour |
-| Visual Editor | `admin/visual-editor` | Admin\VisualEditorController | Draft/publish/restore | Trang chủ (13 phần tử) |
+| Tour | `/admin/tour` | TourController | CRUD + thùng rác + khôi phục/xóa vĩnh viễn | `/tour`, `/tour/{slug}`, Home |
+| Điểm đến | `/admin/diem-den` | DestinationController | CRUD + thùng rác | `/diem-den`, `/diem-den/{slug}` |
+| Danh mục | `/admin/danh-muc` | CategoryController | CRUD + thùng rác | Lọc tour/bài viết, menu |
+| Bài viết | `/admin/bai-viet` | PostController | CRUD + thùng rác | `/bai-viet`, danh mục, tag, Home |
+| Tag | `/admin/tag` | TagController | CRUD | Trang tag |
+| Trang tĩnh | `/admin/trang-tinh` | PageController | CRUD + thùng rác | `/gioi-thieu`, `/trang-tinh/{slug}` |
+| FAQ | `/admin/faq` | FaqController | CRUD + thùng rác | `/faq` |
+| Slider | `/admin/slider` | SliderController | CRUD + thùng rác + upload ảnh | Hero trang chủ/trang con |
+| Menu | `/admin/menu` | MenuController | CRUD menu + item 2 cấp | Header/Footer |
+| Media | `/admin/media` | MediaController | Xem/lọc/thùng rác/xóa; **chưa upload trực tiếp** | Ảnh nội dung, carousel |
+| Liên hệ | `/admin/lien-he` | ContactController | Xem, đổi trạng thái, xóa | Không (nhận form) |
+| Đánh giá | `/admin/danh-gia` | ReviewController | Duyệt/từ chối/xóa | Đánh giá trên Tour |
+| Người dùng | `/admin/tai-khoan` | UserController | CRUD, khóa/mở, đổi role (admin only) | Không |
+| Cài đặt | `/admin/cau-hinh` | SettingController | Sửa nhóm cấu hình + preview | Toàn site |
+| Nội dung trang chủ | `/admin/noi-dung-trang-chu` | HomeSectionController | Gallery + override | Section Thư viện |
+| Nội dung giao diện | `/admin/noi-dung-giao-dien/{page}` | UiTextController | Text/label (hiện Tour Index) | Trang Tour |
+| Visual Editor | `/admin/visual-editor` | VisualEditorController | Draft/publish/history | Trang chủ |
+| Lịch sử cập nhật | `/admin/lich-su-cap-nhat` | ReleaseController | CRUD + timeline + lọc | Không (Admin) |
+| Hướng dẫn sử dụng | `/admin/huong-dan` | GuideController | Render Markdown từ `docs/` | Không (Admin) |
 
-## Settings — nhóm cấu hình
+## 2. Settings — nhóm cấu hình
 
 | Nhóm | Nội dung | Ảnh hưởng |
 |---|---|---|
 | general | tên, mô tả, logo, favicon | Header/Footer/SEO |
-| contact | email, phone, địa chỉ, giờ làm việc, email thông báo | Footer, trang Liên hệ |
+| contact | email, phone, địa chỉ, giờ làm việc | Footer, trang Liên hệ |
 | social | facebook, instagram, youtube, tiktok | Footer |
-| seo | title/description/keywords mặc định | Thẻ meta |
-| hero | 6 ảnh hero theo trang | `PageHero` các trang con |
+| seo | title/description/keywords | Meta tags |
+| hero | 6 ảnh hero + `hero_overlay_enabled` | PageHero, slider |
 | about | nội dung giới thiệu | Home, Giới thiệu |
-| palette | 6 màu | CSS vars `--rp-*` |
+| palette | **10 màu** (`palette_*`) | CSS vars `--rp-*` |
 | typography | 10 nhóm × 5 thuộc tính | Heading/body/lead/eyebrow/breadcrumb/footer |
-| appearance | 2 màu nền | `--rp-cream`, `--rp-white` |
-| theme (ẩn một phần) | primary/secondary | Nút, badge |
+| theme | `theme_primary_color`, `theme_secondary_color` | Nút/badge Admin |
+| appearance | đã ẩn khỏi danh sách (chỉ thông báo cũ) | `bg_*` fallback |
 
-## Giới hạn đã biết
+## 3. Tính năng nổi bật
 
-- Media chưa có upload trong trang Media (ảnh upload qua form Tour/Slider/Settings).
+### Visual Editor (trang chủ)
+- Chọn thành phần, sửa text/style.
+- Bật/tắt 6 section; thêm section quote band; đổi thứ tự bằng kéo-thả/↑↓.
+- Sửa ảnh Banner/CTA (URL Media), liên kết nút.
+- Draft → Publish; 5 bản lịch sử; khôi phục.
+
+### Thư viện & Carousel
+- 20 ảnh WebP import qua `media:import-the-window` vào collection `gallery`.
+- `home_gallery_media` chia sẻ ra Home; carousel 3D (coverflow, kéo/swipe, autoplay, thumbnail, modal) khung ảnh ngang 4:3.
+- Ảnh curated thay thế ảnh slider/tour trong section Thư viện.
+
+### Giao diện Admin
+- Sáng/Tối (localStorage), sidebar thu gọn 76px, sidebar cố định.
+- Font Segoe UI weight 700 thật, tránh synthetic bold.
+- Logo brand PNG trắng/màu theo nền.
+
+### Lịch sử cập nhật
+- Bảng `releases` (version duy nhất), timeline, lọc, chi tiết, CRUD.
+- Version hiện tại đọc từ `VERSION`; nội dung nhiều dòng/danh sách.
+- Không seed bản ghi; đồng bộ `CHANGELOG.md` theo quy trình [RELEASES.md](RELEASES.md).
+
+### Trợ giúp trong Admin
+- Trang `/admin/huong-dan` render trực tiếp Markdown từ `docs/` (ADMIN_GUIDE, ADMIN_FEATURES, RELEASES, DESIGN_TOKENS, ARCHITECTURE).
+- Tìm kiếm, mục lục, điều hướng tài liệu; chỉ admin/editor đăng nhập mới xem.
+
+## 4. Giới hạn đã biết
+
+- Media chưa có form upload trực tiếp; ảnh upload qua form Tour/Bài viết/Slider/Cài đặt; import bằng command.
+- UI Text mới phủ Tour Index.
+- Visual Editor: text áp dụng client-side; ảnh nhập URL (chưa Media picker).
 - Review chỉ duyệt/xóa, không tạo trong Admin.
-- Menu hỗ trợ 2 cấp.
-- Visual Editor và UI Text chưa phủ toàn bộ trang.
+- Menu tối đa 2 cấp.
+- B2.2 chưa kiểm thử đủ 8 trang × 3 breakpoint.
+- Nhiều tour/điểm đến/bài viết còn thiếu ảnh thật.
+- Soketi realtime mặc định tắt (`BROADCAST_DRIVER=log`).

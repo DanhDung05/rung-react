@@ -17,6 +17,20 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-16] Kiểm kê tài liệu & Trợ giúp Admin từ Markdown
+
+### Added
+- `docs/ADMIN_GUIDE.md` — hướng dẫn quản trị đầy đủ 19 mục (đăng nhập → visual editor → releases → lỗi thường gặp).
+- Trang **Admin → Hướng dẫn sử dụng** render Markdown trực tiếp từ `docs/` qua manifest `config/admin_docs.php`; có tìm kiếm, mục lục, tài liệu trước/sau, rewrite link nội bộ.
+- `GuideController` đọc whitelist file, `Str::markdown` với `html_input=strip`, chặn file ngoài `docs/`, sinh anchor heading.
+
+### Changed
+- Cập nhật `ADMIN_FEATURES.md`, `PROJECT_STATUS.md`, `ARCHITECTURE.md`, `docs/README.md`, `DATABASE.md` (bảng `releases`, gallery) theo commit `3e7854a`.
+- `DOCUMENTATION_RULES.md` thành quy tắc bắt buộc theo ma trận thay đổi; tài liệu phải cập nhật cùng đợt commit.
+- Trang Trợ giúp không còn dùng `config/admin_guide.php` (legacy).
+
+### Fixed
+- Tài liệu dự án trước đó dừng ở commit `9f03af2` (thiếu releases, carousel, dark mode, brand, dev script).
 ## [2026-11-16] Carousel thư viện chuyển khung ảnh ngang
 
 ### Changed

@@ -1,56 +1,62 @@
 # PROJECT STATUS — Rừng Adventure
 
-Cập nhật: 2026-11-11 · commit `9f03af2` · Build: OK · Test: 103 passed / 656 assertions.
+Cập nhật: 2026-11-16 · commit `3e7854a` · version `2.2.0` · Build: OK · Test: **123 passed / 815 assertions**.
 
 ## 1. Trạng thái tổng quan
 
 | Hạng mục | Trạng thái |
 |---|---|
-| Backend Laravel 10 + MySQL | Hoàn thành |
-| Admin React (59 trang CRUD) | Hoàn thành |
+| Backend Laravel 10 + MySQL 8 | Hoàn thành |
+| Admin React (CRUD đầy đủ) | Hoàn thành |
 | Public React (Home, Tour, Destination, Blog, Pages, Search) | Hoàn thành |
-| Hero Slider | Hoàn thành (không nằm trong phạm vi editor) |
-| Settings key-value + phân quyền | Hoàn thành |
-| UI Text (nội dung giao diện từng trang) | Giai đoạn 1 (Tour Index) |
-| Home Section Editor (Gallery) | Hoàn thành |
-| Palette + Typography toàn cục | Hoàn thành |
-| Preview iframe trong Settings | Hoàn thành (chưa kiểm thử trực quan đầy đủ) |
-| Visual Editor (trang chủ) | Giai đoạn 1 (13 phần tử) |
+| Hero Slider + bật/tắt overlay | Hoàn thành |
+| Settings key-value + preview iframe | Hoàn thành |
+| Palette 10 màu + Typography 10 nhóm | Hoàn thành |
+| Visual Editor (6 section, nút/ảnh/toggle/order) | Hoàn thành (GĐ1b) |
+| Thư viện ảnh + carousel The Window | Hoàn thành |
+| Lịch sử cập nhật (`releases`) | Hoàn thành |
+| Trợ giúp Admin render từ Markdown | Hoàn thành |
+| Dark mode + sidebar thu gọn | Hoàn thành |
+| Một lệnh `npm run dev` (+Soketi tùy chọn) | Hoàn thành |
+| UI Text | Giai đoạn 1 (Tour Index) |
 
-## 2. Đã hoàn thành
+## 2. Đã hoàn thành (theo module)
 
-- CRUD: Tour, Destination, Category, Post, Tag, Page, FAQ, Slider, Menu (2 cấp), User, Media (thùng rác/khôi phục), Contact, Review (duyệt/xóa).
-- Auth + phân quyền admin/editor; policy cho User & Setting.
-- Settings 9 nhóm: general, contact, social, seo, hero, about, palette, typography, appearance (+ theme cũ).
-- Public: Home, Tour Index/Show, Destination Index/Show, Blog Index/Category/Tag/Show, About, Contact (form), FAQ, Pages/Show, Search, trang lỗi 403/404/419/500.
-- Theme: palette 6 màu → CSS vars; typography 10 nhóm; loại trừ Hero Slider H1.
-- Visual Editor: draft/published/history (5 bản), undo/redo, 3 breakpoint, iframe preview.
-- Màu nền: Palette (palette_cream, palette_white) là nguồn duy nhất; Appearance chỉ còn thông báo + liên kết, g_* giữ làm fallback không ghi đè.
-- Design tokens: 10 palette + 10 nhóm typography; 	okens.css là nguồn gốc, ThemeStyles override từ Settings; command 	okens:migrate cho legacy.
+- **CRUD Admin**: Tour, Điểm đến, Danh mục, Bài viết, Tag, Trang tĩnh, FAQ, Slider, Menu 2 cấp, Media (thùng rác/khôi phục), Liên hệ, Đánh giá, Người dùng.
+- **Auth & phân quyền**: role admin/editor; policy User/Setting.
+- **Settings**: general, contact, social, seo, hero (+overlay), about, palette (10), typography (10 nhóm), theme; appearance ẩn.
+- **Design tokens**: `tokens.css` nguồn gốc; `ThemeStyles` override; `tokens:migrate` cho legacy; H1–H3 kế thừa Forest.
+- **Visual Editor**: chọn thành phần, style, bật/tắt section, ảnh Banner/CTA, nút, section quote band, kéo-thả thứ tự, draft/publish/history 5 bản.
+- **Media/Gallery**: 20 ảnh The Window import idempotent; `home_gallery_media`; carousel 3D responsive khung 4:3, modal.
+- **Lịch sử cập nhật**: bảng `releases`, version duy nhất, timeline/lọc/CRUD, `VERSION` 2.2.0, `docs/RELEASES.md`.
+- **Admin UX**: dark/light, sidebar sticky + thu gọn, font rõ nét, logo brand, preview Settings.
+- **Dev**: `npm run dev` chạy Laravel + Vite + kiểm tra MySQL; Soketi tự chạy khi bật pusher.
+- **Docs**: ADMIN_GUIDE, ADMIN_FEATURES, ARCHITECTURE, PROJECT_STATUS, RELEASES, DESIGN_TOKENS, DEVELOPMENT_LOG, quy tắc tài liệu.
 
 ## 3. Đang triển khai / dở dang
 
 | Việc | Ghi chú |
 |---|---|
-| Visual Editor GĐ1b | Mới gắn `data-ui` cho 13 phần tử; thiếu tiêu đề đầy đủ, nút, ảnh, bật/tắt section |
-| UI Text | Mới cấu hình Tour Index; các trang khác còn hardcode |
-| Preview B2.3 | Đã có iframe; chưa kiểm thử tương tác do không có phiên browser |
-| Palette | Đã thay màu chính; còn 68 hex (shade, màu chức năng) |
+| UI Text mở rộng | Mới Tour Index; Tour Show/Điểm đến/Blog/Trang tĩnh chưa |
+| Media picker trong Visual Editor | Ảnh đang nhập URL `/storage/...` |
+| Upload Media trực tiếp | Chưa có form trong `/admin/media` |
+| SSR text Visual Editor | Text xuất bản áp dụng client-side |
+| Ảnh nội dung thật | Nhiều tour/điểm đến/bài viết còn placeholder |
+| B2.2 visual QA | Chưa đủ 8 trang × 3 breakpoint |
+| Realtime Soketi | Tùy chọn, mặc định tắt |
 
 ## 4. Lỗi / giới hạn đã biết
 
-- Ảnh nội dung thiếu: 12/13 điểm đến, 7/9 tour, 0/9 bài viết; 1 file `.webp` thực chất JPEG (sai MIME) → dùng placeholder SVG.
-- Media Library: chưa có upload trực tiếp trong trang Media.
-- Toggle trạng thái ở một số module dùng form update thay vì endpoint riêng.
-- Visual Editor chỉ hỗ trợ Home, chưa có ảnh/button/section toggle.
-- B2.2 chưa kiểm 8 trang × 3 breakpoint.
-- Menu item cấp 3 có thể hiển thị sai (giới hạn cũ của Menu 2 cấp).
+- Ảnh placeholder SVG khi thiếu ảnh; 1 file `.webp` cũ thực tế là JPEG.
+- Menu item cấp 3 có thể hiển thị sai (giới hạn 2 cấp).
+- Carousel hiện dùng ảnh chân dung The Window (dọc) trong khung ngang → crop; cần ảnh phong cảnh ngang.
+- Toggle một số module dùng form update thay endpoint riêng.
 
 ## 5. Việc tiếp theo
 
-1. Hoàn thiện Visual Editor GĐ1b (đủ 6 section, ảnh, nút).
-2. Mở rộng UI Text cho Tour Show, Destination, Blog, Pages.
-3. Hoàn tất kiểm thử palette/typography đa trang, đa breakpoint.
-4. Bổ sung upload Media.
-5. Chuẩn hóa ảnh nội dung (đúng MIME, đủ ảnh).
-- Lịch sử cập nhật: bảng `releases` + Admin timeline, đồng bộ `VERSION`/`CHANGELOG.md` (`docs/RELEASES.md`).
+1. Mở rộng UI Text cho Tour Show, Điểm đến, Blog, Trang tĩnh.
+2. Media picker + upload trực tiếp trong Media.
+3. SSR hoá text Visual Editor.
+4. Thay ảnh du lịch ngang cho thư viện.
+5. Kiểm thử giao diện đa trang/breakpoint.
+6. Bật Soketi nếu cần realtime thông báo.

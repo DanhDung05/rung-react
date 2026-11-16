@@ -691,3 +691,13 @@ ToÃ n bá»™ Giai Ä‘oáº¡n 2â€“6 (theo káº¿ hoáº¡ch). Cá»¥ thá»ƒ:
 ### Káº¿t quáº£ kiá»ƒm thá»­
 ### BÆ°á»›c tiáº¿p theo
 ```
+
+---
+
+## 2026-11-16 — Ki?m kê tài li?u & Tr? giúp Admin t? Markdown
+
+- Rà soát Git ð?n `3e7854a`; phát hi?n ADMIN_FEATURES/PROJECT_STATUS/ARCHITECTURE d?ng ? `9f03af2`, thi?u releases, carousel, dark mode, brand, dev script.
+- T?o `docs/ADMIN_GUIDE.md`; c?p nh?t ADMIN_FEATURES, PROJECT_STATUS, ARCHITECTURE, DATABASE, README, DOCUMENTATION_RULES.
+- Trang `/admin/huong-dan` chuy?n sang render Markdown t? `docs/` qua `config/admin_docs.php`; b? dùng `config/admin_guide.php`.
+- Ki?m th?: 6 test Guide (quy?n, ch?n tài li?u, fallback, rewrite link, sanitize); toàn b? 126 pass.
+

@@ -526,3 +526,30 @@ SELECT `key`, `group`, `type` FROM settings ORDER BY `group`, `key`;
 | 5 | 19/10/2026 | reviews |
 
 **ChÆ°a cÃ³:** `job_batches` (dÃ¹ `config/queue.php` khai bÃ¡o) â€” náº¿u dÃ¹ng `Bus::batch()` pháº£i táº¡o migration trÆ°á»›c.
+
+---
+
+## C?p nh?t 2026-11-16 — b?ng `releases` và Media Gallery
+
+### `releases` (L?ch s? c?p nh?t)
+
+| C?t | Ki?u | Ghi chú |
+|---|---|---|
+| id | bigint | PK |
+| version | varchar(32) unique | d?ng `X.Y.Z`, có th? có ti?n t? `v` |
+| previous_version | varchar(32) null | version trý?c |
+| title | varchar | tiêu ð? b?n c?p nh?t |
+| category | varchar(24) | `feature` / `improvement` / `fix` / `security` |
+| status | varchar(24) | `released` / `development` |
+| content | text | n?i dung nhi?u d?ng; d?ng `-` là danh sách |
+| released_at | date null | ngày phát hành |
+| created_by | FK users null | ngý?i t?o, null khi user b? xóa |
+| created_at / updated_at | timestamp | |
+
+Index: `status+released_at`, `category`. Không seed d? li?u.
+
+### Media collection `gallery`
+
+- 20 ?nh The Window: `file_path = media/gallery/the-window/*.webp`, `sort_order` 0..19.
+- Import: `php artisan media:import-the-window` (b? qua file ð? có).
+- Trang ch? ð?c t?i ða 24 ?nh collection này qua `settings.home_gallery_media`.
