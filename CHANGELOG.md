@@ -17,6 +17,19 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2.3.2] - 2026-11-16
+
+### Changed
+- Trang **Admin → Lịch sử cập nhật** chuyển sang đọc trực tiếp `CHANGELOG.md` qua `ChangelogService`; bỏ CRUD, nút thêm/sửa/xóa và `Form.jsx`.
+- Bảng `releases` và migration cũ được giữ nguyên nhưng không còn dùng để hiển thị; dữ liệu cũ không xuất hiện.
+- `CHANGELOG.md` dùng định dạng Keep a Changelog cho mục mới: `## [x.y.z] - YYYY-MM-DD` + `### Added/Changed/Fixed/Security`.
+- `VERSION` → 2.3.2.
+
+### Removed
+- Route `releases.create/store/edit/update/destroy`, trang `Form.jsx`, model `Release` (bảng `releases` và migration cũ vẫn giữ, không hiển thị).
+
+### Fixed
+- Lịch sử cập nhật không còn trống dù CHANGELOG đã có nhiều bản.
 ## [2026-11-16] v2.3.1 — Vá lỗi 429, proxy, login IP, realtime TLS, cache related
 
 ### Fixed

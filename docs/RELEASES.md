@@ -1,58 +1,55 @@
 # LỊCH SỬ CẬP NHẬT (RELEASES)
 
-Cập nhật: 2026-11-14.
+Cập nhật: 2026-11-16 · v2.3.2.
 
-## 1. Vị trí
+## 1. Nguồn dữ liệu duy nhất
 
-Admin → **Lịch sử cập nhật** (`/admin/lich-su-cap-nhat`).
+Trang **Admin → Lịch sử cập nhật** (`/admin/lich-su-cap-nhat`) đọc trực tiếp `CHANGELOG.md` qua `App\Services\ChangelogService`.
 
-- Phiên bản hiện tại: **2.3.1** (VERSION).
-- Timeline version mới nhất trên cùng.
-- Lọc theo version, loại thay đổi, trạng thái, khoảng ngày.
-- Xem chi tiết / sửa / xóa từng bản (có xác nhận trước khi xóa).
-- Chỉ quản trị viên (`admin` middleware) truy cập.
+- Không nhập liệu trong Admin; không có nút thêm/sửa/xóa.
+- Bảng `releases` và migration cũ **được giữ** nhưng không còn dùng để hiển thị; dữ liệu cũ không xuất hiện.
+- Chỉ admin/editor (middleware `admin`) truy cập.
+- Version hiện tại đọc từ `VERSION`; badge “Hiện tại” so khớp chính xác.
 
-## 2. Dữ liệu
+## 2. Định dạng CHANGELOG
 
-Bảng `releases`:
+Mục mới dùng Keep a Changelog:
 
-| Cột | Ý nghĩa |
-|---|---|
-| `version` | Duy nhất, dạng `X.Y.Z` (cho phép tiền tố `v`) |
-| `previous_version` | Version trước |
-| `title` | Tiêu đề bản cập nhật |
-| `category` | `feature` / `improvement` / `fix` / `security` |
-| `status` | `released` (Đã phát hành) / `development` (Đang phát triển) |
-| `content` | Nội dung nhiều dòng; dòng bắt đầu `-` hiển thị thành danh sách |
-| `released_at` | Ngày phát hành (có thể trống khi đang phát triển) |
-| `created_by` | Người tạo (FK `users`, null nếu user bị xóa) |
+```md
+## [2.3.2] - 2026-11-16
 
-Không có seed/ bản ghi mặc định — không tự tạo “bản phát hành giả”.
+### Changed
+- Mô tả thay đổi
+
+### Fixed
+- Mô tả lỗi đã sửa
+```
+
+- Nhóm hỗ trợ: `Added` (Thêm), `Changed` (Thay đổi), `Fixed` (Sửa lỗi), `Security` (Bảo mật), `Deprecated`, `Removed`, `Docs`, `Notes`.
+- Các mục cũ dạng `## [YYYY-MM-DD] vX.Y.Z — Tiêu đề` vẫn được parse; mục không có version dùng ngày làm khóa (thêm `-2`, `-3` nếu trùng ngày).
+- File thiếu/không đọc được: trang vẫn 200, danh sách rỗng, log warning.
 
 ## 3. Quy trình phát hành
 
-1. Hoàn tất code + test trên nhánh làm việc.
-2. Cập nhật `VERSION` (ví dụ `2.3.0`).
-3. Thêm mục vào `CHANGELOG.md` (ngày, nhóm thay đổi).
-4. Vào Admin → Lịch sử cập nhật → **Thêm bản cập nhật**:
-   - Version khớp `VERSION`, chọn **Đã phát hành**, ngày phát hành.
-   - Nhập nội dung giống CHANGELOG (không chứa đường dẫn máy chủ, lỗi kỹ thuật nội bộ).
-5. Build + test; commit kèm `VERSION`, `CHANGELOG.md` và migration (nếu có).
+1. Hoàn tất code + test.
+2. Cập nhật `VERSION` (ví dụ `2.3.2`).
+3. Thêm mục mới **trên cùng** `CHANGELOG.md` theo định dạng trên.
+4. Build + test; commit `VERSION` + `CHANGELOG.md` (và mã nguồn liên quan).
+5. Mở lại trang Lịch sử cập nhật — nội dung tự cập nhật theo `filemtime`, không cần xóa cache tay.
 
-**Không** tạo bản ghi khi chỉ đang sửa code hoặc chưa hoàn tất; dùng trạng thái **Đang phát triển** nếu cần theo dõi nội bộ (bản ghi này vẫn hiển thị trong Admin nhưng không đại diện bản phát hành chính thức).
+Không cần tạo bản ghi trong Admin. Không sửa `CHANGELOG.md` bằng tay trên production nếu không commit — trang sẽ lệch với mã nguồn.
 
-## 4. Lịch sử phát hành gần đây
+## 4. Lịch sử gần đây
 
 | Version | Ngày | Nội dung chính |
 |---|---|---|
+| 2.3.2 | 2026-11-16 | Lịch sử cập nhật đọc trực tiếp CHANGELOG.md (chỉ đọc) |
 | 2.3.1 | 2026-11-16 | Vá 429 Inertia, trusted proxies, login IP 20/phút, Echo WSS, cache related tour |
-| 2.3.0 | 2026-11-16 | Đánh giá khách vãng lai, yêu cầu tư vấn tour, rate limit/honeypot, private channel realtime |
+| 2.3.0 | 2026-11-16 | Đánh giá khách, tư vấn tour, rate limit/honeypot, private channel realtime |
 | 2.2.0 | 2026-11-14 | Lịch sử cập nhật, Visual Editor GĐ1b, carousel The Window |
 
-## 5. Đồng bộ
+## 5. Kỹ thuật
 
-- `VERSION` = nguồn version hiện tại, hiển thị ở đầu trang Lịch sử cập nhật.
-- `CHANGELOG.md` = bản ghi kỹ thuật đầy đủ.
-- Bảng `releases` = bản trình bày cho Admin/người dùng nội bộ.
-
-Ba nguồn phải cùng version/ngày khi phát hành. Không sửa một nơi mà bỏ hai nơi còn lại.
+- `ChangelogService::entries()` cache theo `md5(path) + filemtime`; file đổi → key đổi, không cần flush.
+- Parse heading `##`, nhóm `###`, bullet `-`/`*`; lỗi parse trả `[]` + log warning.
+- Route: `GET /admin/lich-su-cap-nhat` (index), `GET /admin/lich-su-cap-nhat/{version}` (show).

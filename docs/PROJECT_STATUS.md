@@ -1,6 +1,6 @@
 # PROJECT STATUS — Rừng Adventure
 
-Cập nhật: 2026-11-16 · version `2.3.1` · Build: OK · Test: **160 passed / 1008 assertions**.
+Cập nhật: 2026-11-16 · version `2.3.2` · Build: OK · Test: **165 passed / 1050 assertions**.
 
 ## 1. Trạng thái tổng quan
 
@@ -32,7 +32,7 @@ Cập nhật: 2026-11-16 · version `2.3.1` · Build: OK · Test: **160 passed /
 - **Design tokens**: `tokens.css` nguồn gốc; `ThemeStyles` override; `tokens:migrate` cho legacy; H1–H3 kế thừa Forest.
 - **Visual Editor**: chọn thành phần, style, bật/tắt section, ảnh Banner/CTA, nút, section quote band, kéo-thả thứ tự, draft/publish/history 5 bản.
 - **Media/Gallery**: 20 ảnh The Window import idempotent; `home_gallery_media`; carousel 3D responsive khung 4:3, modal.
-- **Lịch sử cập nhật**: bảng `releases`, version duy nhất, timeline/lọc/CRUD, `VERSION` 2.3.0, `docs/RELEASES.md`.
+- **Lịch sử cập nhật**: đọc trực tiếp `CHANGELOG.md` (chỉ đọc), badge Hiện tại theo `VERSION`, lọc/tìm; bảng `releases` giữ nhưng không dùng.
 - **Đánh giá khách**: user_id nullable, author_name/email, pending duyệt, email không lộ public.
 - **Tư vấn tour**: contacts thêm tour_id/people_count/preferred_date/type; mail + broadcast; admin hiển thị tour.
 - **Bảo mật**: limiter contact/review/login (email+IP 5/phút + IP 20/phút), honeypot, private channel admin-notifications.

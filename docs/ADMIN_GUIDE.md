@@ -185,12 +185,12 @@ Chỉ 2 màu nút/badge của khu quản trị, không ảnh hưởng website pu
 
 `/admin/lich-su-cap-nhat`
 
-- Xem timeline version, lọc version/loại/trạng thái/ngày.
-- Thêm bản ghi: version (dạng `X.Y.Z`, không trùng), version trước, tiêu đề, loại (Tính năng mới/Cải tiến/Sửa lỗi/Bảo mật), trạng thái (Đã phát hành/Đang phát triển), ngày, nội dung.
-- Nội dung nhiều dòng; dòng bắt đầu `-` hiển thị thành danh sách.
-- Chỉ đánh dấu **Đã phát hành** khi thực sự hoàn tất.
-- Quy trình phát hành: cập nhật `VERSION` → `CHANGELOG.md` → tạo bản ghi Admin (xem [RELEASES.md](RELEASES.md)).
-- Không nhập đường dẫn máy chủ, lỗi kỹ thuật, dữ liệu nhạy cảm.
+- Trang **chỉ đọc** từ `CHANGELOG.md`; không có nút thêm/sửa/xóa.
+- Timeline version mới nhất trên cùng; badge **Hiện tại** cho version khớp `VERSION`.
+- Tìm theo version/từ khóa và lọc theo nhóm thay đổi (Thêm/Thay đổi/Sửa lỗi/Bảo mật…).
+- Bấm “Xem chi tiết” để xem đầy đủ các nhóm và từng dòng.
+- Muốn cập nhật lịch sử: sửa `CHANGELOG.md` + `VERSION` trong mã nguồn rồi commit; trang tự đổi, không cần xóa cache.
+- Mục cũ không có số version sẽ dùng ngày làm khóa; vẫn xem được bình thường.
 
 ## 16. Hướng dẫn sử dụng (Trợ giúp)
 

@@ -540,3 +540,7 @@ SELECT `key`, `group`, `type` FROM settings ORDER BY `group`, `key`;
 ### `contacts`
 - Thêm `tour_id` FK nullable (nullOnDelete), `people_count` smallint null, `preferred_date` date null, `type` varchar(20) default `general` (`general` | `tour_inquiry`).
 - Index `tour_id`, `type`; quan hệ `tour()` dùng `withTrashed()`.
+
+### `releases` (v2.3.2)
+
+Bảng và migration cũ được **giữ nguyên** nhưng không còn dùng để hiển thị Lịch sử cập nhật. Nguồn hiển thị là `CHANGELOG.md`; dữ liệu cũ trong bảng không xuất hiện trên Admin.

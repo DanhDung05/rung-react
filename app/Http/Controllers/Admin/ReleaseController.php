@@ -3,124 +3,66 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Release;
+use App\Services\ChangelogService;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class ReleaseController extends Controller
 {
-    private function baseRules(): array
+    public function __construct(private ChangelogService $changelog)
     {
-        return [
-            'version'          => ['required', 'string', 'max:32', 'regex:/^v?\d+\.\d+\.\d+$/'],
-            'previous_version' => ['nullable', 'string', 'max:32'],
-            'title'            => ['required', 'string', 'max:255'],
-            'category'         => ['required', Rule::in(array_keys(Release::CATEGORIES))],
-            'status'           => ['required', Rule::in(array_keys(Release::STATUSES))],
-            'content'          => ['required', 'string'],
-            'released_at'      => ['nullable', 'date'],
-        ];
     }
 
     public function index(Request $request)
     {
-        $query = Release::query()->with('author:id,name');
+        $entries = $this->changelog->entries();
 
-        if ($request->filled('version')) {
-            $query->where('version', 'like', '%' . $request->string('version') . '%');
+        $groups = [];
+        foreach ($entries as $entry) {
+            foreach ($entry['groups'] as $group) {
+                $groups[$group['key']] = $group['label'];
+            }
         }
 
-        if ($request->filled('category')) {
-            $query->where('category', $request->string('category'));
-        }
+        $keyword = trim((string) $request->query('q', ''));
+        $groupFilter = (string) $request->query('group', '');
 
-        if ($request->filled('status')) {
-            $query->where('status', $request->string('status'));
-        }
+        $filtered = array_values(array_filter($entries, function (array $entry) use ($keyword, $groupFilter) {
+            if ($groupFilter !== '' && ! collect($entry['groups'])->contains(fn ($group) => $group['key'] === $groupFilter)) {
+                return false;
+            }
 
-        if ($request->filled('date_from')) {
-            $query->whereDate('released_at', '>=', $request->date('date_from'));
-        }
+            if ($keyword === '') {
+                return true;
+            }
 
-        if ($request->filled('date_to')) {
-            $query->whereDate('released_at', '<=', $request->date('date_to'));
-        }
+            $haystack = $entry['version'] . ' ' . $entry['title'] . ' ' . collect($entry['groups'])
+                ->flatMap(fn ($group) => array_merge([$group['label']], $group['items']))
+                ->implode(' ');
 
-        $releases = $query
-            ->orderByDesc('released_at')
-            ->orderByDesc('id')
-            ->paginate(15)
-            ->withQueryString();
+            return mb_stripos($haystack, $keyword) !== false;
+        }));
 
         return Inertia::render('Admin/Releases/Index', [
-            'releases'   => $releases,
-            'categories' => Release::CATEGORIES,
-            'statuses'   => Release::STATUSES,
+            'entries'        => $filtered,
+            'groups'         => $groups,
             'currentVersion' => $this->currentVersion(),
-            'filters'    => $request->only(['version', 'category', 'status', 'date_from', 'date_to']),
+            'filters'        => ['q' => $keyword, 'group' => $groupFilter],
         ]);
     }
 
-    public function create()
+    public function show(string $version)
     {
-        return Inertia::render('Admin/Releases/Form', [
-            'release'    => null,
-            'categories' => Release::CATEGORIES,
-            'statuses'   => Release::STATUSES,
-            'currentVersion' => $this->currentVersion(),
-        ]);
-    }
+        $entry = collect($this->changelog->entries())->firstWhere('version', $version);
 
-    public function store(Request $request)
-    {
-        $rules = $this->baseRules();
-        $rules['version'][] = 'unique:releases,version';
-        $data = $request->validate($rules);
-
-        $data['created_by'] = $request->user()?->id;
-
-        Release::create($data);
-
-        return redirect()->route('admin.releases.index')->with('success', 'Đã thêm bản cập nhật.');
-    }
-
-    public function show(Release $release)
-    {
-        $release->load('author:id,name');
+        if (! $entry) {
+            abort(404);
+        }
 
         return Inertia::render('Admin/Releases/Show', [
-            'release' => $release,
+            'entry'          => $entry,
             'currentVersion' => $this->currentVersion(),
         ]);
-    }
-
-    public function edit(Release $release)
-    {
-        return Inertia::render('Admin/Releases/Form', [
-            'release'    => $release,
-            'categories' => Release::CATEGORIES,
-            'statuses'   => Release::STATUSES,
-            'currentVersion' => $this->currentVersion(),
-        ]);
-    }
-
-    public function update(Request $request, Release $release)
-    {
-        $rules = $this->baseRules();
-        $rules['version'][] = Rule::unique('releases', 'version')->ignore($release->id);
-        $data = $request->validate($rules);
-
-        $release->update($data);
-
-        return redirect()->route('admin.releases.show', $release)->with('success', 'Đã cập nhật bản cập nhật.');
-    }
-
-    public function destroy(Release $release)
-    {
-        $release->delete();
-
-        return redirect()->route('admin.releases.index')->with('success', 'Đã xóa bản cập nhật.');
     }
 
     private function currentVersion(): string

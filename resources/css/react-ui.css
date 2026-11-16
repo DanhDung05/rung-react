@@ -1944,3 +1944,15 @@
 .help-pager__link small{display:block;font-size:.64rem;color:#7a8479;text-transform:uppercase;letter-spacing:.08em}
 .help-pager__link--next{text-align:right}
 @media(max-width:900px){.help-layout{grid-template-columns:1fr}.help-nav{position:static;max-height:none}}
+
+/* Releases read-only t? CHANGELOG */
+.release-filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:18px}
+.release-filters__search{display:flex;align-items:center;gap:6px;flex:1;min-width:240px}
+.release-filters__search .ui-input{width:100%}
+.release-group{margin:8px 0 0;padding-left:2px}
+.release-group__label{display:inline-block;font-size:.68rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:#a77942;margin-bottom:2px}
+.release-group ul{margin:2px 0 6px;padding-left:18px}
+.release-group li{font-size:.82rem;color:#55645a;line-height:1.5}
+.release-group small{color:#7a8479}
+.release-detail__content section{margin-bottom:16px}
+.release-detail__content h3{font-size:.95rem;margin:0 0 6px;color:#102c24}

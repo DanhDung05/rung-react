@@ -34,17 +34,11 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     // UPDATE HISTORY (Lịch sử cập nhật)
     // ============================================================
 
-    Route::resource('lich-su-cap-nhat', ReleaseController::class)
-        ->parameters(['lich-su-cap-nhat' => 'release'])
-        ->names([
-            'index'   => 'releases.index',
-            'create'  => 'releases.create',
-            'store'   => 'releases.store',
-            'show'    => 'releases.show',
-            'edit'    => 'releases.edit',
-            'update'  => 'releases.update',
-            'destroy' => 'releases.destroy',
-        ]);
+    Route::get('lich-su-cap-nhat', [ReleaseController::class, 'index'])
+        ->name('releases.index');
+
+    Route::get('lich-su-cap-nhat/{version}', [ReleaseController::class, 'show'])
+        ->name('releases.show');
 
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])

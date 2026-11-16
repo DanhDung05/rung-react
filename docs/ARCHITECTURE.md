@@ -67,9 +67,11 @@ scripts/dev.mjs                                 # npm run dev (Laravel+Vite+Soke
 
 ## 6. Lịch sử cập nhật
 
-- Bảng `releases`: version duy nhất, previous_version, title, category, status, content, released_at, created_by.
-- `ReleaseController` + trang Admin timeline/lọc/chi tiết/CRUD.
-- `VERSION` là nguồn version hiện tại; quy trình đồng bộ 3 nơi tại `docs/RELEASES.md`.
+- Nguồn duy nhất: `CHANGELOG.md`; `App\Services\ChangelogService` parse heading `##`, nhóm `###`, bullet.
+- Cache theo `md5(path) + filemtime`; file đổi tự cập nhật, không cần flush.
+- `ReleaseController@index/show` chỉ đọc; route `GET /admin/lich-su-cap-nhat[/{version}]`; không có CRUD.
+- Bảng `releases` + migration cũ giữ nguyên nhưng không còn dùng để hiển thị.
+- `VERSION` quyết định badge “Hiện tại”; quy trình tại `docs/RELEASES.md`.
 
 ## 7. Trợ giúp Admin từ Markdown
 
