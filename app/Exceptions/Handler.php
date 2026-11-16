@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
 use Inertia\Inertia;
 use Symfony\Component\HttpFoundation\Response as SymfonyResponse;
 use Throwable;
@@ -35,6 +36,12 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $e)
     {
+        if ($e instanceof ThrottleRequestsException && ! $request->expectsJson()) {
+            return back()
+                ->withInput()
+                ->with('error', $this->throttleMessage($e));
+        }
+
         $response = parent::render($request, $e);
 
         if ($request->expectsJson() || $request->header('X-Inertia')) {
@@ -67,6 +74,22 @@ class Handler extends ExceptionHandler
         }
 
         return $response;
+    }
+
+    /**
+     * Thông báo thân thiện cho form bị giới hạn tần suất.
+     */
+    protected function throttleMessage(ThrottleRequestsException $e): string
+    {
+        $retryAfter = max(1, (int) ($e->getHeaders()['Retry-After'] ?? 60));
+
+        if ($retryAfter < 60) {
+            return "Bạn thao tác quá nhanh. Vui lòng thử lại sau {$retryAfter} giây.";
+        }
+
+        $minutes = (int) ceil($retryAfter / 60);
+
+        return "Bạn thao tác quá nhanh. Vui lòng thử lại sau {$minutes} phút.";
     }
 
     /**

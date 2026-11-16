@@ -19,7 +19,7 @@ export default function Contact() {
 
     const submit = (event) => {
         event.preventDefault();
-        post('/lien-he', { preserveScroll: true, onSuccess: () => reset() });
+        post('/lien-he', { preserveScroll: true, preserveState: true, onSuccess: () => reset() });
     };
 
     return (

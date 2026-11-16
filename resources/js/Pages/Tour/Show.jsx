@@ -42,6 +42,7 @@ function ReviewForm({ slug, guest = false }) {
         event.preventDefault();
         post(routes.tours.review(slug), {
             preserveScroll: true,
+            preserveState: true,
             onSuccess: () => reset('comment'),
         });
     };
@@ -108,6 +109,7 @@ function TourInquiryForm({ tour, onDone }) {
         event.preventDefault();
         post(routes.tours.inquiry(tour.slug), {
             preserveScroll: true,
+            preserveState: true,
             onSuccess: () => {
                 reset();
                 onDone();
