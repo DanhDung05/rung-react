@@ -61,6 +61,31 @@ npm run build        # build production
 
 Không chạy `php artisan serve` riêng khi đang dùng `npm run dev` (sẽ trùng cổng 8000).
 
+### 3b. Realtime WebSocket (Soketi — tùy chọn)
+
+Website có 2 sự kiện broadcast (`NewContactNotification`, `NewReviewNotification`) nhưng mặc định `BROADCAST_DRIVER=log` nên **không cần Soketi**.
+
+Muốn bật realtime khi dev:
+
+```bash
+npm i -g @soketi/soketi
+```
+
+Sửa `.env`:
+
+```env
+BROADCAST_DRIVER=pusher
+PUSHER_APP_ID=app-id
+PUSHER_APP_KEY=app-key
+PUSHER_APP_SECRET=app-secret
+PUSHER_HOST=127.0.0.1
+PUSHER_PORT=6001
+PUSHER_SCHEME=http
+PUSHER_APP_CLUSTER=mt1
+```
+
+Sau đó `npm run dev` sẽ tự chạy thêm **Soketi :6001** (nếu đã cài). Chạy riêng: `npm run soketi`.
+
 ## Cấu trúc React/Inertia
 
 - `resources/js/app.jsx`: điểm khởi tạo React + Inertia.

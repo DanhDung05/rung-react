@@ -17,6 +17,12 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-16] Soketi tùy chọn trong `npm run dev`
+
+### Added
+- `scripts/dev.mjs` tự chạy Soketi `:6001` khi `BROADCAST_DRIVER=pusher` và đã cài `@soketi/soketi`; dùng PUSHER_* trong `.env`.
+- Script `npm run soketi`; README hướng dẫn bật realtime.
+- Mặc định vẫn `BROADCAST_DRIVER=log` nên không bắt buộc Soketi.
 ## [2026-11-16] Một lệnh `npm run dev` cho toàn bộ môi trường dev
 
 ### Added

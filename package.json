@@ -5,6 +5,7 @@
         "vendor:tinymce": "node scripts/copy-tinymce.mjs",
         "dev": "node scripts/dev.mjs",
         "dev:client": "vite",
+        "soketi": "soketi start",
         "serve": "php artisan serve",
         "build": "node scripts/copy-tinymce.mjs && vite build"
     },

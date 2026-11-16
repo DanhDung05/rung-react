@@ -1,5 +1,5 @@
 import { spawn, spawnSync } from 'node:child_process';
-import { existsSync, rmSync } from 'node:fs';
+import { existsSync, readFileSync, rmSync } from 'node:fs';
 import net from 'node:net';
 import path from 'node:path';
 
@@ -8,6 +8,7 @@ import path from 'node:path';
  * - Copy TinyMCE assets
  * - Laravel: php artisan serve (mặc định http://127.0.0.1:8000)
  * - Vite dev server (HMR) kèm Laravel plugin (public/hot)
+ * - Soketi (WebSocket :6001) nếu BROADCAST_DRIVER=pusher và đã cài soketi
  *
  * Có thể đổi cổng Laravel bằng biến môi trường PORT (mặc định 8000).
  */
@@ -85,6 +86,62 @@ function run(name, command, args, options = {}) {
     return child;
 }
 
+function readEnvFile() {
+    const file = path.join(ROOT, '.env');
+    const values = {};
+
+    if (!existsSync(file)) return values;
+
+    for (const line of readFileSync(file, 'utf8').split(/\r?\n/)) {
+        const match = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/i);
+        if (match) values[match[1]] = match[2].replace(/^["']|["']$/g, '');
+    }
+
+    return values;
+}
+
+function commandExists(name) {
+    const result = spawnSync(process.platform === 'win32' ? 'where' : 'which', [name], { stdio: 'ignore' });
+
+    return result.status === 0;
+}
+
+function startSoketi() {
+    const env = readEnvFile();
+    const driver = (process.env.BROADCAST_DRIVER || env.BROADCAST_DRIVER || 'log').toLowerCase();
+
+    if (driver !== 'pusher') {
+        log('Broadcast: log — chưa cần Soketi (xem README để bật realtime).');
+        return;
+    }
+
+    if (!commandExists('soketi')) {
+        console.warn('\x1b[33m[dev]\x1b[0m BROADCAST_DRIVER=pusher nhưng chưa cài Soketi. Cài: npm i -g @soketi/soketi');
+        return;
+    }
+
+    const appId = env.PUSHER_APP_ID || 'app-id';
+    const appKey = env.PUSHER_APP_KEY || 'app-key';
+    const appSecret = env.PUSHER_APP_SECRET || 'app-secret';
+
+    if (!env.PUSHER_APP_ID || !env.PUSHER_APP_KEY || !env.PUSHER_APP_SECRET) {
+        console.warn('\x1b[33m[dev]\x1b[0m PUSHER_APP_ID/KEY/SECRET đang trống — dùng mặc định app-id/app-key/app-secret, hãy cập nhật .env cho khớp.');
+    }
+
+    log('Soketi: ws://127.0.0.1:6001');
+
+    run('Soketi', 'soketi', ['start'], {
+        shell: true,
+        env: {
+            ...process.env,
+            SOKETI_DEFAULT_APP_ID: appId,
+            SOKETI_DEFAULT_APP_KEY: appKey,
+            SOKETI_DEFAULT_APP_SECRET: appSecret,
+            SOKETI_PORT: '6001',
+        },
+    });
+}
+
 function checkMysql() {
     const socket = net.connect({ host: '127.0.0.1', port: 3306 });
 
@@ -116,6 +173,7 @@ if (copy.status !== 0) {
 }
 
 checkMysql();
+startSoketi();
 
 log(`Laravel: http://${PHP_HOST}:${PHP_PORT}`);
 log('Vite: http://127.0.0.1:5173 (HMR)');
