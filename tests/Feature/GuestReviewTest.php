@@ -6,6 +6,7 @@ use App\Models\Review;
 use App\Models\Tour;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
 class GuestReviewTest extends TestCase
@@ -118,6 +119,7 @@ class GuestReviewTest extends TestCase
 
     public function test_honeypot_does_not_create_review(): void
     {
+        Event::fake();
         $tour = $this->tour();
 
         $this->post(route('tours.review.store', $tour->slug), [
@@ -129,5 +131,6 @@ class GuestReviewTest extends TestCase
         ])->assertSessionHas('success');
 
         $this->assertDatabaseCount('reviews', 0);
+        Event::assertNotDispatched(\App\Events\NewReviewNotification::class);
     }
 }

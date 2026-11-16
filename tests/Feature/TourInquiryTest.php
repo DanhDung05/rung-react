@@ -7,6 +7,7 @@ use App\Models\Contact;
 use App\Models\Tour;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
@@ -83,12 +84,16 @@ class TourInquiryTest extends TestCase
 
     public function test_honeypot_does_not_create_contact(): void
     {
+        Mail::fake();
+        Event::fake();
         $tour = $this->tour();
 
         $this->post(route('tours.inquiry.store', $tour->slug), $this->payload(['website' => 'spam.test']))
             ->assertSessionHas('success');
 
         $this->assertDatabaseCount('contacts', 0);
+        Mail::assertNothingQueued();
+        Event::assertNotDispatched(\App\Events\NewContactNotification::class);
     }
 
     public function test_contact_throttle_blocks_sixth_request(): void
