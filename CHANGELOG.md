@@ -17,6 +17,14 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2026-11-16] Carousel Media kiểu “The Window”
+
+### Added
+- Component `MediaCarousel`: coverflow 3D vòng tròn, kéo/swipe, mũi tên, tự chạy/tạm dừng, số thứ tự, tiêu đề + nhóm ảnh, timeline thumbnail, modal xem lớn (Esc/←/→).
+- Section Thư viện dùng carousel với toàn bộ ảnh Media `gallery` (20 ảnh), không trộn ảnh slider/tour khi đã có bộ ảnh curated.
+
+### Changed
+- `home_gallery_media` lấy tối đa 24 ảnh kèm caption.
 ## [2026-11-16] Thư viện ảnh “The Window” trên trang chủ
 
 ### Added

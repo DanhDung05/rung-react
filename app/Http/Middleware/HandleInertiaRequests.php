@@ -137,11 +137,12 @@ class HandleInertiaRequests extends Middleware
                         ->where('collection', 'gallery')
                         ->where('file_path', 'like', 'media/gallery/the-window/%')
                         ->orderBy('sort_order')
-                        ->limit(10)
+                        ->limit(24)
                         ->get()
                         ->map(fn ($media) => [
                             'url' => Storage::disk('public')->url($media->file_path),
                             'alt' => $media->alt_text ?: 'Rừng Adventure',
+                            'caption' => $media->caption ?: '',
                         ])
                         ->values();
                 })(),

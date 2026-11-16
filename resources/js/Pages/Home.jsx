@@ -6,7 +6,7 @@ import Seo from '../Components/Seo';
 import Reveal from '../Components/Public/Reveal';
 import HeroSlider from '../Components/Public/HeroSlider';
 import TourCard from '../Components/Public/TourCard';
-import Gallery from '../Components/Public/Gallery';
+import MediaCarousel from '../Components/Public/MediaCarousel';
 import { routes } from '../lib/routes';
 import { mediaUrl, date } from '../lib/format';
 import { placeholderImage } from '../lib/placeholder';
@@ -39,22 +39,27 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
     const bandImage = ve('home.band.image').image || heroImage;
     const ctaImage = ve('home.cta.image').image || settings?.hero_images?.contact || heroImage;
 
-    const galleryImages = [
-        ...(Array.isArray(settings?.home_gallery_media) ? settings.home_gallery_media : []).map((item, index) => ({ id: `g-${index}`, url: item.url, alt: item.alt || '' })),
-        ...sliders.map((item) => ({ id: `s-${item.id}`, url: mediaUrl(item.image), alt: item.title || '' })),
-        ...tours
-            .filter((item) => item.featured_image)
-            .map((item) => ({ id: `t-${item.id}`, url: mediaUrl(item.featured_image), alt: item.name })),
-    ]
+    const curatedGallery = Array.isArray(settings?.home_gallery_media) ? settings.home_gallery_media : [];
+
+    const galleryImages = (curatedGallery.length > 0
+        ? curatedGallery.map((item, index) => ({ id: `g-${index}`, url: item.url, alt: item.alt || '', caption: item.caption || '' }))
+        : [
+            ...sliders.map((item) => ({ id: `s-${item.id}`, url: mediaUrl(item.image), alt: item.title || '' })),
+            ...tours
+                .filter((item) => item.featured_image)
+                .map((item) => ({ id: `t-${item.id}`, url: mediaUrl(item.featured_image), alt: item.name })),
+        ])
         .filter((item) => item.url)
         .filter((item, index, list) => list.findIndex((candidate) => candidate.url === item.url) === index);
 
-    while (galleryImages.length < 5) {
-        galleryImages.push({
-            id: `ph-${galleryImages.length}`,
-            url: placeholderImage(`gallery-${galleryImages.length}`),
-            alt: 'Rừng Adventure',
-        });
+    if (curatedGallery.length === 0) {
+        while (galleryImages.length < 5) {
+            galleryImages.push({
+                id: `ph-${galleryImages.length}`,
+                url: placeholderImage(`gallery-${galleryImages.length}`),
+                alt: 'Rừng Adventure',
+            });
+        }
     }
 
     return (
@@ -193,7 +198,7 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
                         </div>
 
                         <Reveal>
-                            <Gallery images={galleryImages.slice(0, 5)} layout="collage" />
+                            <MediaCarousel images={galleryImages} />
                         </Reveal>
                     </div>
                 </section>
