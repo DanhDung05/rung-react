@@ -428,3 +428,11 @@ TRUSTED_PROXIES=10.0.0.1,172.16.0.0/12
 3. Sau khi ð?i `.env` trên production: `php artisan config:clear` (và `config:cache` n?u ðang cache c?u h?nh).
 
 **H?u qu? n?u sai:** m?i khách b? chung m?t IP ? rate limit 5/gi? ch?n oan toàn b? ngý?i dùng; ngý?c l?i n?u tin proxy b?a, k? x?u có th? gi? `X-Forwarded-For` ð? né gi?i h?n.
+
+## Realtime WebSocket (Soketi/Pusher) trên production
+
+- Local Soketi: `VITE_PUSHER_HOST=127.0.0.1`, `VITE_PUSHER_PORT=6001`, `VITE_PUSHER_SCHEME=http` ? Echo dùng `ws`, không TLS.
+- Production (Pusher/Soketi sau TLS): `VITE_PUSHER_SCHEME=https`, port `443`, host domain WSS ? Echo b?t `forceTLS` và transports `ws,wss`.
+- `BROADCAST_DRIVER=pusher` + `PUSHER_APP_ID/KEY/SECRET`; frontend c?n `VITE_PUSHER_APP_KEY` (n?u tr?ng, Echo không kh?i t?o và Admin không l?i).
+- `VITE_*` ðý?c nhúng lúc **build**; ð?i env ph?i ch?y l?i `npm run build`.
+- Ki?m tra tay: m? DevTools ? Network ? WS ph?i k?t n?i `wss://.../app/<key>`; g?i form liên h? ? Admin nh?n badge/toast; Console không có l?i 403 ? `/broadcasting/auth` (ki?m tra user là admin/editor và `is_active`).
