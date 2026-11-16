@@ -49,10 +49,7 @@ class HandleInertiaRequests extends Middleware
                 if (! $user || ! in_array($user->role, ['admin', 'editor'], true)) {
                     return null;
                 }
-                return [
-                    'contacts' => Contact::where('status', 'new')->count(),
-                    'reviews'  => Review::pending()->count(),
-                ];
+                return \App\Support\AdminBadges::counts();
             },
             'app'        => [
                 'name' => config('app.name'),

@@ -57,6 +57,7 @@ class ContactController extends Controller
         // Nếu là "new" → tự chuyển thành "read"
         if ($contact->status === 'new') {
             $contact->update(['status' => 'read']);
+            app(\App\Services\AdminEventBroadcaster::class)->contactStatus($contact, 'read');
         }
 
         $contact->load('tour');
@@ -70,6 +71,7 @@ class ContactController extends Controller
     public function updateStatus(UpdateContactStatusRequest $request, Contact $contact)
     {
         $contact->update(['status' => $request->validated()['status']]);
+        app(\App\Services\AdminEventBroadcaster::class)->contactStatus($contact, $request->validated()['status']);
 
         $messages = [
             'new'      => 'Đã đánh dấu là chưa đọc.',

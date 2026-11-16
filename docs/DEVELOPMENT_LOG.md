@@ -710,3 +710,12 @@ Toàn bộ Giai đoạn 2–6 (theo kế hoạch). Cụ thể:
 - I: Echo WSS theo VITE_PUSHER_SCHEME.
 - J: cache related theo tour + clear cùng danh mục; test.
 - 160 test pass; build OK; VERSION 2.3.1.
+
+## 2026-11-16 — v2.4.0 realtime Admin
+
+- K: event ContactStatusChanged/ReviewModerated (private, afterCommit) + counts; toOthers + X-Socket-ID.
+- L: hook useAdminRealtime (badge/title/toast/reload debounce, Contact Show cập nhật tại chỗ).
+- M: polling 60s khi không có socket, chỉ tab hiển thị; AdminBadges cache 10s + index status.
+- N: Dashboard thêm đánh giá chờ duyệt/lead tư vấn, highlight số đổi.
+- O: channel auth AdminChannel, quét event public, throttle /broadcasting/auth.
+- 173 test pass; build OK; VERSION 2.4.0.

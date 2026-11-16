@@ -235,3 +235,12 @@ Chỉ 2 màu nút/badge của khu quản trị, không ảnh hưởng website pu
 - Khi bị giới hạn tần suất, form hiện thông báo “Bạn thao tác quá nhanh…” và giữ nguyên dữ liệu đã nhập; chờ theo số giây/phút thông báo rồi gửi lại.
 - Đăng nhập: tối đa 5 lần sai cho mỗi email+IP mỗi phút và **20 lần sai/phút cho mỗi IP**; đăng nhập thành công không xóa bộ đếm IP.
 - Nếu deploy sau proxy, cấu hình `TRUSTED_PROXIES` (xem `docs/DEPLOYMENT.md`) để rate limit và log nhận đúng IP khách.
+
+## 21. Thông báo realtime (v2.4.0)
+
+- Badge Liên hệ/Đánh giá trên topbar và tiêu đề tab `(N)` tự cập nhật khi có liên hệ/đánh giá mới hoặc admin khác đổi trạng thái.
+- Có khách gửi mới → toast góc phải, bấm để mở chi tiết; admin khác đổi trạng thái → **không toast**, chỉ cập nhật badge/danh sách.
+- Đang mở form sửa/thêm (Tour, Bài viết, Cài đặt, Visual Editor…) sẽ **không bị reload** khi có sự kiện.
+- Trang chi tiết liên hệ tự đổi badge trạng thái khi admin khác cập nhật.
+- Không bật Soketi/Pusher: hệ thống tự cập nhật badge mỗi 60 giây (khi tab đang mở); bật lại socket sẽ tự bù dữ liệu.
+- Nếu badge không đổi: kiểm tra `VITE_PUSHER_APP_KEY`/Soketi, hoặc chờ tối đa 60 giây cho polling.

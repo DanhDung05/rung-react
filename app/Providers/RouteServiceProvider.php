@@ -27,6 +27,8 @@ class RouteServiceProvider extends ServiceProvider
 
         RateLimiter::for('review', fn (Request $request) => Limit::perHour(3)->by($request->ip()));
 
+        RateLimiter::for('broadcast-auth', fn (Request $request) => Limit::perMinute(60)->by($request->user()?->id ?: $request->ip()));
+
         RateLimiter::for('login', fn (Request $request) => Limit::perMinute(5)
             ->by(\Illuminate\Support\Str::lower((string) $request->input('email')) . '|' . $request->ip()));
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, router } from '@inertiajs/react';
 import { ArrowLeft } from 'lucide-react';
 import AdminLayout from '../../../Layouts/AdminLayout';
@@ -17,8 +17,27 @@ const NEXT_STATUSES = [
 ];
 
 export default function ContactsShow({ contact }) {
-    const update = (status) => {
-        router.patch(routes.admin.contactStatus(contact.id), { status }, { preserveScroll: true });
+    const [status, setStatus] = useState(contact.status);
+
+    useEffect(() => {
+        setStatus(contact.status);
+    }, [contact.id, contact.status]);
+
+    useEffect(() => {
+        const onStatus = (event) => {
+            if (Number(event.detail?.id) === Number(contact.id)) {
+                setStatus(event.detail.status);
+            }
+        };
+
+        window.addEventListener('admin:contact-status', onStatus);
+
+        return () => window.removeEventListener('admin:contact-status', onStatus);
+    }, [contact.id]);
+
+    const update = (nextStatus) => {
+        setStatus(nextStatus);
+        router.patch(routes.admin.contactStatus(contact.id), { status: nextStatus }, { preserveScroll: true });
     };
 
     return (
@@ -33,8 +52,8 @@ export default function ContactsShow({ contact }) {
                         title={contact.subject || '(Không tiêu đề)'}
                         description={datetime(contact.created_at)}
                         actions={
-                            <Badge tone={CONTACT_STATUS[contact.status]?.tone}>
-                                {CONTACT_STATUS[contact.status]?.label || contact.status}
+                            <Badge tone={CONTACT_STATUS[status]?.tone}>
+                                {CONTACT_STATUS[status]?.label || status}
                             </Badge>
                         }
                     >
@@ -73,8 +92,8 @@ export default function ContactsShow({ contact }) {
 
                     <Card title="Cập nhật trạng thái">
                         <div className="ui-stack">
-                            {NEXT_STATUSES.filter(([status]) => status !== contact.status).map(([status, label, variant]) => (
-                                <Button key={status} variant={variant} size="sm" onClick={() => update(status)} className="ui-btn--block">
+                            {NEXT_STATUSES.filter(([nextStatus]) => nextStatus !== status).map(([nextStatus, label, variant]) => (
+                                <Button key={nextStatus} variant={variant} size="sm" onClick={() => update(nextStatus)} className="ui-btn--block">
                                     {label}
                                 </Button>
                             ))}

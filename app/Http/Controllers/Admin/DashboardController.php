@@ -12,6 +12,7 @@ use App\Models\Faq;
 use App\Models\Menu;
 use App\Models\Page;
 use App\Models\Post;
+use App\Models\Review;
 use App\Models\Slider;
 use App\Models\Tour;
 use App\Models\User;
@@ -43,6 +44,8 @@ class DashboardController extends Controller
             'contacts_read'      => Contact::where('status', Contact::STATUS_READ)->count(),
             'contacts_replied'   => Contact::where('status', Contact::STATUS_REPLIED)->count(),
             'contacts_archived'  => Contact::where('status', Contact::STATUS_ARCHIVED)->count(),
+            'tour_inquiries_new' => Contact::where('type', Contact::TYPE_TOUR_INQUIRY)->where('status', Contact::STATUS_NEW)->count(),
+            'reviews_pending'   => Review::pending()->count(),
 
             'faqs_total'         => Faq::count(),
             'pages_total'        => Page::count(),

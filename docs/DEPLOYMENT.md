@@ -432,3 +432,22 @@ TRUSTED_PROXIES=10.0.0.1,172.16.0.0/12
 - `BROADCAST_DRIVER=pusher` + `PUSHER_APP_ID/KEY/SECRET`; frontend cần `VITE_PUSHER_APP_KEY` (trống thì Echo không khởi tạo, không lỗi).
 - `VITE_*` nhúng lúc build → đổi env phải `npm run build` lại.
 - Kiểm tra tay: DevTools → Network → WS kết nối; gửi form liên hệ → Admin có badge/toast; `/broadcasting/auth` không 403 với admin/editor active.
+
+### Queue và Supervisor
+
+`NewContactNotification`/`ContactStatusChanged`… implement `ShouldBroadcast` nên đi qua queue. Production nên:
+
+```env
+BROADCAST_DRIVER=pusher
+QUEUE_CONNECTION=database   # hoặc redis
+```
+
+```bash
+php artisan queue:work --tries=3
+```
+
+Chạy bằng Supervisor/systemd, tự restart; nếu để `sync`, request form có thể chậm vì broadcast ngay trong request.
+
+### Không bật realtime
+
+Không có `VITE_PUSHER_APP_KEY` hoặc socket không kết nối → Admin tự polling `admin_badges` mỗi 60 giây (chỉ khi tab hiển thị), badge/title vẫn cập nhật; không cần Soketi. Khi bật lại socket, frontend reload bù dữ liệu một lần rồi tắt polling.

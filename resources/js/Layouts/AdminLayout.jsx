@@ -4,6 +4,7 @@ import AdminSidebar from './Partials/AdminSidebar';
 import AdminTopbar from './Partials/AdminTopbar';
 import FlashMessage from '../Components/UI/FlashMessage';
 import ThemeStyles from '../Components/ThemeStyles';
+import useAdminRealtime from '../hooks/useAdminRealtime';
 
 /**
  * Layout khu vực quản trị: sidebar + topbar + nội dung.
@@ -12,50 +13,7 @@ import ThemeStyles from '../Components/ThemeStyles';
 export default function AdminLayout({ children, title = null, description = null, breadcrumbs = [], actions = null }) {
     const [open, setOpen] = useState(false);
     const { theme, admin_badges: initialBadges = null } = usePage().props;
-    const [badges, setBadges] = useState(initialBadges || { contacts: 0, reviews: 0 });
-    const [toasts, setToasts] = useState([]);
-
-    const pushToast = (toast) => {
-        const id = `${toast.type}-${toast.id}-${Date.now()}`;
-        setToasts((current) => [...current.slice(-2), { ...toast, key: id }]);
-        window.setTimeout(() => setToasts((current) => current.filter((item) => item.key !== id)), 8000);
-    };
-
-    useEffect(() => {
-        const echo = typeof window !== 'undefined' ? window.Echo : null;
-        if (!echo) return undefined;
-
-        const channel = echo.private('admin-notifications');
-
-        const onContact = (event) => {
-            setBadges((current) => ({ ...current, contacts: current.contacts + 1 }));
-            pushToast({
-                type: event.type,
-                id: event.id,
-                title: event.title,
-                time: event.time,
-                href: `/admin/lien-he/${event.id}`,
-            });
-        };
-
-        const onReview = (event) => {
-            setBadges((current) => ({ ...current, reviews: current.reviews + 1 }));
-            pushToast({ type: 'review', id: event.id, title: event.title, time: event.time, href: '/admin/danh-gia' });
-        };
-
-        channel.listen('.new-contact', onContact);
-        channel.listen('.new-review', onReview);
-
-        return () => {
-            try {
-                channel.stopListening('.new-contact');
-                channel.stopListening('.new-review');
-                echo.leave('admin-notifications');
-            } catch {
-                // ignore
-            }
-        };
-    }, []);
+    const { badges, toasts } = useAdminRealtime(initialBadges);
 
     const [mode, setMode] = useState(() => (typeof window !== 'undefined' ? window.localStorage.getItem('admin_theme') || 'light' : 'light'));
     const [collapsed, setCollapsed] = useState(() => (typeof window !== 'undefined' ? window.localStorage.getItem('admin_sidebar') === 'collapsed' : false));

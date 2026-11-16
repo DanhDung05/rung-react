@@ -100,3 +100,14 @@ scripts/dev.mjs                                 # npm run dev (Laravel+Vite+Soke
 - **Broadcast**: `PrivateChannel('admin-notifications')`; `AdminChannel::allows()` yêu cầu đăng nhập + `is_active` + role admin/editor; payload chỉ id/type/title/time; Echo tạo khi có `VITE_PUSHER_APP_KEY`, scheme https → WSS.
 - **429**: `Handler` đổi throttle thành redirect + flash tiếng Việt cho form Inertia; JSON/API giữ 429.
 - **Proxy**: `TRUSTED_PROXIES` (rỗng/không tin, `*`, hoặc IP/CIDR) để `$request->ip()` đúng sau nginx/Cloudflare.
+
+## 11. Realtime Admin (v2.4.0)
+
+- Kênh: `PrivateChannel('admin-notifications')`; authorize qua `AdminChannel` (đăng nhập, `is_active`, admin/editor).
+- Event khách: `NewContactNotification`, `NewReviewNotification`. Event admin: `ContactStatusChanged`, `ReviewModerated` (afterCommit).
+- Payload chỉ `id`, `type`, `title`, `status` (nếu có), `time`, `contacts_new`, `reviews_pending`; không PII.
+- `AdminBadges::counts()` cache 10 giây, flush khi có thay đổi; middleware chỉ tính cho admin/editor.
+- `useAdminRealtime` trong `AdminLayout`: subscribe một lần, cập nhật badge/title, toast cho sự kiện mới, debounce reload 500ms chỉ ở Contacts/Reviews Index + Dashboard; trang form không reload.
+- `toOthers()` + header `X-Socket-ID` (gắn qua `inertia:before`) để admin thao tác không nhận lại event của mình.
+- Không có Echo/socket mất kết nối → polling `admin_badges` 60 giây, chỉ khi tab hiển thị; kết nối lại reload bù và tắt polling.
+- `/broadcasting/auth` giới hạn 60 lần/phút.

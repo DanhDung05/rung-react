@@ -129,7 +129,7 @@ class SecurityAndBroadcastTest extends TestCase
         $payload = $event->broadcastWith();
 
         $this->assertInstanceOf(PrivateChannel::class, $event->broadcastOn()[0]);
-        $this->assertSame(['id', 'type', 'title', 'time'], array_keys($payload));
+        $this->assertSame(['id', 'type', 'title', 'time', 'contacts_new', 'reviews_pending'], array_keys($payload));
         $this->assertStringNotContainsString('secret-contact@example.com', json_encode($payload));
         $this->assertStringNotContainsString('0912345678', json_encode($payload));
     }
@@ -150,7 +150,7 @@ class SecurityAndBroadcastTest extends TestCase
         $payload = $event->broadcastWith();
 
         $this->assertInstanceOf(PrivateChannel::class, $event->broadcastOn()[0]);
-        $this->assertSame(['id', 'type', 'title', 'time'], array_keys($payload));
+        $this->assertSame(['id', 'type', 'title', 'time', 'contacts_new', 'reviews_pending'], array_keys($payload));
         $this->assertStringNotContainsString('secret-review@example.com', json_encode($payload));
         $this->assertStringNotContainsString('Nội dung đánh giá riêng tư', json_encode($payload));
     }

@@ -1,6 +1,6 @@
 # PROJECT STATUS — Rừng Adventure
 
-Cập nhật: 2026-11-16 · version `2.3.2` · Build: OK · Test: **165 passed / 1050 assertions**.
+Cập nhật: 2026-11-16 · version `2.4.0` · Build: OK · Test: **173 passed / 1103 assertions**.
 
 ## 1. Trạng thái tổng quan
 
@@ -37,6 +37,7 @@ Cập nhật: 2026-11-16 · version `2.3.2` · Build: OK · Test: **165 passed /
 - **Tư vấn tour**: contacts thêm tour_id/people_count/preferred_date/type; mail + broadcast; admin hiển thị tour.
 - **Bảo mật**: limiter contact/review/login (email+IP 5/phút + IP 20/phút), honeypot, private channel admin-notifications.
 - **v2.3.1**: 429 form Inertia thân thiện; trusted proxies IP thật; Echo WSS theo env; cache related theo tour + invalidate.
+- **v2.4.0 Realtime Admin**: event trạng thái Contact/Review, hook tập trung (badge/toast/title/reload), polling 60s dự phòng, Dashboard live, payload không PII.
 - **Admin UX**: dark/light, sidebar sticky + thu gọn, font rõ nét, logo brand, preview Settings.
 - **Dev**: `npm run dev` chạy Laravel + Vite + kiểm tra MySQL; Soketi tự chạy khi bật pusher.
 - **Docs**: ADMIN_GUIDE, ADMIN_FEATURES, ARCHITECTURE, PROJECT_STATUS, RELEASES, DESIGN_TOKENS, DEVELOPMENT_LOG, quy tắc tài liệu.

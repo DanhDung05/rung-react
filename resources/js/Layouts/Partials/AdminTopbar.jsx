@@ -23,14 +23,14 @@ export default function AdminTopbar({ onToggleSidebar, mode = 'light', onToggleM
 
             <span className="admin-top__title">Khu vực quản trị</span>
 
-            {badges?.contacts > 0 && (
+            {badges?.contacts_new > 0 && (
                 <Link href={routes.admin.contacts.index} className="admin-top__badge" title="Liên hệ chưa đọc">
-                    Liên hệ <strong>{badges.contacts}</strong>
+                    Liên hệ <strong>{badges.contacts_new}</strong>
                 </Link>
             )}
-            {badges?.reviews > 0 && (
+            {badges?.reviews_pending > 0 && (
                 <Link href={routes.admin.reviews.index} className="admin-top__badge" title="Đánh giá chờ duyệt">
-                    Đánh giá <strong>{badges.reviews}</strong>
+                    Đánh giá <strong>{badges.reviews_pending}</strong>
                 </Link>
             )}
 

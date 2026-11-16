@@ -4,6 +4,7 @@ namespace App\Events;
 
 use App\Models\Contact;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use App\Support\AdminBadges;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -15,9 +16,12 @@ class NewContactNotification implements ShouldBroadcast
 
     public $contact;
 
-    public function __construct(Contact $contact)
+    public array $counts = [];
+
+    public function __construct(Contact $contact, array $counts = [])
     {
         $this->contact = $contact;
+        $this->counts = $counts ?: AdminBadges::counts();
     }
 
     public function broadcastOn(): array
@@ -42,6 +46,8 @@ class NewContactNotification implements ShouldBroadcast
                 ? 'Yêu cầu tư vấn tour mới'
                 : 'Liên hệ mới từ website',
             'time'  => $this->contact->created_at?->diffForHumans() ?? now()->diffForHumans(),
+            'contacts_new' => $this->counts['contacts_new'] ?? 0,
+            'reviews_pending' => $this->counts['reviews_pending'] ?? 0,
         ];
     }
 }

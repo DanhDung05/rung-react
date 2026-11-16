@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Events\NewReviewNotification;
+use App\Services\AdminEventBroadcaster;
 use App\Http\Controllers\Concerns\HandlesHoneypot;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\StoreReviewRequest;
@@ -48,7 +48,7 @@ class ReviewController extends Controller
         ]);
 
         try {
-            event(new NewReviewNotification($review));
+            app(AdminEventBroadcaster::class)->newReview($review);
         } catch (\Throwable $e) {
             Log::warning('Broadcast review thất bại (bỏ qua)', [
                 'review_id' => $review->id,

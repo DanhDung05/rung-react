@@ -43,6 +43,7 @@ Không cần tạo bản ghi trong Admin. Không sửa `CHANGELOG.md` bằng tay
 
 | Version | Ngày | Nội dung chính |
 |---|---|---|
+| 2.4.0 | 2026-11-16 | Realtime Admin: đồng bộ trạng thái, hook badge/toast/title, polling dự phòng, Dashboard live |
 | 2.3.2 | 2026-11-16 | Lịch sử cập nhật đọc trực tiếp CHANGELOG.md (chỉ đọc) |
 | 2.3.1 | 2026-11-16 | Vá 429 Inertia, trusted proxies, login IP 20/phút, Echo WSS, cache related tour |
 | 2.3.0 | 2026-11-16 | Đánh giá khách, tư vấn tour, rate limit/honeypot, private channel realtime |

@@ -17,6 +17,22 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2.4.0] - 2026-11-16
+
+### Added
+- **Realtime Admin đồng bộ**: event `ContactStatusChanged`, `ReviewModerated` (PrivateChannel, afterCommit) khi đổi trạng thái liên hệ/duyệt-từ chối-xóa-khôi phục đánh giá; payload kèm `contacts_new`, `reviews_pending`.
+- **`useAdminRealtime`**: một hook duy nhất cập nhật badge, toast (chỉ sự kiện mới), tiêu đề tab `(N)`, debounce reload 500ms cho Contacts Index/Reviews Index/Dashboard; cập nhật trạng thái tại chỗ ở Contacts Show.
+- **Polling dự phòng**: khi không có Echo/socket mất kết nối, reload `admin_badges` mỗi 60 giây, chỉ khi tab hiển thị; kết nối lại thì reload bù và tắt polling.
+- Dashboard thêm số **đánh giá chờ duyệt**, **lead tư vấn tour**, hiệu ứng nhấn khi số đổi (tôn trọng `prefers-reduced-motion`).
+
+### Changed
+- `AdminBadges` cache 10 giây + flush khi có thay đổi; middleware chỉ tính cho admin/editor.
+- `toOthers()` cho thao tác admin; frontend gửi `X-Socket-ID` qua sự kiện `inertia:before`.
+- `/broadcasting/auth` giới hạn 60 lần/phút.
+- Thêm index `reviews.status`; `VERSION` → 2.4.0.
+
+### Security
+- Payload broadcast chỉ id/type/title/status/time + số đếm, không email/SĐT/nội dung; test quét `app/Events` đảm bảo không còn `Channel` public.
 ## [2.3.2] - 2026-11-16
 
 ### Changed

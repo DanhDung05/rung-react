@@ -60,8 +60,8 @@ MD);
         $entries = (new ChangelogService())->entries();
 
         $this->assertNotEmpty($entries);
-        $this->assertSame('2.3.2', $entries[0]['version']);
-        $this->assertSame('2.3.2', trim(file_get_contents(base_path('VERSION'))));
+        $this->assertSame('2.4.0', $entries[0]['version']);
+        $this->assertSame('2.4.0', trim(file_get_contents(base_path('VERSION'))));
     }
 
     public function test_missing_file_returns_empty_and_logs_warning(): void

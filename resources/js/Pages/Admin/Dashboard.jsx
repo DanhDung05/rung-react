@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from '@inertiajs/react';
 import {
     BookOpen,
@@ -11,6 +11,8 @@ import {
     Users,
     Trash2,
     TrendingUp,
+    Star,
+    Phone,
 } from 'lucide-react';
 import AdminLayout from '../../Layouts/AdminLayout';
 import Seo from '../../Components/Seo';
@@ -30,11 +32,13 @@ const STAT_CARDS = [
     ['categories_total', 'Danh mục', Compass, routes.admin.categories.index],
     ['pages_total', 'Trang tĩnh', FileText, routes.admin.pages.index],
     ['sliders_total', 'Slider', Images, routes.admin.sliders.index],
+    ['reviews_pending', 'Đánh giá chờ duyệt', Star, routes.admin.reviews.index],
+    ['tour_inquiries_new', 'Lead tư vấn tour', Phone, '/admin/lien-he?type=tour_inquiry'],
 ];
 
-function StatCard({ label, value, icon: Icon, href, hint }) {
+function StatCard({ label, value, icon: Icon, href, hint, pulse = false }) {
     return (
-        <Link href={href} className="stat-card">
+        <Link href={href} className={`stat-card ${pulse ? 'is-pulse' : ''}`.trim()}>
             <span>
                 <Icon size={19} />
             </span>
@@ -80,6 +84,21 @@ export default function Dashboard({
     menus = [],
 }) {
     const difficultyRows = Object.entries(tourByDifficulty || {});
+    const [pulseKeys, setPulseKeys] = useState([]);
+    const previous = useRef({});
+
+    useEffect(() => {
+        const keys = ['contacts_new', 'reviews_pending', 'tour_inquiries_new'];
+        const changed = keys.filter((key) => previous.current[key] !== undefined && previous.current[key] !== stats[key]);
+        previous.current = keys.reduce((carry, key) => ({ ...carry, [key]: stats[key] }), {});
+
+        if (changed.length === 0) return undefined;
+
+        setPulseKeys(changed);
+        const timer = window.setTimeout(() => setPulseKeys([]), 1600);
+
+        return () => window.clearTimeout(timer);
+    }, [stats]);
 
     return (
         <AdminLayout title="Tổng quan" description="Theo dõi tình hình hoạt động của website.">
@@ -87,7 +106,7 @@ export default function Dashboard({
 
             <div className="stats-grid">
                 {STAT_CARDS.map(([key, label, Icon, href]) => (
-                    <StatCard key={key} label={label} value={stats[key] ?? 0} icon={Icon} href={href} />
+                    <StatCard key={key} label={label} value={stats[key] ?? 0} icon={Icon} href={href} pulse={pulseKeys.includes(key)} />
                 ))}
             </div>
 

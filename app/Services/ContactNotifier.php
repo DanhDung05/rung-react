@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Events\NewContactNotification as NewContactBroadcast;
+use App\Services\AdminEventBroadcaster;
 use App\Mail\NewContactNotification as NewContactMail;
 use App\Models\Contact;
 use App\Models\Setting;
@@ -50,7 +50,7 @@ class ContactNotifier
     protected function broadcast(Contact $contact): void
     {
         try {
-            event(new NewContactBroadcast($contact));
+            app(AdminEventBroadcaster::class)->newContact($contact);
         } catch (\Throwable $e) {
             Log::warning('Broadcast contact thất bại (bỏ qua)', [
                 'contact_id' => $contact->id,
