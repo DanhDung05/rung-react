@@ -17,6 +17,8 @@ class LoginController extends Controller
 {
     private const MAX_ATTEMPTS = 5;
 
+    private const MAX_IP_ATTEMPTS = 20;
+
     private const DECAY_SECONDS = 60;
 
     public function showLoginForm()
@@ -28,6 +30,17 @@ class LoginController extends Controller
     {
         $key = Str::lower((string) $request->input('email')) . '|' . $request->ip();
         $throttleKey = 'login:' . $key;
+        $ipThrottleKey = 'login-ip:' . $request->ip();
+
+        if (RateLimiter::tooManyAttempts($ipThrottleKey, self::MAX_IP_ATTEMPTS)) {
+            $seconds = RateLimiter::availableIn($ipThrottleKey);
+
+            return back()
+                ->withInput($request->only('email', 'remember'))
+                ->withErrors([
+                    'email' => "Bạn đã thử đăng nhập quá nhiều lần. Vui lòng thử lại sau {$seconds} giây.",
+                ]);
+        }
 
         if (RateLimiter::tooManyAttempts($throttleKey, self::MAX_ATTEMPTS)) {
             $seconds = RateLimiter::availableIn($throttleKey);
@@ -45,6 +58,7 @@ class LoginController extends Controller
 
         if (! Auth::attempt($credentials, $remember)) {
             RateLimiter::hit($throttleKey, self::DECAY_SECONDS);
+            RateLimiter::hit($ipThrottleKey, self::DECAY_SECONDS);
 
             // Chỉ báo "bị vô hiệu hóa" khi đúng mật khẩu; sai mật khẩu luôn dùng thông báo chung.
             $user = User::where('email', $request->input('email'))->first();
