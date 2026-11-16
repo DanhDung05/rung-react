@@ -19,6 +19,25 @@ class TrustProxies extends Middleware
      *
      * @var int
      */
+    public function __construct()
+    {
+        $proxies = config('app.trusted_proxies');
+
+        if ($proxies === null || trim((string) $proxies) === '') {
+            $this->proxies = null;
+
+            return;
+        }
+
+        if (trim((string) $proxies) === '*') {
+            $this->proxies = '*';
+
+            return;
+        }
+
+        $this->proxies = array_values(array_filter(array_map('trim', explode(',', (string) $proxies))));
+    }
+
     protected $headers =
         Request::HEADER_X_FORWARDED_FOR |
         Request::HEADER_X_FORWARDED_HOST |

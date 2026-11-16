@@ -60,6 +60,12 @@ return [
     'asset_url' => env('ASSET_URL'),
 
     /*
+    | Proxy tin cậy (nginx/Cloudflare). Rỗng = không tin; '*' = tin tất cả;
+    | hoặc danh sách IP/CIDR phân tách dấu phẩy.
+    */
+    'trusted_proxies' => env('TRUSTED_PROXIES'),
+
+    /*
     |--------------------------------------------------------------------------
     | Application Timezone
     |--------------------------------------------------------------------------

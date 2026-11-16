@@ -407,3 +407,24 @@ php artisan queue:restart
 curl -I https://rungadventure.com/
 curl -s https://rungadventure.com/sitemap.xml | head
 ```
+
+## Ð?ng sau Nginx/Cloudflare — IP th?t
+
+N?u website ch?y sau proxy mà Laravel không tin proxy, `$request->ip()` luôn là IP proxy ? rate limit, log, ch?ng spam g?p t?t c? khách vào m?t IP.
+
+1. C?u h?nh `.env`:
+
+```env
+# Ð? tr?ng n?u ch?y tr?c ti?p (m?c ð?nh an toàn)
+# Dùng IP/CIDR c?a proxy, phân tách d?u ph?y
+TRUSTED_PROXIES=10.0.0.1,172.16.0.0/12
+```
+
+- `*` ch? dùng khi proxy c?a b?n **luôn ghi ðè** `X-Forwarded-For` (Cloudflare/load balancer tin c?y); n?u không, k? t?n công có th? gi? IP.
+- Nginx chu?n: `proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;` và `proxy_set_header X-Real-IP $remote_addr;`.
+
+2. Ki?m tra IP th?t: t?m thêm route/log `logger($request->ip())`, g?i t? tr?nh duy?t ngoài ? ph?i th?y IP công c?ng c?a b?n, không ph?i IP máy ch? proxy. Ho?c xem log Laravel sau khi g?i form.
+
+3. Sau khi ð?i `.env` trên production: `php artisan config:clear` (và `config:cache` n?u ðang cache c?u h?nh).
+
+**H?u qu? n?u sai:** m?i khách b? chung m?t IP ? rate limit 5/gi? ch?n oan toàn b? ngý?i dùng; ngý?c l?i n?u tin proxy b?a, k? x?u có th? gi? `X-Forwarded-For` ð? né gi?i h?n.
