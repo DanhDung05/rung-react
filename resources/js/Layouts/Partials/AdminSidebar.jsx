@@ -37,6 +37,7 @@ const NAV = [
             { label: 'Trang tĩnh', href: routes.admin.pages.index, icon: FileText },
             { label: 'FAQ', href: routes.admin.faqs.index, icon: CircleHelp },
             { label: 'Slider', href: routes.admin.sliders.index, icon: Images },
+            { label: 'Thư viện ảnh', href: routes.admin.gallerySlides.index, icon: Images },
         ],
     },
     {
@@ -46,7 +47,7 @@ const NAV = [
             { label: 'Nội dung trang chủ', href: routes.admin.homeSections.index, icon: Images },
             { label: 'Nội dung giao diện', href: routes.admin.uiTexts.index(), icon: FileText },
             { label: 'Visual Editor', href: routes.admin.visualEditor.index, icon: ExternalLink },
-            { label: 'Thư viện ảnh', href: routes.admin.media.index, icon: Images },
+            { label: 'Media', href: routes.admin.media.index, icon: Images },
         ],
     },
     {

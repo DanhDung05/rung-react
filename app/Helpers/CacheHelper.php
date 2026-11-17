@@ -8,6 +8,8 @@ use App\Services\NavigationService;
 
 class CacheHelper
 {
+    public const GALLERY_CAROUSEL_KEY = 'gallery_carousel_data';
+
     /**
      * Xóa cache homepage.
      */
@@ -17,6 +19,14 @@ class CacheHelper
         Cache::forget('home_featured_tours');
         Cache::forget('home_featured_destinations');
         Cache::forget('home_latest_posts');
+    }
+
+    /**
+     * Xóa cache carousel Thư viện ảnh.
+     */
+    public static function clearGalleryCarousel(): void
+    {
+        Cache::forget(self::GALLERY_CAROUSEL_KEY);
     }
 
     /**
@@ -77,6 +87,7 @@ class CacheHelper
     public static function clearAll(): void
     {
         self::clearHomepage();
+        self::clearGalleryCarousel();
         self::clearDestinationCaches();
         self::clearTourCaches();
         self::clearPostCaches();

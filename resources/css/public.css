@@ -4889,51 +4889,7 @@
 .h-home .rp-app__main{display:flex;flex-direction:column}
 .h-home .rp-app__main > .rp-slider{order:-1}
 
-/* =========================================================
-   Media carousel (The Window) � section Th� vi?n
-   ========================================================= */
-.tw-carousel{position:relative}
-.tw-stage{position:relative;height:clamp(380px,46vw,600px);perspective:1500px;overflow:hidden;touch-action:pan-y}
-.tw-card{position:absolute;left:50%;top:50%;width:min(34vw,380px);aspect-ratio:3/4;border:0;padding:0;background:#0f231c;border-radius:10px;overflow:hidden;cursor:pointer;transition:transform .55s cubic-bezier(.22,.61,.36,1),opacity .4s;box-shadow:0 26px 60px rgba(16,44,36,.28);transform-style:preserve-3d}
-.tw-card img{width:100%;height:100%;object-fit:cover;display:block;user-select:none}
-.tw-card.is-active{cursor:zoom-in}
-.tw-carousel:hover .tw-card{will-change:transform}
-.tw-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:40;width:46px;height:46px;border-radius:50%;border:1px solid rgba(16,44,36,.18);background:rgba(247,243,233,.94);color:#102c24;display:grid;place-items:center;cursor:pointer;transition:.2s}
-.tw-arrow:hover{background:#102c24;color:#f7f3e9}
-.tw-arrow--prev{left:8px}
-.tw-arrow--next{right:8px}
-.tw-meta{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;margin-top:18px;border-top:1px solid #ddd6c5;padding-top:14px}
-.tw-meta__number{display:block;font-size:.72rem;letter-spacing:.14em;color:#7a8479;margin-bottom:4px}
-.tw-meta__text strong{display:block;font-size:1.05rem;color:#102c24;line-height:1.3}
-.tw-meta__text small{display:block;color:#6f7d75;font-size:.8rem;margin-top:2px}
-.tw-meta__controls{display:flex;gap:8px}
-.tw-round{width:38px;height:38px;border-radius:50%;border:1px solid #cfc7b5;background:transparent;color:#102c24;display:grid;place-items:center;cursor:pointer;transition:.2s}
-.tw-round:hover{background:#102c24;color:#f7f3e9}
-.tw-timeline{display:flex;gap:8px;overflow-x:auto;padding:14px 0 6px;scrollbar-width:thin}
-.tw-thumb{flex:0 0 auto;width:56px;height:74px;padding:0;border:2px solid transparent;border-radius:6px;overflow:hidden;opacity:.55;cursor:pointer;background:#0f231c;transition:.2s}
-.tw-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.tw-thumb:hover{opacity:.85}
-.tw-thumb.is-active{opacity:1;border-color:#c58b45}
-.tw-hint{text-align:center;font-size:.72rem;letter-spacing:.08em;color:#7a8479;margin:10px 0 0;text-transform:uppercase}
-.tw-modal{position:fixed;inset:0;z-index:120;background:rgba(8,20,16,.94);display:flex;align-items:center;justify-content:center;padding:4vw}
-.tw-modal__image{max-width:92vw;max-height:86vh;object-fit:contain;border-radius:8px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
-.tw-modal__close{position:absolute;top:22px;right:24px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer}
-.tw-modal__nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#fff;display:grid;place-items:center;cursor:pointer}
-.tw-modal__nav--prev{left:3vw}
-.tw-modal__nav--next{right:3vw}
-.tw-modal__caption{position:absolute;left:4vw;bottom:4vh;color:#f7f3e9}
-.tw-modal__caption strong{display:block;font-size:1.05rem}
-.tw-modal__caption small{color:#c9bda3;font-size:.8rem}
-@media(max-width:900px){.tw-card{width:44vw}.tw-arrow{display:none}.tw-stage{height:58vw;min-height:320px}}
-@media(max-width:600px){.tw-card{width:62vw}.tw-meta{flex-direction:column;align-items:flex-start}.tw-modal__nav{display:none}}
 
-/* Carousel: �u ti�n ?nh ngang cho web du l?ch */
-.tw-card{width:min(52vw,760px);aspect-ratio:4/3}
-.tw-card img{object-position:center 32%}
-.tw-stage{height:clamp(300px,40vw,560px)}
-.tw-thumb{width:88px;height:58px}
-@media(max-width:900px){.tw-card{width:72vw}.tw-stage{height:52vw;min-height:280px}}
-@media(max-width:600px){.tw-card{width:86vw}}
 
 /* Honeypot + form t� v?n tour */
 .hp-field{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
@@ -4941,49 +4897,12 @@
 .rp-inquiry-form .rp-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:600px){.rp-inquiry-form .rp-form-grid{grid-template-columns:1fr}}
 
-/* =========================================================
-   Gallery 3D ki?u The Window � ?nh ngang cho web du l?ch
-   ========================================================= */
-.ow-gallery{position:relative;width:100vw;margin-left:calc(50% - 50vw);padding:0 clamp(16px,4vw,64px);overflow:hidden}
-.ow-stage{position:relative;height:clamp(340px,40vw,540px);perspective:1400px;overflow:hidden;touch-action:pan-y;user-select:none}
-.ow-lens{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:200;width:min(38vw,420px);aspect-ratio:3/2;padding:8px;border:1px solid rgba(15,20,10,.12);background:#f8f4e9;box-shadow:0 0 0 1px rgba(255,255,255,.7) inset,0 24px 60px rgba(22,28,13,.28);cursor:grab;touch-action:pan-y;display:block}
-.ow-lens:active{cursor:grabbing}
-.ow-lens img{width:100%;height:100%;display:block;object-fit:cover}
-.ow-lens:after{content:'';position:absolute;inset:9px;pointer-events:none;background:linear-gradient(112deg,rgba(255,255,255,0) 46%,rgba(255,255,255,.34) 52%,rgba(255,255,255,0) 62%)}
-.ow-stage:active{cursor:grabbing}
-.ow-horizon{position:absolute;left:6%;right:6%;bottom:12%;height:14%;background:radial-gradient(ellipse at center,rgba(73,77,51,.14),transparent 68%);filter:blur(22px);pointer-events:none}
-.ow-card{position:absolute;left:50%;top:50%;height:auto;aspect-ratio:2/3;padding:0;border:0;background:#e8e2d2;cursor:grab;touch-action:pan-y;outline:none;transform-style:preserve-3d;backface-visibility:hidden;will-change:transform}
-.ow-card img{width:100%;height:100%;display:block;object-fit:cover;box-shadow:0 0 0 1px rgba(15,20,10,.1),8px 12px 28px rgba(22,28,13,.16);pointer-events:none}
-.ow-card:active{cursor:grabbing}\n.ow-card.is-active img{box-shadow:0 0 0 1px rgba(15,20,10,.12),12px 20px 44px rgba(22,28,13,.22)}
-.ow-card:hover img{filter:brightness(1.04)}
-.ow-card:focus-visible img{outline:3px solid #7d8b28;outline-offset:4px}
-.ow-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1320px;margin:0 auto;padding:16px 0 10px;border-top:1px solid #ddd6c5}
-.ow-project{display:flex;align-items:center;gap:16px;min-width:230px}
-.ow-number{font-size:.72rem;color:#878a7e;border-right:1px solid #ddd6c5;padding-right:16px;font-variant-numeric:tabular-nums}
-.ow-project strong{display:block;font-size:.86rem;color:#1b2823;line-height:1.4}
-.ow-project small{display:block;font-size:.7rem;color:#85887b;margin-top:2px}
-.ow-timeline{display:flex;align-items:center;gap:4px;max-width:400px;width:32%;min-width:160px}
-.ow-tick{height:22px;flex:1;min-width:4px;padding:0;border:0;background:none;display:flex;align-items:center;cursor:pointer}
-.ow-tick:before{content:'';width:100%;height:2px;background:#c7cabd;transition:height .25s,background .25s}
-.ow-tick.is-active:before{height:9px;background:#59613f}
-.ow-tick:hover:before{height:6px;background:#8c9870}
-.ow-controls{display:flex;align-items:center;gap:8px}
-.ow-round{width:40px;height:40px;border-radius:50%;border:1px solid #c7cabe;background:transparent;color:#1b2823;display:grid;place-items:center;cursor:pointer;transition:background .2s,transform .2s}
-.ow-round:hover{background:#e2e5d8;transform:translateY(-2px)}
-.ow-play{background:#102c24;color:#f7f3e9;border-color:#102c24;margin-left:6px}
-.ow-hint{text-align:center;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#86897e;margin:14px 0 0}
 .h-gallery-intro{max-width:880px;margin:0 auto 18px;text-align:center}
 .h-gallery-intro .rp-eyebrow{justify-content:center}
 .h-gallery-intro .rp-h2{margin-bottom:12px;font-size:clamp(34px,4.4vw,62px);letter-spacing:-.035em;line-height:1.08}
 .h-gallery-intro .rp-lead{margin-left:auto;margin-right:auto;max-width:720px}
 .h-gallery-intro__button{margin-top:18px}
-.ow-modal{position:fixed;inset:0;z-index:120;background:rgba(8,20,16,.94);display:flex;align-items:center;justify-content:center;padding:4vw}
-.ow-modal__image{max-width:92vw;max-height:86vh;object-fit:contain;border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
-.ow-modal__close{position:absolute;top:22px;right:24px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer}
-.ow-modal__nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#fff;display:grid;place-items:center;cursor:pointer}
-.ow-modal__nav--prev{left:3vw}.ow-modal__nav--next{right:3vw}
-.ow-modal__caption{position:absolute;left:4vw;bottom:4vh;color:#f7f3e9}
-.ow-modal__caption strong{display:block;font-size:1.05rem}
-.ow-modal__caption small{color:#c9bda3;font-size:.8rem}
-@media(max-width:900px){.ow-stage{height:58vw;min-height:280px}.ow-bottom{gap:10px}.ow-timeline{display:none}.ow-project{min-width:0}}
-@media(max-width:600px){.ow-stage{height:64vw}.ow-play{margin-left:2px}}
+
+/* Iframe carousel Thư viện ảnh (full-bleed) */
+.h-gallery-frame{display:block;width:100%;height:calc(100vh - 82px);height:calc(100dvh - 82px);min-height:640px;border:0;background:#f1f0eb}
+@media(max-width:900px){.h-gallery-frame{height:calc(100svh - 68px);min-height:600px}}

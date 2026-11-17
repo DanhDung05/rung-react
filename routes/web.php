@@ -8,6 +8,7 @@ use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\Frontend\TourController;
 use App\Http\Controllers\Frontend\TourInquiryController;
+use App\Http\Controllers\GalleryCarouselController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SitemapController;
@@ -25,6 +26,9 @@ Route::get('/sitemap.xml', [SitemapController::class, 'index'])
     ->withoutMiddleware(['web']);
 // Trang chủ
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+// Carousel Thư viện ảnh độc lập (iframe, không qua Inertia)
+Route::get('/gallery-carousel', [GalleryCarouselController::class, 'show'])->name('gallery-carousel');
 
 // Tour
 Route::prefix('tour')->name('tours.')->group(function () {

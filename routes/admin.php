@@ -19,6 +19,7 @@ use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\HomeSectionController;
 use App\Http\Controllers\Admin\UiTextController;
 use App\Http\Controllers\Admin\VisualEditorController;
+use App\Http\Controllers\Admin\GallerySlideController;
 use App\Http\Controllers\Admin\GuideController;
 use App\Http\Controllers\Admin\ReleaseController;
 
@@ -40,6 +41,31 @@ Route::prefix('admin')->name('admin.')->middleware('admin')->group(function () {
     Route::get('lich-su-cap-nhat/{version}', [ReleaseController::class, 'show'])
         ->name('releases.show');
 
+    // ============================================================
+    // GALLERY SLIDES (Thư viện ảnh)
+    // ============================================================
+
+
+    Route::get('gallery-slides', [GallerySlideController::class, 'index'])
+        ->name('gallery-slides.index');
+
+    Route::get('gallery-slides/create', [GallerySlideController::class, 'create'])
+        ->name('gallery-slides.create');
+
+    Route::get('gallery-slides/{gallerySlide}/edit', [GallerySlideController::class, 'edit'])
+        ->name('gallery-slides.edit');
+    Route::post('gallery-slides', [GallerySlideController::class, 'store'])
+        ->name('gallery-slides.store');
+
+    Route::match(['put', 'patch'], 'gallery-slides/{gallerySlide}', [GallerySlideController::class, 'update'])
+        ->name('gallery-slides.update');
+
+    Route::delete('gallery-slides/{gallerySlide}', [GallerySlideController::class, 'destroy'])
+        ->name('gallery-slides.destroy');
+
+    Route::patch('gallery-slides/{gallerySlide}/move/{direction}', [GallerySlideController::class, 'move'])
+        ->whereIn('direction', ['up', 'down'])
+        ->name('gallery-slides.move');
     // Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])
         ->name('dashboard');

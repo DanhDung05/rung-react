@@ -66,6 +66,15 @@ export const routes = {
         posts: resource('/admin/bai-viet'),
         tags: resource('/admin/tag'),
         sliders: resource('/admin/slider'),
+        gallerySlides: {
+            index: '/admin/gallery-slides',
+            create: '/admin/gallery-slides/create',
+            store: '/admin/gallery-slides',
+            edit: (id) => `/admin/gallery-slides/${id}/edit`,
+            update: (id) => `/admin/gallery-slides/${id}`,
+            destroy: (id) => `/admin/gallery-slides/${id}`,
+            move: (id, direction) => `/admin/gallery-slides/${id}/move/${direction}`,
+        },
         pages: resource('/admin/trang-tinh'),
         faqs: resource('/admin/faq'),
         menus: {

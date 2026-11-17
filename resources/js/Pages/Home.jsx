@@ -6,10 +6,8 @@ import Seo from '../Components/Seo';
 import Reveal from '../Components/Public/Reveal';
 import HeroSlider from '../Components/Public/HeroSlider';
 import TourCard from '../Components/Public/TourCard';
-import MediaCarousel from '../Components/Public/MediaCarousel';
 import { routes } from '../lib/routes';
 import { mediaUrl, date } from '../lib/format';
-import { placeholderImage } from '../lib/placeholder';
 
 export default function Home({ sliders = [], featuredTours = [], latestPosts = [], settings = {}, visual = {} }) {
     const tours = Array.isArray(featuredTours) ? featuredTours : featuredTours?.data || [];
@@ -17,6 +15,8 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
     const about = settings?.about || {};
     const gallery = settings?.home_gallery || {};
     const galleryOverride = gallery.override_enabled === true;
+    const galleryVisual = settings?.visual?.home?.['home.gallery.enabled'] || {};
+    const galleryOn = gallery.enabled !== false && galleryVisual.enabled !== false;
 
     const ve = (id) => visual?.home?.[id] || {};
     const sectionOn = (name) => ve(`home.${name}.enabled`).enabled !== false;
@@ -38,29 +38,6 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
     const heroImage = mediaUrl(sliders[0]?.image) || null;
     const bandImage = ve('home.band.image').image || heroImage;
     const ctaImage = ve('home.cta.image').image || settings?.hero_images?.contact || heroImage;
-
-    const curatedGallery = Array.isArray(settings?.home_gallery_media) ? settings.home_gallery_media : [];
-
-    const galleryImages = (curatedGallery.length > 0
-        ? curatedGallery.map((item, index) => ({ id: `g-${index}`, url: item.url, alt: item.alt || '', caption: item.caption || '' }))
-        : [
-            ...sliders.map((item) => ({ id: `s-${item.id}`, url: mediaUrl(item.image), alt: item.title || '' })),
-            ...tours
-                .filter((item) => item.featured_image)
-                .map((item) => ({ id: `t-${item.id}`, url: mediaUrl(item.featured_image), alt: item.name })),
-        ])
-        .filter((item) => item.url)
-        .filter((item, index, list) => list.findIndex((candidate) => candidate.url === item.url) === index);
-
-    if (curatedGallery.length === 0) {
-        while (galleryImages.length < 5) {
-            galleryImages.push({
-                id: `ph-${galleryImages.length}`,
-                url: placeholderImage(`gallery-${galleryImages.length}`),
-                alt: 'Rừng Adventure',
-            });
-        }
-    }
 
     return (
         <AppLayout className="h-home">
@@ -162,8 +139,8 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
             ))}
 
             {/* 4. Thư viện — cấu hình từ Admin */}
-            {gallery.enabled !== false && (
-                <section className={`rp-section${gallery.background === 'white' ? '' : ' rp-section--cream'}`} data-ui="home.gallery.section" style={{ display: sectionOn('gallery') ? undefined : 'none', order: orderOf('gallery') }}>
+            {galleryOn && (
+                <section className={`rp-section${gallery.background === 'white' ? '' : ' rp-section--cream'}`} data-ui="home.gallery.section" style={{ order: orderOf('gallery') }}>
                     <div className="rp-container">
                         <div className="h-gallery-intro">
                             {gallery.label_on !== false && (
@@ -193,10 +170,15 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
                                 </Link>
                             )}
                         </div>
-                        <Reveal>
-                            <MediaCarousel images={galleryImages} />
-                        </Reveal>
                     </div>
+
+                    <iframe
+                        className="h-gallery-frame"
+                        src="/gallery-carousel"
+                        title="Thư viện ảnh Rừng Adventure"
+                        loading="lazy"
+                        scrolling="no"
+                    />
                 </section>
             )}
 
