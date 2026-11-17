@@ -17,6 +17,12 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2.5.2] - 2026-11-17
+
+### Changed
+- Carousel Thư viện ảnh bổ sung **focus lens** trung tâm như video mẫu: khung ảnh lớn có viền giấy, tường card nhỏ chạy phía sau; kéo lens hoặc tường đều trượt ngang, ảnh trung tâm đổi theo.
+- Lens giữ nguyên vị trí, ảnh active ẩn khỏi tường để không trùng; click lens mở modal.
+- `VERSION` → 2.5.2.
 ## [2.5.1] - 2026-11-17
 
 ### Fixed

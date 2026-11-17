@@ -37,7 +37,7 @@ class ReleaseHistoryTest extends TestCase
                 ->component('Admin/Releases/Index')
                 ->has('entries')
                 ->where('currentVersion', trim(file_get_contents(base_path('VERSION'))))
-                ->where('entries.0.version', '2.5.1'));
+                ->where('entries.0.version', '2.5.2'));
     }
 
     public function test_editor_can_view_release_history(): void

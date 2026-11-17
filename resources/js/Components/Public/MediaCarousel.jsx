@@ -43,8 +43,8 @@ export default function MediaCarousel({ images = [] }) {
 
         const width = stage.clientWidth;
         const mobile = width < 700;
-        const cardWidth = mobile ? width * 0.78 : Math.min(460, width * 0.34);
-        const radius = mobile ? width * 0.92 : Math.min(880, width * 0.7);
+        const cardWidth = mobile ? width * 0.5 : Math.min(200, width * 0.15);
+        const radius = mobile ? width * 0.9 : Math.min(700, width * 0.6);
         const recess = mobile ? 100 : 150;
         const total = list.length || 1;
         const active = mod(Math.round(positionRef.current), total);
@@ -55,17 +55,17 @@ export default function MediaCarousel({ images = [] }) {
 
             const distance = mod(i - positionRef.current + total / 2, total) - total / 2;
             const absolute = Math.abs(distance);
-            const theta = distance * (mobile ? 0.26 : 0.34);
+            const theta = distance * (mobile ? 0.3 : 0.34);
             const x = radius * Math.sin(theta);
             const z = radius * (1 - Math.cos(theta)) - recess;
-            const scale = (1 - Math.min(absolute * 0.08, 0.32)) * (mobile ? 0.92 : 0.86);
+            const scale = (1 - Math.min(absolute * 0.08, 0.28)) * (mobile ? 0.9 : 0.82);
             const angle = (-theta * 180) / Math.PI;
             const visible = absolute < 3.2;
 
             card.style.width = `${cardWidth}px`;
             card.style.transform = `translate(-50%, -50%) translateX(${x}px) translateZ(${z}px) rotateY(${angle}deg) scale(${scale})`;
             card.style.zIndex = String(100 - Math.round(absolute * 10));
-            card.style.opacity = visible ? '1' : '0';
+            card.style.opacity = visible && i !== active ? '1' : '0';
             card.style.pointerEvents = visible ? 'auto' : 'none';
         });
 
@@ -199,6 +199,21 @@ export default function MediaCarousel({ images = [] }) {
                         <img src={item.url} alt={item.alt || ''} loading={Math.abs(i - index) < 3 ? 'eager' : 'lazy'} draggable="false" />
                     </button>
                 ))}
+                <button
+                    type="button"
+                    className="ow-lens"
+                    onPointerDown={startDrag}
+                    onPointerMove={moveDrag}
+                    onPointerUp={endDrag}
+                    onPointerCancel={endDrag}
+                    onClick={() => {
+                        if (Date.now() - lastDragAt.current < 250) return;
+                        setPreview(index);
+                    }}
+                    aria-label={`Xem ảnh: ${active.alt || ''}`}
+                >
+                    <img src={active.url} alt={active.alt || ''} draggable="false" />
+                </button>
             </div>
 
             <div className="ow-bottom">

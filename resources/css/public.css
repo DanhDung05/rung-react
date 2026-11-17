@@ -4945,7 +4945,10 @@
    Gallery 3D ki?u The Window � ?nh ngang cho web du l?ch
    ========================================================= */
 .ow-gallery{position:relative;width:100vw;margin-left:calc(50% - 50vw);padding:0 clamp(16px,4vw,64px);overflow:hidden}
-.ow-stage{position:relative;height:clamp(320px,38vw,520px);perspective:1400px;overflow:hidden;touch-action:pan-y;user-select:none}
+.ow-stage{position:relative;height:clamp(340px,40vw,540px);perspective:1400px;overflow:hidden;touch-action:pan-y;user-select:none}
+.ow-lens{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:200;width:min(44vw,480px);aspect-ratio:3/2;padding:9px;border:1px solid rgba(15,20,10,.12);background:#f8f4e9;box-shadow:0 0 0 1px rgba(255,255,255,.7) inset,0 24px 60px rgba(22,28,13,.28);cursor:grab;touch-action:pan-y;display:block}
+.ow-lens:active{cursor:grabbing}
+.ow-lens img{width:100%;height:100%;display:block;object-fit:cover}
 .ow-stage:active{cursor:grabbing}
 .ow-horizon{position:absolute;left:6%;right:6%;bottom:12%;height:14%;background:radial-gradient(ellipse at center,rgba(73,77,51,.14),transparent 68%);filter:blur(22px);pointer-events:none}
 .ow-card{position:absolute;left:50%;top:50%;height:auto;aspect-ratio:3/2;padding:0;border:0;background:#e8e2d2;cursor:grab;touch-action:pan-y;outline:none;transform-style:preserve-3d;backface-visibility:hidden;will-change:transform}
