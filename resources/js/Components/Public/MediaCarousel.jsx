@@ -23,6 +23,7 @@ export default function MediaCarousel({ images = [] }) {
     const hoverRef = useRef(false);
     const rafRef = useRef(null);
     const lastRef = useRef(0);
+    const lastDragAt = useRef(0);
 
     const [index, setIndex] = useState(0);
     const [playing, setPlaying] = useState(true);
@@ -109,25 +110,51 @@ export default function MediaCarousel({ images = [] }) {
     }, [preview, list.length]);
 
     const startDrag = (event) => {
-        dragRef.current = { startX: event.clientX, startPosition: positionRef.current, moved: false };
+        dragRef.current = {
+            startX: event.clientX,
+            startY: event.clientY,
+            startPosition: positionRef.current,
+            axis: null,
+            moved: false,
+        };
         event.currentTarget.setPointerCapture?.(event.pointerId);
     };
 
     const moveDrag = (event) => {
         if (!dragRef.current) return;
+
+        const deltaX = event.clientX - dragRef.current.startX;
+        const deltaY = event.clientY - dragRef.current.startY;
+
+        if (!dragRef.current.axis) {
+            if (Math.abs(deltaX) < 6 && Math.abs(deltaY) < 6) return;
+
+            // Chỉ kéo ngang khi cử chỉ nghiêng về trục X; kéo dọc để trang cuộn bình thường.
+            dragRef.current.axis = Math.abs(deltaX) > Math.abs(deltaY) ? 'x' : 'y';
+
+            if (dragRef.current.axis === 'y') {
+                dragRef.current = null;
+                return;
+            }
+        }
+
         const stage = stageRef.current;
         const width = stage?.clientWidth || 1200;
         const step = Math.max(160, width * 0.34);
-        const delta = event.clientX - dragRef.current.startX;
-
-        if (Math.abs(delta) > 6) dragRef.current.moved = true;
-        targetRef.current = dragRef.current.startPosition - delta / step;
+        dragRef.current.moved = true;
+        targetRef.current = dragRef.current.startPosition - deltaX / step;
     };
 
     const endDrag = () => {
         if (!dragRef.current) return;
+
+        const wasHorizontal = dragRef.current.axis === 'x' && dragRef.current.moved;
         dragRef.current = null;
-        targetRef.current = Math.round(targetRef.current);
+
+        if (wasHorizontal) {
+            lastDragAt.current = Date.now();
+            targetRef.current = Math.round(targetRef.current);
+        }
     };
 
     if (list.length === 0) return null;
@@ -140,10 +167,6 @@ export default function MediaCarousel({ images = [] }) {
             <div
                 className="ow-stage"
                 ref={stageRef}
-                onPointerDown={startDrag}
-                onPointerMove={moveDrag}
-                onPointerUp={endDrag}
-                onPointerCancel={endDrag}
                 onMouseEnter={() => { hoverRef.current = true; targetRef.current = Math.round(targetRef.current); }}
                 onMouseLeave={() => { hoverRef.current = false; }}
                 role="region"
@@ -158,8 +181,13 @@ export default function MediaCarousel({ images = [] }) {
                         key={item.id || i}
                         className={`ow-card ${i === index ? 'is-active' : ''}`}
                         ref={(node) => { cardRefs.current[i] = node; }}
+                        onPointerDown={startDrag}
+                        onPointerMove={moveDrag}
+                        onPointerUp={endDrag}
+                        onPointerCancel={endDrag}
                         onClick={() => {
-                            if (dragRef.current?.moved) return;
+                            if (Date.now() - lastDragAt.current < 250) return;
+
                             if (i === index) setPreview(index);
                             else {
                                 targetRef.current = i;

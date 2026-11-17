@@ -17,6 +17,12 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2.5.1] - 2026-11-17
+
+### Fixed
+- Carousel Thư viện ảnh chỉ kéo ngang khi bắt đầu trên ảnh và cử chỉ nghiêng về trục X; kéo/scroll dọc không làm ảnh trượt.
+- Bấm ảnh sau khi kéo ngang không mở nhầm modal (chặn click trong 250ms sau kéo).
+- `VERSION` → 2.5.1.
 ## [2.5.0] - 2026-11-17
 
 ### Changed

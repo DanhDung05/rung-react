@@ -4945,12 +4945,12 @@
    Gallery 3D ki?u The Window � ?nh ngang cho web du l?ch
    ========================================================= */
 .ow-gallery{position:relative;width:100vw;margin-left:calc(50% - 50vw);padding:0 clamp(16px,4vw,64px);overflow:hidden}
-.ow-stage{position:relative;height:clamp(320px,38vw,520px);perspective:1400px;overflow:hidden;cursor:grab;touch-action:pan-y;user-select:none}
+.ow-stage{position:relative;height:clamp(320px,38vw,520px);perspective:1400px;overflow:hidden;touch-action:pan-y;user-select:none}
 .ow-stage:active{cursor:grabbing}
 .ow-horizon{position:absolute;left:6%;right:6%;bottom:12%;height:14%;background:radial-gradient(ellipse at center,rgba(73,77,51,.14),transparent 68%);filter:blur(22px);pointer-events:none}
-.ow-card{position:absolute;left:50%;top:50%;height:auto;aspect-ratio:3/2;padding:0;border:0;background:#e8e2d2;cursor:pointer;outline:none;transform-style:preserve-3d;backface-visibility:hidden;will-change:transform}
+.ow-card{position:absolute;left:50%;top:50%;height:auto;aspect-ratio:3/2;padding:0;border:0;background:#e8e2d2;cursor:grab;touch-action:pan-y;outline:none;transform-style:preserve-3d;backface-visibility:hidden;will-change:transform}
 .ow-card img{width:100%;height:100%;display:block;object-fit:cover;box-shadow:0 0 0 1px rgba(15,20,10,.1),8px 12px 28px rgba(22,28,13,.16);pointer-events:none}
-.ow-card.is-active img{box-shadow:0 0 0 1px rgba(15,20,10,.12),12px 20px 44px rgba(22,28,13,.22)}
+.ow-card:active{cursor:grabbing}\n.ow-card.is-active img{box-shadow:0 0 0 1px rgba(15,20,10,.12),12px 20px 44px rgba(22,28,13,.22)}
 .ow-card:hover img{filter:brightness(1.04)}
 .ow-card:focus-visible img{outline:3px solid #7d8b28;outline-offset:4px}
 .ow-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1320px;margin:0 auto;padding:16px 0 10px;border-top:1px solid #ddd6c5}
