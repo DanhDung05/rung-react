@@ -43,6 +43,7 @@ Không cần tạo bản ghi trong Admin. Không sửa `CHANGELOG.md` bằng tay
 
 | Version | Ngày | Nội dung chính |
 |---|---|---|
+| 2.5.0 | 2026-11-17 | Carousel Thư viện ảnh phong cách The Window, khung ngang |
 | 2.4.4 | 2026-11-16 | Public realtime: đánh giá duyệt hiện ngay trên trang tour |
 | 2.4.3 | 2026-11-16 | Tour tự refresh review khi quay lại tab |
 | 2.4.2 | 2026-11-16 | Sửa nút gửi yêu cầu tư vấn tour (thiếu route helper) |

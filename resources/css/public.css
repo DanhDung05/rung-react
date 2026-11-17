@@ -4874,7 +4874,7 @@
 
 
 
-/* Khi t?t l?p ph?: ch? gi? d?i t?i trên cùng ð? menu ð?c r? */
+/* Khi t?t l?p ph?: ch? gi? d?i t?i trï¿½n cï¿½ng ï¿½? menu ï¿½?c r? */
 .rp-slider__topshade,
 .rp-hero__topshade {
     position: absolute;
@@ -4890,7 +4890,7 @@
 .h-home .rp-app__main > .rp-slider{order:-1}
 
 /* =========================================================
-   Media carousel (The Window) — section Thý vi?n
+   Media carousel (The Window) ï¿½ section Thï¿½ vi?n
    ========================================================= */
 .tw-carousel{position:relative}
 .tw-stage{position:relative;height:clamp(380px,46vw,600px);perspective:1500px;overflow:hidden;touch-action:pan-y}
@@ -4927,7 +4927,7 @@
 @media(max-width:900px){.tw-card{width:44vw}.tw-arrow{display:none}.tw-stage{height:58vw;min-height:320px}}
 @media(max-width:600px){.tw-card{width:62vw}.tw-meta{flex-direction:column;align-items:flex-start}.tw-modal__nav{display:none}}
 
-/* Carousel: ýu tiên ?nh ngang cho web du l?ch */
+/* Carousel: ï¿½u tiï¿½n ?nh ngang cho web du l?ch */
 .tw-card{width:min(52vw,760px);aspect-ratio:4/3}
 .tw-card img{object-position:center 32%}
 .tw-stage{height:clamp(300px,40vw,560px)}
@@ -4935,8 +4935,46 @@
 @media(max-width:900px){.tw-card{width:72vw}.tw-stage{height:52vw;min-height:280px}}
 @media(max-width:600px){.tw-card{width:86vw}}
 
-/* Honeypot + form tý v?n tour */
+/* Honeypot + form tï¿½ v?n tour */
 .hp-field{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
 .rp-inquiry-form{display:grid;gap:14px}
 .rp-inquiry-form .rp-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:600px){.rp-inquiry-form .rp-form-grid{grid-template-columns:1fr}}
+
+/* =========================================================
+   Gallery 3D ki?u The Window ï¿½ ?nh ngang cho web du l?ch
+   ========================================================= */
+.ow-gallery{position:relative;width:100vw;margin-left:calc(50% - 50vw);padding:0 clamp(16px,4vw,64px);overflow:hidden}
+.ow-stage{position:relative;height:clamp(320px,38vw,520px);perspective:1400px;overflow:hidden;cursor:grab;touch-action:pan-y;user-select:none}
+.ow-stage:active{cursor:grabbing}
+.ow-horizon{position:absolute;left:6%;right:6%;bottom:12%;height:14%;background:radial-gradient(ellipse at center,rgba(73,77,51,.14),transparent 68%);filter:blur(22px);pointer-events:none}
+.ow-card{position:absolute;left:50%;top:50%;height:auto;aspect-ratio:3/2;padding:0;border:0;background:#e8e2d2;cursor:pointer;outline:none;transform-style:preserve-3d;backface-visibility:hidden;will-change:transform}
+.ow-card img{width:100%;height:100%;display:block;object-fit:cover;box-shadow:0 0 0 1px rgba(15,20,10,.1),8px 12px 28px rgba(22,28,13,.16);pointer-events:none}
+.ow-card.is-active img{box-shadow:0 0 0 1px rgba(15,20,10,.12),12px 20px 44px rgba(22,28,13,.22)}
+.ow-card:hover img{filter:brightness(1.04)}
+.ow-card:focus-visible img{outline:3px solid #7d8b28;outline-offset:4px}
+.ow-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1320px;margin:0 auto;padding:16px 0 10px;border-top:1px solid #ddd6c5}
+.ow-project{display:flex;align-items:center;gap:16px;min-width:230px}
+.ow-number{font-size:.72rem;color:#878a7e;border-right:1px solid #ddd6c5;padding-right:16px;font-variant-numeric:tabular-nums}
+.ow-project strong{display:block;font-size:.86rem;color:#1b2823;line-height:1.4}
+.ow-project small{display:block;font-size:.7rem;color:#85887b;margin-top:2px}
+.ow-timeline{display:flex;align-items:center;gap:4px;max-width:400px;width:32%;min-width:160px}
+.ow-tick{height:22px;flex:1;min-width:4px;padding:0;border:0;background:none;display:flex;align-items:center;cursor:pointer}
+.ow-tick:before{content:'';width:100%;height:2px;background:#c7cabd;transition:height .25s,background .25s}
+.ow-tick.is-active:before{height:9px;background:#59613f}
+.ow-tick:hover:before{height:6px;background:#8c9870}
+.ow-controls{display:flex;align-items:center;gap:8px}
+.ow-round{width:40px;height:40px;border-radius:50%;border:1px solid #c7cabe;background:transparent;color:#1b2823;display:grid;place-items:center;cursor:pointer;transition:background .2s,transform .2s}
+.ow-round:hover{background:#e2e5d8;transform:translateY(-2px)}
+.ow-play{background:#102c24;color:#f7f3e9;border-color:#102c24;margin-left:6px}
+.ow-hint{text-align:center;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:#86897e;margin:8px 0 0}
+.ow-modal{position:fixed;inset:0;z-index:120;background:rgba(8,20,16,.94);display:flex;align-items:center;justify-content:center;padding:4vw}
+.ow-modal__image{max-width:92vw;max-height:86vh;object-fit:contain;border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.ow-modal__close{position:absolute;top:22px;right:24px;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer}
+.ow-modal__nav{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#fff;display:grid;place-items:center;cursor:pointer}
+.ow-modal__nav--prev{left:3vw}.ow-modal__nav--next{right:3vw}
+.ow-modal__caption{position:absolute;left:4vw;bottom:4vh;color:#f7f3e9}
+.ow-modal__caption strong{display:block;font-size:1.05rem}
+.ow-modal__caption small{color:#c9bda3;font-size:.8rem}
+@media(max-width:900px){.ow-stage{height:58vw;min-height:280px}.ow-bottom{gap:10px}.ow-timeline{display:none}.ow-project{min-width:0}}
+@media(max-width:600px){.ow-stage{height:64vw}.ow-play{margin-left:2px}}

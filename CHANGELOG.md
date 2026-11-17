@@ -17,6 +17,12 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2.5.0] - 2026-11-17
+
+### Changed
+- **Carousel Thư viện ảnh** viết lại theo đúng phong cách “The Window”: tường ảnh 3D cong, thẻ **khung ngang 3:2**, kéo/chạm để trượt, tự chạy có tạm dừng, timeline tick, bộ đếm/tên/nhóm ảnh, modal xem lớn.
+- Section Thư viện tràn viền (full-bleed) thay cho lưới collage cũ; ảnh curated vẫn lấy từ Media `gallery`.
+- `VERSION` → 2.5.0.
 ## [2.4.4] - 2026-11-16
 
 ### Added
