@@ -43,6 +43,7 @@ Không cần tạo bản ghi trong Admin. Không sửa `CHANGELOG.md` bằng tay
 
 | Version | Ngày | Nội dung chính |
 |---|---|---|
+| 2.6.0 | 2026-11-17 | Bố cục thư viện theo ảnh mẫu: intro giữa, wall dày, lens kính |
 | 2.5.2 | 2026-11-17 | Focus lens trung tâm + tường card như video mẫu |
 | 2.5.1 | 2026-11-17 | Chỉ kéo ngang trên ảnh; kéo dọc không trượt |
 | 2.5.0 | 2026-11-17 | Carousel Thư viện ảnh phong cách The Window, khung ngang |

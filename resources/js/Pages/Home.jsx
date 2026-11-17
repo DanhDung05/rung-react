@@ -165,26 +165,23 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
             {gallery.enabled !== false && (
                 <section className={`rp-section${gallery.background === 'white' ? '' : ' rp-section--cream'}`} data-ui="home.gallery.section" style={{ display: sectionOn('gallery') ? undefined : 'none', order: orderOf('gallery') }}>
                     <div className="rp-container">
-                        <div className="rp-spread" style={{ marginBottom: 34 }}>
-                            <div>
-                                {gallery.label_on !== false && (
-                                    <div className="rp-eyebrow" style={galleryOverride ? { color: gallery.label_color } : undefined}>
-                                        {gallery.label_text || 'Thư viện'}
-                                    </div>
-                                )}
-                                <h2 className="rp-h2" style={galleryOverride ? { color: gallery.title_color } : undefined}>
-                                    {gallery.title || 'Những khoảnh khắc'}{' '}
-                                    <em style={galleryOverride ? { color: gallery.accent_color } : undefined}>{gallery.accent ?? 'đường rừng'}</em>
-                                </h2>
-                                {gallery.lead && (
-                                    <p className="rp-lead" style={{ color: gallery.lead_color || undefined }}>{gallery.lead}</p>
-                                )}
-                            </div>
-
+                        <div className="h-gallery-intro">
+                            {gallery.label_on !== false && (
+                                <div className="rp-eyebrow" style={galleryOverride ? { color: gallery.label_color } : undefined}>
+                                    {gallery.label_text || 'Thư viện'}
+                                </div>
+                            )}
+                            <h2 className="rp-h2" style={galleryOverride ? { color: gallery.title_color } : undefined}>
+                                {gallery.title || 'Những khoảnh khắc'}{' '}
+                                <em style={galleryOverride ? { color: gallery.accent_color } : undefined}>{gallery.accent ?? 'đường rừng'}</em>
+                            </h2>
+                            <p className="rp-lead" style={{ color: gallery.lead_color || undefined }}>
+                                {gallery.lead || 'Mỗi khung hình là một lát cắt trên cung đường — ánh sáng, con người và thiên nhiên của Rừng Adventure.'}
+                            </p>
                             {gallery.button_on !== false && (
                                 <Link
                                     href={ve('home.gallery.button').url || gallery.button_url || routes.posts.index}
-                                    className="rp-btn rp-btn--outline"
+                                    className="rp-btn rp-btn--outline h-gallery-intro__button"
                                     data-ui="home.gallery.button"
                                     style={galleryOverride ? {
                                         color: gallery.button_color,
@@ -196,7 +193,6 @@ export default function Home({ sliders = [], featuredTours = [], latestPosts = [
                                 </Link>
                             )}
                         </div>
-
                         <Reveal>
                             <MediaCarousel images={galleryImages} />
                         </Reveal>

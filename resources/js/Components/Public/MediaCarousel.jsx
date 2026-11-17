@@ -43,8 +43,8 @@ export default function MediaCarousel({ images = [] }) {
 
         const width = stage.clientWidth;
         const mobile = width < 700;
-        const cardWidth = mobile ? width * 0.5 : Math.min(200, width * 0.15);
-        const radius = mobile ? width * 0.9 : Math.min(700, width * 0.6);
+        const cardWidth = mobile ? width * 0.5 : Math.min(170, width * 0.1);
+        const radius = mobile ? width * 0.9 : Math.min(850, width * 0.64);
         const recess = mobile ? 100 : 150;
         const total = list.length || 1;
         const active = mod(Math.round(positionRef.current), total);
@@ -55,12 +55,12 @@ export default function MediaCarousel({ images = [] }) {
 
             const distance = mod(i - positionRef.current + total / 2, total) - total / 2;
             const absolute = Math.abs(distance);
-            const theta = distance * (mobile ? 0.3 : 0.34);
+            const theta = distance * (mobile ? 0.3 : 0.2);
             const x = radius * Math.sin(theta);
             const z = radius * (1 - Math.cos(theta)) - recess;
-            const scale = (1 - Math.min(absolute * 0.08, 0.28)) * (mobile ? 0.9 : 0.82);
+            const scale = (1 - Math.min(absolute * 0.08, 0.28)) * (mobile ? 0.9 : 0.8);
             const angle = (-theta * 180) / Math.PI;
-            const visible = absolute < 3.2;
+            const visible = absolute < 12;
 
             card.style.width = `${cardWidth}px`;
             card.style.transform = `translate(-50%, -50%) translateX(${x}px) translateZ(${z}px) rotateY(${angle}deg) scale(${scale})`;
@@ -216,6 +216,8 @@ export default function MediaCarousel({ images = [] }) {
                 </button>
             </div>
 
+            <p className="ow-hint">↔ Kéo để xem · Bấm ảnh giữa để phóng to</p>
+
             <div className="ow-bottom">
                 <div className="ow-project">
                     <span className="ow-number">
@@ -252,8 +254,6 @@ export default function MediaCarousel({ images = [] }) {
                     </button>
                 </div>
             </div>
-
-            <p className="ow-hint">Kéo để xem · Bấm ảnh giữa để phóng to</p>
 
             {preview !== null && (
                 <div className="ow-modal" role="dialog" aria-modal="true" aria-label="Xem ảnh">

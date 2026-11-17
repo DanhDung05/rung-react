@@ -17,6 +17,13 @@ phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 ---
 
+## [2.6.0] - 2026-11-17
+
+### Changed
+- **Thư viện ảnh**: bố cục theo ảnh mẫu — intro căn giữa (eyebrow, tiêu đề lớn, mô tả), tường card dọc dày phía sau, **lens ngang 3:2** có viền giấy và vệt kính, hint “↔ Kéo để xem…” đặt trên thanh điều khiển.
+- Wall trải rộng gần kín viewport, card kích thước so le; vẫn kéo ngang trên ảnh, kéo dọc không trượt.
+- Mô tả mặc định cho intro khi Admin chưa nhập `lead`.
+- `VERSION` → 2.6.0.
 ## [2.5.2] - 2026-11-17
 
 ### Changed
